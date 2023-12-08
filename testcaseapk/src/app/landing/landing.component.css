@@ -1,0 +1,47 @@
+/* Add this to your component's CSS file or the global styles file */
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-top: 20px;
+  }
+  
+  #codeInput {
+    resize: vertical;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    cursor: pointer;
+    background-color: #4caf50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049; /* Darker Green */
+  }
+  
+  .mt-4 {
+    margin-top: 40px;
+  }
+  
+  .text-success {
+    color: #4caf50; /* Green */
+  }
+  
+  .text-danger {
+    color: #f44336; /* Red */
+  }
+  
+  /* Add more styles based on your design requirements */
+  
