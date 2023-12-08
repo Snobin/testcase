@@ -1,0 +1,25 @@
+<!-- landing.component.html -->
+
+<div class="container mt-5">
+    <h2>Welcome to Code Compiler and Tester</h2>
+  
+    <div class="form-group mt-3">
+      <label for="codeInput">Enter Your Code:</label>
+      <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
+    </div>
+  
+    <button class="btn btn-primary mt-3" (click)="compileAndTest()">Compile and Test</button>
+  
+    <div class="mt-4" *ngIf="result">
+      <h4>Results:</h4>
+      <div *ngIf="result.success" class="text-success">
+        <p>Code compiled and tested successfully!</p>
+        <p>Output: {{ result.output }}</p>
+      </div>
+      <div *ngIf="!result.success" class="text-danger">
+        <p>Code compilation or testing failed!</p>
+        <p>Error: {{ result.errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+  
