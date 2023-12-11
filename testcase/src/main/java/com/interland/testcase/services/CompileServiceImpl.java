@@ -2,11 +2,13 @@ package com.interland.testcase.services;
 
 import javax.tools.*;
 
+import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CompileResponse;
 import com.interland.testcase.dto.InMemoryFileManager;
 
+import java.io.StringWriter;
 import java.net.URI;
 import java.util.Arrays;
 
@@ -41,4 +43,17 @@ public class CompileServiceImpl implements CompilerService{
         System.out.println(output);
         return response;
     }
+	
+	@Override
+	public CompileResponse pythonCompiler(String code) {
+        StringWriter outputWriter = new StringWriter();
+        PythonInterpreter interpreter = new PythonInterpreter();
+        interpreter.setOut(outputWriter);
+        interpreter.exec(code);
+        String output = outputWriter.toString();
+        CompileResponse response = new CompileResponse();
+        response.setOutput(output);
+        response.setCompilationSuccessful(true);
+        return response;
+	}
 }
