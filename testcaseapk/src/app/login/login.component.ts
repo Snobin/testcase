@@ -20,6 +20,6 @@ password: any;
 
   Login(){
     this.obj.isLoggedIn=true;
-    this.router.navigate([`landing`]);
+    this.router.navigate([`instructions`]);
   }
 }

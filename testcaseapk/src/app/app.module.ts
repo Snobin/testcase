@@ -8,13 +8,15 @@ import { LandingComponent } from './landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     LandingComponent,
-    LoginComponent
+    LoginComponent,
+    InstructionsComponent
   ],
   imports: [
     BrowserModule,
