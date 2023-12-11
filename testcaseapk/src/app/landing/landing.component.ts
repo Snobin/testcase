@@ -8,19 +8,18 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-selectedLanguage: any;
 
-
-
-  ngOnInit(): void {
-  }
-  
+  selectedLanguage: any;
   testCases: string[] = [];
   result: any;
   code: string = '';
 
   constructor(private apiService: ServiceService, public obj:AppComponent) { }
 
+  ngOnInit(): void {
+    
+  }
+  
   compileAndTest() {
     if(this.selectedLanguage=="java") {
       this.apiService.javaCompile(this.code).subscribe(
@@ -28,7 +27,12 @@ selectedLanguage: any;
           this.result = response;
         },
         (error) => {
-          this.result = { success: false, errorMessage: 'Failed to communicate with the server.' };
+          this.result = error;
+          if (error.status==400) {
+            this.result.errorMessage = 'Bad Request';
+          } else if (error.status==500) {
+            this.result.errorMessage = 'Internal Server Error';
+          }
         }
       );
     } else if(this.selectedLanguage=="python") {
