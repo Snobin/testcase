@@ -38,21 +38,9 @@ public class CompileServiceImpl implements CompilerService{
 
         boolean compilationSuccessful = task.call();
         String output = fileManager.getOutput();
-
         CompileResponse response = new CompileResponse();
         response.setOutput(output);
-        System.out.println(output);
         response.setCompilationSuccessful(compilationSuccessful);
-        
-        String binaryDataString = output;
-     // Convert Base64-encoded string to byte array
-        byte[] binaryData = Base64.getDecoder().decode(binaryDataString);
-
-        // Convert byte array to string
-        String resultString = new String(binaryData, StandardCharsets.UTF_8);
-
-        // Print the result
-        System.out.println(resultString);
         return response;
     }
 	
