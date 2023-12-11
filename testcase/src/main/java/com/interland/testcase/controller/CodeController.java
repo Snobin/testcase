@@ -2,6 +2,7 @@
 package com.interland.testcase.controller;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import org.python.core.Py;
 import org.python.core.PyObject;
@@ -11,21 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CodeController {
+public class CodeController extends PythonInterpreter {
 
-    @PostMapping("/execute/python")
+	@PostMapping("/execute/python")
 
-    public String executePythonCode(@RequestBody String code) throws IOException, InterruptedException {
-            String pythonCode = "print('Hello, Python!')";
-            
-            PythonInterpreter interpreter = new PythonInterpreter();
-            interpreter.exec(code);
+	public String executePythonCode(@RequestBody String code) throws IOException, InterruptedException {
+        // Create a StringWriter to capture the output
+        StringWriter outputWriter = new StringWriter();
 
-            PyObject locals = interpreter.getLocals();
-            PyObject result = locals.__finditem__(Py.newString("__builtins__"));
-            PyObject pyObject = locals.__finditem__(Py.newString("__builtin__"));
-            System.out.println(pyObject);
-            return locals.toString();
-        }
+        // Create a PythonInterpreter
+        PythonInterpreter interpreter = new PythonInterpreter();
+
+        // Redirect the standard output to the StringWriter
+        interpreter.setOut(outputWriter);
+
+        // Execute the Python code
+        interpreter.exec(code);
+
+        // Retrieve the output from the StringWriter
+        String output = outputWriter.toString();
+
+        // Print the output (for testing purposes)
+        System.out.println("Python Output: " + output);
+
+        // Now you can use the 'output' variable for further purposes
+        return output;
     }
-
+}
