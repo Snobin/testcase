@@ -2,22 +2,24 @@ package com.interland.testcase.services;
 
 import javax.tools.*;
 
+import java.io.StringWriter;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
+
 import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CompileResponse;
 import com.interland.testcase.dto.InMemoryFileManager;
 
-import java.io.StringWriter;
-import java.net.URI;
-import java.util.Arrays;
-
 @Service
 public class CompileServiceImpl implements CompilerService{
 	
 	@Override
 	public CompileResponse javaCompiler(String code) {
-        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         InMemoryFileManager fileManager = new InMemoryFileManager(compiler.getStandardFileManager(null, null, null));
 
         JavaCompiler.CompilationTask task = compiler.getTask(
@@ -39,8 +41,18 @@ public class CompileServiceImpl implements CompilerService{
 
         CompileResponse response = new CompileResponse();
         response.setOutput(output);
-        response.setCompilationSuccessful(compilationSuccessful);
         System.out.println(output);
+        response.setCompilationSuccessful(compilationSuccessful);
+        
+        String binaryDataString = output;
+     // Convert Base64-encoded string to byte array
+        byte[] binaryData = Base64.getDecoder().decode(binaryDataString);
+
+        // Convert byte array to string
+        String resultString = new String(binaryData, StandardCharsets.UTF_8);
+
+        // Print the result
+        System.out.println(resultString);
         return response;
     }
 	
