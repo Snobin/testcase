@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
-import { InstructionsComponent } from './instructions/instructions.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 const routes: Routes = [
-  {path: 'landing', component:LandingComponent},
   {path: 'login', component:LoginComponent},
-  {path: 'instructions', component:InstructionsComponent},
-  {path: '', redirectTo:'login',pathMatch: 'full'}
+  {path: 'landing', component:LandingComponent},
+  {path: 'exam', loadChildren: () => import(`./exam/exam.module`).then(m => m.ExamModule) },
+  {path: '', redirectTo:'login', pathMatch: 'full'},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

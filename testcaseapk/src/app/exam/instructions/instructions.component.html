@@ -1,0 +1,56 @@
+<h1 class="text-center text-light">General Instructions</h1>
+<h4 class="text-center text-light text-decoration-underline">Read the following instructions carefully</h4>
+
+<div class="container text-light" style="margin-right: 50px;margin-top: 50px;">
+    <div class="sysInstText1" style="height: 93%; width: 97%; overflow: auto; padding-left: 10px;">
+        <ol style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px"> 
+            <li>Total duration of the examination is <strong>180</strong> minutes. Calculator is available on top, right hand side of the screen.</li>
+            <li>The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li> 
+            <li>The Question Palette displayed on the right hand side of screen will show the status of each question using one of the following symbols: 
+                <table class="instruction_area" style="FONT-SIZE: 100%"> 
+                    <tbody> 
+                        <tr> 
+                            <td><span class="not_visited" title="Not Visited">1</span></td> 
+                            <td>You have not visited the question yet.</td> 
+                        </tr> 
+                        <tr> 
+                            <td><span class="not_answered" title="Not Answered">2</span></td> 
+                            <td>You have not answered the question.</td> 
+                        </tr> 
+                        <tr> 
+                            <td><span class="answered" title="Answered">3</span></td> 
+                            <td>You have answered the question.</td> 
+                        </tr> 
+                        <tr> 
+                            <td><span class="review" title="Marked for Review">4</span></td> 
+                            <td>You have NOT answered the question, but have marked the question for review.</td> 
+                        </tr> 
+                        <tr> 
+                            <td><span class="review_marked_considered" title="Answered &amp; Marked for Review">5</span></td> 
+                            <td>The question(s) "Answered and Marked for Review" will be considered for evaluation.</td> 
+                        </tr> 
+                    
+                    </tbody> 
+                </table> 
+            </li> 
+            <li style="LIST-STYLE-TYPE: none">The Marked for Review status for a question simply indicates that you would like to look at that question again.</li> 
+        </ol> 
+        <ol start="4" style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px"> 
+            <li>You can click on the "&gt;" arrow which appears to the left of question palette to collapse the question palette thereby maximizing the question window. To view the question palette again, you can click on "&lt; " which appears on the right side of question window.</li> 
+            <li>You can click on <img class="scrollBottom" id="scrollBottom" src="images/Down.png" title="Scroll Down"> to navigate to the bottom and <img class="scrollTop" id="scrollTop" src="images/Up.png" title="Scroll Up">to navigate to the top of the question area, without scrolling.</li> 
+        </ol> <strong><u>Navigating to a Question:</u></strong> 
+        <ol start="6" style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px "> 
+            <li>To answer a question, do the following: 
+                <ol style="TEXT-ALIGN: left; PADDING-LEFT: 4%; PADDING-TOP: 3px " type="a"> 
+                    <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.</li> 
+                    <li>Click on <b>Save &amp; Next</b> to save your answer for the current question and then go to the next question.</li> 
+                    <li>Click on <b>Mark for Review &amp; Next</b> to save your answer for the current question, mark it for review, and then go to the next question.</li> 
+                </ol> 
+            </li> 
+        </ol> 
+    </div>
+</div>
+<div class="float-end margin" style="margin: 25px;">
+    <button (click)="back()" class="btn btn-light" style="margin: 10px;">previous</button>
+    <button (click)="exam()" class="btn btn-light" style="margin: 10px;">next</button>
+</div>

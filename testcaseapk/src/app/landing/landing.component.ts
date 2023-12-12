@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../service/service.service';
-import { AppComponent } from '../app.component';
+import { AppComponent } from 'src/app/app.component';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-landing',
