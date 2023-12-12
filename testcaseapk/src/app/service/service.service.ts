@@ -7,11 +7,14 @@ import { Observable } from 'rxjs';
 export class ServiceService {
 
 
-  private apiUrl = 'http://localhost:8081/api/code/evaluate';
+  private apiUrl = 'http://localhost:8081/compiler/';
 
   constructor(private http: HttpClient) { }
 
-  compileAndTestCode(codeRequest: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, codeRequest);
+  javaCompile(codeRequest: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "java", codeRequest);
+  }
+  pythonCompile(codeRequest: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "python", codeRequest);
   }
 }
