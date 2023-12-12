@@ -1,30 +1,25 @@
-<div class="col-md-12" *ngFor="let question of Questions">
-    <h5>Question No.{{question.no}}</h5>
+<div class="col-md-12" *ngFor="let question of Questions" style="margin: 20px;">
     <div class="col-md-12">
-        <h6>{{question.desc}}</h6>
+        <h6>{{question.no}}. {{question.desc}}</h6>
     </div>
     <div class="col-md-12">
-        <div class="row">
         <form>
-            <div class="col-md-6">
-                <label>
+                <label class="col-md-6" *ngIf="(question.a!='')">
                     <input type="radio" name="options" value="a"> {{question.a}}
                 </label>
-                <label>
+                <label class="col-md-6" *ngIf="(question.b!='')">
                     <input type="radio" name="options" value="b"> {{question.b}}
                 </label>
-            </div>
-          
-            <div class="col-md-6">
-                <label>
+                <label class="col-md-6" *ngIf="(question.c!='')">
                     <input type="radio" name="options" value="c"> {{question.c}}
                 </label>
-                <label>
+                <label class="col-md-6" *ngIf="(question.d!='')">
                     <input type="radio" name="options" value="d"> {{question.d}}
                 </label>
-            </div>
+                <label class="col-md-6" *ngIf="(question.e!='')">
+                    <input type="radio" name="options" value="d"> {{question.e}}
+                </label>
         </form> 
-        </div>    
     </div>
     <div class="col-md-12">
         <div class="col-md-2 float-end">

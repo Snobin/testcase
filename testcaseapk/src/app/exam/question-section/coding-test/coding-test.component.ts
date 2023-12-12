@@ -53,5 +53,12 @@ export class CodingTestComponent implements OnInit {
       this.result = { success: false, output: 'Please select a program language.' };
     }
   }
+  clearCode(){
+    this.code= "";
+  }
+  clear(){
+    this.code= "";
+    this.selectedLanguage="";
+  }
 
 }

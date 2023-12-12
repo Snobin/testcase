@@ -8,14 +8,19 @@ import { Router } from '@angular/router';
 })
 export class QuestionSectionComponent implements OnInit {
 
+  test:boolean;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.test = false;
   }
   CodingTest(){
+    this.test=true;
     this.router.navigate([`./exam/question-section/coding-test/2`]);
   }
   AptitudeTest(){
+    this.test=false;
     this.router.navigate([`./exam/question-section/question/1`]);
   }
 

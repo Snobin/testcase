@@ -1,15 +1,18 @@
 <div class="form-group mt-3">
-    <div>
+    <div style="margin: 10px;">
         <label for="codeInput" class="text-light">Enter Your Code:</label>
         <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
+            <option value="" selected="Select">Select</option>
             <option value="java">Java</option>
             <option value="python">Python</option>
         </select>
     </div>
     <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
 </div>
-<div>
-    <button class="btn btn-primary mt-3 float-end" (click)="compileAndTest()">Run</button>
+<div class="float-end">
+    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
+    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
+    <button class="btn btn-success mt-3" style="margin: 10px;" (click)="compileAndTest()">Run</button>
 </div>
 <div class="mt-4">
     <h5 class="text-light">Output:</h5>

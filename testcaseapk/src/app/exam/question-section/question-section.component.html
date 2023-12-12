@@ -19,6 +19,8 @@
       <!-- Main Content -->
       <main role="main" class="col-md-8 ml-sm-auto col-lg-8 px-4">
         <!-- Content goes here -->
+        <h5 class="text-center text-light" *ngIf="!test">Aptitude Test</h5>
+        <h5 class="text-center text-light" *ngIf="test">Coding Test</h5>
         <router-outlet></router-outlet>
       </main>
 
