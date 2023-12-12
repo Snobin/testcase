@@ -5,10 +5,11 @@ import { QuestionSectionRoutingModule } from './question-section-routing.module'
 import { QuestionSectionComponent } from './question-section.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { QuestionComponent } from './question/question.component';
 
 
 @NgModule({
-  declarations: [QuestionSectionComponent],
+  declarations: [QuestionSectionComponent, QuestionComponent],
   imports: [
     CommonModule,
     HttpClientModule,
