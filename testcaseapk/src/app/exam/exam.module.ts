@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ExamRoutingModule } from './exam-routing.module';
 import { ExamComponent } from './exam.component';
-import { QuestionsComponent } from './questions/questions.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InstructionsComponent } from './instructions/instructions.component';
@@ -12,8 +11,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
 @NgModule({
   declarations: [
     ExamComponent,
-    InstructionsComponent,
-    QuestionsComponent
+    InstructionsComponent
   ],
   imports: [
     CommonModule,
