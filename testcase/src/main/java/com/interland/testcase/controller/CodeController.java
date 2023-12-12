@@ -1,30 +1,30 @@
 // CodeExecutionController.java
 package com.interland.testcase.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileWriter;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
-import java.io.Writer;
-import java.util.Map;
-
-import javax.tools.DiagnosticCollector;
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileObject;
-import javax.tools.StandardJavaFileManager;
-import javax.tools.ToolProvider;
+import java.lang.reflect.InvocationTargetException;
 
 import org.python.util.PythonInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.interland.testcase.config.ApplicationProperties;
-import com.interland.testcase.services.UnzipUtility;
+import com.interland.testcase.dto.CodeRequest;
+import com.interland.testcase.services.CodeExecutionService;
+import com.interland.testcase.services.CompilerService;
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.Platform;
 
 @RestController
 public class CodeController extends PythonInterpreter {
@@ -33,7 +33,21 @@ public class CodeController extends PythonInterpreter {
 //	 private ApplicationProperties applicationProperties;
 //	  @Autowired
 //	    private UnzipUtility unzipUtility;
-
+@Autowired
+private CompilerService compilerService;
+	 
+//	 @PostMapping("/compile")
+//	    public String compileAndRunCode(@RequestBody String code, Model model) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
+//	        try {
+//	            String result = compilerService.compileAndRun(code, "java"); // Change language based on user input
+//	            model.addAttribute("result", result);
+//	        } catch (IOException | InterruptedException e) {
+//	            e.printStackTrace();
+//	            model.addAttribute("result", "Error: " + e.getMessage());
+//	        }
+//	        return "result";
+//	    }
+	 
 	@PostMapping("/execute/python")
 
 	public String executePythonCode(@RequestBody String code) throws IOException, InterruptedException {
@@ -59,86 +73,57 @@ public class CodeController extends PythonInterpreter {
         return output;
     }
 
-    @PostMapping("/execute/java")
-    public String executeJavaCode(@RequestBody String code) {
-        try {
-            // Save the code to a file (you may use a unique filename)
-            String className = "DynamicClass";
-            String fileName = className + ".java";
-            writeCodeToFile(code, fileName);
+    
+	  public interface CLibrary extends Library {
+	        CLibrary INSTANCE = Native.load(Platform.isWindows() ? "msvcrt" : "c", CLibrary.class);
 
-            // Create a StringWriter to capture the compilation output
-            StringWriter compilationOutput = new StringWriter();
+	        void printf(String format, Object... args);
+	    }
 
-            // Compile the Java code
-            if (compileJavaCode(fileName, compilationOutput)) {
-                // Execute the compiled code
-                return executeCompiledCode(className);
-            } else {
-                return "Compilation failed. Error message:\n" + compilationOutput.toString();
-            }
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
-    }
+//	    @RequestMapping("/compile")
+//	    public String showCompileForm() {
+//	        return "compileForm";
+//	    }
 
-    private void writeCodeToFile(String code, String fileName) throws IOException {
-        try (FileWriter fileWriter = new FileWriter(fileName)) {
-            fileWriter.write(code);
-        }
-    }
+	    @PostMapping("/compile")
+	    public String compileCode(@RequestParam("code") String code, Model model) {
+	        String result = compileCCodeInDocker(code);
+	        model.addAttribute("result", result);
+	        return "compileResult";
+	    }
 
-    private boolean compileJavaCode(String fileName, Writer outputWriter) throws IOException {
-        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
+	    private String compileCCodeInDocker(String code) {
+	        try {
+	            String command = "docker run --rm -i gcc:latest /bin/sh -c 'gcc -x c -o /usr/src/app/output - && /usr/src/app/output'";
+	            Process process = Runtime.getRuntime().exec(command);
 
-        try (StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null)) {
-            Iterable<? extends JavaFileObject> compilationUnits = fileManager.getJavaFileObjects(fileName);
+	            process.getOutputStream().write(code.getBytes());
+	            process.getOutputStream().close();
 
-            JavaCompiler.CompilationTask task = compiler.getTask(outputWriter, fileManager, diagnostics, null, null, compilationUnits);
-            return task.call();
-        }
-    }
+	            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	            StringBuilder output = new StringBuilder();
+	            String line;
+	            while ((line = reader.readLine()) != null) {
+	                output.append(line).append("\n");
+	            }
 
-    private String executeCompiledCode(String className) throws Exception {
-        // Create a custom class loader to load the compiled class
-        ByteArrayClassLoader classLoader = new ByteArrayClassLoader();
+	            int exitCode = process.waitFor();
+	            if (exitCode == 0) {
+	                return "Compilation and Execution Successful:\n" + output.toString();
+	            } else {
+	                return "Compilation Failed:\n" + output.toString();
+	            }
+	        } catch (IOException | InterruptedException e) {
+	            return "Error during compilation and execution: " + e.getMessage();
+	        }
+	    }
+	    @Autowired
+	    private CodeExecutionService codeExecutionService;
 
-        // Load the compiled class
-        Class<?> dynamicClass = classLoader.loadClass(className);
-
-        // Create an instance and invoke the main method
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(output));
-
-        dynamicClass.getMethod("main", String[].class).invoke(null, (Object) new String[]{});
-
-        // Reset System.out to the original PrintStream
-        System.setOut(originalOut);
-
-        return "Output:\n" + output.toString();
-    }
-
-    private static class ByteArrayClassLoader extends ClassLoader {
-        private final Map<String, byte[]> classes;
-
-        public ByteArrayClassLoader() {
-            this.classes = Map.of();
-        }
-
-        public ByteArrayClassLoader(Map<String, byte[]> classes) {
-            this.classes = classes;
-        }
-
-        @Override
-        protected Class<?> findClass(String name) throws ClassNotFoundException {
-            byte[] classBytes = classes.get(name);
-            if (classBytes == null) {
-                throw new ClassNotFoundException(name);
-            }
-
-            return defineClass(name, classBytes, 0, classBytes.length);
-        }
-    }
+	    @PostMapping("/execute")
+	    public ResponseEntity<String> executeCode(@RequestBody CodeRequest codeRequest) {
+	        String output = codeExecutionService.executeCode(codeRequest);
+	        return ResponseEntity.ok(output);
+	    }
+	
 }

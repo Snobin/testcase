@@ -1,10 +1,15 @@
 package com.interland.testcase.services;
 
-import org.springframework.stereotype.Component;
-
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import org.springframework.stereotype.Component;
 
 /**
  * Class contains methods to uncompress a zip file
