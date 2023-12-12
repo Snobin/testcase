@@ -14,7 +14,7 @@ export class InstructionsComponent implements OnInit {
   }
 
   exam(){
-    this.router.navigate([`./exam/question-section`]);
+    this.router.navigate([`./exam/question-section/question/1`]);
   }
   back(){
     this.router.navigate([`./login`]);

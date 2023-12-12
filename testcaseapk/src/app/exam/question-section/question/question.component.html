@@ -1,1 +1,34 @@
-<p>question works!</p>
+<div class="col-md-12" *ngFor="let question of Questions">
+    <h5>Question No.{{question.no}}</h5>
+    <div class="col-md-12">
+        <h6>{{question.desc}}</h6>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+        <form>
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="options" value="a"> {{question.a}}
+                </label>
+                <label>
+                    <input type="radio" name="options" value="b"> {{question.b}}
+                </label>
+            </div>
+          
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="options" value="c"> {{question.c}}
+                </label>
+                <label>
+                    <input type="radio" name="options" value="d"> {{question.d}}
+                </label>
+            </div>
+        </form> 
+        </div>    
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-2 float-end">
+            <button class="btn btn-outline-primary">Save & Next</button>
+        </div>
+    </div>
+</div>

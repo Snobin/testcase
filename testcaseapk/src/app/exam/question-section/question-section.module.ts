@@ -6,10 +6,11 @@ import { QuestionSectionComponent } from './question-section.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { QuestionComponent } from './question/question.component';
+import { CodingTestComponent } from './coding-test/coding-test.component';
 
 
 @NgModule({
-  declarations: [QuestionSectionComponent, QuestionComponent],
+  declarations: [QuestionSectionComponent, QuestionComponent, CodingTestComponent],
   imports: [
     CommonModule,
     HttpClientModule,

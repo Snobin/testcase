@@ -1,0 +1,20 @@
+<div class="form-group mt-3">
+    <div>
+        <label for="codeInput" class="text-light">Enter Your Code:</label>
+        <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+        </select>
+    </div>
+    <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
+</div>
+<div>
+    <button class="btn btn-primary mt-3 float-end" (click)="compileAndTest()">Run</button>
+</div>
+<div class="mt-4">
+    <h5 class="text-light">Output:</h5>
+    <p *ngIf="result.compilationSuccessful" class="text-success">Code compiled and tested successfully!</p>
+    <p *ngIf="!result.compilationSuccessful" class="text-danger">Code compilation or testing failed!</p>
+    <textarea class="form-control bg-dark text-light" id="codeOutput" rows="3" style="font-family: 'Courier New', Courier, monospace;">{{ result.output }}</textarea>
+</div>
+  
