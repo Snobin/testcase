@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.interland.testcase.dto.CodeRequest;
-import com.interland.testcase.services.CodeExecutionServiceImple;
+import com.interland.testcase.services.CodeExecutionService;
 
 @RestController
 public class CodeController  {
 	 private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);
 
 	    @Autowired
-	    private CodeExecutionServiceImple codeExecutionService;
+	    private CodeExecutionService codeExecutionService;
 
 	    @PostMapping("/execute")
 	    public ResponseEntity<String> executeCode(@RequestBody CodeRequest codeRequest) {
