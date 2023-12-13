@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "testcaseapk"
+    }
+  },
+  "defaultProject": "testcaseapk",
+  "cli": {
+    "analytics": "f8e31ca9-3639-4dfd-8a75-0d060feacc73"
+  }
 }
