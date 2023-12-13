@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../service/service.service';
+import { AppComponent } from 'src/app/app.component';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-landing',
@@ -8,28 +9,49 @@ import { ServiceService } from '../service/service.service';
 })
 export class LandingComponent implements OnInit {
 
-
-
-  ngOnInit(): void {
-  }
-  
+  selectedLanguage: any;
   testCases: string[] = [];
   result: any;
   code: string = '';
 
-  constructor(private apiService: ServiceService) { }
+  constructor(private apiService: ServiceService, public obj:AppComponent) { }
 
+  ngOnInit(): void {
+    
+  }
+  
   compileAndTest() {
-    // Call your backend API to compile and test the code
-    this.apiService.compileAndTestCode(this.code).subscribe(
-      (response) => {
-        this.result = response;
-      },
-      (error) => {
-        console.error('Error compiling and testing code:', error);
-        this.result = { success: false, errorMessage: 'Failed to communicate with the server.' };
-      }
-    );
+    if(this.selectedLanguage=="java") {
+      this.apiService.javaCompile(this.code).subscribe(
+        (response) => {
+          this.result = response;
+        },
+        (error) => {
+          this.result = error;
+          if (error.status==400) {
+            this.result.errorMessage = 'Bad Request';
+          } else if (error.status==500) {
+            this.result.errorMessage = 'Internal Server Error';
+          }
+        }
+      );
+    } else if(this.selectedLanguage=="python") {
+      this.apiService.pythonCompile(this.code).subscribe(
+        (response) => {
+          this.result = response;
+        },
+        (error) => {
+          this.result = error;
+          if (error.status==400) {
+            this.result.errorMessage = 'Bad Request';
+          } else if (error.status==500) {
+            this.result.errorMessage = 'Internal Server Error';
+          }
+        }
+      );
+    } else {
+      this.result = { success: false, errorMessage: 'Please select a program language.' };
+    }
   }
 
 }
