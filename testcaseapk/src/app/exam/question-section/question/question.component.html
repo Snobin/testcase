@@ -6,6 +6,7 @@
         <div class="col-md-12">
           <h6 class="card-title">{{question.no}}. {{question.desc}}</h6>
         </div>
+        <hr>
         <div class="col-md-12 options-margin">
           <form>
             <label class="col-md-6 opt-margin" *ngIf="(question.a!='')">
@@ -25,10 +26,9 @@
             </label>
           </form>
         </div>
-      </div>
-      <div class="btn-group p-3" role="group" aria-label="Basic outlined example">
-        <button class="btn btn-dark" style="margin-right: 1px;" (click)="previous()">Previous</button>
-        <button class="btn btn-dark" style="margin-left: 1px;" (click)="next()">Next</button>
+        <hr>
+          <button class="btn btn-dark" style="margin-right: 1px;" (click)="previous()">Previous</button>
+          <button class="btn btn-dark float-end" style="margin-left: 1px;" (click)="next()">Next <i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
   </div>
