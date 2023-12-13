@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: 'exam', loadChildren: () => import(`./exam/exam.module`).then(m => m.ExamModule) },
+  {path: 'admin', loadChildren: () => import(`./admin/admin.module`).then(m => m.AdminModule) },
   {path: '', redirectTo:'login', pathMatch: 'full'},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}

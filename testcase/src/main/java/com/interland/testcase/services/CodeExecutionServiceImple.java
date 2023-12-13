@@ -11,7 +11,9 @@ import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CodeRequest;
+
 import com.interland.testcase.dto.CodeResponse;
+
 
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
@@ -19,7 +21,9 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
     private static final Logger LOGGER = Logger.getLogger(CodeExecutionServiceImple.class.getName());
 
     @Override
+
     public CodeResponse executeCode(CodeRequest codeRequest) {
+
         String code = codeRequest.getCode();
         String language = codeRequest.getLangId();
 
@@ -34,6 +38,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
                 return executePythonCode(code);
             default:
                 LOGGER.warning("Unsupported language: " + language);
+
                 CodeResponse codeResponse = new CodeResponse();
                 codeResponse.setOutput("Unsupported language: " + language);
                 return codeResponse;
@@ -42,6 +47,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 
     private CodeResponse executeJavaCode(String code) {
+
         try {
             File tempFile = createTempFile("abc", ".java", code);
             String dockerVolumePath = "/tmp";
@@ -51,6 +57,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
                     tempFile.getParent() + ":" + dockerVolumePath, "tomcat:latest", "bash", "-c",
                     "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath + " && java "
                             + className);
+
             
             return executeProcess(processBuilder, tempFile);
         } catch (Exception e) {
@@ -61,6 +68,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
         }
     }
     private CodeResponse executeCCode(String code) {
+
         try {
             File tempFile = createTempFile("code", ".c", code);
             String dockerVolumePath = "/tmp";
@@ -73,6 +81,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
             return executeProcess(processBuilder, tempFile);
         } catch (Exception e) {
             LOGGER.severe("Error executing C code: " + e.getMessage());
+
             CodeResponse codeResponse = new CodeResponse();
             codeResponse.setOutput("Error: " + e.getMessage());
             return codeResponse;
@@ -80,6 +89,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
     }
 
     private CodeResponse executeCppCode(String code) {
+
         try {
             File tempFile = createTempFile("code", ".cpp", code);
             String dockerVolumePath = "/tmp";
@@ -92,6 +102,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
             return executeProcess(processBuilder, tempFile);
         } catch (Exception e) {
             LOGGER.severe("Error executing C++ code: " + e.getMessage());
+
             CodeResponse codeResponse = new CodeResponse();
             codeResponse.setOutput("Error: " + e.getMessage());
             return codeResponse;
@@ -103,6 +114,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
         StringWriter outputWriter = new StringWriter();
         CodeResponse codeResponse = new CodeResponse();
 
+
         try (PythonInterpreter interpreter = new PythonInterpreter()) {
             interpreter.setOut(outputWriter);
             interpreter.exec(code);
@@ -111,12 +123,14 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
         String output = outputWriter.toString();
         LOGGER.info("Python Output: " + output);
 
+
         codeResponse.setOutput(output);
         return codeResponse;
     }
 
     private CodeResponse executeProcess(ProcessBuilder processBuilder, File tempFile) {
         CodeResponse codeResponse = new CodeResponse();
+
         try {
             processBuilder.redirectErrorStream(true);
             Process process = processBuilder.start();
@@ -132,6 +146,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
             tempFile.delete();
 
+
             codeResponse.setOutput(output.toString());
          
 
@@ -141,6 +156,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
         }
 
         return codeResponse;
+
     }
 
     private File createTempFile(String prefix, String suffix, String code) throws Exception {
