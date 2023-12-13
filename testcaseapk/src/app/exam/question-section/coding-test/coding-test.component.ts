@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
+import { CodeRequest } from '../../model/code-request';
 
 declare var $: any;
 @Component({
@@ -9,10 +10,11 @@ declare var $: any;
 })
 export class CodingTestComponent implements OnInit {
 
-  selectedLanguage: any;
+  selectedLanguage: string;
   testCases: string[] = [];
   result: any;
   code: string = '';
+  codereq:CodeRequest=new CodeRequest();
 
   constructor(private apiService: ServiceService) { }
 
@@ -22,12 +24,18 @@ export class CodingTestComponent implements OnInit {
   
   compileAndTest() {
     if(this.selectedLanguage=="java") {
-      this.apiService.javaCompile(this.code).subscribe(
+      this.codereq.langId=this.selectedLanguage;
+      this.codereq.code=this.code;
+
+      this.apiService.javaCompile(this.codereq).subscribe(
         (response) => {
-          this.result = response;
+          this.result = response.output;
+          console.log(this.result)
+          JSON.stringify(this.result);
         },
         (error) => {
           this.result = error;
+          console.log(error)
           if (error.status==400) {
             this.result.output = 'Bad Request';
           } else if (error.status==500) {
@@ -36,9 +44,13 @@ export class CodingTestComponent implements OnInit {
         }
       );
     } else if(this.selectedLanguage=="python") {
-      this.apiService.pythonCompile(this.code).subscribe(
+      console.log(this.selectedLanguage)
+      this.codereq.langId=this.selectedLanguage;
+      this.codereq.code=this.code;
+      this.apiService.pythonCompile(this.codereq).subscribe(
         (response) => {
-          this.result = response;
+          this.result = response.output;
+          JSON.stringify(this.result);
         },
         (error) => {
           this.result = error;
