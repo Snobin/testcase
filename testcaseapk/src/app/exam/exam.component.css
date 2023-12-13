@@ -4,12 +4,12 @@
     border-radius: 10px;
 }
 .navbar-dark, .navbar[data-bs-theme=dark] {
-    --bs-navbar-color: rgba(255, 255, 255, 0.55);
-    --bs-navbar-hover-color: #fff;
-    --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
-    --bs-navbar-active-color: #fff;
-    --bs-navbar-brand-color: rgba(255, 255, 255, 0.55);
-    --bs-navbar-brand-hover-color: #fff;
+    --bs-navbar-color: rgba(62, 48, 48, 0.55);
+    --bs-navbar-hover-color: #000000;
+    --bs-navbar-disabled-color: rgba(62, 48, 48, 0.55);
+    --bs-navbar-active-color: #000000;
+    --bs-navbar-brand-color: rgba(62, 48, 48, 0.55);
+    --bs-navbar-brand-hover-color: #000000;
     --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
 }
 .navbar {

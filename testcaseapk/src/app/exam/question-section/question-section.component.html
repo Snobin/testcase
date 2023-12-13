@@ -1,4 +1,4 @@
-<div class="margin container text-bg-primary p-3">
+<div class="margin container text-bg-light p-3">
         <div class="container">
             <h3>Question Section</h3>
         </div>
@@ -19,8 +19,8 @@
       <!-- Main Content -->
       <main role="main" class="col-md-8 ml-sm-auto col-lg-8 px-4">
         <!-- Content goes here -->
-        <h5 class="text-center text-light" *ngIf="!test">Aptitude Test</h5>
-        <h5 class="text-center text-light" *ngIf="test">Coding Test</h5>
+        <h5 class="text-center text-dark" *ngIf="!test">Aptitude Test</h5>
+        <h5 class="text-center text-dark" *ngIf="test">Coding Test</h5>
         <router-outlet></router-outlet>
       </main>
 

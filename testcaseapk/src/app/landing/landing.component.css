@@ -14,14 +14,14 @@
     resize: vertical;
     padding: 10px;
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
   }
   
   .btn {
     cursor: pointer;
     background-color: #4caf50; /* Green */
-    color: white;
+    color: black;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -50,13 +50,13 @@
     border-radius: 10px;
 }
 .navbar-dark, .navbar[data-bs-theme=dark] {
-    --bs-navbar-color: rgba(255, 255, 255, 0.55);
-    --bs-navbar-hover-color: #fff;
-    --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
-    --bs-navbar-active-color: #fff;
-    --bs-navbar-brand-color: rgba(255, 255, 255, 0.55);
-    --bs-navbar-brand-hover-color: #fff;
-    --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+  --bs-navbar-color: rgba(62, 48, 48, 0.55);
+  --bs-navbar-hover-color: #000000;
+  --bs-navbar-disabled-color: rgba(62, 48, 48, 0.55);
+  --bs-navbar-active-color: #000000;
+  --bs-navbar-brand-color: rgba(62, 48, 48, 0.55);
+  --bs-navbar-brand-hover-color: #000000;
+  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
 }
 .navbar {
     height: 30px; /* Set the height to 50px */
