@@ -43,7 +43,7 @@
 }
 .centered-content {
     text-align: center; /* Center text within the div */
-    padding: 20px;
+    padding: 0px;
 }
 section{
     display: flex;

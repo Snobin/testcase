@@ -1,5 +1,5 @@
 .margin{
-    margin-top: 10px;
+    margin: 10px;
     padding: 0%;
     border-radius: 10px;
 }
@@ -40,4 +40,11 @@
 
 .nav-link {
     font-size: 1rem; /* Adjust the font size as needed */
+}
+.custom{
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 98vw;
+    justify-content: center;
+    align-items: center;
 }
