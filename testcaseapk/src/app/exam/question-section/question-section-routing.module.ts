@@ -7,9 +7,9 @@ import { CodingTestComponent } from './coding-test/coding-test.component';
 
 const routes: Routes = [
   {path:'', component:QuestionSectionComponent, children: [
-    {path:'question/:id', component:QuestionComponent},
-    {path:'coding-test/:id', component:CodingTestComponent},
-    {path:'', redirectTo:'question/:id',pathMatch:'full'}
+    {path:'question', component:QuestionComponent},
+    {path:'coding-test', component:CodingTestComponent},
+    {path:'', redirectTo:'question',pathMatch:'full'}
   ]}
 ];
 
