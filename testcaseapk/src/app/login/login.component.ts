@@ -22,4 +22,7 @@ password: any;
     this.obj.isLoggedIn=true;
     this.router.navigate(['./exam/instructions']);
   }
+  login(){
+    this.router.navigate(['./login']);
+  }
 }

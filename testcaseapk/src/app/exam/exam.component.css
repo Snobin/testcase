@@ -41,3 +41,14 @@
 .nav-link {
     font-size: 1rem; /* Adjust the font size as needed */
 }
+.centered-content {
+    text-align: center; /* Center text within the div */
+    padding: 20px;
+}
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Make sure the body takes up the full height of the viewport */
+    margin: 0; /* Remove default margin */
+}
