@@ -9,5 +9,5 @@ import Swal from 'sweetalert2';
 export class AppComponent {
   title = 'testcaseapk';
   
-  isLoggedIn: any;
+  isLoggedIn: any=true;
 }
