@@ -1,0 +1,108 @@
+
+    <div class="margin container text-bg-light p-3">
+            <div class="container">
+                <h3>Question Section</h3>
+            </div>
+    </div>
+    <div class="container-fluid" style="height: 100%;">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar full-view-height">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" (click)="AptitudeTest()">Aptitude Test</a></li>
+                        <li class="nav-item"><a class="nav-link" (click)="CodingTest()">Coding Test</a></li>
+                    <!-- Add more items as needed -->
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-8 ml-sm-auto col-lg-8 px-4 full-view-height">
+                <!-- Content goes here -->
+                <h5 class="text-center text-dark" *ngIf="!test">Aptitude Test</h5>
+                <h5 class="text-center text-dark" *ngIf="test">Coding Test</h5>
+                <router-outlet></router-outlet>
+            </main>
+
+            <!-- Sidebar -->
+            <nav class="sidebar col-md-2 d-none d-md-block bg-light full-view-height" style="padding: 10px;">
+                <div class="sidebar-sticky" style="margin: 10px;">
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">1</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">2</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">3</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">4</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">5</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">6</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">7</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">8</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">9</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">*</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">0</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">#</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">1</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">2</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">3</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">4</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">5</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">6</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">7</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">8</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">9</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">*</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">0</button>
+                        </div>
+                        <div class="col-4 keypad-button margin">
+                            <button class="btn btn-outline-dark questionButton">#</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>

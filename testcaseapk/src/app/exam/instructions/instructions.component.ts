@@ -14,10 +14,10 @@ export class InstructionsComponent implements OnInit {
   }
 
   exam(){
-    this.router.navigate([`landing`]);
+    this.router.navigate([`./exam/question-section/question/1`]);
   }
   back(){
-    this.router.navigate([`login`]);
+    this.router.navigate([`./login`]);
   }
 
 }

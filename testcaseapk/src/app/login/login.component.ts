@@ -20,6 +20,9 @@ password: any;
 
   Login(){
     this.obj.isLoggedIn=true;
-    this.router.navigate([`instructions`]);
+    this.router.navigate(['./exam/instructions']);
+  }
+  login(){
+    this.router.navigate(['./login']);
   }
 }
