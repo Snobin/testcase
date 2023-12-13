@@ -12,241 +12,121 @@ import org.springframework.stereotype.Service;
 import com.interland.testcase.dto.CodeRequest;
 
 @Service
-public class CodeExecutionServiceImple implements CodeExecutionService{
+public class CodeExecutionServiceImple implements CodeExecutionService {
 
 	@Override
-    public String executeCode(CodeRequest codeRequest) {
-        String code = codeRequest.getCode();
-        String language = codeRequest.getLangId();
+	public String executeCode(CodeRequest codeRequest) {
+		String code = codeRequest.getCode();
+		String language = codeRequest.getLangId();
 
-        switch (language) {
-            case "java":
-                return executeJavaCode(code);
-            case "c":
-                return executeCCode(code);
-            case "cpp":
-                return executeCppCode(code);
-            case "python":
-                return executePythonCode(code);
-            default:
-                return "Unsupported language";
-        }
-    }
-
-
-	private String executeJavaCode(String code) {
-	    try {
-	        // Write code to a temporary file
-	        File tempFile = File.createTempFile("abc", ".java");
-	        FileWriter fileWriter = new FileWriter(tempFile);
-	        fileWriter.write(code);
-	        fileWriter.close();
-
-	        // Set the correct path for the Docker volume
-	        String dockerVolumePath = "/tmp";
-
-	        // Extract the class name from the code
-	        String className = getClassName(code);
-
-	        ProcessBuilder processBuilder = new ProcessBuilder(
-	                "docker", "run", "--rm", "-i",
-	                "-v", tempFile.getParent() + ":" + dockerVolumePath,
-	                "tomcat:latest",
-	                "bash", "-c",
-	                "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath + " && java " + className
-	        );
-
-	        processBuilder.redirectErrorStream(true);
-	        Process process = processBuilder.start();
-
-	        // Wait for the process to finish
-	        int exitCode = process.waitFor();
-
-	        // Read the output of the process
-	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	        StringBuilder output = new StringBuilder();
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	            output.append(line).append("\n");
-	        }
-
-	        // Clean up temporary file
-	        tempFile.delete();
-
-	        if (exitCode == 0) {
-	            return output.toString();
-	        } else {
-	            return "Compilation or execution error:\n" + output.toString();
-	        }
-	    } catch (Exception e) {
-	        return "Error: " + e.getMessage();
-	    }
+		switch (language) {
+		case "java":
+			return executeJavaCode(code);
+		case "c":
+			return executeCCode(code);
+		case "cpp":
+			return executeCppCode(code);
+		case "python":
+			return executePythonCode(code);
+		default:
+			return "Unsupported language";
+		}
 	}
 
-    private String getClassName(String code) {
-        // Extract the class name from the Java code
-        // This is a simplified approach and may not cover all cases
-        String className = code.replaceAll("(?s).*?\\bclass\\s+(\\w+).*", "$1");
-        return className.trim();
-    }
+	private String executeJavaCode(String code) {
+		try {
+			File tempFile = createTempFile("abc", ".java", code);
+			String dockerVolumePath = "/tmp";
+			String className = getClassName(code);
 
+			ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+					tempFile.getParent() + ":" + dockerVolumePath, "tomcat:latest", "bash", "-c",
+					"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath + " && java "
+							+ className);
 
-    private String executeCCode(String code) {
-        try {
-            // Write code to a temporary file
-            File tempFile = File.createTempFile("code", ".c");
-            FileWriter fileWriter = new FileWriter(tempFile);
-            fileWriter.write(code);
-            fileWriter.close();
+			return executeProcess(processBuilder, tempFile);
+		} catch (Exception e) {
+			return "Error: " + e.getMessage();
+		}
+	}
 
-            // Set the correct path for the Docker volume
-            String dockerVolumePath = "/tmp";
+	private String executeCCode(String code) {
+		try {
+			File tempFile = createTempFile("code", ".c", code);
+			String dockerVolumePath = "/tmp";
 
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    "docker", "run", "--rm", "-i",
-                    "-v", tempFile.getParent() + ":" + dockerVolumePath,
-                    "eclipse/cpp_gcc:latest",
-                    "bash", "-c",
-                    "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd " + dockerVolumePath + " && ./a.out"
-            );
+			ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+					tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
+					"gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
+							+ dockerVolumePath + " && ./a.out");
 
-            processBuilder.redirectErrorStream(true);
-            Process process = processBuilder.start();
+			return executeProcess(processBuilder, tempFile);
+		} catch (Exception e) {
+			return "Error: " + e.getMessage();
+		}
+	}
 
-            // Wait for the process to finish
-            int exitCode = process.waitFor();
+	private String executeCppCode(String code) {
+		try {
+			File tempFile = createTempFile("code", ".cpp", code);
+			String dockerVolumePath = "/tmp";
 
-            // Read the output of the process
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
+			ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+					tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
+					"g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
+							+ dockerVolumePath + " && ./a.out");
 
-            // Clean up temporary file
-            tempFile.delete();
+			return executeProcess(processBuilder, tempFile);
+		} catch (Exception e) {
+			return "Error: " + e.getMessage();
+		}
+	}
 
-            if (exitCode == 0) {
-                return output.toString();
-            } else {
-                return "Compilation or execution error:\n" + output.toString();
-            }
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
-    }
+	private String executePythonCode(String code) {
+		StringWriter outputWriter = new StringWriter();
 
-    private String executeCppCode(String code) {
-        try {
-            // Write code to a temporary file
-            File tempFile = File.createTempFile("code", ".cpp");
-            FileWriter fileWriter = new FileWriter(tempFile);
-            fileWriter.write(code);
-            fileWriter.close();
+		try (PythonInterpreter interpreter = new PythonInterpreter()) {
+			interpreter.setOut(outputWriter);
+			interpreter.exec(code);
+		}
 
-            // Set the correct path for the Docker volume
-            String dockerVolumePath = "/tmp";
+		String output = outputWriter.toString();
+		System.out.println("Python Output: " + output);
+		return output;
+	}
 
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    "docker", "run", "--rm", "-i",
-                    "-v", tempFile.getParent() + ":" + dockerVolumePath,
-                    "eclipse/cpp_gcc:latest",
-                    "bash", "-c",
-                    "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd " + dockerVolumePath + " && ./a.out"
-            );
+	private String executeProcess(ProcessBuilder processBuilder, File tempFile) {
+		try {
+			processBuilder.redirectErrorStream(true);
+			Process process = processBuilder.start();
 
-            processBuilder.redirectErrorStream(true);
-            Process process = processBuilder.start();
+			int exitCode = process.waitFor();
 
-            // Wait for the process to finish
-            int exitCode = process.waitFor();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			StringBuilder output = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				output.append(line).append("\n");
+			}
 
-            // Read the output of the process
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
+			tempFile.delete();
 
-            // Clean up temporary file
-            tempFile.delete();
+			return (exitCode == 0) ? output.toString() : "Compilation or execution error:\n" + output.toString();
+		} catch (Exception e) {
+			return "Error: " + e.getMessage();
+		}
+	}
 
-            if (exitCode == 0) {
-                return output.toString();
-            } else {
-            	
-                return "Compilation or execution error:\n" + output.toString();
-            }
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
-    }
+	private File createTempFile(String prefix, String suffix, String code) throws Exception {
+		File tempFile = File.createTempFile(prefix, suffix);
+		try (FileWriter fileWriter = new FileWriter(tempFile)) {
+			fileWriter.write(code);
+		}
+		return tempFile;
+	}
 
-
-    private String executePythonCode(String code) {
-    	 StringWriter outputWriter = new StringWriter();
-
-         try (// Create a PythonInterpreter
- 		PythonInterpreter interpreter = new PythonInterpreter()) {
- 			// Redirect the standard output to the StringWriter
- 			interpreter.setOut(outputWriter);
-
- 			// Execute the Python code
- 			interpreter.exec(code);
- 		}
-
-         // Retrieve the output from the StringWriter
-         String output = outputWriter.toString();
-
-         // Print the output (for testing purposes)
-         System.out.println("Python Output: " + output);
-
-         // Now you can use the 'output' variable for further purposes
-         return output;
-    }
-
-    private String executeCodeInDocker(String code, String compiler, String outputFileName, String input) {
-        try {
-            // Write code to a temporary file
-            File tempFile = File.createTempFile("code", ".cpp");
-            FileWriter fileWriter = new FileWriter(tempFile);
-            fileWriter.write(code);
-            fileWriter.close();
-
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    "docker", "run", "--rm", "-i",
-                    "-v", "/tmp:/tmp",
-                    compiler,
-                    "bash", "-c",
-                    "g++ " + tempFile.getName() + " -o " + outputFileName + " && ./" + outputFileName
-            );
-
-            processBuilder.redirectErrorStream(true);
-            Process process = processBuilder.start();
-
-            // Wait for the process to finish
-            int exitCode = process.waitFor();
-
-            // Read the output of the process
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-
-            // Clean up temporary file
-            tempFile.delete();
-
-            if (exitCode == 0) {
-                return output.toString();
-            } else {
-                return "Compilation or execution error:\n" + output.toString();
-            }
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
-    }
+	private String getClassName(String code) {
+		String className = code.replaceAll("(?s).*?\\bclass\\s+(\\w+).*", "$1");
+		return className.trim();
+	}
 }
