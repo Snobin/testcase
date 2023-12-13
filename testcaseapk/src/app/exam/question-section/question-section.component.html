@@ -18,15 +18,19 @@
             </nav>
 
             <!-- Main Content -->
-            <main role="main" class="col-md-8 ml-sm-auto col-lg-8 px-4 full-view-height" style="border-bottom: 10px solid #c9d4e6;padding-bottom: 10px;">
-                <!-- Content goes here -->
-                <h5 class="text-center text-dark" *ngIf="!test">Aptitude Test</h5>
-                <h5 class="text-center text-dark" *ngIf="test">Coding Test</h5>
-                <router-outlet></router-outlet>
+            <main role="main" class="col-md-8 col-lg-8 full-view-height" style="border-bottom: 10px solid #c9d4e6;padding-bottom: 10px;overflow-y: auto;">
+                <div class="col-md-8 col-lg-8 header" style="background-color: #e6d7c9;">
+                    <!-- Content goes here -->
+                    <h5 class="text-center text-dark" style="overflow: hidden;" *ngIf="!test">Aptitude Test</h5>
+                    <h5 class="text-center text-dark" *ngIf="test">Coding Test</h5>
+                </div>
+                <div class="col-md-8 col-lg-8 ">
+                    <router-outlet></router-outlet>
+                </div>
             </main>
 
             <!-- Sidebar -->
-            <nav class="sidebar col-md-2 d-none d-md-block full-view-height" style="padding: 10px;background-color: #c9d4e6;">
+            <nav class="sidebar col-md-2 d-none d-md-block full-view-height" style="padding: 0px;background-color: #c9d4e6;">
                 <div class="sidebar-sticky" style="margin: 10px;">
                     <div class="row" style="margin: 10px;">
                         <div class="col-4 keypad-button margin">

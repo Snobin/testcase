@@ -12,3 +12,10 @@
 .full-view-height{
     height: 88vh;
 }
+.header {
+    position: fixed;
+}
+.row>* {
+    padding-right: 0px;
+    padding-left: 0px;
+}

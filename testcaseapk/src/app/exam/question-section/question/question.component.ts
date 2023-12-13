@@ -41,6 +41,61 @@ export class QuestionComponent implements OnInit {
       "c":"optionZ",
       "d":"",
       "e":""
+    },
+    {
+      "id":"4",
+      "no":"4",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"5",
+      "no":"5",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"6",
+      "no":"6",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"7",
+      "no":"7",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"8",
+      "no":"8",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
     }
   ];
   students:Student[] = [];
