@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 
+import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CodeRequest;
@@ -35,7 +37,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService{
 	private String executeJavaCode(String code) {
 	    try {
 	        // Write code to a temporary file
-	        File tempFile = File.createTempFile("HelloWorld", ".java");
+	        File tempFile = File.createTempFile("abc", ".java");
 	        FileWriter fileWriter = new FileWriter(tempFile);
 	        fileWriter.write(code);
 	        fileWriter.close();
@@ -49,7 +51,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService{
 	        ProcessBuilder processBuilder = new ProcessBuilder(
 	                "docker", "run", "--rm", "-i",
 	                "-v", tempFile.getParent() + ":" + dockerVolumePath,
-	                "openjdk:latest",
+	                "tomcat:latest",
 	                "bash", "-c",
 	                "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath + " && java " + className
 	        );
@@ -184,10 +186,25 @@ public class CodeExecutionServiceImple implements CodeExecutionService{
 
 
     private String executePythonCode(String code) {
-        // Implement Python code execution logic
-        // You can use Python subprocess module
-        // For simplicity, we'll just print "Hello, World!" for Python
-        return "Hello, World!";
+    	 StringWriter outputWriter = new StringWriter();
+
+         try (// Create a PythonInterpreter
+ 		PythonInterpreter interpreter = new PythonInterpreter()) {
+ 			// Redirect the standard output to the StringWriter
+ 			interpreter.setOut(outputWriter);
+
+ 			// Execute the Python code
+ 			interpreter.exec(code);
+ 		}
+
+         // Retrieve the output from the StringWriter
+         String output = outputWriter.toString();
+
+         // Print the output (for testing purposes)
+         System.out.println("Python Output: " + output);
+
+         // Now you can use the 'output' variable for further purposes
+         return output;
     }
 
     private String executeCodeInDocker(String code, String compiler, String outputFileName, String input) {
