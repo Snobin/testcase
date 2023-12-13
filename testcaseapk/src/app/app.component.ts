@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'testcaseapk';
   
-  isLoggedIn: any;
+  isLoggedIn: any=true;
 }

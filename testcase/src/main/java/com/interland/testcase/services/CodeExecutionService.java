@@ -2,7 +2,10 @@ package com.interland.testcase.services;
 
 import com.interland.testcase.dto.CodeRequest;
 
+import com.interland.testcase.dto.CodeResponse;
+
 public interface CodeExecutionService {
 
-	 public String executeCode(CodeRequest codeRequest);
+	 public CodeResponse executeCode(CodeRequest codeRequest);
+
 }

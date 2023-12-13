@@ -8,15 +8,16 @@ export class ServiceService {
 
 
 
-  private apiUrl = 'http://localhost:8081/execute/python';
+  private apiUrl = 'http://localhost:8081/execute';
+
 
 
   constructor(private http: HttpClient) { }
 
-  javaCompile(codeRequest: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "java", codeRequest);
+  compileAndTest (codeRequest: any): Observable<any> {
+    console.log("hdwiouh")
+
+    return this.http.post<any>(this.apiUrl , codeRequest);
   }
-  pythonCompile(codeRequest: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "python", codeRequest);
-  }
+ 
 }

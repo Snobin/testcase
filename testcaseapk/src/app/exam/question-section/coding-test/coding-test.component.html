@@ -2,11 +2,14 @@
     <div style="margin: 10px;">
         <label for="codeInput" class="text-dark">Enter Your Code:</label>
         <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
-            <option value="" selected="Select">Select</option>
-            <option value="java">Java</option>
-            <option value="python">Python</option>
+          <option value="" selected disabled>Select</option>
+          <option value="java">Java</option>
+          <option value="python">Python</option>
+          <option value="c">C</option>
+          <option value="cpp">C++</option>
         </select>
-    </div>
+      </div>
+      
     <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
 </div>
 <div class="float-end">
@@ -16,8 +19,8 @@
 </div>
 <div class="mt-4">
     <h5 class="text-dark">Output:</h5>
-    <p *ngIf="result.compilationSuccessful" class="text-success">Code compiled and tested successfully!</p>
-    <p *ngIf="!result.compilationSuccessful" class="text-danger">Code compilation or testing failed!</p>
-    <textarea class="form-control bg-dark text-light" id="codeOutput" rows="3" style="font-family: 'Courier New', Courier, monospace;">{{ result.output }}</textarea>
+    <!-- <p *ngIf="result.compilationSuccessful" class="text-success">Code compiled and tested successfully!</p>
+    <p *ngIf="!result.compilationSuccessful" class="text-danger">Code compilation or testing failed!</p> -->
+    <textarea class="form-control bg-dark text-light" id="codeOutput" rows="3" style="font-family: 'Courier New', Courier, monospace;">{{ result }}</textarea>
 </div>
   

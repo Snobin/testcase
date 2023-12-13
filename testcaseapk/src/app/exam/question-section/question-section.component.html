@@ -1,13 +1,13 @@
 
-    <div class="margin container text-bg-light p-3">
-            <div class="container">
+    <div class="margin text-dark p-3" style="background-color: #c9d4e6;">
+            <div>
                 <h3>Question Section</h3>
             </div>
     </div>
     <div class="container-fluid" style="height: 100%;">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar full-view-height">
+            <nav class="col-md-2 d-none d-md-block sidebar full-view-height" style="background-color: #c9d4e6;">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item"><a class="nav-link active" (click)="AptitudeTest()">Aptitude Test</a></li>
@@ -18,7 +18,7 @@
             </nav>
 
             <!-- Main Content -->
-            <main role="main" class="col-md-8 ml-sm-auto col-lg-8 px-4 full-view-height">
+            <main role="main" class="col-md-8 ml-sm-auto col-lg-8 px-4 full-view-height" style="border-bottom: 10px solid #c9d4e6;padding-bottom: 10px;">
                 <!-- Content goes here -->
                 <h5 class="text-center text-dark" *ngIf="!test">Aptitude Test</h5>
                 <h5 class="text-center text-dark" *ngIf="test">Coding Test</h5>
@@ -26,7 +26,7 @@
             </main>
 
             <!-- Sidebar -->
-            <nav class="sidebar col-md-2 d-none d-md-block bg-light full-view-height" style="padding: 10px;">
+            <nav class="sidebar col-md-2 d-none d-md-block full-view-height" style="padding: 10px;background-color: #c9d4e6;">
                 <div class="sidebar-sticky" style="margin: 10px;">
                     <div class="row" style="margin: 10px;">
                         <div class="col-4 keypad-button margin">
