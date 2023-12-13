@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 export class ServiceService {
 
 
-  private apiUrl = 'http://localhost:8081/compiler/';
+
+  private apiUrl = 'http://localhost:8081/execute/python';
+
 
   constructor(private http: HttpClient) { }
 
