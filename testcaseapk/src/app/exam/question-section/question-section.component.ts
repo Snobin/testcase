@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { QuestionComponent } from './question/question.component';
 
 @Component({
   selector: 'app-question-section',
