@@ -13,14 +13,10 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  javaCompile(codeRequest: any): Observable<any> {
+  compileAndTest (codeRequest: any): Observable<any> {
     console.log("hdwiouh")
 
     return this.http.post<any>(this.apiUrl , codeRequest);
   }
-  pythonCompile(codeRequest: any): Observable<any> {
-    console.log("hdwiouh")
-
-    return this.http.post<any>(this.apiUrl , codeRequest);
-  }
+ 
 }
