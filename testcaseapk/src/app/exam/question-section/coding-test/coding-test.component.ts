@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from 'src/app/app.component';
 import { ServiceService } from 'src/app/service/service.service';
 
+declare var $: any;
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css']
+  selector: 'app-coding-test',
+  templateUrl: './coding-test.component.html',
+  styleUrls: ['./coding-test.component.css']
 })
-export class LandingComponent implements OnInit {
+export class CodingTestComponent implements OnInit {
 
   selectedLanguage: any;
   testCases: string[] = [];
   result: any;
   code: string = '';
 
-  constructor(private apiService: ServiceService, public obj:AppComponent) { }
+  constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-    
+    this.result.output="";
   }
   
   compileAndTest() {
@@ -29,9 +29,9 @@ export class LandingComponent implements OnInit {
         (error) => {
           this.result = error;
           if (error.status==400) {
-            this.result.errorMessage = 'Bad Request';
+            this.result.output = 'Bad Request';
           } else if (error.status==500) {
-            this.result.errorMessage = 'Internal Server Error';
+            this.result.output = 'Internal Server Error';
           }
         }
       );
@@ -43,15 +43,22 @@ export class LandingComponent implements OnInit {
         (error) => {
           this.result = error;
           if (error.status==400) {
-            this.result.errorMessage = 'Bad Request';
+            this.result.output = 'Bad Request';
           } else if (error.status==500) {
-            this.result.errorMessage = 'Internal Server Error';
+            this.result.output = 'Internal Server Error';
           }
         }
       );
     } else {
-      this.result = { success: false, errorMessage: 'Please select a program language.' };
+      this.result = { success: false, output: 'Please select a program language.' };
     }
+  }
+  clearCode(){
+    this.code= "";
+  }
+  clear(){
+    this.code= "";
+    this.selectedLanguage="";
   }
 
 }
