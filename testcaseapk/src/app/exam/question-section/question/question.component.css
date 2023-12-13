@@ -23,3 +23,13 @@
     padding-left: 0;
     list-style: none;
 }
+.options-margin{
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 0px;
+}
+.opt-margin{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

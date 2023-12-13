@@ -19,3 +19,6 @@
     padding-right: 0px;
     padding-left: 0px;
 }
+.nav-link{
+    color: var(--bs-dark-color);
+}
