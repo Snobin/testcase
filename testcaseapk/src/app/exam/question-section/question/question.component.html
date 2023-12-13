@@ -1,24 +1,44 @@
-<div class="col-md-12" *ngFor="let question of Questions" style="margin: 20px;">
-    <div class="col-md-12">
-        <h6>{{question.no}}. {{question.desc}}</h6>
-    </div>
-    <div class="col-md-12">
-        <form>
+<!-- your-component.component.html -->
+
+<div class="col-md-12" *ngFor="let question of displayedQuestions" style="padding: 20px;">
+    <div class="card" style="background-color: #c9d4e6;">
+      <div class="card-body">
+        <div class="col-md-12">
+          <h6 class="card-title">{{question.no}}. {{question.desc}}</h6>
+        </div>
+        <div class="col-md-12">
+          <form>
             <label class="col-md-6" *ngIf="(question.a!='')">
-                <input type="radio" name="options" value="a" (change)="onRadioChange('a',question.id)"> {{question.a}}
+              <input type="radio" name="options" value="a" (change)="onRadioChange('a', question.id)"> {{question.a}}
             </label>
             <label class="col-md-6" *ngIf="(question.b!='')">
-                <input type="radio" name="options" value="b" (change)="onRadioChange('b',question.id)"> {{question.b}}
+              <input type="radio" name="options" value="b" (change)="onRadioChange('b', question.id)"> {{question.b}}
             </label>
             <label class="col-md-6" *ngIf="(question.c!='')">
-                <input type="radio" name="options" value="c" (change)="onRadioChange('c',question.id)"> {{question.c}}
+              <input type="radio" name="options" value="c" (change)="onRadioChange('c', question.id)"> {{question.c}}
             </label>
             <label class="col-md-6" *ngIf="(question.d!='')">
-                <input type="radio" name="options" value="d" (change)="onRadioChange('d',question.id)"> {{question.d}}
+              <input type="radio" name="options" value="d" (change)="onRadioChange('d', question.id)"> {{question.d}}
             </label>
             <label class="col-md-6" *ngIf="(question.e!='')">
-                <input type="radio" name="options" value="e" (change)="onRadioChange('e',question.id)"> {{question.e}}
+              <input type="radio" name="options" value="e" (change)="onRadioChange('e', question.id)"> {{question.e}}
             </label>
-        </form>
+          </form>
+        </div>
+      </div>
+      <div class="btn-group p-3" role="group" aria-label="Basic outlined example">
+        <button class="btn btn-dark" style="margin-right: 1px;" (click)="previous()">Previous</button>
+        <button class="btn btn-dark" style="margin-left: 1px;" (click)="next()">Next</button>
+      </div>
     </div>
-</div>
+  </div>
+  
+  <div class="d-flex justify-content-center mt-3">
+    <ul class="pagination">
+      <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+        <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+      </li>
+    </ul>
+  </div>
+  
+  
