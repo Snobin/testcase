@@ -3,13 +3,20 @@ package com.interland.testcase.mcqquestion.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.mcqquestion.dto.Dto;
@@ -19,6 +26,7 @@ import com.interland.testcase.mcqquestion.entity.McqEntity;
 import com.interland.testcase.mcqquestion.exception.RecordCreateException;
 import com.interland.testcase.mcqquestion.exception.RecordNotFoundException;
 import com.interland.testcase.mcqquestion.repository.McqRepository;
+import com.interland.testcase.mcqquestion.repository.specification.McqQuestionSpec;
 import com.interland.testcase.mcqquestion.util.Constants;
 
 
@@ -29,6 +37,63 @@ public class McqServiceImpl implements McqService {
 	McqRepository mcqrep;
 	@Autowired
 	MessageSource messageSource;
+	
+	
+	private JSONArray countByStatus() {
+		JSONArray array = new JSONArray();
+		try {
+			List<McqEntity> headerList = mcqrep.findAll();
+			Map<String, Long> countByStatus = headerList.stream()
+					.collect(Collectors.groupingBy(McqEntity::getStatus, Collectors.counting()));
+			for (String status : countByStatus.keySet()) {
+				JSONObject obj = new JSONObject();
+				obj.put("name", status);
+				obj.put("count", countByStatus.get(status));
+				array.add(obj);
+			}
+		} catch (Exception e) {
+		
+		}
+		return array;
+	}
+	
+	
+
+	@Override
+	public JSONObject searchByLimit(String searchParam, int start, int pageSize) {
+		JSONObject result = new JSONObject();
+		try {
+			Pageable pageable = PageRequest.of(start / pageSize, pageSize);
+			Specification<McqEntity> spec = McqQuestionSpec.getMcqQuestionSpec(searchParam);
+			Page<McqEntity> mcqentList = mcqrep.findAll(spec, pageable);
+			JSONArray array = new JSONArray();
+			JSONArray countByStatus = countByStatus();
+			for (McqEntity mcqent : mcqentList) {
+				JSONObject obj = new JSONObject();
+				obj.put(Constants.QUESTIONNO, mcqent.getPrimarykey().getQuestionNo());
+				obj.put(Constants.QUESTIONID, mcqent.getPrimarykey().getQuestionId());
+				obj.put(Constants.QUESTION, mcqent.getQuestion());
+				obj.put(Constants.STATUS, mcqent.getStatus());
+				obj.put(Constants.OPTIONA, mcqent.getOptionA());
+				obj.put(Constants.OPTIONB, mcqent.getOptionB());
+				obj.put(Constants.OPTIONC, mcqent.getOptionC());
+				obj.put(Constants.OPTIOND, mcqent.getOptionC());
+				obj.put(Constants.ANSWERS, mcqent.getAnswers());
+				obj.put(Constants.SCORE, mcqent.getScore());
+			
+				array.add(obj);
+			}
+			result.put(Constants.AA_DATA, array);
+			result.put(Constants.TOTAL_DISPLAY_RECORD, mcqrep.findAll(spec).size());
+			result.put(Constants.TOTAL_RECORD, mcqrep.findAll(spec).size());
+			result.put(Constants.COUNT_BY_STATUS, countByStatus);
+		} catch (Exception e) {
+		
+		}
+		return result;
+	
+	}
+	
 	
 	
 	public Dto getById(String questionId, String questionNo) {
@@ -57,9 +122,6 @@ public class McqServiceImpl implements McqService {
 	}
 
 	
-
-	
-
 	public ServiceResponse create(Dto dto)  {
     	try {
 		McqEntity mcqentity = new McqEntity();
@@ -99,8 +161,6 @@ public class McqServiceImpl implements McqService {
     	
 }
     
-	
-	
 	
     @Override
 	public ServiceResponse updateQuestion(Dto dto1) {
@@ -174,13 +234,8 @@ public class McqServiceImpl implements McqService {
 			return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,
 					messageSource.getMessage("mcq.test.tst.VAL0010", null, LocaleContextHolder.getLocale()), null);
 		}
-		
-		
-		
+			
 	}
-
-
-
 
 
 	@Override
