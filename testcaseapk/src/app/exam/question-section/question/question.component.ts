@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class QuestionComponent implements OnInit {
 
+  Obj:QuestionComponent;
   Questions:any=[]=[
     {
       "id":"1",
@@ -156,12 +157,11 @@ export class QuestionComponent implements OnInit {
 
   onRadioChange(value: string, questionId: string) {
     this.selectedOption = value;
-  
     if (this.selectedOption == undefined || this.selectedOption == null) {
       console.log("Please select an option to save");
     } else {
       const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
-      this.toggleClass();
+      this.addClass();
       if (existingStudentIndex !== -1) {
         this.students[existingStudentIndex].answer = value;
       } else {
@@ -174,8 +174,8 @@ export class QuestionComponent implements OnInit {
       console.log(this.students);
     }
   }
-  toggleClass() {
-    this.isClassVisible = !this.isClassVisible;
+  addClass() {
+    this.isClassVisible = true;
   }
 
   

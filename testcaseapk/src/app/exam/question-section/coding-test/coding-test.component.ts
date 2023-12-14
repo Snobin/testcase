@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
+import * as Prism from 'prismjs';
+import * as rangy from 'rangy';
+
 
 declare var $: any;
 @Component({
@@ -9,43 +12,42 @@ declare var $: any;
 })
 export class CodingTestComponent implements OnInit {
 
-  selectedLanguage: any;
+  selectedLanguage: any='';
   testCases: string[] = [];
-  result: any;
+  result: any = { success:true, output: "" };
   code: string = '';
 
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-    this.result.output="";
   }
   
   compileAndTest() {
     if(this.selectedLanguage=="java") {
       this.apiService.javaCompile(this.code).subscribe(
         (response) => {
-          this.result = response;
+          this.result = { success: true, output: response };
         },
         (error) => {
           this.result = error;
           if (error.status==400) {
-            this.result.output = 'Bad Request';
+            this.result = { success: false, output: 'Bad Request' };
           } else if (error.status==500) {
-            this.result.output = 'Internal Server Error';
+            this.result = { success: false, output: 'Internal Server Error' };
           }
         }
       );
     } else if(this.selectedLanguage=="python") {
       this.apiService.pythonCompile(this.code).subscribe(
         (response) => {
-          this.result = response;
+          this.result = { success: true, output: response };
         },
         (error) => {
           this.result = error;
           if (error.status==400) {
-            this.result.output = 'Bad Request';
+            this.result = { success: false, output: 'Bad Request' };
           } else if (error.status==500) {
-            this.result.output = 'Internal Server Error';
+            this.result = { success: false, output: 'Internal Server Error' };
           }
         }
       );
@@ -61,4 +63,8 @@ export class CodingTestComponent implements OnInit {
     this.selectedLanguage="";
   }
 
+  highlightCode(): void {
+    const editor = document.getElementById('editor');
+    Prism.highlightElement(editor);
+  }
 }
