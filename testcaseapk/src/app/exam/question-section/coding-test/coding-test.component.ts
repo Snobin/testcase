@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class CodingTestComponent implements OnInit {
 
-  selectedLanguage: string;
+  selectedLanguage: string="";
   testCases: string[] = [];
   result: any;
   code: string = '';
