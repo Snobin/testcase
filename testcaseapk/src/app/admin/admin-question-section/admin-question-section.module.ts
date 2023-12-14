@@ -5,6 +5,7 @@ import { AdminQuestionSectionRoutingModule } from './admin-question-section-rout
 import { AdminQuestionSectionComponent } from './admin-question-section.component';
 import { McqQuestionsComponent } from './mcq-questions/mcq-questions.component';
 import { CodingQuestionsComponent } from './coding-questions/coding-questions.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,7 +13,8 @@ import { CodingQuestionsComponent } from './coding-questions/coding-questions.co
   declarations: [AdminQuestionSectionComponent, McqQuestionsComponent, CodingQuestionsComponent],
   imports: [
     CommonModule,
-    AdminQuestionSectionRoutingModule
+    AdminQuestionSectionRoutingModule,
+    FormsModule
   ]
 })
 export class AdminQuestionSectionModule { }

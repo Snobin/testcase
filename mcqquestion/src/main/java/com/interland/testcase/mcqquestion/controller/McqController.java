@@ -1,5 +1,6 @@
 package com.interland.testcase.mcqquestion.controller;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,6 +31,18 @@ public class McqController {
 	
 	@Autowired
 	McqService mcqservice;
+	
+	
+	@GetMapping("/search")
+	public ResponseEntity<JSONObject> searchByPage(@RequestParam("searchParam") String searchParam,
+			@RequestParam("iDisplayStart") String iDisplayStart,
+			@RequestParam("iDisplayLength") String iDisplayLength) {
+		JSONObject list = mcqservice.searchByLimit(searchParam, Integer.parseInt(iDisplayStart),
+				Integer.parseInt(iDisplayLength));
+
+		return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+	}
+	
 	
 	
 	@GetMapping("/Get/{questionNo}/{questionId}")
