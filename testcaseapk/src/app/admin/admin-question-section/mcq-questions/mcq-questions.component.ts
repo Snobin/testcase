@@ -38,28 +38,28 @@ export class McqQuestionsComponent implements OnInit {
   statusCountList: StatusCountModel = new StatusCountModel();
   // token: any = {};
   constructor(private mcqService: ServiceService,  private router: Router,) {
-    this.dataTableUrl = "http://localhost:8058/MCQ/search";
+    this.dataTableUrl ="http://localhost:8082/MCQ/search";
     // this.token = this.commonServiceProvider.getUserDetailsWithToken();
   }
   ngOnInit(): void {
     McqQuestionsComponent.obj = this;
-   this. getUsers();
+   this.getUsers();
   }
    //
    getUsers() {
-   
+     console.log(this.dataTableUrl)
     this.userDatatable = $('#userList').DataTable({
       "bProcessing": true,
       "bDeferRender": true,
       "ordering": false,
       bAutoWidth: false,
       bServerSide: true,
-     
       sAjaxSource: this.dataTableUrl,
      
       "fnServerParams": function (aoData) {
         var dataString = McqQuestionsComponent.obj.getSearchInputs();
         aoData.push({ name: "searchParam", value: dataString });
+        console.log(aoData)
       },
       "fnServerData": (sSource, aoData, fnCallback, oSettings) => {
         oSettings.jqXHR = $.ajax({
