@@ -16,6 +16,7 @@ export class CodingTestComponent implements OnInit {
   result: any;
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
+executionTime: any=0;
 
   constructor(private apiService: ServiceService) { }
 
@@ -31,6 +32,7 @@ export class CodingTestComponent implements OnInit {
       this.apiService.compileAndTest(this.codereq).subscribe(
         (response) => {
           this.result = response.output;
+          this.executionTime=response.processingTime;
           console.log(this.result);
         },
         (error) => {

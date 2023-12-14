@@ -5,20 +5,20 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-import java.util.concurrent.*;
 
 import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CodeRequest;
-
 import com.interland.testcase.dto.CodeResponse;
-
 
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
-
 
 	private static final Logger LOGGER = Logger.getLogger(CodeExecutionServiceImple.class.getName());
 
@@ -28,6 +28,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 		String code = codeRequest.getCode();
 		String language = codeRequest.getLangId();
+		String input=codeRequest.getInput();
 
 		switch (language) {
 		case "java":
@@ -35,7 +36,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		case "c":
 			return executeCCode(code);
 		case "cpp":
-			return executeCppCode(code);
+			return executeCppCode(code,input);
 		case "python":
 			return executePythonCode(code);
 		default:
@@ -89,16 +90,16 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		}
 	}
 
-	private CodeResponse executeCppCode(String code) {
+	private CodeResponse executeCppCode(String code, String input) {
 
 		try {
 			File tempFile = createTempFile("code", ".cpp", code);
 			String dockerVolumePath = "/tmp";
 
 			ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-					tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
-					"g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
-							+ dockerVolumePath + " && ./a.out");
+	                tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
+	                "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath +
+	                        "/a.out && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
 
 			return executeProcess(processBuilder, tempFile);
 		} catch (Exception e) {
@@ -127,52 +128,50 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	}
 
 	private CodeResponse executeProcess(ProcessBuilder processBuilder, File tempFile) {
-	    ExecutorService executorService = Executors.newSingleThreadExecutor();
-	    CodeResponse codeResponse = new CodeResponse();
+		ExecutorService executorService = Executors.newSingleThreadExecutor();
+		CodeResponse codeResponse = new CodeResponse();
 
-	    long startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 
-	    try {
-	        Future<Void> future = executorService.submit(() -> {
-	            try {
-	                processBuilder.redirectErrorStream(true);
-	                Process process = processBuilder.start();
+		try {
+			Future<Void> future = executorService.submit(() -> {
+				try {
+					processBuilder.redirectErrorStream(true);
+					Process process = processBuilder.start();
 
-	                int exitCode = process.waitFor();
+					int exitCode = process.waitFor();
 
-	                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	                StringBuilder output = new StringBuilder();
-	                String line;
-	                while ((line = reader.readLine()) != null) {
-	                    output.append(line).append("\n");
-	                }
+					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					StringBuilder output = new StringBuilder();
+					String line;
+					while ((line = reader.readLine()) != null) {
+						output.append(line).append("\n");
+					}
 
-	                tempFile.delete();
+					tempFile.delete();
 
-	                codeResponse.setOutput(output.toString());
-	            } catch (Exception e) {
-	            	LOGGER.warning("Execution timed out after 10 seconds");
-                	codeResponse.setOutput("Error: Execution timed out after 10 seconds");
-	            }
-	        }, null);
+					codeResponse.setOutput(output.toString());
+				} catch (Exception e) {
+					LOGGER.warning("Execution timed out after 10 seconds");
+					codeResponse.setOutput("Error: Execution timed out after 10 seconds");
+				}
+			}, null);
 
-	        
-	        future.get(4, TimeUnit.SECONDS);
-	    } catch (Exception e) {
-	        LOGGER.severe("Error executing process: " + e.getMessage());
-	        codeResponse.setOutput("Error: " + e.getMessage());
-	    } finally {
-	        long endTime = System.currentTimeMillis();
-	        long elapsedTime = (endTime - startTime) / 1000;
-	        // Adding processing time to CodeResponse
-	        codeResponse.setProcessingTime(elapsedTime);
+			future.get(10, TimeUnit.SECONDS);
+		} catch (Exception e) {
+			LOGGER.severe("Error executing process: " + e.getMessage());
+			codeResponse.setOutput("Error: " + e.getMessage());
+		} finally {
+			long endTime = System.currentTimeMillis();
+			long elapsedTime = (endTime - startTime);
+			// Adding processing time to CodeResponse
+			codeResponse.setProcessingTime(elapsedTime);
 
-	        executorService.shutdownNow();
-	    }
+			executorService.shutdownNow();
+		}
 
-	    return codeResponse;
+		return codeResponse;
 	}
-
 
 	private File createTempFile(String prefix, String suffix, String code) throws Exception {
 		File tempFile = File.createTempFile(prefix, suffix);

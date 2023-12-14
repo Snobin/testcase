@@ -18,9 +18,10 @@
     <button class="btn btn-success mt-3" style="margin: 10px;" (click)="compileAndTest()">Run</button>
 </div>
 <div class="mt-4">
-    <h5 class="text-dark">Output:</h5>
-    <!-- <p *ngIf="result.compilationSuccessful" class="text-success">Code compiled and tested successfully!</p>
-    <p *ngIf="!result.compilationSuccessful" class="text-danger">Code compilation or testing failed!</p> -->
-    <textarea class="form-control bg-dark text-light" id="codeOutput" rows="3" style="font-family: 'Courier New', Courier, monospace;">{{ result }}</textarea>
+  <h5 class="text-dark">Output:</h5>
+  <!-- <p *ngIf="result.compilationSuccessful" class="text-success">Code compiled and tested successfully!</p>
+  <p *ngIf="!result.compilationSuccessful" class="text-danger">Code compilation or testing failed!</p> -->
+  <textarea class="form-control bg-dark text-light" id="codeOutput" rows="3" style="font-family: 'Courier New', Courier, monospace;">{{ result }}</textarea>
+
+  <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
 </div>
-  
