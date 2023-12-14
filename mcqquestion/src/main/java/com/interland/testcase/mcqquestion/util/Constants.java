@@ -14,6 +14,7 @@ public class Constants {
 	public final static String SCORE="score";
 	public final static String SUCCESS = "SUCCESS";
 	public final static String VERIFYDELETED = "verifydeleted";
+	public final static String STATUS="status";
 
 
 
