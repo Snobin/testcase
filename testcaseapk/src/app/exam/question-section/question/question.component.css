@@ -1,0 +1,66 @@
+.pagination {
+    --bs-pagination-padding-x: 0.75rem;
+    --bs-pagination-padding-y: 0.375rem;
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: #00000075;
+    --bs-pagination-bg: var(--bs-body-bg);
+    --bs-pagination-border-width: var(--bs-border-width);
+    --bs-pagination-border-color: var(--bs-border-color);
+    --bs-pagination-border-radius: var(--bs-border-radius);
+    --bs-pagination-hover-color: var(--bs-dark-color);
+    --bs-pagination-hover-bg: var(--bs-tertiary-bg);
+    --bs-pagination-hover-border-color: var(--bs-border-color);
+    --bs-pagination-focus-color: var(--bs-link-hover-color);
+    --bs-pagination-focus-bg: var(--bs-secondary-bg);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: #000000;
+    --bs-pagination-active-border-color: #000000;
+    --bs-pagination-disabled-color: var(--bs-dark-color);
+    --bs-pagination-disabled-bg: var(--bs-dark-bg);
+    --bs-pagination-disabled-border-color: var(--bs-border-color);
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+}
+.options-margin{
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 0px;
+}
+.opt-margin{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.keypad-button {
+    width: 33.33333%;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.questionButton{
+    border-radius: 50%;
+}
+.full-view-height{
+    height: 88vh;
+}
+.header {
+    position: fixed;
+}
+.row>* {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.nav-link{
+    color: var(--bs-dark-color);
+}
+.main-margin{
+    /* border-bottom: 10px solid #c9d4e6; */
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-right: 12px;
+}
