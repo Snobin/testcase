@@ -1,41 +1,51 @@
-
-<div class="form-group mt-3">
-    <div style="margin: 10px;">
-        <label for="codeInput" class="text-dark">Enter Your Code:</label>
-        <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
-          <option value="" selected disabled>Select</option>
-          <option value="java">Java</option>
-          <option value="python">Python</option>
-          <option value="c">C</option>
-          <option value="cpp">C++</option>
-        </select>
-      </div>
-      
-    <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
-</div>
-<div class="float-end">
-    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
-    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
-    <button class="btn btn-success mt-3" style="margin: 10px;" (click)="executeCode()">Run</button>
-</div>
-
-
-<!-- <div class="mt-4"> -->
-    <!-- <textarea class="form-control bg-dark text-light" id="codeOutput" rows="3" style="font-family: 'Courier New', Courier, monospace;">{{ result.output }}</textarea> -->
 <div class="form-group" style="margin: 10px;">
     <div class="card">
         <div class="card-body">
-            <div class="card-title">
-                <h5 class="text-dark">Output:</h5>
-                <!-- <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p>
-                <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p> -->
-                <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
+            <div class="card title" style="margin: 10px">
+                <div style="margin: 10px;">
+                    <div class="float-start">
+                        <h5 class="text-dark">Enter Your Code:</h5>
+                    </div>
+                    <div>
+                        <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
+                            <option value="" selected disabled>Select</option>
+                            <option value="java">Java</option>
+                            <option value="python">Python</option>
+                            <option value="c">C</option>
+                            <option value="cpp">C++</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="code-editor">
-                <pre><code class="code-output language-javascript" contenteditable="true" id="editor" (keyup)="highlightCode()">{{ result.output }}</code></pre>
+<!--            <pre><code class="code-input language-javascript" contenteditable="true" id="editor" (keyup)="highlightCode()" [(ngModel)]="code"></code></pre> -->                            <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
+            </div>
+        </div>
+        <div class="float-end">
+            <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
+            <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
+            <button class="btn btn-success mt-3" style="margin: 10px;" (click)="compileAndTest()">Run</button>
+        </div>
+    </div>
+</div>
+<div class="form-group" style="margin: 10px;">
+    <div class="card">
+        <div class="card-body">
+            <div class="card title" style="margin: 10px">
+                <div style="margin: 10px;">
+                    <div class="float-start">
+                        <h5 class="text-dark">Output:</h5>
+<!--                         <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p> -->
+<!--                         <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p> -->
+                    </div>
+                    <div class="float-end">     
+                        <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-editor">
+                <pre><code class="code-output language-javascript" contenteditable="true" id="editor" (keyup)="highlightCode()">{{code}}</code></pre>
             </div>
         </div>
     </div>
 </div>
-
-
