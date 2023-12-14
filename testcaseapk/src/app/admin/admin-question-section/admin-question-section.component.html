@@ -1,11 +1,13 @@
 
-<div class="margin" style="width: 100%; background-color: lightgray; padding: 1rem;">
+<div class="margin text-dark p-3" style="width:100%;background-color: #c9d4e6;">
+    <div>
         <h3>Question Section</h3>
+    </div>
 </div>
-<div  style="height: 100%; width: 100%;">
+<div class="container-fluid" style="height: 100%;">
 <div class="row">
     <!-- Sidebar -->
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar full-view-height">
+    <nav class="sidebar full-view-height" style="background-color: #c9d4e6; width:11%">
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
                 <li class="nav-item"><a class="nav-link active" (click)="mcq()">MCQ Questions</a></li>
@@ -16,3 +18,16 @@
     </nav>
 
     <!-- Main Content -->
+    <main role="main" class="full-view-height" style="border-bottom: 10px solid #c9d4e6;width:84%;">
+        <!-- Content goes here -->
+        <h5 class="text-center text-dark" *ngIf="!test">Aptitude Test</h5>
+        <h5 class="text-center text-dark" *ngIf="test">Coding Test</h5>
+        <router-outlet></router-outlet>
+    </main>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" style="width:5%;background-color: #c9d4e6;">
+    </nav>
+</div>
+</div>
+

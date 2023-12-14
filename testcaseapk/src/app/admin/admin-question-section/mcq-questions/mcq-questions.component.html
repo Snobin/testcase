@@ -1,1 +1,132 @@
-<p>mcq-questions works!</p>
+<div class="col-md-12">
+    <div>
+        <div class="card-header">
+            <h3 class="card-title" class="text-center" >Admin Console</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="bookTitle">Book Title</label>
+                        <input type="text" class="form-control" id="bookTitle" placeholder="book title"[(ngModel)]="libraryObj.bookId" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookId">Book Id</label>
+                        <input type="text" class="form-control" id="bookId" placeholder="book id" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookCategory">Book Category</label>
+                        <select class="form-control select2" id="bookCategory">
+                            <option value="">Select</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Journals/Diaries">Journals/Diaries</option>
+                            <option value="Religious/Spiritual">Religious/Spiritual</option>
+                            <option value="Art/Photography">Art/Photography</option>
+                            <option value="Reference">Reference</option>
+                            <option value="Children's Books">Children's Books</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->     
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="memberName">Member Name</label>
+                        <input type="text" class="form-control" id="memberName" placeholder="member name" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="borrowingDate">Borrowing Date</label>
+                        <input type="date" class="form-control" id="borrowingDate" placeholder="borrowing date" value="">
+
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                     
+                        <select class="form-control select2" id="idStatus" >
+                            <option value="" selected="selected">SELECT</option>
+                            <option value="PROCESSED">Processed</option>
+                            <option value="VERIFIED">Verified</option>
+                            <option value="DELETED">Delete</option>
+
+                        </select>
+                    </div>
+
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer clearfix">
+          
+            <button type="button" class="btn btn-primary action-btn float-right px-2 mx-3" style="border-radius: 30px;" (click)="clear()">CLEAR</button>
+            <button type="button" class="btn btn-primary action-btn float-right px-2" style="border-radius: 30px;" (click)="search()">SEARCH</button>
+        </div>
+        <!-- /.card-footer-->
+    </div>
+</div>
+<!-- /.card-body -->
+<!-- /.card-footer -->
+<div class="custom-card">
+    <div class="custom-card-body">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="bs-example">
+                    <ul class="nav nav-pills table-status-badge">
+                        <li class="nav-item">
+                            <a class="badge badge-primary" (click)="refreshByStatus('')" style="background-color: rgb(65, 72, 65); border-radius: 30px; color: white;" >
+                                ALL
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="badge badge-primary mx-3" (click)="refreshByStatus('PROCESSD')" style="background-color: rgb(199, 117, 54); border-radius: 30px; color: white;">
+                                Pending Approval
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="badge badge-primary " (click)="refreshByStatus('VERIFIED')" style="background-color: rgb(76, 222, 76); border-radius: 30px; color: white;" >
+                                Approved
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="badge badge-primary  mx-3" (click)="refreshByStatus('DELETED')" style="background-color: red; border-radius: 30px; color: white;">
+                                Deleted
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table id="userList" class="table table-bordered table-hover dataTable responsive nowrap ipsh-grid">
+                <thead id="id-table-head">
+                    <tr>
+                        <th *ngFor="let head of initialHead">{{ get(head.name)  }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <div class="card-footer clearfix">
+
+        <button type="button" class="btn btn-secondary action-btn float-right px-2 mx-3 " style="border-radius: 30px;" (click)="delete()">
+          {{ 'DELETE'  }}
+        </button>
+        <button type="button" class="btn btn-secondary action-btn float-right px-2" style="border-radius: 30px;" (click)="verify()">
+          {{ 'VERIFY'  }}
+        </button>
+        <button type="button" class="btn btn-primary action-btn float-right px-2 mx-3" style="border-radius: 30px;" (click)="updateUser()">
+          {{ 'UPDATE'  }}
+        </button>
+        <button type="button" class="btn btn-primary action-btn float-right px-2" style="border-radius: 30px;"(click)="createUser()">
+          {{ 'CREATE'  }}
+        </button>
+    </div>
