@@ -44,9 +44,6 @@
 .questionButton{
     border-radius: 50%;
 }
-.full-view-height{
-    height: 88vh;
-}
 .header {
     position: fixed;
 }
@@ -63,4 +60,8 @@
     padding-left: 0px;
     padding-top: 0px;
     padding-right: 12px;
+    margin-left: 10px;
+}
+.left-margin{
+    margin-left: 10px;
 }

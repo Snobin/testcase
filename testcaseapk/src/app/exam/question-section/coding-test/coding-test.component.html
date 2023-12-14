@@ -1,3 +1,7 @@
+<div class="align-self-start">
+    <div>
+
+    </div>
 <div class="form-group" style="margin: 10px;">
     <div class="card">
         <div class="card-body">
@@ -31,10 +35,14 @@
 <div class="form-group" style="margin: 10px;">
     <div class="card">
         <div class="card-body">
-            <div class="card-title">
-                <h5 class="text-dark">Output:</h5>
-                <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p>
-                <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p>
+            <div class="card title" style="margin: 10px">
+                <div style="margin: 10px;">
+                    <div class="float-start">
+                        <h5 class="text-dark">Output:</h5>
+                        <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p>
+                        <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p>
+                    </div>
+                </div>
             </div>
             <div class="code-editor">
                 <pre><code class="code-output language-javascript" contenteditable="true" id="editor" (keyup)="highlightCode()">{{ result.output }}</code></pre>
@@ -43,4 +51,4 @@
     </div>
 </div>
 
-<!-- </div> -->
+</div>

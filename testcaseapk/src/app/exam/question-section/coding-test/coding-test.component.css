@@ -33,3 +33,21 @@ pre {
     height: 100px;
     overflow-y: auto;
 }
+
+.contain {
+    display: flex;
+    height: 100vh;
+  }
+
+  .resizable {
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    resize: horizontal; /* or vertical, both, etc. */
+    background-color: #c9d4e6;
+  }
+.resize-card {
+    flex: .5;
+    resize: vertical;
+    overflow: auto;
+}

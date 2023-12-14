@@ -1,32 +1,15 @@
 
-    <div class="margin text-dark" style="background-color: #c9d4e6;padding-top: 10px;padding-left: 10px;padding-right: 10px;padding-bottom: 0px;">
+    <div class="margin text-dark" style="background-color: #c9d4e6;padding: 0px;">
         <div>
             <h3>Question Section</h3>
         </div>
-        <div class="row">
-            <div class="col-md-2 ml-sm-auto col-lg-2"></div>
-            <div class="col-md-8 col-lg-8" style="background-color: #c9d4e6;">
-                <h5 class="text-center text-dark" style="margin: 10px;" *ngIf="!test">Aptitude Test</h5>
-                <h5 class="text-center text-dark" style="margin: 10px;" *ngIf="test">Coding Test</h5>        
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid" style="height: 100%;">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-2 d-none d-md-block sidebar full-view-height" style="background-color: #c9d4e6;">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active" (click)="AptitudeTest()">Aptitude Test</a></li>
-                        <li class="nav-item"><a class="nav-link" (click)="CodingTest()">Coding Test</a></li>
-                    <!-- Add more items as needed -->
+                    <ul class="nav nav-tabs" style="background-color: #c9d4e6;margin: 10px;">
+                        <li class="nav-item"><a class="nav-link" [class.active]="class" (click)="AptitudeTest()">Aptitude Test</a></li>
+                        <li class="nav-item"><a class="nav-link" [class.active]="!class" (click)="CodingTest()">Coding Test</a></li>
                     </ul>
-                </div>
-            </nav>
-
-            <!-- Main Content -->
-            <main role="main" class="col-md-10 col-lg-10">
-                <router-outlet></router-outlet>
-            </main>
-        </div>
+    </div>
+    <div style="height: 100%;">
+        <main role="main" class="col-md-12 col-lg-12 full-view-height">
+            <router-outlet></router-outlet>
+        </main>
     </div>
