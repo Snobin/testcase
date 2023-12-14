@@ -1,2 +1,6 @@
 /.metadata/
 
+<<<<<<< HEAD
+=======
+/src/main/resources/application.properties
+>>>>>>> 44352abfe68c0d01bf5113937fba78f8bb6c30aa
