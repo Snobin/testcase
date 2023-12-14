@@ -1,78 +1,50 @@
+
 <div class="col-md-12">
-    <div>
-        <div class="card-header">
-            <h3 class="card-title" class="text-center" >Admin Console</h3>
-        </div>
+    <div class="card my-3">
         <!-- /.card-header -->
+        <div class="card-header">
+            <h3 class="card-title" class="text-center" >MCQ Console</h3>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="bookTitle">Book Title</label>
-                        <input type="text" class="form-control" id="bookTitle" placeholder="book title"[(ngModel)]="libraryObj.bookId" value="">
+                        <label for="questionNo">Question Number</label>
+                        <input type="text" class="form-control" id="questionNo" placeholder="Question Number" [(ngModel)]="mcqObj.questionNo" value="">
                     </div>
                     <div class="form-group">
-                        <label for="bookId">Book Id</label>
-                        <input type="text" class="form-control" id="bookId" placeholder="book id" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="bookCategory">Book Category</label>
-                        <select class="form-control select2" id="bookCategory">
+                        <label for="questionId">Question Type</label>
+                        <select class="form-control select2" id="questionId">
                             <option value="">Select</option>
-                            <option value="Fiction">Fiction</option>
-                            <option value="Journals/Diaries">Journals/Diaries</option>
-                            <option value="Religious/Spiritual">Religious/Spiritual</option>
-                            <option value="Art/Photography">Art/Photography</option>
-                            <option value="Reference">Reference</option>
-                            <option value="Children's Books">Children's Books</option>
+                            <option value="1">Single Answer Question</option>
+                            <option value="2">Multiple Answer Question</option>
                         </select>
                     </div>
-                    <!-- /.form-group -->     
-                    <!-- /.form-group -->
                 </div>
-                <!-- /.col -->
                 <div class="col-md-6">
-
-                    <div class="form-group">
-                        <label for="memberName">Member Name</label>
-                        <input type="text" class="form-control" id="memberName" placeholder="member name" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="borrowingDate">Borrowing Date</label>
-                        <input type="date" class="form-control" id="borrowingDate" placeholder="borrowing date" value="">
-
-                    </div>
-                    <!-- /.form-group -->
                     <div class="form-group">
                         <label for="status">Status</label>
-                     
-                        <select class="form-control select2" id="idStatus" >
+                        <select class="form-control select2" id="idStatus">
                             <option value="" selected="selected">SELECT</option>
                             <option value="PROCESSED">Processed</option>
                             <option value="VERIFIED">Verified</option>
                             <option value="DELETED">Delete</option>
-
                         </select>
                     </div>
-
-                    <!-- /.form-group -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
         <!-- /.card-body -->
-        <div class="card-footer clearfix">
-          
-            <button type="button" class="btn btn-primary action-btn float-right px-2 mx-3" style="border-radius: 30px;" (click)="clear()">CLEAR</button>
-            <button type="button" class="btn btn-primary action-btn float-right px-2" style="border-radius: 30px;" (click)="search()">SEARCH</button>
+        <div class="card-footer d-flex justify-content-end">
+            <button type="button" class="btn btn-primary action-btn  px-2 mx-3" style="border-radius: 30px;" (click)="clear()">CLEAR</button>
+            <button type="button" class="btn btn-primary action-btn  px-2 ml-auto" style="border-radius: 30px;" (click)="search()">SEARCH</button>
         </div>
         <!-- /.card-footer-->
     </div>
 </div>
 <!-- /.card-body -->
 <!-- /.card-footer -->
-<div class="custom-card">
+<div class="card" style="width:100%">
     <div class="custom-card-body">
         <div class="row mb-2">
             <div class="col-md-12">
@@ -115,7 +87,7 @@
         </div>
         <!-- /.table-responsive -->
     </div>
-    <div class="card-footer clearfix">
+    <div class="card-footer clearfix d-flex justify-content-end">
 
         <button type="button" class="btn btn-secondary action-btn float-right px-2 mx-3 " style="border-radius: 30px;" (click)="delete()">
           {{ 'DELETE'  }}
@@ -130,3 +102,4 @@
           {{ 'CREATE'  }}
         </button>
     </div>
+</div>
