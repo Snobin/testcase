@@ -1,0 +1,9 @@
+<section class="container centered-content" id="id-enter" *ngIf="!obj.isLoggedIn">
+    <div class="container">
+        <h1>Login to access this page.</h1><br><br><br>
+        <div class="container">
+            <button class="btn btn-dark" (click)="backToLogin()">Login</button>
+        </div>
+    </div>
+</section>
+<router-outlet></router-outlet>

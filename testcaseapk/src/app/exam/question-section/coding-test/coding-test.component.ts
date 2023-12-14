@@ -1,70 +1,70 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
+
+import { CodeRequest } from '../../model/code-request';
+// import { HighlightResult } from 'ngx-highlightjs';
 import * as Prism from 'prismjs';
-import * as rangy from 'rangy';
 
 
-declare var $: any;
 @Component({
   selector: 'app-coding-test',
   templateUrl: './coding-test.component.html',
   styleUrls: ['./coding-test.component.css']
 })
 export class CodingTestComponent implements OnInit {
-
-  selectedLanguage: any='';
+highlightCode() {
+throw new Error('Method not implemented.');
+}
+  cod = `function helloWorld() {
+    console.log('Hello, World!');
+  }`;
+  selectedLanguage: string = '';
   testCases: string[] = [];
-  result: any = { success:true, output: "" };
+  result: any = { success: true, output: '' };
   code: string = '';
+  codereq: CodeRequest = new CodeRequest();
+  executionTime: any = 0;
 
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-  }
-  
-  compileAndTest() {
-    if(this.selectedLanguage=="java") {
-      this.apiService.javaCompile(this.code).subscribe(
-        (response) => {
-          this.result = { success: true, output: response };
-        },
-        (error) => {
-          this.result = error;
-          if (error.status==400) {
-            this.result = { success: false, output: 'Bad Request' };
-          } else if (error.status==500) {
-            this.result = { success: false, output: 'Internal Server Error' };
-          }
-        }
-      );
-    } else if(this.selectedLanguage=="python") {
-      this.apiService.pythonCompile(this.code).subscribe(
-        (response) => {
-          this.result = { success: true, output: response };
-        },
-        (error) => {
-          this.result = error;
-          if (error.status==400) {
-            this.result = { success: false, output: 'Bad Request' };
-          } else if (error.status==500) {
-            this.result = { success: false, output: 'Internal Server Error' };
-          }
-        }
-      );
-    } else {
-      this.result = { success: false, output: 'Please select a program language.' };
-    }
-  }
-  clearCode(){
-    this.code= "";
-  }
-  clear(){
-    this.code= "";
-    this.selectedLanguage="";
+    // Initialization logic, if any
   }
 
-  highlightCode(): void {
-    const editor = document.getElementById('editor');
-    Prism.highlightElement(editor);
+  async executeCode() {
+    try {
+      if (this.selectedLanguage && this.code) {
+        this.codereq.langId = this.selectedLanguage;
+        this.codereq.code = this.code;
+
+        const response = await this.apiService.compileAndTest(this.codereq).toPromise();
+
+        this.result.output = response.output;
+        this.executionTime = response.processingTime;
+
+      } else {
+        this.result = { success: false, output: 'Please select a programming language and enter code.' };
+      }
+    } catch (error) {
+      console.error('Error:', error);
+
+      if (error.status === 400) {
+        this.result.output = 'Bad Request';
+      } else if (error.status === 500) {
+        this.result.output = 'Internal Server Error';
+      } else {
+        this.result.output = 'An unexpected error occurred.';
+      }
+    }
   }
+
+  clearCode() {
+    this.code = '';
+  }
+
+  clear() {
+    this.code = '';
+    this.selectedLanguage = '';
+  }
+
 }
