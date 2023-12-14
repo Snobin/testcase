@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../student';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-question',
@@ -8,6 +9,7 @@ import { Student } from '../student';
 })
 export class QuestionComponent implements OnInit {
 
+  Obj:QuestionComponent;
   Questions:any=[]=[
     {
       "id":"1",
@@ -99,16 +101,17 @@ export class QuestionComponent implements OnInit {
     }
   ];
 
-   // Your array of questions
-   pageSize: number = 1; // Number of questions per page
-   currentPage: number = 1;
-   displayedQuestions: any[] = [];
-   pages: number[] = [];
+  // Your array of questions
+  pageSize: number = 1; // Number of questions per page
+  currentPage: number = 1;
+  displayedQuestions: any[] = [];
+  pages: number[] = [];
 
   currentIndex: number = 0;
   students:Student[] = [];
   student = new Student(); 
   selectedOption: any;
+  isClassVisible = false;
 
   constructor() { }
 
@@ -129,22 +132,36 @@ export class QuestionComponent implements OnInit {
   next() {
     if (this.currentPage < this.pages.length) {
       this.setPage(this.currentPage + 1);
+    } else {
+      Swal.fire({
+        text: 'You are on the last question already',
+        showConfirmButton: false,
+        timer: 600,
+        position: 'top'
+      })
     }
   }
 
   previous(){
     if (this.currentPage < this.pages.length && this.currentPage != 1) {
       this.setPage(this.currentPage - 1);
+    } else {
+      Swal.fire({
+        text: 'You are on the first question already',
+        showConfirmButton: false,
+        timer: 600,
+        position: 'top'
+      })
     }
   }
 
   onRadioChange(value: string, questionId: string) {
     this.selectedOption = value;
-  
     if (this.selectedOption == undefined || this.selectedOption == null) {
       console.log("Please select an option to save");
     } else {
       const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+      this.addClass();
       if (existingStudentIndex !== -1) {
         this.students[existingStudentIndex].answer = value;
       } else {
@@ -157,7 +174,9 @@ export class QuestionComponent implements OnInit {
       console.log(this.students);
     }
   }
-
+  addClass() {
+    this.isClassVisible = true;
+  }
 
   
 

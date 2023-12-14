@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
+
 import { CodeRequest } from '../../model/code-request';
+
+import * as Prism from 'prismjs';
+import * as rangy from 'rangy';
+
 
 declare var $: any;
 
@@ -11,9 +16,11 @@ declare var $: any;
 })
 export class CodingTestComponent implements OnInit {
 
+
   selectedLanguage: string="";
+
   testCases: string[] = [];
-  result: any;
+  result: any = { success:true, output: "" };
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
 executionTime: any=0;
@@ -21,7 +28,7 @@ executionTime: any=0;
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-    // this.result.output="";
+
   }
 
   compileAndTest() {
@@ -31,6 +38,7 @@ executionTime: any=0;
 
       this.apiService.compileAndTest(this.codereq).subscribe(
         (response) => {
+
           this.result = response.output;
           this.executionTime=response.processingTime;
           console.log(this.result);
@@ -42,6 +50,7 @@ executionTime: any=0;
             this.result.output = 'Bad Request';
           } else if (error.status == 500) {
             this.result.output = 'Internal Server Error';
+
           }
         }
       );
@@ -59,4 +68,8 @@ executionTime: any=0;
     this.selectedLanguage = '';
   }
 
+  highlightCode(): void {
+    const editor = document.getElementById('editor');
+    Prism.highlightElement(editor);
+  }
 }
