@@ -15,6 +15,12 @@ public class Constants {
 	public final static String SUCCESS = "SUCCESS";
 	public final static String VERIFYDELETED = "verifydeleted";
 	public final static String STATUS="status";
+	public final static String AA_DATA = "aaData";
+	public final static String DATA = "data";
+	public final static String TOTAL_DISPLAY_RECORD = "iTotalDisplayRecords";
+	public final static String TOTAL_RECORD = "iTotalRecords";
+	public final static String COUNT_BY_STATUS = "countByStatus";
+
 
 
 

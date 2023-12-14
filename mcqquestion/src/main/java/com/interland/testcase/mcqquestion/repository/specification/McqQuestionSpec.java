@@ -22,7 +22,7 @@ public class McqQuestionSpec {
                 McqEmbedded ob;
 
                 JSONObject searchObject;
-                System.out.println("haii");
+              
 
                 try {
                     searchObject = (JSONObject) parser.parse(searchParam);
