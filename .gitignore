@@ -1,3 +1,4 @@
 /.metadata/
 
 /src/main/resources/application.properties
+testcase/src/main/resources/static/logfile.log
