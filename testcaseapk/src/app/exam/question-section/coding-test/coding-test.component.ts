@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
-import { CodeRequest } from '../../model/code-request';
 
-declare var $: any;
+import { CodeRequest } from '../../model/code-request';
+import * as Prism from 'prismjs';
+
 
 @Component({
   selector: 'app-coding-test',
@@ -11,40 +12,49 @@ declare var $: any;
 })
 export class CodingTestComponent implements OnInit {
 
-  selectedLanguage: string="";
+  selectedLanguage: string = '';
   testCases: string[] = [];
-  result: any;
+  result: any = { success: true, output: '' };
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
+  executionTime: any = 0;
+  case: any=1;
+  testInput11: any;
+  testInput12: any;
+  testInput21: any;
+  testInput22: any;
+  testInput31: any;
+  testInput32: any;
 
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-    // this.result.output="";
   }
 
-  compileAndTest() {
-    if (this.selectedLanguage && this.code) {
-      this.codereq.langId = this.selectedLanguage;
-      this.codereq.code = this.code;
+  async executeCode() {
+    try {
+      if (this.selectedLanguage && this.code) {
+        this.codereq.langId = this.selectedLanguage;
+        this.codereq.code = this.code;
 
-      this.apiService.compileAndTest(this.codereq).subscribe(
-        (response) => {
-          this.result = response.output;
-          console.log(this.result);
-        },
-        (error) => {
-          this.result = error;
-          console.log(error);
-          if (error.status == 400) {
-            this.result.output = 'Bad Request';
-          } else if (error.status == 500) {
-            this.result.output = 'Internal Server Error';
-          }
-        }
-      );
-    } else {
-      this.result = { success: false, output: 'Please select a programming language and enter code.' };
+        const response = await this.apiService.compileAndTest(this.codereq).toPromise();
+
+        this.result.output = response.output;
+        this.executionTime = response.processingTime;
+
+      } else {
+        this.result = { success: false, output: 'Please select a programming language and enter code.' };
+      }
+    } catch (error) {
+      console.error('Error:', error);
+
+      if (error.status === 400) {
+        this.result.output = 'Bad Request';
+      } else if (error.status === 500) {
+        this.result.output = 'Internal Server Error';
+      } else {
+        this.result.output = 'An unexpected error occurred.';
+      }
     }
   }
 
@@ -55,6 +65,15 @@ export class CodingTestComponent implements OnInit {
   clear() {
     this.code = '';
     this.selectedLanguage = '';
+  }
+
+  highlightCode(){
+    Prism.highlightElement(document.getElementById('codeOutput'));
+  }
+
+  onCodeInput(event: any) {
+    this.code = event.target.textContent || event.target.innerText;
+    Prism.highlightElement(document.getElementById('codeInput'));
   }
 
 }
