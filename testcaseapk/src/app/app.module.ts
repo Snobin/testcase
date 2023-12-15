@@ -10,13 +10,15 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
 
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../student';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-question',
@@ -8,6 +9,7 @@ import { Student } from '../student';
 })
 export class QuestionComponent implements OnInit {
 
+  Obj:QuestionComponent;
   Questions:any=[]=[
     {
       "id":"1",
@@ -41,21 +43,118 @@ export class QuestionComponent implements OnInit {
       "c":"optionZ",
       "d":"",
       "e":""
+    },
+    {
+      "id":"4",
+      "no":"4",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"5",
+      "no":"5",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"6",
+      "no":"6",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"7",
+      "no":"7",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"8",
+      "no":"8",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
     }
   ];
+
+  // Your array of questions
+  pageSize: number = 1; // Number of questions per page
+  currentPage: number = 1;
+  displayedQuestions: any[] = [];
+  pages: number[] = [];
+
+  currentIndex: number = 0;
   students:Student[] = [];
-  student = new Student();
-  
+  student = new Student(); 
   selectedOption: any;
+  totalPages:number;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setPage(1);
   }
-  
+
+  setPage(page: number) {
+    this.currentPage = page;
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    this.displayedQuestions = this.Questions.slice(startIndex, startIndex + this.pageSize);
+    this.totalPages = Math.ceil(this.Questions.length / this.pageSize);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  next() {
+    if (this.currentPage < this.pages.length) {
+      this.setPage(this.currentPage + 1);
+    } else {
+      Swal.fire({
+        text: 'You are on the last question already',
+        showConfirmButton: false,
+        timer: 600,
+        position: 'top'
+      })
+    }
+  }
+
+  previous(){
+    if (this.currentPage < this.pages.length && this.currentPage != 1) {
+      this.setPage(this.currentPage - 1);
+    } else {
+      Swal.fire({
+        text: 'You are on the first question already',
+        showConfirmButton: false,
+        timer: 600,
+        position: 'top'
+      })
+    }
+  }
+
   onRadioChange(value: string, questionId: string) {
     this.selectedOption = value;
-  
     if (this.selectedOption == undefined || this.selectedOption == null) {
       console.log("Please select an option to save");
     } else {
@@ -72,5 +171,7 @@ export class QuestionComponent implements OnInit {
       console.log(this.students);
     }
   }
+
+  
 
 }
