@@ -18,6 +18,13 @@ export class CodingTestComponent implements OnInit {
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
+  case: any=1;
+  testInput11: any;
+  testInput12: any;
+  testInput21: any;
+  testInput22: any;
+  testInput31: any;
+  testInput32: any;
 
   constructor(private apiService: ServiceService) { }
 

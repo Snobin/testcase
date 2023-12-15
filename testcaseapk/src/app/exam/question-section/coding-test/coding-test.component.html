@@ -4,7 +4,7 @@
             <div class="card title" style="margin: 10px">
                 <div style="margin: 10px;">
                     <div class="float-start">
-                        <h5 class="text-dark">Enter Your Code:</h5>
+                        Enter Your Code:
                     </div>
                     <div>
                         <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
@@ -21,11 +21,11 @@
                 <pre><code class="code-input language-javascript" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
                 <!-- <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea> -->
             </div>
-        </div>
-        <div class="float-end">
-            <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
-            <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
-            <button class="btn btn-success mt-3" style="margin: 10px;" (click)="executeCode()">Run</button>
+            <div class="float-end">
+                <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
+                <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
+                <button class="btn btn-success mt-3" style="margin: 10px;" (click)="executeCode()">Run</button>
+            </div>
         </div>
     </div>
 </div>
@@ -35,12 +35,12 @@
             <div class="card title" style="margin: 10px">
                 <div style="margin: 10px;">
                     <div class="float-start">
-                        <h5 class="text-dark">Output:</h5>
+                        Output
 <!--                         <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p> -->
 <!--                         <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p> -->
                     </div>
                     <div class="float-end">     
-                        <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
+                        Time taken for execution: {{ executionTime }} ms
                     </div>
                 </div>
             </div>
@@ -49,58 +49,71 @@
             </div>
         </div>
     </div>
-    <div class="card col-md-4" style="height: 300px; overflow-y: auto;">
-        <div class="card-body">
-            <div class="card title" style="margin: 10px">
-                <div style="margin: 10px;">
-                    <div class="float-start">
-                        <h5 class="text-dark">Test Case : </h5>
-                    </div>
-                    <div class="float-end">     
-                        <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
-                    </div>
-                </div>
-            </div>
-            <div class="code-editor">
-                <textarea class="form-control" id="testInput1" [(ngModel)]="testInput1" rows="1"></textarea>
-            </div>
-            <div class="code-editor">
-                <textarea class="form-control" id="testOutput1" [(ngModel)]="testOutput1" rows="2"></textarea>
-            </div>
+    <div id="testcase" class="card col-md-4" style="height: min-content;">
+        <div style="width: max-content;">
+            <button class="btn item-center" [class.btn-dark]="case==1" [class.btn-outine-dark]="case!=1" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=1">Case 1</button>
+            <button class="btn item-center" [class.btn-dark]="case==2" [class.btn-outine-dark]="case!=2" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=2">Case 2</button>    
+            <button class="btn item-center" [class.btn-dark]="case==3" [class.btn-outine-dark]="case!=3" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=3">Case 3</button>
         </div>
         <div class="card-body">
-            <div class="card title" style="margin: 10px">
-                <div style="margin: 10px;">
-                    <div class="float-start">
-                        <h5 class="text-dark">Test Case : </h5>
+            <div id="case1" class="card" *ngIf="case==1">
+                <div class="card-body">
+                    <div class="card title" style="margin: 10px">
+                        <div style="margin: 10px;">
+                            <div class="float-start">
+                                Test Case : 1
+                            </div>
+                        </div>
                     </div>
-                    <div class="float-end">     
-                        <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
+                    <div class="form-floating code-editor line-numbers">
+                        <textarea class="form-control" id="testInput11" [(ngModel)]="testInput11" rows="1"></textarea>
+                        <label for="floatingTextarea">Input 1</label>
                     </div>
-                </div>
-            </div>
-            <div class="code-editor">
-                <textarea class="form-control" id="testInput2" [(ngModel)]="testInput2" rows="1"></textarea>
-            </div>
-            <div class="code-editor">
-                <textarea class="form-control" id="testOutput2" [(ngModel)]="testOutput2" rows="2"></textarea>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="card title" style="margin: 10px">
-                <div style="margin: 10px;">
-                    <div class="float-start">
-                        <h5 class="text-dark">Test Case : </h5>
-                    </div>
-                    <div class="float-end">
+                    <div class="form-floating code-editor">
+                        <textarea class="form-control" id="testInput12" [(ngModel)]="testInput12" rows="1"></textarea>
+                        <label for="floatingTextarea">Input 2</label>
                     </div>
                 </div>
             </div>
-            <div class="code-editor">
-                <textarea class="form-control" id="testInput3" [(ngModel)]="testInput3" rows="1"></textarea>
+            <div id="case2" class="card" *ngIf="case==2">
+                <div class="card-body">
+                    <div class="card title" style="margin: 10px">
+                        <div style="margin: 10px;">
+                            <div class="float-start">
+                                Test Case : 2
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating code-editor">
+                        <textarea class="form-control" id="testInput21" [(ngModel)]="testInput21" rows="1"></textarea>
+                        <label for="floatingTextarea">Input 1</label>
+                    </div>
+                    <div class="form-floating code-editor">
+                        <textarea class="form-control" id="testInput22" [(ngModel)]="testInput22" rows="2"></textarea>
+                        <label for="floatingTextarea">Input 2</label>
+                    </div>
+                </div>
             </div>
-            <div class="code-editor">
-                <textarea class="form-control" id="testOutput3" [(ngModel)]="testOutput3" rows="2"></textarea>
+            <div id="case3" class="card" *ngIf="case==3">
+                <div class="card-body">
+                    <div class="card title" style="margin: 10px">
+                        <div style="margin: 10px;">
+                            <div class="float-start">
+                                Test Case : 3
+                            </div>
+                            <div class="float-end">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating code-editor">
+                        <textarea class="form-control" id="testInput31" [(ngModel)]="testInput31" rows="1"></textarea>
+                        <label for="floatingTextarea">Input 1</label>
+                    </div>
+                    <div class="form-floating code-editor">
+                        <textarea class="form-control" id="testInput32" [(ngModel)]="testInput32" rows="2"></textarea>
+                        <label for="floatingTextarea">Input 2</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
