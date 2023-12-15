@@ -27,7 +27,6 @@ public class CodeController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<CodeResponse> executeCode(@RequestBody CodeRequest codeRequest) {
 		try {
-			System.out.println("abcd");
 			CodeResponse codeResponse = codeExecutionService.executeCode(codeRequest);
 			return ResponseEntity.ok(codeResponse);
 		} catch (Exception e) {
