@@ -27,7 +27,7 @@ public class CodeController {
 
 	@PostMapping("/execute")
 	@CrossOrigin(origins = "http://localhost:4200")
-<<<<<<< HEAD
+
 	public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
 	    try {
 	        List<CodeResponse> codeResponses = codeExecutionService.executeCode(codeRequest);
@@ -36,16 +36,7 @@ public class CodeController {
 	        LOGGER.error("Error at controller: " + e.getMessage());
 	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
-=======
-	public ResponseEntity<CodeResponse> executeCode(@RequestBody CodeRequest codeRequest) {
-		try {
-			CodeResponse codeResponse = codeExecutionService.executeCode(codeRequest);
-			return ResponseEntity.ok(codeResponse);
-		} catch (Exception e) {
-			LOGGER.error("Error at controller: " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
->>>>>>> ee663a2d6b9d3ab36e731a37c6bcf41af0b86cc3
+
 	}
 
 

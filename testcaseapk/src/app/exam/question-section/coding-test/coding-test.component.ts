@@ -36,6 +36,7 @@ export class CodingTestComponent implements OnInit {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
+        this.codereq.elements=[this.testInput11,this.testInput12];
 
         const response = await this.apiService.compileAndTest(this.codereq).toPromise();
 

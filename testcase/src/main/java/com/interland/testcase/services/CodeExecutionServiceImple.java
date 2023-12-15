@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -16,6 +14,11 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import org.python.core.CompileMode;
+import org.python.core.CompilerFlags;
+import org.python.core.Py;
+import org.python.core.PyCode;
+import org.python.util.PythonInterpreter;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CodeRequest;
@@ -155,16 +158,12 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				File tempFile = createTempFile("code", ".cpp", code);
 				String dockerVolumePath = "/tmp";
 
-<<<<<<< HEAD
+
 				ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
 						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s", 
 						"bash", "-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
 								+ "/a.out" + " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
-=======
-        try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "-c", code);
-            processBuilder.redirectErrorStream(true);
->>>>>>> ee663a2d6b9d3ab36e731a37c6bcf41af0b86cc3
+
 
 				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
 				System.out.println(codeResponse.getOutput());
@@ -186,70 +185,52 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	}
 
 	public static List<CodeResponse> executePythonCode(String code, List<String> inputElements) {
-		List<CodeResponse> codeResponses = new ArrayList<>();
+	    List<CodeResponse> codeResponses = new ArrayList<>();
 
-		try {
-			ProcessBuilder processBuilder = new ProcessBuilder("python", "-c", code);
-			processBuilder.redirectErrorStream(true);
+	    try (PythonInterpreter interpreter = new PythonInterpreter()) {
+	        for (String inputElement : inputElements) {
+	            CodeResponse codeResponse = new CodeResponse();
+	            long startTime = System.currentTimeMillis(); // Record start time
 
-			for (String input : inputElements) {
-				CodeResponse codeResponse = new CodeResponse();
-				long startTime = System.currentTimeMillis(); // Record start time
+	            try {
+	                // Use a StringWriter to capture the output
+	                StringWriter outputWriter = new StringWriter();
+	                interpreter.setOut(outputWriter);
 
-				try {
-					Process process = processBuilder.start();
+	                // Set the input element in the Python interpreter
+	                interpreter.set("element", inputElement);
 
-					if (input != null && !input.isEmpty()) {
-						try (OutputStream outputStream = process.getOutputStream()) {
-							outputStream.write(input.getBytes(StandardCharsets.UTF_8));
-							outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
-							outputStream.flush();
-						}
-					}
+	                // Execute the modified Python code
+	                PyCode compiledCode = Py.compile_flags(code, "<string>", CompileMode.exec, new CompilerFlags());
+	                interpreter.exec(compiledCode);
 
-					try (InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream());
-							BufferedReader reader = new BufferedReader(inputStreamReader)) {
+	                // Capture the output from the StringWriter
+	                codeResponse.setOutput(outputWriter.toString());
+	            } catch (Exception e) {
+	                codeResponse.setOutput("Error: " + e.getMessage());
+	            }
 
-						StringWriter outputWriter = new StringWriter();
-						String line;
-						while ((line = reader.readLine()) != null) {
-							outputWriter.write(line);
-						}
+	            // Record end time
+	            long endTime = System.currentTimeMillis();
+	            long elapsedTime = endTime - startTime;
 
-						codeResponse.setOutput(outputWriter.toString());
-					}
+	            // Set processing time
+	            codeResponse.setProcessingTime(elapsedTime);
 
-					int exitCode = process.waitFor();
-					if (exitCode != 0) {
-						codeResponse.setOutput("Error: Python process exited with code " + exitCode);
-					}
+	            // Add the CodeResponse to the list
+	            codeResponses.add(codeResponse);
+	        }
+	    } catch (Exception e) {
+	        // Handle Jython initialization error
+	        CodeResponse errorResponse = new CodeResponse();
+	        errorResponse.setOutput("Error: " + e.getMessage());
+	        codeResponses.add(errorResponse);
+	    }
 
-				} catch (IOException | InterruptedException e) {
-					codeResponse.setOutput("Error: " + e.getMessage());
-				} finally {
-					long endTime = System.currentTimeMillis(); // Record end time
-					long elapsedTime = endTime - startTime;
-
-					// Set processing time or timeout message
-					if (elapsedTime > 10000) {
-						codeResponse.setOutput("Error: Execution timed out after 10 seconds");
-					} else {
-						codeResponse.setProcessingTime(elapsedTime);
-					}
-				}
-
-				codeResponses.add(codeResponse);
-			}
-
-		} catch (Exception e) {
-			// Handle IOException
-			CodeResponse errorResponse = new CodeResponse();
-			errorResponse.setOutput("Error: " + e.getMessage());
-			codeResponses.add(errorResponse);
-		}
-
-		return codeResponses;
+	    return codeResponses;
 	}
+
+
 
 	private CodeResponse executeProcess(ProcessBuilder processBuilder, File tempFile) {
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
