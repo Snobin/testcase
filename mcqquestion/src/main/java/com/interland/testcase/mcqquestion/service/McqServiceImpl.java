@@ -125,8 +125,6 @@ public class McqServiceImpl implements McqService {
 	public ServiceResponse create(Dto dto)  {
     	try {
 		McqEntity mcqentity = new McqEntity();
-		System.out.println(dto.toString());
-		
 		
 		McqEmbedded obj=new McqEmbedded();
 		obj.setQuestionId(dto.getQuestionId());
