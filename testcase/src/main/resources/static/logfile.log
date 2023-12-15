@@ -1,4 +1,5 @@
 
+
 09:12:55.397 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
 09:12:55.433 [main] INFO  c.i.testcase.TestcaseApplication - Starting TestcaseApplication using Java 19.0.2 with PID 15484 (C:\Users\mijoh\OneDrive\Documents\GitHub\testcase\testcase\target\classes started by mijoh in C:\Users\mijoh\OneDrive\Documents\GitHub\testcase\testcase)
 09:12:55.434 [main] INFO  c.i.testcase.TestcaseApplication - No active profile set, falling back to 1 default profile: "default"
@@ -101,3 +102,4 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 09:22:34.803 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 09:22:34.804 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 09:22:34.806 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+
