@@ -17,8 +17,9 @@
                     </div>
                 </div>
             </div>
-            <div class="code-editor">
-<!--            <pre><code class="code-input language-javascript" contenteditable="true" id="editor" (keyup)="highlightCode()" [(ngModel)]="code"></code></pre> -->                            <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea>
+            <div class="code-editor line-numbers">
+                <pre><code class="code-input language-javascript" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
+                <!-- <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea> -->
             </div>
         </div>
         <div class="float-end">
@@ -28,8 +29,8 @@
         </div>
     </div>
 </div>
-<div class="form-group" style="margin: 10px;">
-    <div class="card">
+<div class="row" style="margin: 10px;">
+    <div class="card col-md-8">
         <div class="card-body">
             <div class="card title" style="margin: 10px">
                 <div style="margin: 10px;">
@@ -44,7 +45,62 @@
                 </div>
             </div>
             <div class="code-editor">
-                <pre><code class="code-output language-javascript" contenteditable="true" id="editor" (keyup)="highlightCode()">{{code}}</code></pre>
+                <pre><code class="code-output language-javascript" contenteditable="true" id="codeOutput" (keyup)="highlightCode()">{{result.output}}</code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="card col-md-4" style="height: 300px; overflow-y: auto;">
+        <div class="card-body">
+            <div class="card title" style="margin: 10px">
+                <div style="margin: 10px;">
+                    <div class="float-start">
+                        <h5 class="text-dark">Test Case : </h5>
+                    </div>
+                    <div class="float-end">     
+                        <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-editor">
+                <textarea class="form-control" id="testInput1" [(ngModel)]="code" rows="1"></textarea>
+            </div>
+            <div class="code-editor">
+                <textarea class="form-control" id="testOutput1" [(ngModel)]="code" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card title" style="margin: 10px">
+                <div style="margin: 10px;">
+                    <div class="float-start">
+                        <h5 class="text-dark">Test Case : </h5>
+                    </div>
+                    <div class="float-end">     
+                        <p class="text-dark mt-2">Time taken for execution: {{ executionTime }} ms</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code-editor">
+                <textarea class="form-control" id="testInput2" [(ngModel)]="code" rows="1"></textarea>
+            </div>
+            <div class="code-editor">
+                <textarea class="form-control" id="testOutput2" [(ngModel)]="code" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card title" style="margin: 10px">
+                <div style="margin: 10px;">
+                    <div class="float-start">
+                        <h5 class="text-dark">Test Case : </h5>
+                    </div>
+                    <div class="float-end">
+                    </div>
+                </div>
+            </div>
+            <div class="code-editor">
+                <textarea class="form-control" id="testInput3" [(ngModel)]="code" rows="1"></textarea>
+            </div>
+            <div class="code-editor">
+                <textarea class="form-control" id="testOutput3" [(ngModel)]="code" rows="2"></textarea>
             </div>
         </div>
     </div>

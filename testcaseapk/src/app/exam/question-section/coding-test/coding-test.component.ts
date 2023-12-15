@@ -22,7 +22,6 @@ export class CodingTestComponent implements OnInit {
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-    // Initialization logic, if any
   }
 
   async executeCode() {
@@ -62,7 +61,12 @@ export class CodingTestComponent implements OnInit {
   }
 
   highlightCode(){
-    Prism.hightlightElement(document.getElementById('editor'));
+    Prism.highlightElement(document.getElementById('codeOutput'));
+  }
+
+  onCodeInput(event: any) {
+    this.code = event.target.textContent || event.target.innerText;
+    Prism.highlightElement(document.getElementById('codeInput'));
   }
 
 }

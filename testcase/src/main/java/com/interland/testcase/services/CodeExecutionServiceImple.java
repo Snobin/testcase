@@ -148,7 +148,6 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
         CodeResponse codeResponse = new CodeResponse();
 
         try {
-        	System.out.println(input);
             ProcessBuilder processBuilder = new ProcessBuilder("python", "-c", code);
             processBuilder.redirectErrorStream(true);
 
