@@ -53,7 +53,7 @@
     <div class="sidebar-sticky full-view-height" style="margin-left: 10px;background-color: #c9d4e6;overflow-y: auto;height: 89vh;">
       <div class="row" style="margin: 10px;">
         <div class="col-4 keypad-button margin" *ngFor="let page of pages">
-          <button class="btn questionButton" [class.btn-dark]="currentPage==page" [class.btn-outline-dark]="currentPage!=page">{{page}}</button>
+          <button class="btn questionButton" [class.btn-dark]="currentPage==page" [class.btn-outline-dark]="currentPage!=page" (click)="setPage(page)">{{page}}</button>
         </div>
       </div>
     </div>
