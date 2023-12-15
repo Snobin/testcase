@@ -71,10 +71,21 @@ export class CodingTestComponent implements OnInit {
   highlightCode(){
     Prism.highlightElement(document.getElementById('codeOutput'));
   }
-
   onCodeInput(event: any) {
-    this.code = event.target.textContent || event.target.innerText;
-    Prism.highlightElement(document.getElementById('codeInput'));
+    // Get the new input
+    const newInput = event.target.innerText;
+  
+    // If the new input is different from the current code, update the code
+    if (this.code !== newInput) {
+      this.code = newInput;
+  
+      // Highlight the updated code
+      Prism.highlightElement(document.getElementById('codeInput'));
+    }
   }
+  
+  
+  
+  
 
 }
