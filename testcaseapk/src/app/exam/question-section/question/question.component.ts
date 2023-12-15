@@ -54,50 +54,6 @@ export class QuestionComponent implements OnInit {
       "c":"optionC",
       "d":"optionD",
       "e":""
-    },
-    {
-      "id":"5",
-      "no":"5",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":""
-    },
-    {
-      "id":"6",
-      "no":"6",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":""
-    },
-    {
-      "id":"7",
-      "no":"7",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":""
-    },
-    {
-      "id":"8",
-      "no":"8",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":""
     }
   ];
 
@@ -141,7 +97,7 @@ export class QuestionComponent implements OnInit {
   }
 
   previous(){
-    if (this.currentPage < this.pages.length && this.currentPage != 1) {
+    if (this.currentPage <= this.pages.length && this.currentPage != 1) {
       this.setPage(this.currentPage - 1);
     } else {
       Swal.fire({

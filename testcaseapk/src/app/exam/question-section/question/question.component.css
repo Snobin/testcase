@@ -35,7 +35,7 @@
 }
 .keypad-button {
     width: 33.33333%;
-    padding: 15px;
+    padding: 10px;
     font-size: 18px;
     text-align: center;
     cursor: pointer;
@@ -56,8 +56,8 @@
 }
 .main-margin{
     border-bottom: 10px solid #c9d4e6;
-    border-left: 10px solid #c9d4e6;
-    padding-left: 10px;
+    border-right: 10px solid #c9d4e6;
+    padding-left: 0px;
     padding-top: 0px;
     padding-right: 0px;
 }
