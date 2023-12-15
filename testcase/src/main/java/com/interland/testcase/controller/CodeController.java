@@ -1,5 +1,7 @@
 package com.interland.testcase.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +27,16 @@ public class CodeController {
 
 	@PostMapping("/execute")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<CodeResponse> executeCode(@RequestBody CodeRequest codeRequest) {
-		try {
-			System.out.println("abcd");
-			CodeResponse codeResponse = codeExecutionService.executeCode(codeRequest);
-			return ResponseEntity.ok(codeResponse);
-		} catch (Exception e) {
-			LOGGER.error("Error at controller: " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
+	    try {
+	        List<CodeResponse> codeResponses = codeExecutionService.executeCode(codeRequest);
+	        return ResponseEntity.ok(codeResponses);
+	    } catch (Exception e) {
+	        LOGGER.error("Error at controller: " + e.getMessage());
+	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
 	}
+
 
 }
 

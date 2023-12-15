@@ -1,15 +1,15 @@
 package com.interland.testcase.services;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -28,164 +28,222 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 	@Override
 
-	public CodeResponse executeCode(CodeRequest codeRequest) throws IOException {
+	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
 
 		String code = codeRequest.getCode();
 		String language = codeRequest.getLangId();
 		String input = codeRequest.getInput();
+		List<String> ele = codeRequest.getElements();
 
 		switch (language) {
-        case "java":
-            return executeJavaCode(code, input);
-        case "c":
-            return executeCCode(code, input);
-        case "cpp":
-            return executeCppCode(code, input);
-        case "python":
-            return executePythonCode(code, input);
-        default:
-            LOGGER.warning("Unsupported language: " + language);
-            CodeResponse codeResponse = new CodeResponse();
-            codeResponse.setOutput("Unsupported language: " + language);
-            return codeResponse;
-    }
+		case "java":
+			return executeJavaCode(code, ele);
+		case "c":
+			return executeCCode(code, ele);
+		case "cpp":
+			return executeCppCode(code, ele);
+		case "python":
+			return executePythonCode(code, ele);
+		default:
+			LOGGER.warning("Unsupported language: " + language);
+			CodeResponse codeResponse = new CodeResponse();
+			codeResponse.setOutput("Unsupported language: " + language);
+//            return codeResponse;
+			return executeCppCode(code, ele);
+		}
 	}
 
-	private CodeResponse executeJavaCode(String code, String input) {
+	private List<CodeResponse> executeJavaCode(String code, List<String> inputElements) {
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-	    try {
-	        File tempFile = createTempFile("abc", ".java", code);
-	        String dockerVolumePath = "/tmp";
-	        String className = getClassName(code);
+		for (String input : inputElements) {
+			try {
+				String className = getClassName(code);
+				File tempFile = createTempFile(className, ".java", code);
 
-	        ProcessBuilder processBuilder;
+				String dockerVolumePath = "/tmp";
 
-	        if (input != null && !input.isEmpty()) {
-	            // If input is provided, use echo to pass input to the Java program
-	            processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
-	                    "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath +
-	                            " && echo '" + input + "' | java " + className);
-	        } else {
-	            // If no input is provided, run the Java program directly
-	            processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
-	                    "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath +
-	                            " && java " + className);
-	        }
+				ProcessBuilder processBuilder;
 
-	        return executeProcess(processBuilder, tempFile);
-	    } catch (Exception e) {
-	        LOGGER.severe("Error executing Java code: " + e.getMessage());
-	        CodeResponse codeResponse = new CodeResponse();
-	        codeResponse.setOutput("Error: " + e.getMessage());
-	        return codeResponse;
-	    }
-	}
-	private CodeResponse executeCCode(String code, String input) {
-	    try {
-	        File tempFile = createTempFile("code", ".c", code);
-	        String dockerVolumePath = "/tmp";
+				if (input != null && !input.isEmpty()) {
+					// If input is provided, use echo to pass input to the Java program
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+							"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+									+ " && echo '" + input + "' | timeout 20s java " + className);
+				} else {
+					// If no input is provided, run the Java program directly
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+							"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+									+ " && timeout 20s java " + className);
+				}
 
-	        ProcessBuilder processBuilder;
-	        if (input != null && !input.isEmpty()) {
-	            // If input is provided, use echo to pass input to the C program
-	            processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
-	                    "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
-	                            + dockerVolumePath + " && echo '" + input + "' | ./a.out");
-	        } else {
-	            // If no input is provided, run the C program directly
-	            processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
-	                    "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
-	                            + dockerVolumePath + " && ./a.out");
-	        }
+				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+				System.out.println(codeResponse.getOutput());
 
-	        return executeProcess(processBuilder, tempFile);
-	    } catch (Exception e) {
-	        LOGGER.severe("Error executing C code: " + e.getMessage());
+				codeResponses.add(codeResponse);
+				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+					break;
+				}
+			} catch (Exception e) {
+				LOGGER.severe("Error executing Java code: " + e.getMessage());
 
-	        CodeResponse codeResponse = new CodeResponse();
-	        codeResponse.setOutput("Error: " + e.getMessage());
-	        return codeResponse;
-	    }
+				CodeResponse codeResponse = new CodeResponse();
+				codeResponse.setOutput("Error: " + e.getMessage());
+				codeResponses.add(codeResponse);
+			}
+		}
+
+		return codeResponses;
 	}
 
+	private List<CodeResponse> executeCCode(String code, List<String> inputElements) {
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-	private CodeResponse executeCppCode(String code, String input) {
-	    try {
-	        File tempFile = createTempFile("code", ".cpp", code);
-	        String dockerVolumePath = "/tmp";
+		for (String input : inputElements) {
+			try {
+				File tempFile = createTempFile("code", ".c", code);
+				String dockerVolumePath = "/tmp";
 
-	        ProcessBuilder processBuilder;
-	        if (input != null && !input.isEmpty()) {
-	            // If input is provided, use echo to pass input to the C++ program
-	            processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
-	                    "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
-	                            + dockerVolumePath + " && echo '" + input + "' | ./a.out");
-	        } else {
-	            // If no input is provided, run the C++ program directly
-	            processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "bash", "-c",
-	                    "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out && cd "
-	                            + dockerVolumePath + " && ./a.out");
-	        }
+				ProcessBuilder processBuilder;
+				if (input != null && !input.isEmpty()) {
+					// If input is provided, use echo to pass input to the C program
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s", // Adjust
+																														// timeout
+																														// as
+																														// needed
+							"bash", "-c",
+							"gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
+									+ "/a.out && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
+				} else {
+					// If no input is provided, run the C program directly
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s", // Adjust
+																														// timeout
+																														// as
+																														// needed
+							"bash", "-c", "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o "
+									+ dockerVolumePath + "/a.out && cd " + dockerVolumePath + " && ./a.out");
+				}
 
-	        return executeProcess(processBuilder, tempFile);
-	    } catch (Exception e) {
-	        LOGGER.severe("Error executing C++ code: " + e.getMessage());
+				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+				System.out.println(codeResponse.getOutput());
 
-	        CodeResponse codeResponse = new CodeResponse();
-	        codeResponse.setOutput("Error: " + e.getMessage());
-	        return codeResponse;
-	    }
+				codeResponses.add(codeResponse);
+				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+					break;
+				}
+			} catch (Exception e) {
+				LOGGER.severe("Error executing C code: " + e.getMessage());
+
+				CodeResponse codeResponse = new CodeResponse();
+				codeResponse.setOutput("Error: " + e.getMessage());
+				codeResponses.add(codeResponse);
+			}
+		}
+
+		return codeResponses;
 	}
 
+	private List<CodeResponse> executeCppCode(String code, List<String> inputElements) {
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-	public static CodeResponse executePythonCode(String code, String input) {
-        CodeResponse codeResponse = new CodeResponse();
+		for (String input : inputElements) {
+			try {
+				File tempFile = createTempFile("code", ".cpp", code);
+				String dockerVolumePath = "/tmp";
 
-        try {
-        	System.out.println(input);
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "-c", code);
-            processBuilder.redirectErrorStream(true);
+				ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s", 
+						"bash", "-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
+								+ "/a.out" + " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
 
-            Process process = processBuilder.start();
+				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+				System.out.println(codeResponse.getOutput());
 
-            if (input != null && !input.isEmpty()) {
-                try (OutputStream outputStream = process.getOutputStream()) {
-                    outputStream.write(input.getBytes(StandardCharsets.UTF_8));
-                    outputStream.flush();
-                }
-            }
+				codeResponses.add(codeResponse);
+				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+					break;
+				}
+			} catch (Exception e) {
+				LOGGER.severe("Error executing C++ code: " + e.getMessage());
 
-            try (InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream());
-                 BufferedReader reader = new BufferedReader(inputStreamReader)) {
+				CodeResponse codeResponse = new CodeResponse();
+				codeResponse.setOutput("Error: " + e.getMessage());
+				codeResponses.add(codeResponse);
+			}
+		}
 
-                StringWriter outputWriter = new StringWriter();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    outputWriter.write(line);
-                    outputWriter.write("\n");
-                }
+		return codeResponses;
+	}
 
-                codeResponse.setOutput(outputWriter.toString());
-            }
+	public static List<CodeResponse> executePythonCode(String code, List<String> inputElements) {
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-            int exitCode = process.waitFor();
-            if (exitCode != 0) {
-                codeResponse.setOutput("Error: Python process exited with code " + exitCode);
-            }
+		try {
+			ProcessBuilder processBuilder = new ProcessBuilder("python", "-c", code);
+			processBuilder.redirectErrorStream(true);
 
-        } catch (IOException | InterruptedException e) {
-            codeResponse.setOutput("Error: " + e.getMessage());
-        }
+			for (String input : inputElements) {
+				CodeResponse codeResponse = new CodeResponse();
+				long startTime = System.currentTimeMillis(); // Record start time
 
-        return codeResponse;
-    }
+				try {
+					Process process = processBuilder.start();
 
+					if (input != null && !input.isEmpty()) {
+						try (OutputStream outputStream = process.getOutputStream()) {
+							outputStream.write(input.getBytes(StandardCharsets.UTF_8));
+							outputStream.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
+							outputStream.flush();
+						}
+					}
+
+					try (InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream());
+							BufferedReader reader = new BufferedReader(inputStreamReader)) {
+
+						StringWriter outputWriter = new StringWriter();
+						String line;
+						while ((line = reader.readLine()) != null) {
+							outputWriter.write(line);
+						}
+
+						codeResponse.setOutput(outputWriter.toString());
+					}
+
+					int exitCode = process.waitFor();
+					if (exitCode != 0) {
+						codeResponse.setOutput("Error: Python process exited with code " + exitCode);
+					}
+
+				} catch (IOException | InterruptedException e) {
+					codeResponse.setOutput("Error: " + e.getMessage());
+				} finally {
+					long endTime = System.currentTimeMillis(); // Record end time
+					long elapsedTime = endTime - startTime;
+
+					// Set processing time or timeout message
+					if (elapsedTime > 10000) {
+						codeResponse.setOutput("Error: Execution timed out after 10 seconds");
+					} else {
+						codeResponse.setProcessingTime(elapsedTime);
+					}
+				}
+
+				codeResponses.add(codeResponse);
+			}
+
+		} catch (Exception e) {
+			// Handle IOException
+			CodeResponse errorResponse = new CodeResponse();
+			errorResponse.setOutput("Error: " + e.getMessage());
+			codeResponses.add(errorResponse);
+		}
+
+		return codeResponses;
+	}
 
 	private CodeResponse executeProcess(ProcessBuilder processBuilder, File tempFile) {
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -220,7 +278,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			future.get(10, TimeUnit.SECONDS);
 		} catch (Exception e) {
 			LOGGER.severe("Error executing process: " + e.getMessage());
-			codeResponse.setOutput("Error: " + e.getMessage());
+			codeResponse.setOutput("Error: Execution timed out after 10 seconds");
 		} finally {
 			long endTime = System.currentTimeMillis();
 			long elapsedTime = (endTime - startTime);
@@ -242,8 +300,10 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	}
 
 	private String getClassName(String code) {
+		// Extract class name using regex
+
 		String className = code.replaceAll("(?s).*?\\bclass\\s+(\\w+).*", "$1");
-		return className.trim();
+		return className;
 	}
 
 }

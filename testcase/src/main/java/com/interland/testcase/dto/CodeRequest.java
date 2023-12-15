@@ -1,13 +1,23 @@
 package com.interland.testcase.dto;
 
+import java.util.List;
+
 public class CodeRequest {
     private String code;
     private String langId;
     private String input;
-
+    private List<String> elements;
     // getters and setters
 
-    public String getInput() {
+    public List<String> getElements() {
+		return elements;
+	}
+
+	public void setElements(List<String> elements) {
+		this.elements = elements;
+	}
+
+	public String getInput() {
 		return input;
 	}
 
