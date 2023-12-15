@@ -39,12 +39,9 @@ pre {
     height: 100vh;
   }
 
-  .resizable {
-    flex: 1;
-    padding: 10px;
+  .resizsable {
     overflow: auto;
-    resize: horizontal; /* or vertical, both, etc. */
-    background-color: #c9d4e6;
+    resize: both; /* or vertical, both, etc. */
   }
 .resize-card {
     flex: .5;

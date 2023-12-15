@@ -10,9 +10,10 @@ import { InstructionsComponent } from './instructions/instructions.component';
 
 
 
+
 @NgModule({
   declarations: [
-   
+
     ExamComponent,
     InstructionsComponent,
 

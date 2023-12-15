@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { QuestionSectionModule } from './exam/question-section/question-section.module';
 
 
 
@@ -15,16 +16,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     AppComponent,
     AuthComponent,
-
     LoginComponent,
     NotFoundComponent,
+    
 
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    QuestionSectionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
