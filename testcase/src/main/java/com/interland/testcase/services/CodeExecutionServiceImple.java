@@ -155,10 +155,16 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				File tempFile = createTempFile("code", ".cpp", code);
 				String dockerVolumePath = "/tmp";
 
+<<<<<<< HEAD
 				ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
 						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s", 
 						"bash", "-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
 								+ "/a.out" + " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
+=======
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "-c", code);
+            processBuilder.redirectErrorStream(true);
+>>>>>>> ee663a2d6b9d3ab36e731a37c6bcf41af0b86cc3
 
 				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
 				System.out.println(codeResponse.getOutput());

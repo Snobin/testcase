@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 
 import { CodeRequest } from '../../model/code-request';
-// import { HighlightResult } from 'ngx-highlightjs';
 import * as Prism from 'prismjs';
 
 
@@ -12,23 +11,24 @@ import * as Prism from 'prismjs';
   styleUrls: ['./coding-test.component.css']
 })
 export class CodingTestComponent implements OnInit {
-highlightCode() {
-throw new Error('Method not implemented.');
-}
-  cod = `function helloWorld() {
-    console.log('Hello, World!');
-  }`;
+
   selectedLanguage: string = '';
   testCases: string[] = [];
   result: any = { success: true, output: '' };
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
+  case: any=1;
+  testInput11: any;
+  testInput12: any;
+  testInput21: any;
+  testInput22: any;
+  testInput31: any;
+  testInput32: any;
 
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-    // Initialization logic, if any
   }
 
   async executeCode() {
@@ -65,6 +65,15 @@ throw new Error('Method not implemented.');
   clear() {
     this.code = '';
     this.selectedLanguage = '';
+  }
+
+  highlightCode(){
+    Prism.highlightElement(document.getElementById('codeOutput'));
+  }
+
+  onCodeInput(event: any) {
+    this.code = event.target.textContent || event.target.innerText;
+    Prism.highlightElement(document.getElementById('codeInput'));
   }
 
 }
