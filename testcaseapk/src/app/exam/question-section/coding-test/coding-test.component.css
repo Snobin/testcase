@@ -51,3 +51,7 @@ pre {
     resize: vertical;
     overflow: auto;
 }
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+}
