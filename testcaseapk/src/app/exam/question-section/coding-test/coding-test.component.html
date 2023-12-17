@@ -62,14 +62,13 @@
         </div>
     </div>
     <div class="row col-md-6" style="margin: 10px;">
-        <div class="card col-md-8">
+       
+        <!-- <div class="card col-md-8">
             <div class="card-body">
                 <div class="card title" style="margin: 10px">
                     <div style="margin: 10px;">
                         <div class="float-start">
                             Output
-    <!--                         <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p> -->
-    <!--                         <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p> -->
                         </div>
                         <div class="float-end">     
                             Time taken for execution: {{ executionTime }} ms
@@ -80,8 +79,14 @@
                     <pre><code class="code-output language-javascript" contenteditable="true" id="codeOutput" (keyup)="highlightCode()">{{result.output}}</code></pre>
                 </div>
             </div>
-        </div>
-        <div id="testcase" class="card col-md-4" style="height: min-content;">
+        </div> -->
+        <h3>Run Code</h3>
+    <div class="editor-container">
+      <div id="editor" style="height: 200px;">
+        //testing
+      </div>
+    </div>
+        <!-- <div id="testcase" class="card col-md-4" style="height: min-content;">
             <div style="width: max-content;">
                 <button class="btn item-center" [class.btn-dark]="case==1" [class.btn-outine-dark]="case!=1" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=1">Case 1</button>
                 <button class="btn item-center" [class.btn-dark]="case==2" [class.btn-outine-dark]="case!=2" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=2">Case 2</button>    
@@ -148,6 +153,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.js"></script>

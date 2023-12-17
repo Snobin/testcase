@@ -6,7 +6,16 @@ public class CodeRequest {
     private String code;
     private String langId;
     private String input;
-    private List<String> elements;
+    private String QnId;
+    public String getQnId() {
+		return QnId;
+	}
+
+	public void setQnId(String qnId) {
+		QnId = qnId;
+	}
+
+	private List<String> elements;
     // getters and setters
 
     public List<String> getElements() {
