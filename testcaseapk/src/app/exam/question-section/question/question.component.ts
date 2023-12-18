@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , ElementRef, OnInit } from '@angular/core';
 import { Student } from '../student';
 import Swal from 'sweetalert2';
 
@@ -181,7 +181,7 @@ export class QuestionComponent implements OnInit {
   totalPages:number;
   existingStudentIndex:number;
 
-  constructor() { }
+  constructor(private el:ElementRef) { }
 
   ngOnInit(): void {
     this.setPage(1);
@@ -245,6 +245,16 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  
+  scrollToTarget() {
+    var no = this.currentPage;
+    no=no+1
+    const id='#button'+no;
+    console.log(id)
+    const targetElement = this.el.nativeElement.querySelector(id);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+  }
 
 }
