@@ -21,10 +21,12 @@ import org.springframework.stereotype.Service;
 
 import com.interland.testcase.mcqquestion.dto.Dto;
 import com.interland.testcase.mcqquestion.dto.ServiceResponse;
+import com.interland.testcase.mcqquestion.entity.FileEntity;
 import com.interland.testcase.mcqquestion.entity.McqEmbedded;
 import com.interland.testcase.mcqquestion.entity.McqEntity;
 import com.interland.testcase.mcqquestion.exception.RecordCreateException;
 import com.interland.testcase.mcqquestion.exception.RecordNotFoundException;
+import com.interland.testcase.mcqquestion.repository.FileRepository;
 import com.interland.testcase.mcqquestion.repository.McqRepository;
 import com.interland.testcase.mcqquestion.repository.specification.McqQuestionSpec;
 import com.interland.testcase.mcqquestion.util.Constants;
@@ -35,6 +37,8 @@ public class McqServiceImpl implements McqService {
 	
 	@Autowired
 	McqRepository mcqrep;
+	@Autowired
+	FileRepository filerep;
 	@Autowired
 	MessageSource messageSource;
 	
@@ -125,6 +129,7 @@ public class McqServiceImpl implements McqService {
 	public ServiceResponse create(Dto dto)  {
     	try {
 		McqEntity mcqentity = new McqEntity();
+		FileEntity fileentity = new FileEntity();
 		
 		McqEmbedded obj=new McqEmbedded();
 		obj.setQuestionId(dto.getQuestionId());
@@ -145,7 +150,14 @@ public class McqServiceImpl implements McqService {
 			mcqentity.setOptionD(dto.getOptionD());
 			mcqentity.setAnswers(dto.getAnswers());
 	    	mcqentity.setScore(dto.getScore());
-	    	mcqentity.setStatus(dto.getStatus());
+	    	mcqentity.setStatus(Constants.MESSAGE_STATUS.PROCESSED);
+	    	if(dto.getFileName()!=null) {
+	    	  fileentity.setPrimarykey(obj);
+	    	  fileentity.setFileName(dto.getFileName());
+	    	  fileentity.setFile(dto.getFile());
+	    	  System.out.println(fileentity);
+	    	  filerep.save(fileentity);
+	    	}
 	    	
 	    	mcqrep.save(mcqentity);
 	    }

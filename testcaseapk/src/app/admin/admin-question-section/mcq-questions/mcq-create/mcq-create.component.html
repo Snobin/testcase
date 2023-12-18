@@ -1,8 +1,7 @@
 <div class="col-md-6 offset-md-3">
     <h3>Add Customer</h3>
     <form >
-        
-        <div class="form-group">
+         <div class="form-group">
             <label>Question Number</label>
             <span class="error-msg-span">     {{validationMessage.bookTitle}}</span>
             <input type="text" class="form-control" id ="questionNo"
@@ -13,8 +12,9 @@
             <span class="error-msg-span">     {{validationMessage.bookCategory}}</span>
             <select class="form-control" name="QuestionType" id="questionId" >
                 <option value="">Select</option>
-                <option value="1">Single Answer question</option>
-                <option value="2">Multiple Answer question</option>
+                <option value="SAQ">Single question</option>
+                <option value="MAQ">Multiple question</option>
+                <option value="DAQ">Discriptive question</option>
                 </select>
         </div>
         <div class="form-group">
@@ -55,10 +55,24 @@
      </div>
      <div class="form-group">
         <label>Score</label>
-        <span class="error-msg-span">     {{validationMessage.memberContact}}</span>
+        <span class="error-msg-span">     {{ validationMessage.memberContact}}</span>
         <input type="text" class="form-control" id ="score"
         [(ngModel)]="mcq.score" name="score">
     </div>
+    <div class="form-group">
+        <label for="benefrefnum" class="ipsh-float-left">
+          {{ 'PAYROLL.FORM.FILE_PATH'}}<a class="psh-label-requried">*</a>
+        </label>
+        <span class="error-msg-span ipsh-float-right">{{ validationMessage.filePath}}</span>
+        <div class="custom-file">
+          <input type="file" name="file" class="custom-file-input" id="idfile"
+            aria-describedby="inputGroupFileAddon01" (change)="onFileChange($event)">
+          <label class="custom-file-label originalFileLabel" for="payrollFile">
+            {{'PAYROLL.FORM.CHOOSE_FILE'}}
+          </label>
+          <label class="custom-file-label tempFileLabel" for="payrollFile"></label>
+        </div>
+      </div>
         <button class = "btn btn-success mx-2 px-2" type="submit"(click)="addquestiondetail()">Submit</button> 
         <button class = "btn btn-success" type="submit" (click)="questionList()">List</button>
     </form>

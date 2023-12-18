@@ -21,10 +21,27 @@ public class Dto {
 	
 	private String score;
 	
+    private byte[] file;
+	
+	private String fileName;
+
+	
 	private String status;
 	
 	
 	
+	public byte[] getFile() {
+		return file;
+	}
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public String getQuestionNo() {
 		return questionNo;
 	}
@@ -84,6 +101,25 @@ public class Dto {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public Dto(String questionNo, String questionId, String question, String optionA, String optionB, String optionC,
+			String optionD, String answers, String score, byte[] file, String fileName, String status) {
+		super();
+		this.questionNo = questionNo;
+		this.questionId = questionId;
+		this.question = question;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.optionD = optionD;
+		this.answers = answers;
+		this.score = score;
+		this.file = file;
+		this.fileName = fileName;
+		this.status = status;
+	}
+	public Dto() {
+		super();
 	}
 	
 	
