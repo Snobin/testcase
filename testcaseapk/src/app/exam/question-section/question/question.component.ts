@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { Student } from '../student';
 import Swal from 'sweetalert2';
 
+declare var $:any;
+declare var jQuery:any;
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -15,7 +17,7 @@ export class QuestionComponent implements OnInit {
       "id":"1",
       "no":"1",
       "desc":"qwerty",
-      "answer":"ans",
+      "answer":"a",
       "a":"option1",
       "b":"option2",
       "c":"option3",
@@ -25,7 +27,7 @@ export class QuestionComponent implements OnInit {
     {
       "id":"2",
       "no":"2",
-      "desc":"abcdef",
+      "desc":"b",
       "answer":"ans",
       "a":"optionA",
       "b":"optionB",
@@ -169,26 +171,20 @@ export class QuestionComponent implements OnInit {
 
   // Your array of questions
   pageSize: number = 1; // Number of questions per page
-  currentPage: number = 1;
+  currentPage: any = 1;
   displayedQuestions: any[] = [];
   pages: number[] = [];
 
   currentIndex: number = 0;
   students:Student[] = [];
-  student = new Student(); 
-  selectedOption: any;
+  student = new Student();
   totalPages:number;
-  rightPaddingValue:number;
+  existingStudentIndex:number;
 
   constructor() { }
 
   ngOnInit(): void {
     this.setPage(1);
-    if(this.totalPages<10) {
-      this.rightPaddingValue=15;
-    } else {
-      this.rightPaddingValue=0;
-    }
   }
 
   setPage(page: number) {
@@ -199,7 +195,9 @@ export class QuestionComponent implements OnInit {
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
-  next() {
+  next(questionId:any) {
+    const value=$('input[name="options"]:checked').val();
+    this.onRadioChange(value, questionId);
     if (this.currentPage < this.pages.length) {
       this.setPage(this.currentPage + 1);
     } else {
@@ -212,7 +210,9 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  previous(){
+  previous(questionId:any){
+    const value=$('input[name="options"]:checked').val();
+    this.onRadioChange(value, questionId);
     if (this.currentPage <= this.pages.length && this.currentPage != 1) {
       this.setPage(this.currentPage - 1);
     } else {
@@ -226,18 +226,19 @@ export class QuestionComponent implements OnInit {
   }
 
   onRadioChange(value: string, questionId: string) {
-    this.selectedOption = value;
-    if (this.selectedOption == undefined || this.selectedOption == null) {
-      console.log("Please select an option to save");
+    if (value == undefined || value == null) {
+      value='';
     } else {
-      const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
-      if (existingStudentIndex !== -1) {
-        this.students[existingStudentIndex].answer = value;
+      this.existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+      if (this.existingStudentIndex !== -1) {
+        this.students[this.existingStudentIndex].answer = value;
+        this.students[this.existingStudentIndex].attempted = true;
       } else {
         const newStudent = new Student();
         newStudent.studentId="1";
         newStudent.questionId=questionId;
         newStudent.answer=value;
+        newStudent.attempted=true;
         this.students.push(newStudent);
       }
       console.log(this.students);

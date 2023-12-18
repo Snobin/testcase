@@ -2,42 +2,39 @@
   <div style="height: 89vh;background-color: #c9d4e6;">
     <div style="width: 80px;overflow-y: auto;height: 45vh;">
       <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages">
-          <button class="btn" [class.btn-dark]="currentPage==page" [class.btn-outline-dark]="currentPage!=page" (click)="setPage(page)">{{page}}</button>
+          <button id="button{{page}}" class="btn" [class.btn-outline-dark]="currentPage!=page" [class.btn-dark]="currentPage==page" (click)="setPage(page)">{{page}}</button>
       </div>
     </div>
   </div>
-  <div class="col-md-10" style="padding-left: 10px;margin-top: 10px;padding-right: 10px;">
+  <div class="col-md-8" style="padding-left: 10px;margin-top: 10px;padding-right: 10px;">
     <div class="card" style="overflow: hidden;height: min-content;background-color: #c9d4e6;">
       <div class="card-body">
         <div class="col-md-12">
-          <h6 class="card-title">{{question.no}}. {{question.desc}}</h6>
+          <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}</h6>
         </div>
         <hr>
-        <div class="col-md-12 options-margin">
+        <div id="option" class="col-md-12 options-margin">
+          <form id="options{{question.no}}">
             <label class="col-md-6 opt-margin" *ngIf="(question.a!='')">
-              <input type="radio" name="options" value="a"
-                (change)="onRadioChange('a', question.id)"> {{question.a}}
+              <input id="a" type="radio" name="options" value="a"[checked]=""> {{question.a}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.b!='')">
-              <input type="radio" name="options" value="b"
-                (change)="onRadioChange('b', question.id)"> {{question.b}}
+              <input id="b" type="radio" name="options" value="b"> {{question.b}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.c!='')">
-              <input type="radio" name="options" value="c"
-                (change)="onRadioChange('c', question.id)"> {{question.c}}
+              <input id="c" type="radio" name="options" value="c"> {{question.c}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.d!='')">
-              <input type="radio" name="options" value="d"
-                (change)="onRadioChange('d', question.id)"> {{question.d}}
+              <input id="d" type="radio" name="options" value="d"> {{question.d}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.e!='')">
-              <input type="radio" name="options" value="e"
-                (change)="onRadioChange('e', question.id)"> {{question.e}}
+              <input id="e" type="radio" name="options" value="e"> {{question.e}}
             </label>
+          </form>
         </div>
         <hr>
         <button class="btn" [class.btn-dark]="currentPage <= pages.length && currentPage != 1" style="margin-right: 1px;"
-          (click)="previous()">
+          (click)="previous(question.id)">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
             fill="currentColor" class="bi bi-chevron-compact-left"
             viewBox="0 0 16 16">
@@ -46,7 +43,7 @@
           </svg> Previous
         </button>
         <button class="btn float-end" [class.btn-dark]="this.currentPage < this.pages.length" style="margin-left: 1px;"
-          (click)="next()">Next
+          (click)="next(question.id)">Next
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
             fill="currentColor" class="bi bi-chevron-compact-right"
             viewBox="0 0 16 16">
