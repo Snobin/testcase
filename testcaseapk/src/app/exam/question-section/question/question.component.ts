@@ -54,6 +54,116 @@ export class QuestionComponent implements OnInit {
       "c":"optionC",
       "d":"optionD",
       "e":""
+    },
+    {
+      "id":"5",
+      "no":"5",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"6",
+      "no":"6",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"7",
+      "no":"7",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"8",
+      "no":"8",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"9",
+      "no":"9",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"10",
+      "no":"10",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"11",
+      "no":"11",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"12",
+      "no":"12",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"13",
+      "no":"13",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
+    },
+    {
+      "id":"14",
+      "no":"14",
+      "desc":"abcdef",
+      "answer":"ans",
+      "a":"optionA",
+      "b":"optionB",
+      "c":"optionC",
+      "d":"optionD",
+      "e":""
     }
   ];
 
@@ -68,11 +178,17 @@ export class QuestionComponent implements OnInit {
   student = new Student(); 
   selectedOption: any;
   totalPages:number;
+  rightPaddingValue:number;
 
   constructor() { }
 
   ngOnInit(): void {
     this.setPage(1);
+    if(this.totalPages<10) {
+      this.rightPaddingValue=15;
+    } else {
+      this.rightPaddingValue=0;
+    }
   }
 
   setPage(page: number) {

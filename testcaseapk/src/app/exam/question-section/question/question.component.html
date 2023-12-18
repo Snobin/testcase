@@ -1,12 +1,12 @@
 <div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;">
-  <div style="width: 73px;padding-right: 15px;">
-    <div style="background-color: #c9d4e6;overflow-y: auto;height: 89vh;">
+  <div style="height: 89vh;background-color: #c9d4e6;">
+    <div style="width: 80px;overflow-y: auto;height: 45vh;">
       <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages">
           <button class="btn" [class.btn-dark]="currentPage==page" [class.btn-outline-dark]="currentPage!=page" (click)="setPage(page)">{{page}}</button>
       </div>
     </div>
   </div>
-  <div class="col-md-11" style="padding-left: 0px;margin-top: 10px;">
+  <div class="col-md-10" style="padding-left: 10px;margin-top: 10px;padding-right: 10px;">
     <div class="card" style="overflow: hidden;height: min-content;background-color: #c9d4e6;">
       <div class="card-body">
         <div class="col-md-12">

@@ -15,7 +15,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     AppComponent,
     AuthComponent,
-
     LoginComponent,
     NotFoundComponent,
 
