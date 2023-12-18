@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { QuestionComponent } from './question/question.component';
 
 @Component({
   selector: 'app-question-section',
@@ -9,19 +10,22 @@ import { Router } from '@angular/router';
 export class QuestionSectionComponent implements OnInit {
 
   test:boolean;
+  class: any;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.test = false;
+    this.AptitudeTest();
   }
   CodingTest(){
     this.test=true;
-    this.router.navigate([`./exam/question-section/coding-test/2`]);
+    this.class=false;
+    this.router.navigate([`./exam/question-section/coding-test`]);
   }
   AptitudeTest(){
     this.test=false;
-    this.router.navigate([`./exam/question-section/question/1`]);
+    this.class=true;
+    this.router.navigate([`./exam/question-section/question`]);
   }
 
 }

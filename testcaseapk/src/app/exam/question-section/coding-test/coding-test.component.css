@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.code-editor {
+    margin: 10px;
+}
+
+pre {
+    margin: 0;
+}
+
+.code-input {
+    display: block;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    height: 200px;
+    overflow-y: auto;
+    text-align: left;
+}
+.code-output {
+    display: block;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.contain {
+    display: flex;
+    height: 100vh;
+  }
+
+  .resizable {
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    resize: horizontal; /* or vertical, both, etc. */
+    background-color: #c9d4e6;
+  }
+.resize-card {
+    flex: .5;
+    resize: vertical;
+    overflow: auto;
+}
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+}
