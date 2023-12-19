@@ -21,6 +21,7 @@ pre {
     word-wrap: break-word;
     height: 200px;
     overflow-y: auto;
+    text-align: left;
 }
 .code-output {
     display: block;
@@ -55,7 +56,6 @@ pre {
     display: flex;
     flex-wrap: wrap;
 }
-
 .custom-card {
     --bs-card-spacer-y: 1rem;
     --bs-card-spacer-x: 1rem;

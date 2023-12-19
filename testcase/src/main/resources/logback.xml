@@ -9,7 +9,7 @@
 
     <!-- File Appender -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>C:\Users\mijoh\OneDrive\Documents\GitHub\testcase\testcase\src\main\resources\static\logfile.log</file> <!-- Specify the path to your log file -->
+        <file>D:\testcase\testcase\src\main\resources\static\logfile.log</file> <!-- Specify the path to your log file -->
         <append>true</append>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
