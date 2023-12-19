@@ -111,7 +111,7 @@ export class QuestionComponent implements OnInit {
   students:Student[] = [];
   student = new Student(); 
   selectedOption: any;
-  isClassVisible = false;
+  totalPages:number;
 
   constructor() { }
 
@@ -123,10 +123,8 @@ export class QuestionComponent implements OnInit {
     this.currentPage = page;
     const startIndex = (this.currentPage - 1) * this.pageSize;
     this.displayedQuestions = this.Questions.slice(startIndex, startIndex + this.pageSize);
-
-    // Calculate the total number of pages
-    const totalPages = Math.ceil(this.Questions.length / this.pageSize);
-    this.pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    this.totalPages = Math.ceil(this.Questions.length / this.pageSize);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
   next() {
@@ -161,7 +159,6 @@ export class QuestionComponent implements OnInit {
       console.log("Please select an option to save");
     } else {
       const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
-      this.addClass();
       if (existingStudentIndex !== -1) {
         this.students[existingStudentIndex].answer = value;
       } else {
@@ -173,9 +170,6 @@ export class QuestionComponent implements OnInit {
       }
       console.log(this.students);
     }
-  }
-  addClass() {
-    this.isClassVisible = true;
   }
 
   

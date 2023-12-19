@@ -11,7 +11,3 @@
 .nav-link{
     color: var(--bs-dark-color);
 }
-.custom-row {
-    display: flex;
-    flex-wrap: wrap;
-}

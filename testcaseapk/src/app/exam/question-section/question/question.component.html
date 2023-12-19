@@ -1,4 +1,4 @@
-<div class="main-margin custom-row" *ngFor="let question of displayedQuestions">
+<div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;">
     <div class="card col-md-10" style="margin-top: 10px;overflow: hidden;height: min-content;background-color: #c9d4e6;">
       <div class="card-body">
         <div class="col-md-12">
@@ -50,79 +50,10 @@
     </div>
   <div class="sidebar col-md-2 d-none d-md-block" style="padding: 0px;">
     <!-- Sidebar -->
-    <div class="sidebar-sticky full-view-height" style="margin-left: 10px;background-color: #c9d4e6;overflow-y: auto;">
+    <div class="sidebar-sticky full-view-height" style="margin-left: 10px;background-color: #c9d4e6;overflow-y: auto;height: 89vh;">
       <div class="row" style="margin: 10px;">
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">1</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">2</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">3</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">4</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">5</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">6</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">7</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">8</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">9</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">*</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">0</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">#</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">1</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">2</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">3</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">4</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">5</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">6</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">7</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">8</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">9</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">*</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">0</button>
-        </div>
-        <div class="col-4 keypad-button margin">
-          <button class="btn btn-outline-dark questionButton">#</button>
+        <div class="col-4 keypad-button margin" *ngFor="let page of pages">
+          <button class="btn questionButton" [class.btn-dark]="currentPage==page" [class.btn-outline-dark]="currentPage!=page" (click)="setPage(page)">{{page}}</button>
         </div>
       </div>
     </div>

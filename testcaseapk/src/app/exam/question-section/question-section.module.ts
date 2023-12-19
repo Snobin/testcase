@@ -7,17 +7,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { QuestionComponent } from './question/question.component';
 import { CodingTestComponent } from './coding-test/coding-test.component';
-import { AngularSplitModule } from 'angular-split';
+import { ResizableDirective } from 'src/app/directives/resizabledirective';
+
+
+
+
 
 
 @NgModule({
-  declarations: [QuestionSectionComponent, QuestionComponent, CodingTestComponent],
+  declarations: [QuestionSectionComponent, QuestionComponent, CodingTestComponent,ResizableDirective],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    AngularSplitModule,
-    QuestionSectionRoutingModule
+    QuestionSectionRoutingModule,
+
   ]
 })
 export class QuestionSectionModule { }

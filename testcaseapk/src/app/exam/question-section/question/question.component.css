@@ -55,12 +55,11 @@
     color: var(--bs-dark-color);
 }
 .main-margin{
-    /* border-bottom: 10px solid #c9d4e6; */
-    padding-bottom: 10px;
-    padding-left: 0px;
+    border-bottom: 10px solid #c9d4e6;
+    border-left: 10px solid #c9d4e6;
+    padding-left: 10px;
     padding-top: 0px;
-    padding-right: 12px;
-    margin-left: 10px;
+    padding-right: 0px;
 }
 .left-margin{
     margin-left: 10px;

@@ -11,9 +11,10 @@ import { AngularSplitModule } from 'angular-split';
 
 
 
+
 @NgModule({
   declarations: [
-   
+
     ExamComponent,
     InstructionsComponent,
 

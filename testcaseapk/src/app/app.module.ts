@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AngularSplitModule } from 'angular-split';
+import { QuestionSectionModule } from './exam/question-section/question-section.module';
 
 
 
@@ -17,9 +17,9 @@ import { AngularSplitModule } from 'angular-split';
   declarations: [
     AppComponent,
     AuthComponent,
-
     LoginComponent,
     NotFoundComponent,
+    
 
   ],
   imports: [
@@ -27,7 +27,8 @@ import { AngularSplitModule } from 'angular-split';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    QuestionSectionModule
   ],
   
   providers: [],
