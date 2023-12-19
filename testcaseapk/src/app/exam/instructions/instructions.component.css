@@ -1,0 +1,28 @@
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+}
+
+h1 {
+    color: #3498db;
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    color: #555;
+}
+
+ol {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}

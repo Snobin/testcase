@@ -17,7 +17,6 @@ import { AngularSplitModule } from 'angular-split';
   declarations: [
     AppComponent,
     AuthComponent,
-
     LoginComponent,
     NotFoundComponent,
 

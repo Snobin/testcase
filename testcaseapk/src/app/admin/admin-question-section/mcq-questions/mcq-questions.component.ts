@@ -86,13 +86,13 @@ export class McqQuestionsComponent implements OnInit {
       // "bSort": false,
       "sDom": "<rt><'row border-top pt-2'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'p>>",
       "aoColumns": [
-        { "mDataProp": "questionno", "bSortable": false },
-        { "mDataProp": "questionid", "bSortable": false },
+        { "mDataProp": "questionNo", "bSortable": false },
+        { "mDataProp": "questionId", "bSortable": false },
         { "mDataProp": "question", "bSortable": false, },
-        { "mDataProp": "optiona", "bSortable": false },
-        { "mDataProp": "optionb", "bSortable": false },
-        {"mDataProp":"optionc","bSortable":false},
-        {"mDataProp":"optiond","bSortable":false},
+        { "mDataProp": "optionA", "bSortable": false },
+        { "mDataProp": "optionB", "bSortable": false },
+        {"mDataProp":"optionC","bSortable":false},
+        {"mDataProp":"optionD","bSortable":false},
         {"mDataProp":"answers","bSortable":false},
         {"mDataProp":"score","bSortable":false},
         {
@@ -181,8 +181,8 @@ export class McqQuestionsComponent implements OnInit {
   get(label) {
     return  label;
   }
-  createUser() {
-    this.router.navigate(['/create']);
+  createQuestion() {
+    this.router.navigate(['admin/admin-question-section/mcq-create']);
   }
   updateUser() {
     // if (this.userDatatable.rows('.selected').data().length == 0) {

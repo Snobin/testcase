@@ -99,13 +99,5 @@ public class McqEntity {
 		this.status = status;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

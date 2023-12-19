@@ -53,7 +53,6 @@ public class McqController {
 	
 	@PostMapping("/questions")
 	public ResponseEntity<ServiceResponse> create( @RequestBody Dto dto){
-		System.out.println("REACHED");
 	return new ResponseEntity<>(mcqservice.create(dto), new HttpHeaders(), HttpStatus.OK);
 	}
 	
