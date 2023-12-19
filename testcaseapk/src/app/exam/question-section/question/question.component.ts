@@ -180,11 +180,14 @@ export class QuestionComponent implements OnInit {
   student = new Student();
   totalPages:number;
   existingStudentIndex:number;
+  attemptedNo: any = 0;
+  notAttemptedNo: any;
 
   constructor(private el:ElementRef) { }
 
   ngOnInit(): void {
     this.setPage(1);
+    this.notAttemptedNo = this.totalPages;
   }
 
   setPage(page: number) {
@@ -239,6 +242,8 @@ export class QuestionComponent implements OnInit {
         newStudent.questionId=questionId;
         newStudent.answer=value;
         newStudent.attempted=true;
+        this.attemptedNo++;
+        this.notAttemptedNo--;
         this.students.push(newStudent);
       }
       console.log(this.students);
