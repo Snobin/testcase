@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { QuestionComponent } from './question/question.component';
 import { CodingTestComponent } from './coding-test/coding-test.component';
-import { AngularSplitModule } from 'angular-split';
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import { AngularSplitModule } from 'angular-split';
     CommonModule,
     HttpClientModule,
     FormsModule,
-    AngularSplitModule,
     QuestionSectionRoutingModule
   ]
 })

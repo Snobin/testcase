@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AngularSplitModule } from 'angular-split';
 
 
 
@@ -22,7 +21,6 @@ import { AngularSplitModule } from 'angular-split';
 
   ],
   imports: [
-    AngularSplitModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
