@@ -8,21 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { InstructionsComponent } from './instructions/instructions.component';
 
 
-
-
 @NgModule({
   declarations: [
-   
     ExamComponent,
-    InstructionsComponent,
-
-  
+    InstructionsComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     ExamRoutingModule,
-    FormsModule,
+    FormsModule
   ]
 })
 export class ExamModule { }
