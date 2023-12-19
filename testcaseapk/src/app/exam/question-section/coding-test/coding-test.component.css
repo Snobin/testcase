@@ -21,6 +21,7 @@ pre {
     word-wrap: break-word;
     height: 200px;
     overflow-y: auto;
+    text-align: left;
 }
 .code-output {
     display: block;

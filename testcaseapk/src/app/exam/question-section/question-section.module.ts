@@ -13,6 +13,7 @@ import { ResizableDirective } from 'src/app/directives/resizabledirective';
 
 
 
+
 @NgModule({
   declarations: [QuestionSectionComponent, QuestionComponent, CodingTestComponent,ResizableDirective],
   imports: [
@@ -20,6 +21,7 @@ import { ResizableDirective } from 'src/app/directives/resizabledirective';
     HttpClientModule,
     FormsModule,
     QuestionSectionRoutingModule,
+
   ]
 })
 export class QuestionSectionModule { }
