@@ -1,8 +1,13 @@
 <div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;">
   <div class="col-md-1" style="height: 85vh;background-color: #c9d4e6;">
     <div style="overflow-y: auto;height: 45vh;">
-      <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages">
-          <button id="button{{page}}" class="btn" [class.btn-outline-dark]="currentPage!=page" [class.btn-dark]="currentPage==page" (click)="setPage(page)">{{page}}</button>
+      <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages; let i = index">
+          <button id="button{{page}}" class="btn" 
+            [class.btn-success]="Paged[i].status=='attempted'" 
+            [class.btn-dark]="currentPage==page" 
+            [class.btn-danger]="currentPage!=page&&Paged[i].status=='not attempted'" 
+            [class.btn-outline-dark]="currentPage!=page&&Paged[i].status==''" 
+            (click)="setPage(page)">{{page}}</button>
       </div>
     </div>
     <hr>
@@ -44,7 +49,7 @@
           </svg> Previous
         </button>
         <button class="btn float-end" [class.btn-dark]="currentPage < pages.length" style="margin-left: 1px;"
-          (click)="next(question.id)">Save & Next
+          (click)="next(question.id)">Next
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
             fill="currentColor" class="bi bi-chevron-compact-right"
             viewBox="0 0 16 16">
@@ -52,11 +57,12 @@
               d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
           </svg>
         </button>
+        <button class="btn btn-success float-end" style="margin-right: 1px;"(click)="save(question.id)">Save</button>
       </div>
     </div>  
   </div>
   <div class="col-md-3" style="height: 85vh;background-color: #c9d4e6;padding: 15px;">
-    <div class="card btn-group custom-row item-center col-md-12 col-sm-12" style="height: 10%;padding: 5px;">
+    <div class="card btn-group custom-row item-center col-md-12 col-sm-12" style="padding: 5px;">
       <button class="btn btn-success col-md-6 col-sm-6">Attempted     : {{attemptedNo}}</button>
       <button class="btn btn-danger col-md-6 col-sm-6">Not Attempted : {{notAttemptedNo}}</button>
     </div>

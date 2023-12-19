@@ -1,6 +1,7 @@
 import { Component , ElementRef, OnInit } from '@angular/core';
-import { Student } from '../student';
+import { Student } from '../../model/student';
 import Swal from 'sweetalert2';
+import { Pages } from '../../model/pages';
 
 declare var $:any;
 declare var jQuery:any;
@@ -22,7 +23,8 @@ export class QuestionComponent implements OnInit {
       "b":"option2",
       "c":"option3",
       "d":"option4",
-      "e":"option5"
+      "e":"option5",
+      "status":"not attempted"
     },
     {
       "id":"2",
@@ -33,7 +35,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"3",
@@ -44,7 +47,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionY",
       "c":"optionZ",
       "d":"",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"4",
@@ -55,7 +59,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"5",
@@ -66,7 +71,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"6",
@@ -77,7 +83,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"7",
@@ -88,7 +95,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"8",
@@ -99,7 +107,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"9",
@@ -110,7 +119,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"10",
@@ -121,7 +131,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"11",
@@ -132,7 +143,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"12",
@@ -143,7 +155,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"13",
@@ -154,7 +167,8 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     },
     {
       "id":"14",
@@ -165,17 +179,17 @@ export class QuestionComponent implements OnInit {
       "b":"optionB",
       "c":"optionC",
       "d":"optionD",
-      "e":""
+      "e":"",
+      "status":"not attempted"
     }
   ];
 
-  // Your array of questions
-  pageSize: number = 1; // Number of questions per page
+  pageSize: number = 1;
   currentPage: any = 1;
   displayedQuestions: any[] = [];
   pages: number[] = [];
+  Paged: Pages[] = [];
 
-  currentIndex: number = 0;
   students:Student[] = [];
   student = new Student();
   totalPages:number;
@@ -187,6 +201,12 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.setPage(1);
+    for (let index = 0; index < this.totalPages; index++) {
+      const newPage = new Pages();
+      newPage.id = (index+1).toString();
+      newPage.status = '';
+      this.Paged[index] = newPage;
+    }
     this.notAttemptedNo = this.totalPages;
   }
 
@@ -196,9 +216,21 @@ export class QuestionComponent implements OnInit {
     this.displayedQuestions = this.Questions.slice(startIndex, startIndex + this.pageSize);
     this.totalPages = Math.ceil(this.Questions.length / this.pageSize);
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    for (let index = 0; index < page; index++) {
+      const questionIndex = this.Paged.findIndex(page => page.id === (index+1).toString());
+      if (questionIndex !== -1) {
+        if(this.Paged[questionIndex].status!='attempted'){
+          this.Paged[questionIndex].status = 'not attempted';
+        }
+      }
+    }
   }
-
-  next(questionId:any) {
+  
+  next(questionId:any){
+    const questionIndex = this.Paged.findIndex(page => page.id === questionId);
+    if (questionIndex !== -1) {
+      this.Paged[questionIndex].status = 'not attempted';
+    }
     const value=$('input[name="options"]:checked').val();
     this.onRadioChange(value, questionId);
     if (this.currentPage < this.pages.length) {
@@ -211,6 +243,15 @@ export class QuestionComponent implements OnInit {
         position: 'top'
       })
     }
+  }
+
+  save(questionId:any){
+    const questionIndex = this.Paged.findIndex(page => page.id === questionId);
+    if (questionIndex !== -1) {
+      this.Paged[questionIndex].status = 'not attempted';
+    }
+    const value=$('input[name="options"]:checked').val();
+    this.onRadioChange(value, questionId);
   }
 
   previous(questionId:any){
@@ -235,15 +276,21 @@ export class QuestionComponent implements OnInit {
       this.existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
       if (this.existingStudentIndex !== -1) {
         this.students[this.existingStudentIndex].answer = value;
-        this.students[this.existingStudentIndex].attempted = true;
+        const questionIndex = this.Paged.findIndex(page => page.id === questionId);
+        if (questionIndex !== -1) {
+          this.Paged[questionIndex].status = 'attempted';
+        }
       } else {
         const newStudent = new Student();
         newStudent.studentId="1";
         newStudent.questionId=questionId;
         newStudent.answer=value;
-        newStudent.attempted=true;
         this.attemptedNo++;
         this.notAttemptedNo--;
+        const questionIndex = this.Paged.findIndex(page => page.id === questionId);
+        if (questionIndex !== -1) {
+          this.Paged[questionIndex].status = 'attempted';
+        }
         this.students.push(newStudent);
       }
       console.log(this.students);
