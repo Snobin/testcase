@@ -1,12 +1,12 @@
-<div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;">
+<div class="main-margin custom-row" *ngFor="let question of displayedQuestions;let n = index" style="height: -webkit-fill-available;">
   <div class="col-md-1" style="height: 85vh;background-color: #c9d4e6;">
     <div style="overflow-y: auto;height: 45vh;">
       <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages; let i = index">
           <button id="button{{page}}" class="btn" 
-            [class.btn-success]="Paged[i].status=='attempted'" 
+            [class.btn-success]="students[i].status=='attempted'" 
             [class.btn-dark]="currentPage==page" 
-            [class.btn-danger]="currentPage!=page&&Paged[i].status=='not attempted'" 
-            [class.btn-outline-dark]="currentPage!=page&&Paged[i].status==''" 
+            [class.btn-danger]="currentPage!=page&&students[i].status=='not attempted'" 
+            [class.btn-outline-dark]="currentPage!=page&&students[i].status==''" 
             (click)="setPage(page)">{{page}}</button>
       </div>
     </div>
@@ -22,19 +22,19 @@
         <div id="option" class="col-md-12 options-margin">
           <form id="options{{question.no}}">
             <label class="col-md-6 opt-margin" *ngIf="(question.a!='')">
-              <input id="a" type="radio" name="options" value="a"> {{question.a}}
+              <input id="a" type="radio" name="options" value="a" [checked]="students[question.id-1].answer=='a'"> {{question.a}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.b!='')">
-              <input id="b" type="radio" name="options" value="b"> {{question.b}}
+              <input id="b" type="radio" name="options" value="b" [checked]="students[question.id-1].answer=='b'"> {{question.b}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.c!='')">
-              <input id="c" type="radio" name="options" value="c"> {{question.c}}
+              <input id="c" type="radio" name="options" value="c" [checked]="students[question.id-1].answer=='c'"> {{question.c}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.d!='')">
-              <input id="d" type="radio" name="options" value="d"> {{question.d}}
+              <input id="d" type="radio" name="options" value="d" [checked]="students[question.id-1].answer=='d'"> {{question.d}}
             </label>
             <label class="col-md-6 opt-margin" *ngIf="(question.e!='')">
-              <input id="e" type="radio" name="options" value="e"> {{question.e}}
+              <input id="e" type="radio" name="options" value="e" [checked]="students[question.id-1].answer=='e'"> {{question.e}}
             </label>
           </form>
         </div>

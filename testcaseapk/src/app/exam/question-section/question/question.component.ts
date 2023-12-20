@@ -188,12 +188,9 @@ export class QuestionComponent implements OnInit {
   currentPage: any = 1;
   displayedQuestions: any[] = [];
   pages: number[] = [];
-  Paged: Pages[] = [];
 
   students:Student[] = [];
-  student = new Student();
   totalPages:number;
-  existingStudentIndex:number;
   attemptedNo: any = 0;
   notAttemptedNo: any;
 
@@ -202,10 +199,12 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.setPage(1);
     for (let index = 0; index < this.totalPages; index++) {
-      const newPage = new Pages();
-      newPage.id = (index+1).toString();
-      newPage.status = '';
-      this.Paged[index] = newPage;
+      const student = new Student();
+      student.studentId = '1';
+      student.questionId = (index+1).toString();
+      student.answer = '';
+      student.status = '';
+      this.students[index] = student;
     }
     this.notAttemptedNo = this.totalPages;
   }
@@ -217,19 +216,19 @@ export class QuestionComponent implements OnInit {
     this.totalPages = Math.ceil(this.Questions.length / this.pageSize);
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     for (let index = 0; index < page; index++) {
-      const questionIndex = this.Paged.findIndex(page => page.id === (index+1).toString());
-      if (questionIndex !== -1) {
-        if(this.Paged[questionIndex].status!='attempted'){
-          this.Paged[questionIndex].status = 'not attempted';
+      const existingStudentIndex = this.students.findIndex(student => student.questionId === (index+1).toString());
+      if (existingStudentIndex !== -1) {
+        if(this.students[existingStudentIndex].status!='attempted'){
+          this.students[existingStudentIndex].status = 'not attempted';
         }
       }
     }
   }
   
   next(questionId:any){
-    const questionIndex = this.Paged.findIndex(page => page.id === questionId);
-    if (questionIndex !== -1) {
-      this.Paged[questionIndex].status = 'not attempted';
+    const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+    if (existingStudentIndex !== -1) {
+      this.students[existingStudentIndex].status = 'not attempted';
     }
     const value=$('input[name="options"]:checked').val();
     this.onRadioChange(value, questionId);
@@ -246,11 +245,26 @@ export class QuestionComponent implements OnInit {
   }
 
   save(questionId:any){
-    const questionIndex = this.Paged.findIndex(page => page.id === questionId);
-    if (questionIndex !== -1) {
-      this.Paged[questionIndex].status = 'not attempted';
+    const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+    if (existingStudentIndex !== -1) {
+      this.students[existingStudentIndex].status = 'not attempted';
     }
     const value=$('input[name="options"]:checked').val();
+    if (value==undefined||value==null) {
+      Swal.fire({
+        text: 'Please select an option to save',
+        showConfirmButton: false,
+        timer: 600,
+        position: 'top'
+      })
+    } else {
+      // Swal.fire({
+      //   text: 'Option '+value+' saved successfully',
+      //   showConfirmButton: false,
+      //   timer: 600,
+      //   position: 'top'
+      // })
+    }
     this.onRadioChange(value, questionId);
   }
 
@@ -270,30 +284,28 @@ export class QuestionComponent implements OnInit {
   }
 
   onRadioChange(value: string, questionId: string) {
-    if (value == undefined || value == null) {
-      value='';
-    } else {
-      this.existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
-      if (this.existingStudentIndex !== -1) {
-        this.students[this.existingStudentIndex].answer = value;
-        const questionIndex = this.Paged.findIndex(page => page.id === questionId);
-        if (questionIndex !== -1) {
-          this.Paged[questionIndex].status = 'attempted';
+    if (value != undefined || value != null) {
+      const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+      if (existingStudentIndex !== -1) {
+        if (this.students[existingStudentIndex].answer=='') {
+          this.students[existingStudentIndex].answer = value;
+          this.students[existingStudentIndex].status = 'attempted';
+          this.attemptedNo++;
+          this.notAttemptedNo--;
+        } else if (this.students[existingStudentIndex].answer!='') {
+          this.students[existingStudentIndex].answer = value;
+          this.students[existingStudentIndex].status = 'attempted';
         }
-      } else {
-        const newStudent = new Student();
-        newStudent.studentId="1";
-        newStudent.questionId=questionId;
-        newStudent.answer=value;
+      }
+    }
+  }
+
+  status(){
+    for (let index = 0; index < this.totalPages; index++) {
+      if (this.students[index].status=='attempted') {
         this.attemptedNo++;
         this.notAttemptedNo--;
-        const questionIndex = this.Paged.findIndex(page => page.id === questionId);
-        if (questionIndex !== -1) {
-          this.Paged[questionIndex].status = 'attempted';
-        }
-        this.students.push(newStudent);
       }
-      console.log(this.students);
     }
   }
 
