@@ -1,7 +1,6 @@
 import { Component , ElementRef, OnInit } from '@angular/core';
-import { Student } from '../../model/student';
+import { Student } from '../model/student';
 import Swal from 'sweetalert2';
-import { Pages } from '../../model/pages';
 
 declare var $:any;
 declare var jQuery:any;
