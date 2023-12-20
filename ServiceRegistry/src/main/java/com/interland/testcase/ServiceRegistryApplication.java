@@ -2,13 +2,14 @@ package com.interland.testcase;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@
-public class TestcaseApplication {
+@EnableEurekaServer
+public class ServiceRegistryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestcaseApplication.class, args);
+		SpringApplication.run(ServiceRegistryApplication.class, args);
 	}
 
 }

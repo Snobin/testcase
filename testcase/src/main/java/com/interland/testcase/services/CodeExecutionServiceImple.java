@@ -44,7 +44,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		String language = codeRequest.getLangId();
 //		String input = codeRequest.getInput();
 
-		String questionId = codeRequest.getInput();
+		String questionId = codeRequest.getQnId();
 		System.out.println(questionId);
 		// Retrieve test cases based on the question ID
 		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionIdWithTestCases(questionId);
