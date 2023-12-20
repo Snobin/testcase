@@ -1,4 +1,4 @@
-<div class="main-margin custom-row" *ngFor="let question of displayedQuestions;let n = index" style="height: -webkit-fill-available;">
+<div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;">
   <div class="col-md-1" style="height: 85vh;background-color: #c9d4e6;">
     <div style="overflow-y: auto;height: 45vh;">
       <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages; let i = index">
@@ -16,7 +16,10 @@
     <div class="card" style="overflow: hidden;height: min-content;background-color: #c9d4e6;">
       <div class="card-body">
         <div class="col-md-12">
-          <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}</h6>
+          <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}
+            <span class="badge bg-success float-end" *ngIf="students[question.id-1].status=='attempted'">Attempted</span>
+            <span class="badge bg-danger float-end" *ngIf="students[question.id-1].status=='not attempted'||students[question.id-1].status==''">Not Attempted</span>
+            </h6>
         </div>
         <hr>
         <div id="option" class="col-md-12 options-margin">
