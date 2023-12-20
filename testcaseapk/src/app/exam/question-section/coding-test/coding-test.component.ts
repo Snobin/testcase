@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 import { CodeRequest } from '../../model/code-request';
 import * as Prism from 'prismjs';
@@ -9,7 +9,7 @@ import * as Prism from 'prismjs';
   styleUrls: ['./coding-test.component.css']
 })
 export class CodingTestComponent implements OnInit {
-
+  
   selectedLanguage: string = '';
   testCases: string[] = [];
   result: any = { success: true, output: '' };
@@ -23,8 +23,6 @@ export class CodingTestComponent implements OnInit {
   testInput22: any;
   testInput31: any;
   testInput32: any;
-
-  editor: any;
 
   constructor(private apiService: ServiceService) { }
 
@@ -75,13 +73,25 @@ export class CodingTestComponent implements OnInit {
   onCodeInput(event: any) {
     // Get the new input
     const newInput = event.target.innerText;
-
     // If the new input is different from the current code, update the code
     if (this.code !== newInput) {
       this.code = newInput;
-
       // Highlight the updated code
       Prism.highlightElement(document.getElementById('codeInput'));
+
+      // require the highlight.js library, including all languages
+      // const hljs = require('./highlight.js');
+      
+      // const hljs = require('highlight.js');
+
+      // document.querySelectorAll('pre code').forEach((el) => {
+      //   hljs.highlightBlock(el);
+      // });
+      // const highlightedCode = hljs.highlight(
+      //   '<span>Hello World!</span>',
+      //   { language: 'xml' }
+      // ).value
+      // this.code = highlightedCode;
     }
   }
 }
