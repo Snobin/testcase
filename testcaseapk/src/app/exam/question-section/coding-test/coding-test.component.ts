@@ -2,14 +2,13 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 import { CodeRequest } from '../../model/code-request';
 import * as Prism from 'prismjs';
-import * as ace from 'ace-builds';
 
 @Component({
   selector: 'app-coding-test',
   templateUrl: './coding-test.component.html',
   styleUrls: ['./coding-test.component.css']
 })
-export class CodingTestComponent implements OnInit, AfterViewInit {
+export class CodingTestComponent implements OnInit {
 
   selectedLanguage: string = '';
   testCases: string[] = [];
@@ -30,13 +29,6 @@ export class CodingTestComponent implements OnInit, AfterViewInit {
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    this.editor = ace.edit('editor', {
-      theme: 'ace/theme/javascript',
-      mode: 'ace/mode/javascript',
-    });
   }
 
   async executeCode() {
