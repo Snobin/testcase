@@ -17,7 +17,9 @@ export class McqCreateComponent implements OnInit {
 
   validationMessage:any;
   mcq: McqQuestions=new McqQuestions();
+
   fileList3: any;
+
   constructor(private mcqService: ServiceService, private router:Router) { }
   ngOnInit(): void {
     this.validationMessage={};
@@ -42,6 +44,7 @@ export class McqCreateComponent implements OnInit {
       // this.libraryList();
     },error=>console.log(error));
   }
+
   onFileChange(event) {
     console.log("event innitiated")
     var filePath = $("#idfile").val();
@@ -80,6 +83,7 @@ export class McqCreateComponent implements OnInit {
       };
     }
   }
+
   clear() {
     $('#bookTitle').val('');
     $('#bookId').val('');

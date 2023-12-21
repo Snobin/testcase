@@ -130,6 +130,7 @@ public class McqServiceImpl implements McqService {
     	try {
 		McqEntity mcqentity = new McqEntity();
 		FileEntity fileentity = new FileEntity();
+
 		
 		McqEmbedded obj=new McqEmbedded();
 		obj.setQuestionId(dto.getQuestionId());

@@ -6,12 +6,16 @@ import * as Prism from 'prismjs';
 
 
 
+
+
 @Component({
   selector: 'app-coding-test',
   templateUrl: './coding-test.component.html',
   styleUrls: ['./coding-test.component.css']
 })
 export class CodingTestComponent implements OnInit {
+
+
 
   selectedLanguage: string = '';
   testCases: string[] = [];
@@ -73,8 +77,10 @@ export class CodingTestComponent implements OnInit {
   }
 
   onCodeInput(event: any) {
+
     this.code = event.target.textContent || event.target.innerText;
     Prism.highlightElement(document.getElementById('codeInput'));
+
   }
 
 }

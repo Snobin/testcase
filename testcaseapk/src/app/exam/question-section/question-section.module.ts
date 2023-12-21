@@ -7,10 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { QuestionComponent } from './question/question.component';
 import { CodingTestComponent } from './coding-test/coding-test.component';
+
 import { ResizableDirective } from 'src/app/directives/resizabledirective';
 import { SplitterModule } from 'primeng/splitter';
-
-
 
 
 
@@ -21,8 +20,10 @@ import { SplitterModule } from 'primeng/splitter';
     CommonModule,
     HttpClientModule,
     FormsModule,
+
     QuestionSectionRoutingModule,
     SplitterModule
+
   ]
 })
 export class QuestionSectionModule { }

@@ -1,7 +1,9 @@
 <div class="col-md-6 offset-md-3">
     <h3>Add Customer</h3>
     <form >
+
          <div class="form-group">
+
             <label>Question Number</label>
             <span class="error-msg-span">     {{validationMessage.bookTitle}}</span>
             <input type="text" class="form-control" id ="questionNo"
@@ -12,6 +14,7 @@
             <span class="error-msg-span">     {{validationMessage.bookCategory}}</span>
             <select class="form-control" name="QuestionType" id="questionId" >
                 <option value="">Select</option>
+
                 <option value="SAQ">Single question</option>
                 <option value="MAQ">Multiple question</option>
                 <option value="DAQ">Discriptive question</option>
@@ -73,6 +76,7 @@
           <label class="custom-file-label tempFileLabel" for="payrollFile"></label>
         </div>
       </div>
+
         <button class = "btn btn-success mx-2 px-2" type="submit"(click)="addquestiondetail()">Submit</button> 
         <button class = "btn btn-success" type="submit" (click)="questionList()">List</button>
     </form>
