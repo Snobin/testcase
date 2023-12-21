@@ -13,17 +13,14 @@ import { SplitterModule } from 'primeng/splitter';
 
 
 
-
 @NgModule({
   declarations: [QuestionSectionComponent, QuestionComponent, CodingTestComponent,ResizableDirective],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-
-    QuestionSectionRoutingModule,
-    SplitterModule
-
+    SplitterModule,
+    QuestionSectionRoutingModule
   ]
 })
 export class QuestionSectionModule { }
