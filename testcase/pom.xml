@@ -15,10 +15,11 @@
 	<name>testcase</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>19</java.version>
-		<spring-cloud.version>2023.0.0</spring-cloud.version>
+	<java.version>17</java.version>
+		<spring-cloud.version>2021.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -81,6 +82,8 @@
 			<artifactId>jython-standalone</artifactId>
 			<version>2.7.2</version> <!-- Use the latest version available -->
 		</dependency>
+	
+		
 	
 	</dependencies>
 

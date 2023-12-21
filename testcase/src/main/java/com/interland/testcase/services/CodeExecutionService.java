@@ -9,6 +9,6 @@ import com.interland.testcase.dto.CodeResponse;
 
 public interface CodeExecutionService {
 
-	 public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException;
+	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException;
 
 }

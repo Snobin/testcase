@@ -3,13 +3,27 @@ package com.interland.testcase.dto;
 import java.util.List;
 
 public class CodeRequest {
-    private String code;
+	
+	private String studentId;
+	private String code;
     private String langId;
     private String input;
     private String qnId;
+    
 
+    public String getStudentId() {
+    	return studentId;
+    }
+    
+    @Override
+	public String toString() {
+		return "CodeRequest [studentId=" + studentId + ", code=" + code + ", langId=" + langId + ", input=" + input
+				+ ", qnId=" + qnId + ", elements=" + elements + "]";
+	}
 
-
+	public void setStudentId(String studentId) {
+    	this.studentId = studentId;
+    }
 	public String getQnId() {
 		return qnId;
 	}
