@@ -22,11 +22,7 @@ import { SplitterModule } from 'primeng/splitter';
     HttpClientModule,
     FormsModule,
     QuestionSectionRoutingModule,
-<<<<<<< HEAD
     SplitterModule
-=======
-
->>>>>>> 12c8a48aa658007b1ad7fae5ce44b3d89194b6cb
   ]
 })
 export class QuestionSectionModule { }

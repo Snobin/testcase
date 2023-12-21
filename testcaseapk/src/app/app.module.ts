@@ -21,7 +21,6 @@ import { QuestionSectionModule } from './exam/question-section/question-section.
     
   ],
   imports: [
-    AngularSplitModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

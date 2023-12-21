@@ -6,7 +6,6 @@ import { ExamComponent } from './exam.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InstructionsComponent } from './instructions/instructions.component';
-import { AngularSplitModule } from 'angular-split';
 
 
 
@@ -22,7 +21,6 @@ import { AngularSplitModule } from 'angular-split';
   ],
   imports: [
     CommonModule,
-   AngularSplitModule,
     HttpClientModule,
     ExamRoutingModule,
     FormsModule,
