@@ -1,6 +1,8 @@
 body {
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 2fr; /* Two columns with equal width */
+        height: 88vh;
 }
 
 .code-editor {
@@ -19,7 +21,7 @@ pre {
     border-radius: 5px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    height: 200px;
+    height: 100%;
     overflow-y: auto;
 }
 .code-output {
@@ -30,7 +32,7 @@ pre {
     border-radius: 5px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    height: 100px;
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -39,16 +41,29 @@ pre {
     height: 100vh;
   }
 
-  .resizsable {
-    overflow: auto;
-    resize: both; /* or vertical, both, etc. */
+  .resizable {
+    width: 200px;
+    height: 100px;
+    border: 1px solid #ccc;
+    resize: horizontal; /* Allow horizontal resizing */
+    overflow: auto; /* Enable scrolling if content exceeds div size */
+    cursor: col-resize;
   }
 .resize-card {
     flex: .5;
-    resize: vertical;
+    resize: both;
     overflow: auto;
 }
 .custom-row {
     display: flex;
     flex-wrap: wrap;
 }
+
+::ng-deep .p-splitter-gutter {
+    background-color: #3498db; /* Set the background color of the gutter */
+  }
+  .textarea{
+    height: 100%;
+    width: 100%;
+    resize:both;
+  }

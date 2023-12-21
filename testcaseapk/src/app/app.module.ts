@@ -11,22 +11,20 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { QuestionSectionModule } from './exam/question-section/question-section.module';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     LoginComponent,
-    NotFoundComponent,
+    NotFoundComponent, 
     
-
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    QuestionSectionModule
+    QuestionSectionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

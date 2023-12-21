@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { QuestionComponent } from './question/question.component';
 import { CodingTestComponent } from './coding-test/coding-test.component';
 import { ResizableDirective } from 'src/app/directives/resizabledirective';
+import { SplitterModule } from 'primeng/splitter';
 
 
 
@@ -20,6 +21,7 @@ import { ResizableDirective } from 'src/app/directives/resizabledirective';
     HttpClientModule,
     FormsModule,
     QuestionSectionRoutingModule,
+    SplitterModule
   ]
 })
 export class QuestionSectionModule { }

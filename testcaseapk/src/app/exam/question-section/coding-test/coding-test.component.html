@@ -1,94 +1,80 @@
-<div class="row">
- <div class="col-md-4 resizsable" style="border-width: 10px;">
-        <div  class="card ">
-            <div class="card-body">
-                <div class="card title" style="margin: 10px">
-                    <div style="margin: 10px;">
-                        <div class="float-start">
-                            Enter Your Code:
+<p-splitter [panelSizes]="[25, 75]" [style]="{ height: '100%'}" styleClass="mb-5" [gutterSize]="5">
+    <ng-template pTemplate style="height: 100%;">
+      <!-- <div class="col flex align-items-center justify-content-center">
+         <div class="card"style="height: 100%;">
+         <div></div>
+         </div>
+      </div> -->
+    </ng-template>
+<ng-template pTemplate>
+      <p-splitter layout="vertical" [panelSizes]="[60, 40]" [style]="{ height: '100%' }" styleClass="mb-5" [gutterSize]="5">
+        <ng-template pTemplate>
+          <div style="flex:1;" class="flex align-items-center justify-content-center">  
+                       <div class="card"style="height: 100%;">
+                           <div class="card-body">
+                               <div class="card title" style="margin: 10px">
+                                   <div style="margin: 10px;">
+                                       <div class="float-start">
+                                           Enter Your Code:
+                                       </div>
+                                       <div>
+                                           <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
+                                               <option value="" selected disabled>Select</option>
+                                               <option value="java">Java</option>
+                                               <option value="python">Python</option>
+                                               <option value="c">C</option>
+                                               <option value="cpp">C++</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="code-editor line-numbers">
+                                   <pre><code class="code-input language-javascript" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
+                                   <!-- <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea> -->
+                               </div>
+                               <div class="float-end">
+                                   <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
+                                   <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
+                                   <button class="btn btn-success mt-3" style="margin: 10px;" (click)="executeCode()">Run</button>
+                               </div>
+                           </div>
+                       </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate>
+          <div style="flex: 1;" class="flex align-items-center justify-content-center">
+        <div class="card"  style="height: 100%;">
+            <!-- <div class="row "> -->
+            <div class="card col-md-12">
+                    <div class="card-body">
+                        <div class="card title" style="margin: 10px">
+                            <div style="margin: 10px;">
+                                <div class="float-start">
+                                    Output
+            <!--                         <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p> -->
+            <!--                         <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p> -->
+                                </div>
+                                <div class="float-end">     
+                                    Time taken for execution: {{ executionTime }} ms
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
-                                <option value="" selected disabled>Select</option>
-                                <option value="java">Java</option>
-                                <option value="python">Python</option>
-                                <option value="c">C</option>
-                                <option value="cpp">C++</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="code-editor line-numbers">
-                    <pre><code class="code-input language-javascript" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
-                    <!-- <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea> -->
-                </div>
-                <div class="float-end">
-                    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
-                    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
-                    <button class="btn btn-success mt-3" style="margin: 10px;" (click)="executeCode()">Run</button>
-                </div>
-            </div>
-        </div>
- </div> 
-<div class="col-md-8 resizsable">
-    <div class="row resizsable">
-        <div class="card">
-            <div class="card-body">
-                <div class="card title" style="margin: 10px">
-                    <div style="margin: 10px;">
-                        <div class="float-start">
-                            Enter Your Code:
-                        </div>
-                        <div>
-                            <select class="float-end" style="border-radius: 10px;" [(ngModel)]="selectedLanguage" placeholder="Select">
-                                <option value="" selected disabled>Select</option>
-                                <option value="java">Java</option>
-                                <option value="python">Python</option>
-                                <option value="c">C</option>
-                                <option value="cpp">C++</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="code-editor line-numbers">
-                    <pre><code class="code-input language-javascript" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
-                    <!-- <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea> -->
-                </div>
-                <div class="float-end">
-                    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clear()">Clear</button>
-                    <button class="btn btn-danger mt-3" style="margin: 10px;" (click)="clearCode()">Clear Code</button>
-                    <button class="btn btn-success mt-3" style="margin: 10px;" (click)="executeCode()">Run</button>
-                </div>
-            </div>
-        </div>
-    </div>    
-    <div class="row resizsable">
-        <div class="card col-md-8">
-            <div class="card-body">
-                <div class="card title" style="margin: 10px">
-                    <div style="margin: 10px;">
-                        <div class="float-start">
-                            Output
-    <!--                         <p *ngIf="result.success && result.output" class="text-success">Code compiled and tested successfully!</p> -->
-    <!--                         <p *ngIf="!result.success" class="text-danger">Code compilation or testing failed!</p> -->
-                        </div>
-                        <div class="float-end">     
-                            Time taken for execution: {{ executionTime }} ms
+                        <div class="code-editor">
+                            <pre><code class="code-output language-javascript" contenteditable="true" id="codeOutput" (keyup)="highlightCode()">{{result.output}}</code></pre>
                         </div>
                     </div>
-                </div>
-                <div class="code-editor">
-                    <pre><code class="code-output language-javascript" contenteditable="true" id="codeOutput" (keyup)="highlightCode()">{{result.output}}</code></pre>
-                </div>
+                <!-- </div> -->
             </div>
-        </div>
-        <div id="testcase" class="card col-md-4" style="height: min-content;">
+            <div id="testcase" class="card col-md-12">
             <div style="width: max-content;">
                 <button class="btn item-center" [class.btn-dark]="case==1" [class.btn-outine-dark]="case!=1" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=1">Case 1</button>
                 <button class="btn item-center" [class.btn-dark]="case==2" [class.btn-outine-dark]="case!=2" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=2">Case 2</button>    
                 <button class="btn item-center" [class.btn-dark]="case==3" [class.btn-outine-dark]="case!=3" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;" (click)="case=3">Case 3</button>
+                <button class="btn btn-secondary btn-sm float-end" type="button" data-bs-toggle="collapse" data-bs-target="#testcaseBody" aria-expanded="false" aria-controls="testcaseBody">
+                    Toggle Minimize
+                </button>
             </div>
-            <div class="card-body">
+            <div class="card-body collapse show" id="testcaseBody">
                 <div id="case1" class="card" *ngIf="case==1">
                     <div class="card-body">
                         <div class="card title" style="margin: 10px">
@@ -149,8 +135,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    
-    </div>
-</div> 
-</div>
+          </div>
+         </div>
+           </div>
+        </ng-template>
+      </p-splitter>
+</ng-template>
+</p-splitter>
