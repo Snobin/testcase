@@ -24,13 +24,13 @@ import com.interland.testcase.entity.TestCaseEntity;
 import com.interland.testcase.repository.QuestionRepository;
 
 @Service
-public class QuestionServiceImple implements QuestionService {
+public class QuestionServiceImpl implements QuestionService {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private QuestionRepository questionRepository;
-    
+
     @Override
     public ObjectNode processExcelData(MultipartFile excelFile) {
         ObjectNode response = objectMapper.createObjectNode();
@@ -43,31 +43,18 @@ public class QuestionServiceImple implements QuestionService {
 
             Iterator<Row> rowIterator = sheet.iterator();
 
-            // Assuming the first row contains headers, so we skip it
             if (rowIterator.hasNext()) {
                 rowIterator.next();
             }
 
             while (rowIterator.hasNext()) {
                 Row currentRow = rowIterator.next();
-
                 String questionId = getCellStringValue(currentRow.getCell(0));
-
-                List<TestCaseEntity> testCases = new ArrayList<>();
-
-                // Loop through the pairs of input and output columns
-                for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
-                    String inputs = getCellStringValue(currentRow.getCell(i));
-                    String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
-                    inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
-                    expectedOutputs = expectedOutputs.endsWith(".0") ? expectedOutputs.substring(0, expectedOutputs.length() - 2) : expectedOutputs;
-
-                    testCases.add(new TestCaseEntity(inputs, expectedOutputs,questionId));
-                }
-
+                List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
                 saveQuestion(questionId, testCases);
                 results.add(createSuccessResult(questionId));
             }
+
             response.set("results", results);
             response.put("status", "success");
         } catch (IOException e) {
@@ -79,7 +66,19 @@ public class QuestionServiceImple implements QuestionService {
         return response;
     }
 
-    // Add the necessary methods for saving to the database
+    private List<TestCaseEntity> extractTestCasesFromRow(Row currentRow, String questionId) {
+        List<TestCaseEntity> testCases = new ArrayList<>();
+
+        for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
+            String inputs = getCellStringValue(currentRow.getCell(i));
+            String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
+            inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
+            expectedOutputs = expectedOutputs.endsWith(".0") ? expectedOutputs.substring(0, expectedOutputs.length() - 2) : expectedOutputs;
+
+            testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
+        }
+        return testCases;
+    }
 
     private ObjectNode createSuccessResult(String message) {
         ObjectNode result = objectMapper.createObjectNode();
@@ -89,22 +88,19 @@ public class QuestionServiceImple implements QuestionService {
     }
 
     private void saveQuestion(String questionId, List<TestCaseEntity> testCases) {
-        // Check if a QuestionEntity with the same questionId already exists
         Optional<QuestionEntity> optionalExistingQuestion = questionRepository.findByQuestionId(questionId);
 
         if (optionalExistingQuestion.isPresent()) {
-            // If it exists, update the existing entity with the new test cases
             QuestionEntity existingQuestion = optionalExistingQuestion.get();
             existingQuestion.setTestCases(testCases);
             questionRepository.save(existingQuestion);
         } else {
-            // If it doesn't exist, create a new entity and save it
             QuestionEntity newQuestion = new QuestionEntity();
             newQuestion.setQuestionId(questionId);
             newQuestion.setTestCases(testCases);
             questionRepository.save(newQuestion);
-        }}
-
+        }
+    }
 
     private String getCellStringValue(Cell cell) {
         if (cell == null) {
