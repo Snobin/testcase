@@ -19,9 +19,9 @@
         <ng-template pTemplate>
               <p-splitter layout="vertical" [panelSizes]="[60, 40]" [style]="{ height: '85v' }" styleClass="" [gutterSize]="15">
                 <ng-template pTemplate>
-                  <div style="flex:1;" class="flex align-items-center justify-content-center">  
-                               <div class="card"style="height: 100%;">
-                                   <div class="card-body">
+                  <div style="flex:1;" class="flex align-items-center justify-content-center" style="min-height: 214px;min-width: 413px;width: 100%;max-height: 453px;">  
+                               <div class="card"style="height: 100%;max-height: 441px;">
+                                   <div class="card-body" style="max-height: 441px;height: 100%;">
                                        <div class="card title" style="margin: 10px">
                                            <div style="margin: 10px;">
                                                <div class="float-start">
@@ -38,8 +38,8 @@
                                                </div>
                                            </div>
                                        </div>
-                                       <div class="code-editor line-numbers">
-                                           <pre><code class="code-input language-javascript" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
+                                       <div class="code-editor line-numbers" style="max-height: 269px;height: 100%;">
+                                           <pre style="max-height: 269px;height: 100%;"><code class="code-input language-javascript" style="max-height: 237px;height: 100%;" contenteditable="true" id="codeInput" (input)="onCodeInput($event)"></code></pre>
                                            <!-- <textarea class="form-control" id="codeInput" [(ngModel)]="code" rows="8"></textarea> -->
                                        </div>
                                        <div class="float-end">
@@ -69,8 +69,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="code-editor">
-                                    <pre><code class="code-output language-javascript" contenteditable="true" id="codeOutput" (keyup)="highlightCode()">{{result.output}}</code></pre>
+                                <div class="code-editor" style="height: 100%;max-height: 50px;">
+                                    <pre style="height: 100%;max-height: 269px;"><code class="code-output language-javascript" style="height: 100%;overflow-y: auto;max-height: 237px;" contenteditable="true" id="codeOutput" (keyup)="highlightCode()">{{result.output}}</code></pre>
                                 </div>
                             </div>
                         <!-- </div> -->

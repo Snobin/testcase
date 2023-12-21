@@ -72,3 +72,6 @@ pre {
     resize:both;
   }
 
+.custom-height{
+  min-height: 214px;
+}
