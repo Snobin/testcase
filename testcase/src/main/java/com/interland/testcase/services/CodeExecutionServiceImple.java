@@ -23,13 +23,16 @@ import org.python.core.Py;
 import org.python.core.PyCode;
 import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CodeRequest;
 import com.interland.testcase.dto.CodeResponse;
+import com.interland.testcase.entity.CodeExecutionResult;
 import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.TestCaseEntity;
 import com.interland.testcase.repository.QuestionRepository;
+import com.interland.testcase.repository.codeExecutionResultRepository;
 
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
@@ -37,211 +40,214 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	private static final Logger LOGGER = Logger.getLogger(CodeExecutionServiceImple.class.getName());
 	@Autowired
 	private QuestionRepository questionRepository;
+	@Autowired
+	private codeExecutionResultRepository codeExecutionResultRepository;
 
 	@Override
 	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
 		String code = codeRequest.getCode();
 		String language = codeRequest.getLangId();
-//		String input = codeRequest.getInput();
 
-		String questionId = codeRequest.getInput();
-		System.out.println(questionId);
-		// Retrieve test cases based on the question ID
+		String questionId = codeRequest.getQnId();
+
 		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionIdWithTestCases(questionId);
 
 		if (optionalQuestionEntity.isPresent()) {
 			List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
 
-			// Extract inputs and expectedOutputs from test cases
-			List<String> ele = testCases.stream().map(TestCaseEntity::getInputs).collect(Collectors.toList());
+			List<String> inputs = testCases.stream().map(TestCaseEntity::getInputs).collect(Collectors.toList());
 			List<String> expectedOutputs = testCases.stream().map(TestCaseEntity::getExpectedOutputs)
 					.collect(Collectors.toList());
 
+			List<CodeResponse> codeResponses;
+
 			switch (language) {
 			case "java":
-				return executeJavaCode(code, ele,expectedOutputs);
+				codeResponses = executeJavaCode(code, inputs, expectedOutputs);
+				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				return codeResponses;
+
 			case "c":
-				return executeCCode(code, ele,expectedOutputs);
+				codeResponses = executeCCode(code, inputs, expectedOutputs);
+				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				return codeResponses;
+
 			case "cpp":
-                return executeCppCode(code, ele, expectedOutputs);
+				codeResponses = executeCppCode(code, inputs, expectedOutputs);
+				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				return codeResponses;
+
 			case "python":
-				return executePythonCode(code, ele);
+				codeResponses = executePythonCode(code, inputs);
+				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				return codeResponses;
+
 			default:
 				LOGGER.warning("Unsupported language: " + language);
 				CodeResponse codeResponse = new CodeResponse();
 				codeResponse.setOutput("Unsupported language: " + language);
-				// return codeResponse;
-                return executeCppCode(code, ele, expectedOutputs);
+				codeResponses = executeCppCode(code, inputs, expectedOutputs);
+				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				return codeResponses;
 			}
 		} else {
-			// Handle the case where the questionId is not found
 			LOGGER.warning("Question not found for id: " + questionId);
-			// Handle accordingly, perhaps return an error response
 			return Collections.emptyList();
 		}
 	}
 
 	private List<CodeResponse> executeJavaCode(String code, List<String> inputElements, List<String> expectedOutputs) {
-	    List<CodeResponse> codeResponses = new ArrayList<>();
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-	    for (int i = 0; i < inputElements.size(); i++) {
-	        String input = inputElements.get(i);
-	        String expectedOutput = expectedOutputs.get(i);
+		for (int i = 0; i < inputElements.size(); i++) {
+			String input = inputElements.get(i);
+			String expectedOutput = expectedOutputs.get(i);
 
-	        try {
-	            String className = getClassName(code);
-	            File tempFile = createTempFile(className, ".java", code);
+			try {
+				String className = getClassName(code);
+				File tempFile = createTempFile(className, ".java", code);
+				String dockerVolumePath = "/tmp";
 
-	            String dockerVolumePath = "/tmp";
+				ProcessBuilder processBuilder;
 
-	            ProcessBuilder processBuilder;
+				if (input != null && !input.isEmpty()) {
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+							"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+									+ " && echo '" + input + "' | timeout 20s java " + className);
+				} else {
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+							"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+									+ " && timeout 20s java " + className);
+				}
 
-	            if (input != null && !input.isEmpty()) {
-	                // If input is provided, use echo to pass input to the Java program
-	                processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                        tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
-	                        "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
-	                                + " && echo '" + input + "' | timeout 20s java " + className);
-	            } else {
-	                // If no input is provided, run the Java program directly
-	                processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                        tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
-	                        "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
-	                                + " && timeout 20s java " + className);
-	            }
+				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
 
-	            CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+					codeResponse.setSuccess("true");
+					codeResponse.setMessage("Test case passed!");
+				} else {
+					codeResponse.setSuccess("false");
+					codeResponse.setMessage(
+							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+				}
 
-	            // Compare actual output with expected output
-	            if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
-	                codeResponse.setSuccess(true);
-	                codeResponse.setMessage("Test case passed!");
-	            } else {
-	                codeResponse.setSuccess(false);
-	                codeResponse.setMessage("Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
-	            }
+				codeResponses.add(codeResponse);
+				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+					break;
+				}
+			} catch (Exception e) {
+				LOGGER.severe("Error executing Java code: " + e.getMessage());
 
-	            codeResponses.add(codeResponse);
-	            if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-	                break;
-	            }
-	        } catch (Exception e) {
-	            LOGGER.severe("Error executing Java code: " + e.getMessage());
+				CodeResponse codeResponse = new CodeResponse();
+				codeResponse.setOutput("Error: " + e.getMessage());
+				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+				codeResponses.add(codeResponse);
+			}
+		}
 
-	            CodeResponse codeResponse = new CodeResponse();
-	            codeResponse.setOutput("Error: " + e.getMessage());
-	            codeResponse.setSuccess(false);
-	            codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
-	            codeResponses.add(codeResponse);
-	        }
-	    }
-
-	    return codeResponses;
+		return codeResponses;
 	}
-
 
 	private List<CodeResponse> executeCCode(String code, List<String> inputElements, List<String> expectedOutputs) {
-	    List<CodeResponse> codeResponses = new ArrayList<>();
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-	    for (int i = 0; i < inputElements.size(); i++) {
-	        String input = inputElements.get(i);
-	        String expectedOutput = expectedOutputs.get(i);
+		for (int i = 0; i < inputElements.size(); i++) {
+			String input = inputElements.get(i);
+			String expectedOutput = expectedOutputs.get(i);
 
-	        try {
-	            File tempFile = createTempFile("code", ".c", code);
-	            String dockerVolumePath = "/tmp";
+			try {
+				File tempFile = createTempFile("code", ".c", code);
+				String dockerVolumePath = "/tmp";
 
-	            ProcessBuilder processBuilder;
-	            if (input != null && !input.isEmpty()) {
-	                // If input is provided, use echo to pass input to the C program
-	                processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                        tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
-	                        "bash", "-c",
-	                        "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
-	                                + "/a.out && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
-	            } else {
-	                // If no input is provided, run the C program directly
-	                processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                        tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
-	                        "bash", "-c", "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o "
-	                                + dockerVolumePath + "/a.out && cd " + dockerVolumePath + " && ./a.out");
-	            }
+				ProcessBuilder processBuilder;
+				if (input != null && !input.isEmpty()) {
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
+							"bash", "-c",
+							"gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
+									+ "/a.out && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
+				} else {
+					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+							tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
+							"bash", "-c", "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o "
+									+ dockerVolumePath + "/a.out && cd " + dockerVolumePath + " && ./a.out");
+				}
 
-	            CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
 
-	            // Compare actual output with expected output
-	            if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
-	                codeResponse.setSuccess(true);
-	                codeResponse.setMessage("Test case passed!");
-	            } else {
-	                codeResponse.setSuccess(false);
-	                codeResponse.setMessage("Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
-	            }
+				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+					codeResponse.setSuccess("true");
+					codeResponse.setMessage("Test case passed!");
+				} else {
+					codeResponse.setSuccess("false");
+					codeResponse.setMessage(
+							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+				}
 
-	            codeResponses.add(codeResponse);
-	            if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-	                break;
-	            }
-	        } catch (Exception e) {
-	            LOGGER.severe("Error executing C code: " + e.getMessage());
+				codeResponses.add(codeResponse);
+				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+					break;
+				}
+			} catch (Exception e) {
+				LOGGER.severe("Error executing C code: " + e.getMessage());
 
-	            CodeResponse codeResponse = new CodeResponse();
-	            codeResponse.setOutput("Error: " + e.getMessage());
-	            codeResponse.setSuccess(false);
-	            codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
-	            codeResponses.add(codeResponse);
-	        }
-	    }
+				CodeResponse codeResponse = new CodeResponse();
+				codeResponse.setOutput("Error: " + e.getMessage());
+				codeResponse.setSuccess("false");
+				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+				codeResponses.add(codeResponse);
+			}
+		}
 
-	    return codeResponses;
+		return codeResponses;
 	}
 
-
 	private List<CodeResponse> executeCppCode(String code, List<String> inputElements, List<String> expectedOutputs) {
-	    List<CodeResponse> codeResponses = new ArrayList<>();
+		List<CodeResponse> codeResponses = new ArrayList<>();
 
-	    for (int i = 0; i < inputElements.size(); i++) {
-	        String input = inputElements.get(i);
-	        String expectedOutput = expectedOutputs.get(i);
+		for (int i = 0; i < inputElements.size(); i++) {
+			String input = inputElements.get(i);
+			String expectedOutput = expectedOutputs.get(i);
 
-	        try {
-	            File tempFile = createTempFile("code", ".cpp", code);
-	            String dockerVolumePath = "/tmp";
+			try {
+				File tempFile = createTempFile("code", ".cpp", code);
+				String dockerVolumePath = "/tmp";
 
-	            ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-	                    tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
-	                    "bash", "-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
-	                            + "/a.out" + " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
+				ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
+						"bash", "-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
+								+ "/a.out" + " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
 
-	            CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
 
-	            // Compare actual output with expected output
-	            if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
-	                codeResponse.setSuccess(true);
-	                codeResponse.setMessage("Test case passed!");
-	            } else {
-	                codeResponse.setSuccess(false);
-	                codeResponse.setMessage("Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
-	            }
+				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+					codeResponse.setSuccess("true");
+					codeResponse.setMessage("Test case passed!");
+				} else {
+					codeResponse.setSuccess("false");
+					codeResponse.setMessage(
+							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+				}
 
-	            codeResponses.add(codeResponse);
-	            if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-	                break;
-	            }
-	        } catch (Exception e) {
-	            LOGGER.severe("Error executing C++ code: " + e.getMessage());
+				codeResponses.add(codeResponse);
+				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+					break;
+				}
+			} catch (Exception e) {
+				LOGGER.severe("Error executing C++ code: " + e.getMessage());
 
-	            CodeResponse codeResponse = new CodeResponse();
-	            codeResponse.setOutput("Error: " + e.getMessage());
-	            codeResponse.setSuccess(false);
-	            codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
-	            codeResponses.add(codeResponse);
-	        }
-	    }
+				CodeResponse codeResponse = new CodeResponse();
+				codeResponse.setOutput("Error: " + e.getMessage());
+				codeResponse.setSuccess("false");
+				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+				codeResponses.add(codeResponse);
+			}
+		}
 
-	    return codeResponses;
-	}	
-	
+		return codeResponses;
+	}
 
 	public static List<CodeResponse> executePythonCode(String code, List<String> inputElements) {
 		List<CodeResponse> codeResponses = new ArrayList<>();
@@ -249,38 +255,29 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		try (PythonInterpreter interpreter = new PythonInterpreter()) {
 			for (String inputElement : inputElements) {
 				CodeResponse codeResponse = new CodeResponse();
-				long startTime = System.currentTimeMillis(); // Record start time
+				long startTime = System.currentTimeMillis();
 
 				try {
-					// Use a StringWriter to capture the output
 					StringWriter outputWriter = new StringWriter();
 					interpreter.setOut(outputWriter);
-
-					// Set the input element in the Python interpreter
 					interpreter.set("element", inputElement);
 
-					// Execute the modified Python code
 					PyCode compiledCode = Py.compile_flags(code, "<string>", CompileMode.exec, new CompilerFlags());
 					interpreter.exec(compiledCode);
 
-					// Capture the output from the StringWriter
 					codeResponse.setOutput(outputWriter.toString());
 				} catch (Exception e) {
 					codeResponse.setOutput("Error: " + e.getMessage());
 				}
 
-				// Record end time
 				long endTime = System.currentTimeMillis();
 				long elapsedTime = endTime - startTime;
 
-				// Set processing time
 				codeResponse.setProcessingTime(elapsedTime);
 
-				// Add the CodeResponse to the list
 				codeResponses.add(codeResponse);
 			}
 		} catch (Exception e) {
-			// Handle Jython initialization error
 			CodeResponse errorResponse = new CodeResponse();
 			errorResponse.setOutput("Error: " + e.getMessage());
 			codeResponses.add(errorResponse);
@@ -290,63 +287,119 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	}
 
 	private CodeResponse executeProcess(ProcessBuilder processBuilder, File tempFile) {
-	    ExecutorService executorService = Executors.newSingleThreadExecutor();
-	    CodeResponse codeResponse = new CodeResponse();
+		ExecutorService executorService = Executors.newSingleThreadExecutor();
+		CodeResponse codeResponse = new CodeResponse();
 
-	    long startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 
-	    try {
-	        Future<Void> future = executorService.submit(() -> {
-	            try {
-	                processBuilder.redirectErrorStream(true);
-	                Process process = processBuilder.start();
+		try {
+			Future<Void> future = executorService.submit(() -> {
+				try {
+					executeAndCaptureOutput(processBuilder, codeResponse, tempFile);
+				} catch (Exception e) {
+					handleTimeoutError(codeResponse);
+				}
+			}, null);
 
-	                int exitCode = process.waitFor();
+			future.get(10, TimeUnit.SECONDS);
+		} catch (Exception e) {
+			handleExecutionError(codeResponse);
+		} finally {
+			long endTime = System.currentTimeMillis();
+			long elapsedTime = endTime - startTime;
+			codeResponse.setProcessingTime(elapsedTime);
 
-	                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	                StringBuilder output = new StringBuilder();
-	                String line;
-	                while ((line = reader.readLine()) != null) {
-	                    output.append(line);
-	                }
+			executorService.shutdownNow();
+		}
 
-	                tempFile.delete();
-
-	                codeResponse.setOutput(output.toString());
-	            } catch (Exception e) {
-	                LOGGER.warning("Execution timed out after 10 seconds");
-	                codeResponse.setOutput("Error: Execution timed out after 10 seconds");
-	            }
-	        }, null);
-
-	        future.get(10, TimeUnit.SECONDS);
-	    } catch (Exception e) {
-	        LOGGER.severe("Error executing process: " + e.getMessage());
-	        codeResponse.setOutput("Error: Execution timed out after 10 seconds");
-	        codeResponse.setSuccess(false);
-	        codeResponse.setMessage("Test case failed. Error: Execution timed out after 10 seconds");
-	    } finally {
-	        long endTime = System.currentTimeMillis();
-	        long elapsedTime = (endTime - startTime);
-	        // Adding processing time to CodeResponse
-	        codeResponse.setProcessingTime(elapsedTime);
-
-	        executorService.shutdownNow();
-	    }
-
-	    return codeResponse;
+		return codeResponse;
 	}
-	private File createTempFile(String prefix, String suffix, String code) throws Exception {
+
+	private void executeAndCaptureOutput(ProcessBuilder processBuilder, CodeResponse codeResponse, File tempFile)
+			throws IOException, InterruptedException {
+		processBuilder.redirectErrorStream(true);
+		Process process = processBuilder.start();
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		StringBuilder output = new StringBuilder();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			output.append(line);
+		}
+
+		tempFile.delete();
+
+		codeResponse.setOutput(output.toString());
+	}
+
+	private void handleTimeoutError(CodeResponse codeResponse) {
+		LOGGER.warning("Execution timed out after 10 seconds");
+		codeResponse.setOutput("Error: Execution timed out after 10 seconds");
+	}
+
+	private void handleExecutionError(CodeResponse codeResponse) {
+		LOGGER.severe("Error executing process");
+		codeResponse.setOutput("Error: Execution timed out after 10 seconds");
+		codeResponse.setSuccess("false");
+		codeResponse.setMessage("Test case failed. Error: Execution timed out after 10 seconds");
+	}
+
+	private File createTempFile(String prefix, String suffix, String code) throws IOException {
 		File tempFile = File.createTempFile(prefix, suffix);
 		try (FileWriter fileWriter = new FileWriter(tempFile)) {
-			fileWriter.write(code);
+			writeCodeToFile(code, fileWriter);
 		}
 		return tempFile;
 	}
 
+	private void writeCodeToFile(String code, FileWriter fileWriter) throws IOException {
+		fileWriter.write(code);
+	}
+
 	private String getClassName(String code) {
-		String className = code.replaceAll("(?s).*?\\bclass\\s+(\\w+).*", "$1");
-		return className;
+		return extractClassNameFromCode(code);
+	}
+
+	private String extractClassNameFromCode(String code) {
+		return code.replaceAll("(?s).*?\\bclass\\s+(\\w+).*", "$1");
+	}
+
+	public void saveResultsInDatabase(List<CodeResponse> codeResponses, CodeRequest codeRequest,
+			List<TestCaseEntity> testCases, List<String> expectedOutputs) {
+		List<String> inputs = testCases.stream().map(TestCaseEntity::getInputs).collect(Collectors.toList());
+
+		for (int i = 0; i < inputs.size(); i++) {
+			CodeResponse codeResponse = codeResponses.get(i);
+			String input = inputs.get(i);
+			String expectedOutput = expectedOutputs.get(i);
+
+			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
+
+			try {
+				codeExecutionResultRepository.save(result);
+			} catch (DataIntegrityViolationException e) {
+				handleSaveResultError(e);
+			}
+		}
+	}
+
+	private CodeExecutionResult createCodeExecutionResult(CodeRequest codeRequest, CodeResponse codeResponse,
+			String input, String expectedOutput) {
+		CodeExecutionResult result = new CodeExecutionResult();
+		result.setStudentId(codeRequest.getStudentId());
+		result.setOutput(codeResponse.getOutput());
+		result.setExpectedOutput(expectedOutput);
+		result.setTestcase(input);
+		result.setQuestionId(codeRequest.getQnId());
+		result.setCode(codeRequest.getCode());
+		result.setProcessingTime(codeResponse.getProcessingTime());
+		result.setLanguageId(codeRequest.getLangId());
+		result.setSuccess(codeResponse.getSuccess());
+		return result;
+	}
+
+	private void handleSaveResultError(DataIntegrityViolationException e) {
+		System.out.println("Error saving result: " + e.getMessage());
 	}
 
 }

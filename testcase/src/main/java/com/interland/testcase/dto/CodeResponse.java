@@ -2,14 +2,24 @@ package com.interland.testcase.dto;
 
 public class CodeResponse {
 	 String output;
-	 boolean Success;
+	 String Success;
 	 String Message;
+	 String input;
 
-	public boolean isSuccess() {
+	public String getInput() {
+		return input;
+	}
+
+	public void setInput(String input) {
+		this.input = input;
+	}
+
+
+	public String getSuccess() {
 		return Success;
 	}
 
-	public void setSuccess(boolean success) {
+	public void setSuccess(String success) {
 		Success = success;
 	}
 
@@ -30,7 +40,6 @@ public class CodeResponse {
 	} 
 	private long processingTime;
 
-    // Getter and Setter methods for output and processingTime
 
     public void setProcessingTime(long processingTime) {
         this.processingTime = processingTime;

@@ -16,40 +16,35 @@ public class QuestionEntity {
     @CollectionTable(name = "test_cases", joinColumns = @JoinColumn(name = "id"))
     private List<TestCaseEntity> testCases;
 
-    // Constructors, getters, and setters...
-
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getQuestionId() {
-		return questionId;
-	}
+    public String getQuestionId() {
+        return questionId;
+    }
 
-	public void setQuestionId(String questionId) {
-		this.questionId = questionId;
-	}
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId;
+    }
 
-	public List<TestCaseEntity> getTestCases() {
-		return testCases;
-	}
+    public List<TestCaseEntity> getTestCases() {
+        return testCases;
+    }
 
-	public void setTestCases(List<TestCaseEntity> testCases) {
-		this.testCases = testCases;
-	}
+    public void setTestCases(List<TestCaseEntity> testCases) {
+        this.testCases = testCases;
+    }
 
-	public QuestionEntity() {
-        // Default constructor required by JPA
+    public QuestionEntity() {
     }
 
     public QuestionEntity(String questionId, List<TestCaseEntity> testCases) {
         this.questionId = questionId;
         this.testCases = testCases;
     }
-
-    // Additional methods, if needed...
 }
