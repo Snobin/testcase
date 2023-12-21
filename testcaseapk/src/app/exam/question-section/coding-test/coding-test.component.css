@@ -23,6 +23,7 @@ pre {
     word-wrap: break-word;
     height: 100%;
     overflow-y: auto;
+    text-align: left;
 }
 .code-output {
     display: block;
