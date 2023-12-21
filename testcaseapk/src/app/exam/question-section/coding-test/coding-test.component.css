@@ -63,9 +63,9 @@ pre {
 }
 
 
-::ng-deep .p-splitter-gutter {
-    background-color: #3498db; /* Set the background color of the gutter */
-  }
+/* ::ng-deep .p-splitter-gutter {
+    background-color: #ff5500; /* Set the background color of the gutter */
+  /* } */
   .textarea{
     height: 100%;
     width: 100%;
