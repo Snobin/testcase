@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
 username: any;
 password: any;
+isAdmin: any=false;
 
   constructor(private router: Router, public obj:AppComponent) { }
 
@@ -21,7 +22,11 @@ password: any;
 
   login(){
     this.obj.isLoggedIn=true;
-    this.router.navigate(['./exam/instructions']);
+    if (this.isAdmin==false) {
+      this.router.navigate(['./exam/instructions']);
+    } else {
+      this.router.navigate(['./admin']);
+    }
     Swal.fire({
       text: 'You are ready to go!',
       showConfirmButton: false,

@@ -8,5 +8,7 @@ export class McqQuestions {
     optionD:String;
     answers:String;
     score:String;
+    file:string;
+    fileName:string;
     status:String;
 }

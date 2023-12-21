@@ -31,19 +31,25 @@
 <div class="container" style="margin-top: 75px;max-width: 400px;">
     <div class="card">
         <div class="card-body" style="margin-bottom: 10px;margin-top: 20px;">
-            <h2 class="text-center text-dark" style="margin-bottom: 60px;">Login</h2>
+            <h2 class="text-center text-dark" style="margin-bottom: 30px;">Login</h2>
             <form (ngSubmit)="login()">
-            <div class="form-group text-dark" style="margin-bottom: 60px;">
-                <label for="username" style="margin-bottom: 10px;">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your username" [(ngModel)]="username">
-            </div>
-            <div class="form-group text-dark" style="margin-bottom: 60px;">
-                <label for="password" style="margin-bottom: 10px;">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password" [(ngModel)]="password">
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-dark" style="margin-top: 20px;">Login</button>
-            </div>
+                <hr>
+                <div class="col-md-12 form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="admin" style="margin-left: 220px;" (change)="isAdmin=true">
+                    <label class="form-check-label float-end" for="admin">Admin</label>
+                </div>
+                <hr>
+                <div class="form-group text-dark" style="margin-bottom: 60px;">
+                    <label for="username" style="margin-bottom: 10px;">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your username" [(ngModel)]="username">
+                </div>
+                <div class="form-group text-dark" style="margin-bottom: 40px;">
+                    <label for="password" style="margin-bottom: 10px;">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" [(ngModel)]="password">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-dark" style="margin-top: 20px;">Login</button>
+                </div>
             </form>
         </div>
     </div>

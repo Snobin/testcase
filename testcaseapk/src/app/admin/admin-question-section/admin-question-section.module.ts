@@ -16,7 +16,7 @@ import { McqUpdateComponent } from './mcq-questions/mcq-update/mcq-update.compon
   imports: [
     CommonModule,
     AdminQuestionSectionRoutingModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class AdminQuestionSectionModule { }
