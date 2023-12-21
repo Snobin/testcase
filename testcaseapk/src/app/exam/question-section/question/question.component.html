@@ -1,3 +1,4 @@
+
 <div class="custom-card">
   <div class="card-body">
     <div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;min-width: 954px;">
@@ -11,9 +12,11 @@
                 [class.btn-outline-dark]="currentPage!=page&&students[i].status==''" 
                 (click)="setPage(page)">{{page}}</button>
           </div>
+
         </div>
         <hr>
       </div>
+
       <div class="col-md-8 col-sm-8" style="padding-left: 10px;padding-top: 10px;padding-right: 10px;width: 66.66666666%;min-width: 310px;">
         <div class="card" style="overflow: hidden;height: min-content;background-color: #c9d4e6;">
           <div class="card-body">
@@ -70,6 +73,7 @@
         <div class="card btn-group custom-row item-center col-md-12 col-sm-12" style="padding: 5px;">
           <button class="btn btn-success col-md-6 col-sm-6">Attempted     : {{attemptedNo}}</button>
           <button class="btn btn-danger col-md-6 col-sm-6">Not Attempted : {{notAttemptedNo}}</button>
+
         </div>
         <hr>
       </div>

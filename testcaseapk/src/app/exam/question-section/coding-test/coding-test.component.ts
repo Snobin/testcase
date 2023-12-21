@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
+
 import { CodeRequest } from '../../model/code-request';
 import * as Prism from 'prismjs';
+
+
+
+
 
 @Component({
   selector: 'app-coding-test',
@@ -9,14 +14,16 @@ import * as Prism from 'prismjs';
   styleUrls: ['./coding-test.component.css']
 })
 export class CodingTestComponent implements OnInit {
-  
+
+
+
   selectedLanguage: string = '';
   testCases: string[] = [];
   result: any = { success: true, output: '' };
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
-  case: any = 1;
+  case: any=1;
   testInput11: any;
   testInput12: any;
   testInput21: any;
@@ -34,7 +41,6 @@ export class CodingTestComponent implements OnInit {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
-        this.codereq.elements = [this.testInput11, this.testInput12];
 
         const response = await this.apiService.compileAndTest(this.codereq).toPromise();
 
@@ -66,32 +72,15 @@ export class CodingTestComponent implements OnInit {
     this.selectedLanguage = '';
   }
 
-  highlightCode() {
+  highlightCode(){
     Prism.highlightElement(document.getElementById('codeOutput'));
   }
 
   onCodeInput(event: any) {
-    // Get the new input
-    const newInput = event.target.innerText;
-    // If the new input is different from the current code, update the code
-    if (this.code !== newInput) {
-      this.code = newInput;
-      // Highlight the updated code
-      Prism.highlightElement(document.getElementById('codeInput'));
 
-      // require the highlight.js library, including all languages
-      // const hljs = require('./highlight.js');
-      
-      // const hljs = require('highlight.js');
+    this.code = event.target.textContent || event.target.innerText;
+    Prism.highlightElement(document.getElementById('codeInput'));
 
-      // document.querySelectorAll('pre code').forEach((el) => {
-      //   hljs.highlightBlock(el);
-      // });
-      // const highlightedCode = hljs.highlight(
-      //   '<span>Hello World!</span>',
-      //   { language: 'xml' }
-      // ).value
-      // this.code = highlightedCode;
-    }
   }
+
 }
