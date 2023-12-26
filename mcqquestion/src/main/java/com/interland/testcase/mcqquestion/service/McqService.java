@@ -1,5 +1,6 @@
 package com.interland.testcase.mcqquestion.service;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.interland.testcase.mcqquestion.dto.Dto;
@@ -14,5 +15,5 @@ public interface McqService {
 	public ServiceResponse updateQuestion(Dto dto1);
 	public ServiceResponse verifyQuestion(Dto dto2) throws RecordNotFoundException;
 	public ServiceResponse delete(String questionNo, String questionId) throws RecordNotFoundException;
-
+	public JSONArray getQuestions();
 }

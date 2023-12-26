@@ -1,12 +1,16 @@
 package com.interland.testcase.mcqquestion.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.BeanUtils;
@@ -41,6 +45,8 @@ public class McqServiceImpl implements McqService {
 	FileRepository filerep;
 	@Autowired
 	MessageSource messageSource;
+	
+	private static Logger logger = LogManager.getLogger(McqServiceImpl.class);
 	
 	
 	private JSONArray countByStatus() {
@@ -81,7 +87,7 @@ public class McqServiceImpl implements McqService {
 				obj.put(Constants.OPTIONA, mcqent.getOptionA());
 				obj.put(Constants.OPTIONB, mcqent.getOptionB());
 				obj.put(Constants.OPTIONC, mcqent.getOptionC());
-				obj.put(Constants.OPTIOND, mcqent.getOptionC());
+				obj.put(Constants.OPTIOND, mcqent.getOptionD());
 				obj.put(Constants.ANSWERS, mcqent.getAnswers());
 				obj.put(Constants.SCORE, mcqent.getScore());
 			
@@ -254,8 +260,36 @@ public class McqServiceImpl implements McqService {
 		// TODO Auto-generated method stub
 		return null;
 	}
- 	
+
+
+	@SuppressWarnings(value = "unchecked")
+	@Override
+	public JSONArray getQuestions() {
+		int i=1;
+		JSONArray array = new JSONArray();
+		try {
+			List<McqEntity> questions = mcqrep.findAll();
+			Collections.shuffle(questions);
+			for (McqEntity question : questions) {
+			    int index = Arrays.asList(questions).indexOf(question);
+				JSONObject obj = new JSONObject();
+				obj.put(Constants.QUESTIONNO, question.getPrimarykey().getQuestionNo());
+				obj.put(Constants.QUESTIONID, question.getPrimarykey().getQuestionId());
+				obj.put(Constants.NO, i++);
+				obj.put(Constants.DESC, question.getQuestion());
+				obj.put(Constants.OPTIONA, question.getOptionA());
+				obj.put(Constants.OPTIONB, question.getOptionB());
+				obj.put(Constants.OPTIONC, question.getOptionC());
+				obj.put(Constants.OPTIOND, question.getOptionD());
+				array.add(obj);
+			}
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+		}
+		return array;
 	}
+ 	
+}
 	
 
 

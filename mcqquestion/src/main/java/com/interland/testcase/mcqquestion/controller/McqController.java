@@ -1,5 +1,6 @@
 package com.interland.testcase.mcqquestion.controller;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -15,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import jakarta.validation.Valid;
 import com.interland.testcase.mcqquestion.dto.Dto;
 import com.interland.testcase.mcqquestion.dto.ServiceResponse;
 import com.interland.testcase.mcqquestion.exception.RecordNotFoundException;
 import com.interland.testcase.mcqquestion.service.McqService;
-
-import jakarta.validation.Valid;
-
 
 
 @RestController   
@@ -64,14 +62,16 @@ public class McqController {
 	}
 	
 	
-	
-	
-	
 	@DeleteMapping("/deleteQuestion/{questionNo}/{questionId}")
 	public ResponseEntity<ServiceResponse> deleteCardUserById(@PathVariable String questionNo , @PathVariable String questionId) throws RecordNotFoundException
 	 {
 		return new ResponseEntity<>(mcqservice.delete(questionNo, questionId), new HttpHeaders(),
 				HttpStatus.OK);
+	}
+	
+	@GetMapping("/question-list")
+	public ResponseEntity<JSONArray> getQuestions(){
+		return new ResponseEntity<>(mcqservice.getQuestions(), new HttpHeaders(), HttpStatus.OK);
 	}
 
 
