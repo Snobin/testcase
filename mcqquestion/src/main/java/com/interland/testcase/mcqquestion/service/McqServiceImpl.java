@@ -271,7 +271,6 @@ public class McqServiceImpl implements McqService {
 			List<McqEntity> questions = mcqrep.findAll();
 			Collections.shuffle(questions);
 			for (McqEntity question : questions) {
-			    int index = Arrays.asList(questions).indexOf(question);
 				JSONObject obj = new JSONObject();
 				obj.put(Constants.QUESTIONNO, question.getPrimarykey().getQuestionNo());
 				obj.put(Constants.QUESTIONID, question.getPrimarykey().getQuestionId());
