@@ -28,6 +28,8 @@ public static class MESSAGE_STATUS{
 	public final static String SUCCESS = "SUCCESS";
 	public final static String FAILED = "FAILED";
 	public final static String DELETED = "DELETED";
+	public final static String PROCESSED = "PROCESSED";
+	public final static String VERIFIED = "VERIFIED";
 	
 }
 }

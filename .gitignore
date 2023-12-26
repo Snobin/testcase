@@ -1,5 +1,9 @@
 /.metadata/
 
-/src/main/resources/application.properties
+testcase/src/main/resources/static/logfile.log
 *.log
+testcase/src/main/resources/logback.xmls
+testcase/src/main/resources/logback.xml
+testcase/src/main/resources/application.properties
+
 *.properties

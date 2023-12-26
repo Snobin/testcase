@@ -1,7 +1,6 @@
 import { Component , ElementRef, OnInit } from '@angular/core';
-import { Student } from '../../model/student';
+import { Student } from '../model/student';
 import Swal from 'sweetalert2';
-import { Pages } from '../../model/pages';
 
 declare var $:any;
 declare var jQuery:any;
@@ -190,9 +189,11 @@ export class QuestionComponent implements OnInit {
   pages: number[] = [];
 
   students:Student[] = [];
+
   totalPages:number;
   attemptedNo: any = 0;
   notAttemptedNo: any;
+
 
   constructor(private el:ElementRef) { }
 
@@ -215,6 +216,7 @@ export class QuestionComponent implements OnInit {
     this.displayedQuestions = this.Questions.slice(startIndex, startIndex + this.pageSize);
     this.totalPages = Math.ceil(this.Questions.length / this.pageSize);
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+
     for (let index = 0; index < page; index++) {
       const existingStudentIndex = this.students.findIndex(student => student.questionId === (index+1).toString());
       if (existingStudentIndex !== -1) {
@@ -223,6 +225,7 @@ export class QuestionComponent implements OnInit {
         }
       }
     }
+
   }
   
   next(questionId:any){
@@ -300,6 +303,7 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+
   status(){
     for (let index = 0; index < this.totalPages; index++) {
       if (this.students[index].status=='attempted') {
@@ -308,6 +312,7 @@ export class QuestionComponent implements OnInit {
       }
     }
   }
+
 
   scrollToTarget() {
     var no = this.currentPage;
