@@ -9,28 +9,28 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 
 const routes: Routes = [
   {
-    path:'signup',component:SignupComponent
+    path: 'signup', component: SignupComponent
   },
   {
-    path:'',redirectTo:"signup",pathMatch:'full'
+    path: '', redirectTo: "signup", pathMatch: 'full'
   },
   {
-    path:'login',
-    component:LoginComponent,
-    pathMatch:'full'
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full'
   },
   {
-    path:'admin',
-    component:DashboardComponent,
+    path: 'admin',
+    component: DashboardComponent,
     // canActivate:[AdminGuard],
-    children:[
+    children: [
       {
-        path:'',
-        component:WelcomeComponent
+        path: '',
+        component: WelcomeComponent
       },
       {
-        path:'profile',
-        component:ProfileComponent
+        path: 'profile',
+        component: ProfileComponent
       }
     ]
   }
