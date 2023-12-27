@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   }
+  hidePassword = true;
 
   constructor(private snack:MatSnackBar, private login:LoginService) { }
 
@@ -48,6 +49,10 @@ export class LoginComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
 
 }

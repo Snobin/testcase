@@ -1,3 +1,14 @@
 .full-width{
     width: 100%;
 }
+
+.profile-picture {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make it a circle */
+    object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.pointer {
+    cursor: pointer;
+}
