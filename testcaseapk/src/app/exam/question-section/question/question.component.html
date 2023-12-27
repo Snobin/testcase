@@ -21,10 +21,11 @@
         <div class="card" style="overflow: hidden;height: min-content;background-color: #c9d4e6;">
           <div class="card-body">
             <div class="col-md-12 col-sm-12">
-              <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}
-                <span class="badge bg-success float-end" *ngIf="students[question.no-1].status=='attempted'">Attempted</span>
-                <span class="badge bg-danger float-end" *ngIf="students[question.no-1].status=='not attempted'||students[question.no-1].status==''">Not Attempted</span>
-                </h6>
+              <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}</h6>
+            </div>
+            <div>
+              <span class="badge bg-success float-end" *ngIf="students[question.no-1].status=='attempted'">Attempted</span>
+              <span class="badge bg-danger float-end" *ngIf="students[question.no-1].status=='not attempted'||students[question.no-1].status==''">Not Attempted</span>
             </div>
             <hr>
             <div id="option" class="col-md-12 col-sm-12 options-margin">
