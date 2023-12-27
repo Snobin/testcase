@@ -20,6 +20,8 @@ import {MatCardModule} from '@angular/material/card';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -39,8 +41,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule
   ],
   providers: [],
