@@ -39,7 +39,8 @@
                                                 <select
                                                     class="float-end"
                                                     style="border-radius: 10px;"
-                                                    [(ngModel)]="selectedLanguage">
+                                                    [(ngModel)]="selectedLanguage"
+                                                    (change)="onChangeLang()">
                                                     <option
                                                         value="java">
                                                         Java
@@ -60,18 +61,35 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        >
-                                        <textarea id="editor" #editor
-                                            type="text"
-                                            class="form-control"
-                                            [(ngModel)]="code">
-                                        </textarea>
+                                    <div class="row">
+                                        <div class="row col-md-12">
+                                            <h6 class="col-md-4">Enter Your Code:</h6>
+                                            <div class="col-md-8 float-end">
+                                                <button class="btn btn-danger mt-3"
+                                                    style="margin: 10px;"
+                                                    (click)="clear()">Clear</button>
+                                                <button class="btn btn-danger mt-3"
+                                                    style="margin: 10px;"
+                                                    (click)="save()">Save</button>
+                                                <button class="btn btn-success mt-3"
+                                                    style="margin: 10px;"
+                                                    (click)="executeCode()">Run</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <textarea id="editor" #editor
+                                                type="text"
+                                                class="form-control">
+                                            </textarea>
+                                        </div>
                                     </div>
                                     <div class="float-end">
                                         <button class="btn btn-danger mt-3"
                                             style="margin: 10px;"
                                             (click)="clear()">Clear</button>
+                                        <button class="btn btn-danger mt-3"
+                                            style="margin: 10px;"
+                                            (click)="save()">Save</button>
                                         <button class="btn btn-success mt-3"
                                             style="margin: 10px;"
                                             (click)="executeCode()">Run</button>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CodeMirror -->
+  <link rel="stylesheet" href="codemirror/codemirror.css">
+  <script src="codemirror/codemirror.js"></script>
+  <script src="codemirror/clike/clike.js"></script>
+  <link rel="stylesheet" href="codemirror/theme/dracula.css">
+  <script src="codemirror/edit/closebrackets.js"></script>
+
+</head>
+<body>
+    <div class="row m-3">
+        <div class="col">
+            <textarea id="editor" type="text" class="form-control"></textarea>
+        </div>
+    </div>
+    
+<script>
+    // Initialize CodeMirror
+    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+      mode: "text/x-c++src", // Set the initial mode
+      lineNumbers: true,   // Enable line numbers
+      theme: 'dracula',     // Specify a colorscheme
+      autoCloseBrackets: true,
+    });
+
+    // Set editor size based on window width
+    var width = window.innerWidth;
+    editor.setSize(0.7 * width, "500");
+</script>
+</body>
+</html>
