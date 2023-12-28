@@ -9,23 +9,50 @@ public class McqEmbedded implements Serializable {
 	
 	
 	@Column(name="questionNo")
-	private String questionNo;
-	
-	@Column(name="questionId")
 	private String questionId;
 	
+	@Column(name="questionId")
+	private String questionType;
 	
-	public String getQuestionNo() {
-		return questionNo;
-	}
-	public void setQuestionNo(String questionNo) {
-		this.questionNo = questionNo;
-	}
+	
+
 	public String getQuestionId() {
 		return questionId;
 	}
+
+
+
 	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
 	}
+
+
+
+	public String getQuestionType() {
+		return questionType;
+	}
+
+
+
+	public void setQuestionType(String questionType) {
+		this.questionType = questionType;
+	}
+
+
+
+	public McqEmbedded(String questionId, String questionType) {
+		super();
+		this.questionId = questionId;
+		this.questionType = questionType;
+	}
+
+
+
+	public McqEmbedded() {
+		super();
+	}
+	
+	
+	
 	
 }

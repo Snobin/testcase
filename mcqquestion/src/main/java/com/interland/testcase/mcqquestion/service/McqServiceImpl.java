@@ -80,7 +80,7 @@ public class McqServiceImpl implements McqService {
 			JSONArray countByStatus = countByStatus();
 			for (McqEntity mcqent : mcqentList) {
 				JSONObject obj = new JSONObject();
-				obj.put(Constants.QUESTIONNO, mcqent.getPrimarykey().getQuestionNo());
+				obj.put(Constants.QUESTIONTYPE, mcqent.getPrimarykey().getQuestionType());
 				obj.put(Constants.QUESTIONID, mcqent.getPrimarykey().getQuestionId());
 				obj.put(Constants.QUESTION, mcqent.getQuestion());
 				obj.put(Constants.STATUS, mcqent.getStatus());
@@ -106,11 +106,11 @@ public class McqServiceImpl implements McqService {
 	
 	
 	
-	public Dto getById(String questionId, String questionNo) {
+	public Dto getById(String questionId, String questionType) {
 		
 		McqEmbedded bed = new McqEmbedded();
 		bed.setQuestionId(questionId);
-		bed.setQuestionNo(questionNo);
+		bed.setQuestionType(questionType);
 		
 		Optional<McqEntity>entity1=mcqrep.findById(bed); 
 		
@@ -118,7 +118,7 @@ public class McqServiceImpl implements McqService {
 	
 		
 		Dto dto =new Dto();
-		dto.setQuestionNo(entity.getPrimarykey().getQuestionNo());
+		dto.setQuestionType(entity.getPrimarykey().getQuestionType());
 		dto.setQuestionId(entity.getPrimarykey().getQuestionId());
 		dto.setQuestion(entity.getQuestion());
 		dto.setOptionA(entity.getOptionA());
@@ -140,7 +140,7 @@ public class McqServiceImpl implements McqService {
 		
 		McqEmbedded obj=new McqEmbedded();
 		obj.setQuestionId(dto.getQuestionId());
-		obj.setQuestionNo(dto.getQuestionNo());
+		obj.setQuestionType(dto.getQuestionType());
 		Optional<McqEntity> existingQuestion = mcqrep.findById(obj);
 		if(existingQuestion.isPresent())
 		{
@@ -188,7 +188,7 @@ public class McqServiceImpl implements McqService {
 		McqEmbedded emb= new McqEmbedded();
 		try {
 			emb.setQuestionId(dto1.getQuestionId());
-			emb.setQuestionNo(dto1.getQuestionNo());
+			emb.setQuestionType(dto1.getQuestionType());
 			mcqentity.setPrimarykey(emb);
 			
 			Optional<McqEntity> question = mcqrep.findById(emb);
@@ -221,11 +221,11 @@ public class McqServiceImpl implements McqService {
     
     
     @Override
-	public ServiceResponse delete(String questionNo, String questionId) throws RecordNotFoundException {
+	public ServiceResponse delete(String questionId, String questionType) throws RecordNotFoundException {
 		try {
 			McqEmbedded emb2 = new McqEmbedded();
 			
-			emb2.setQuestionNo(questionNo);
+			emb2.setQuestionType(questionType);
 			emb2.setQuestionId(questionId);
 			Optional<McqEntity> findByKey = mcqrep.findById(emb2);
 			if (!findByKey.isPresent()) {
@@ -272,7 +272,7 @@ public class McqServiceImpl implements McqService {
 			Collections.shuffle(questions);
 			for (McqEntity question : questions) {
 				JSONObject obj = new JSONObject();
-				obj.put(Constants.QUESTIONNO, question.getPrimarykey().getQuestionNo());
+				obj.put(Constants.QUESTIONNO, question.getPrimarykey().getQuestionType());
 				obj.put(Constants.QUESTIONID, question.getPrimarykey().getQuestionId());
 				obj.put(Constants.NO, i++);
 				obj.put(Constants.DESC, question.getQuestion());

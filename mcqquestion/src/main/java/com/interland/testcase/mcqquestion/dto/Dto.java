@@ -3,9 +3,9 @@ package com.interland.testcase.mcqquestion.dto;
 public class Dto {
 	
 	
-	private String questionNo;
-	
 	private String questionId;
+	
+	private String questionType;
 	
 	private String question;
 	
@@ -27,86 +27,133 @@ public class Dto {
 
 	
 	private String status;
-	
-	
-	
-	public byte[] getFile() {
-		return file;
-	}
-	public void setFile(byte[] file) {
-		this.file = file;
-	}
-	public String getFileName() {
-		return fileName;
-	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-	public String getQuestionNo() {
-		return questionNo;
-	}
-	public void setQuestionNo(String questionNo) {
-		this.questionNo = questionNo;
-	}
+
+
 	public String getQuestionId() {
 		return questionId;
 	}
+
+
 	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
 	}
+
+
+	public String getQuestionType() {
+		return questionType;
+	}
+
+
+	public void setQuestionType(String questionType) {
+		this.questionType = questionType;
+	}
+
+
 	public String getQuestion() {
 		return question;
 	}
+
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
+
 	public String getOptionA() {
 		return optionA;
 	}
+
+
 	public void setOptionA(String optionA) {
 		this.optionA = optionA;
 	}
+
+
 	public String getOptionB() {
 		return optionB;
 	}
+
+
 	public void setOptionB(String optionB) {
 		this.optionB = optionB;
 	}
+
+
 	public String getOptionC() {
 		return optionC;
 	}
+
+
 	public void setOptionC(String optionC) {
 		this.optionC = optionC;
 	}
+
+
 	public String getOptionD() {
 		return optionD;
 	}
+
+
 	public void setOptionD(String optionD) {
 		this.optionD = optionD;
 	}
+
+
 	public String getAnswers() {
 		return answers;
 	}
+
+
 	public void setAnswers(String answers) {
 		this.answers = answers;
 	}
+
+
 	public String getScore() {
 		return score;
 	}
+
+
 	public void setScore(String score) {
 		this.score = score;
 	}
+
+
+	public byte[] getFile() {
+		return file;
+	}
+
+
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
+
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
 	public String getStatus() {
 		return status;
 	}
+
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Dto(String questionNo, String questionId, String question, String optionA, String optionB, String optionC,
+
+
+	public Dto(String questionId, String questionType, String question, String optionA, String optionB, String optionC,
 			String optionD, String answers, String score, byte[] file, String fileName, String status) {
 		super();
-		this.questionNo = questionNo;
 		this.questionId = questionId;
+		this.questionType = questionType;
 		this.question = question;
 		this.optionA = optionA;
 		this.optionB = optionB;
@@ -118,10 +165,11 @@ public class Dto {
 		this.fileName = fileName;
 		this.status = status;
 	}
+
+
 	public Dto() {
 		super();
 	}
-	
 	
 
 }

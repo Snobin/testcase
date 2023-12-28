@@ -8,6 +8,7 @@ public class Constants {
 	public final static String DESC="desc";
 	public final static String QUESTIONID="questionId";
 	public final static String QUESTION="question";
+	public final static String QUESTIONTYPE="questionType";
 	public final static String OPTIONA="optionA";
 	public final static String OPTIONB="optionB";
 	public final static String OPTIONC="optionC";
