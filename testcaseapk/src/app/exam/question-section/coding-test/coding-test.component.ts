@@ -53,7 +53,7 @@ export class CodingTestComponent implements OnInit {
         mode: "text/x-java",
         theme: "dracula",
       });
-      this.output.setSize(window, 165);
+      this.output.setSize(window, 173);
       // Set the code to the CodeMirror output
       this.output.setValue('');
     }
