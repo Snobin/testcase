@@ -32,14 +32,14 @@
                                     <div class="custom-row">
                                         <div class="custom-row col-md-12"
                                             style="background-color: #c9d4e6;">
-                                            <div class="col-md-4"
-                                                style="padding-top: 8px;padding-left: 2px;">
-                                                Enter Your Code:
+                                            <div class="col-md-3"
+                                                style="padding-top: 8px;padding-left: 10px;">
+                                                Code Editor
                                             </div>
-                                            <div class="col-md-8"
+                                            <div class="col-md-9"
                                                 style="text-align: end;padding: 2px;">
                                                 <select
-                                                    style="border-radius: 5px;"
+                                                    style="border-radius: 5px;margin: 2px;"
                                                     [(ngModel)]="selectedLanguage"
                                                     (change)="onChangeLang()">
                                                     <option
@@ -70,10 +70,11 @@
                                                     (click)="executeCode()">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        width="16" height="16"
+                                                        width="25" height="25"
                                                         fill="currentColor"
                                                         class="bi bi-play-fill"
-                                                        viewBox="0 0 16 16">
+                                                        viewBox="0 0 16 16"
+                                                        style="margin-top: -6px;">
                                                         <path
                                                             d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                                                     </svg>
