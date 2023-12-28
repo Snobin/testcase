@@ -1,7 +1,7 @@
 
 <div class="custom-card">
   <div class="card-body">
-    <div class="main-margin custom-row" *ngFor="let question of displayedQuestions" style="height: -webkit-fill-available;min-width: 954px;">
+    <div class="main-margin custom-row" *ngFor="let question of displayedQuestions; let n = index;" style="height: -webkit-fill-available;min-width: 954px;">
       <div class="col-md-1 col-sm-1" style="height: 85vh;background-color: #c9d4e6;width: 8.33333333%;min-width: 68px;">
         <div style="overflow-y: auto;height: 45vh;">
           <div class="custom-row btn-group" style="margin: 10px;" *ngFor="let page of pages; let i = index">
@@ -21,34 +21,35 @@
         <div class="card" style="overflow: hidden;height: min-content;background-color: #c9d4e6;">
           <div class="card-body">
             <div class="col-md-12 col-sm-12">
-              <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}
-                <span class="badge bg-success float-end" *ngIf="students[question.id-1].status=='attempted'">Attempted</span>
-                <span class="badge bg-danger float-end" *ngIf="students[question.id-1].status=='not attempted'||students[question.id-1].status==''">Not Attempted</span>
-                </h6>
+              <h6 class="card-title"><strong>{{question.no}}.</strong> {{question.desc}}</h6>
+            </div>
+            <div>
+              <span class="badge bg-success float-end" *ngIf="students[question.no-1].status=='attempted'">Attempted</span>
+              <span class="badge bg-danger float-end" *ngIf="students[question.no-1].status=='not attempted'||students[question.no-1].status==''">Not Attempted</span>
             </div>
             <hr>
             <div id="option" class="col-md-12 col-sm-12 options-margin">
               <form id="options{{question.no}}">
-                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.a!='')">
-                  <input id="a" type="radio" name="options" value="a" [checked]="students[question.id-1].answer=='a'"> {{question.a}}
+                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.optionA!='')">
+                  <input id="a" type="radio" name="options" value="a" [checked]="students[question.no-1].answer=='a'"> {{question.optionA}}
                 </label>
-                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.b!='')">
-                  <input id="b" type="radio" name="options" value="b" [checked]="students[question.id-1].answer=='b'"> {{question.b}}
+                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.optionB!='')">
+                  <input id="b" type="radio" name="options" value="b" [checked]="students[question.no-1].answer=='b'"> {{question.optionB}}
                 </label>
-                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.c!='')">
-                  <input id="c" type="radio" name="options" value="c" [checked]="students[question.id-1].answer=='c'"> {{question.c}}
+                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.optionC!='')">
+                  <input id="c" type="radio" name="options" value="c" [checked]="students[question.no-1].answer=='c'"> {{question.optionC}}
                 </label>
-                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.d!='')">
-                  <input id="d" type="radio" name="options" value="d" [checked]="students[question.id-1].answer=='d'"> {{question.d}}
+                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.optionD!='')">
+                  <input id="d" type="radio" name="options" value="d" [checked]="students[question.no-1].answer=='d'"> {{question.optionD}}
                 </label>
-                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.e!='')">
-                  <input id="e" type="radio" name="options" value="e" [checked]="students[question.id-1].answer=='e'"> {{question.e}}
-                </label>
+                <!-- <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.e!='')">
+                  <input id="e" type="radio" name="options" value="e" [checked]="students[question.no-1].answer=='e'"> {{question.e}}
+                </label> -->
               </form>
             </div>
             <hr>
             <button class="btn" [class.btn-dark]="currentPage <= pages.length && currentPage != 1" style="margin-right: 1px;"
-              (click)="previous(question.id)">
+              (click)="previous(question.no, question.questionId)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                 fill="currentColor" class="bi bi-chevron-compact-left"
                 viewBox="0 0 16 16">
@@ -57,7 +58,7 @@
               </svg> Previous
             </button>
             <button class="btn float-end" [class.btn-dark]="currentPage < pages.length" style="margin-left: 1px;"
-              (click)="next(question.id)">Next
+              (click)="next(question.no, question.questionId)">Next
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                 fill="currentColor" class="bi bi-chevron-compact-right"
                 viewBox="0 0 16 16">
@@ -65,7 +66,7 @@
                   d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
               </svg>
             </button>
-            <button class="btn btn-success float-end" style="margin-right: 1px;"(click)="save(question.id)">Save</button>
+            <button class="btn btn-success float-end" style="margin-right: 1px;"(click)="save(question.no, question.questionId)">Save</button>
           </div>
         </div>  
       </div>
@@ -73,7 +74,6 @@
         <div class="card btn-group custom-row item-center col-md-12 col-sm-12" style="padding: 5px;">
           <button class="btn btn-success col-md-6 col-sm-6">Attempted     : {{attemptedNo}}</button>
           <button class="btn btn-danger col-md-6 col-sm-6">Not Attempted : {{notAttemptedNo}}</button>
-
         </div>
         <hr>
       </div>

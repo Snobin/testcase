@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
-
 import { CodeRequest } from '../../model/code-request';
-import * as Prism from 'prismjs';
 
-
-
-
+declare var CodeMirror: any;
 
 @Component({
   selector: 'app-coding-test',
@@ -15,9 +11,10 @@ import * as Prism from 'prismjs';
 })
 export class CodingTestComponent implements OnInit {
 
+  @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
 
-
-  selectedLanguage: string = '';
+  private editor: any;
+  selectedLanguage: string = 'java';
   testCases: string[] = [];
   result: any = { success: true, output: '' };
   code: string = '';
@@ -34,9 +31,68 @@ export class CodingTestComponent implements OnInit {
   constructor(private apiService: ServiceService) { }
 
   ngOnInit(): void {
+    this.clearAll();
+  }
+
+  ngAfterViewInit(){
+    this.initializeCodeMirror();
+  }
+
+  initializeCodeMirror() {
+    if (this.editor) {
+      // If the editor already exists, just set the new mode and theme
+      this.editor.setOption("mode", this.getEditorMode());
+      // Set the code value
+      this.editor.setValue(this.code);
+    } else {
+      // If the editor doesn't exist, create it
+      this.editor = CodeMirror.fromTextArea(this.editorTextarea.nativeElement, {
+        mode: this.getEditorMode(),
+        theme: "dracula",
+        lineNumbers: true,
+        autoCloseBrackets: true,
+      });
+      // Set the code to the CodeMirror editor
+      this.editor.setValue('');
+    }
+  }
+
+  getEditorMode(): string {
+    // Determine the CodeMirror mode based on the selected language
+    if (this.selectedLanguage == 'java') {
+      return "text/x-java";
+    } else if (this.selectedLanguage == 'cpp') {
+      return "text/x-c++src";
+    } else if (this.selectedLanguage == 'python') {
+      return "text/x-python";
+    } else if (this.selectedLanguage == 'c') {
+      return "text/x-csrc";
+    } else {
+      return "text/x-java";
+    }
+  }
+
+  onChangeLang() {
+    // Load the saved code from local storage if available
+    const localStorageKey = `${this.selectedLanguage}EditorCode`;
+    const savedCode = localStorage.getItem(localStorageKey);
+    if (savedCode) {
+      this.code = savedCode;
+    }
+    // Initialize CodeMirror
+    this.initializeCodeMirror();
+  }
+
+  save(){
+    // Save the current code to local storage before changing the language
+    const localStorageKey = `${this.selectedLanguage}EditorCode`;
+    localStorage.setItem(localStorageKey, this.editor.getValue());
+    
   }
 
   async executeCode() {
+    // Get the code from the CodeMirror editor
+    this.code = this.editor.getValue();
     try {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
@@ -63,24 +119,20 @@ export class CodingTestComponent implements OnInit {
     }
   }
 
-  clearCode() {
-    this.code = '';
-  }
-
   clear() {
+    // Remove the stored code in local storage
+    const localStorageKey = `${this.selectedLanguage}EditorCode`;
+    localStorage.removeItem(localStorageKey);
     this.code = '';
-    this.selectedLanguage = '';
+    // Clear the code in the CodeMirror editor
+    this.editor.setValue('');
   }
 
-  highlightCode(){
-    Prism.highlightElement(document.getElementById('codeOutput'));
-  }
-
-  onCodeInput(event: any) {
-
-    this.code = event.target.textContent || event.target.innerText;
-    Prism.highlightElement(document.getElementById('codeInput'));
-
+  clearAll(){
+    localStorage.removeItem('javaEditorCode');
+    localStorage.removeItem('cppEditorCode');
+    localStorage.removeItem('cEditorCode');
+    localStorage.removeItem('pythonEditorCode');
   }
 
 }
