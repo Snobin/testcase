@@ -29,11 +29,14 @@ import com.interland.testcase.mcqquestion.entity.DescriptiveEntity;
 import com.interland.testcase.mcqquestion.entity.FileEntity;
 import com.interland.testcase.mcqquestion.entity.McqEmbedded;
 import com.interland.testcase.mcqquestion.entity.McqEntity;
+import com.interland.testcase.mcqquestion.entity.McqResultPk;
+import com.interland.testcase.mcqquestion.entity.McqResultsEntity;
 import com.interland.testcase.mcqquestion.exception.RecordCreateException;
 import com.interland.testcase.mcqquestion.exception.RecordNotFoundException;
 import com.interland.testcase.mcqquestion.repository.DescRepository;
 import com.interland.testcase.mcqquestion.repository.FileRepository;
 import com.interland.testcase.mcqquestion.repository.McqRepository;
+import com.interland.testcase.mcqquestion.repository.McqResultRepository;
 import com.interland.testcase.mcqquestion.repository.specification.McqQuestionSpec;
 import com.interland.testcase.mcqquestion.util.Constants;
 
@@ -49,6 +52,8 @@ public class McqServiceImpl implements McqService {
 	DescRepository descrep;
 	@Autowired
 	MessageSource messageSource;
+	@Autowired
+	McqResultRepository mcqResultrepo;
 	private String DAQ;
 	
 	private static Logger logger = LogManager.getLogger(McqServiceImpl.class);
@@ -85,7 +90,7 @@ public class McqServiceImpl implements McqService {
 			JSONArray countByStatus = countByStatus();
 			for (McqEntity mcqent : mcqentList) {
 				JSONObject obj = new JSONObject();
-				obj.put(Constants.QUESTIONNO, mcqent.getPrimarykey().getQuestionNo());
+				obj.put(Constants.QUESTIONTYPE, mcqent.getPrimarykey().getQuestionType());
 				obj.put(Constants.QUESTIONID, mcqent.getPrimarykey().getQuestionId());
 				obj.put(Constants.QUESTION, mcqent.getQuestion());
 				obj.put(Constants.STATUS, mcqent.getStatus());
@@ -111,11 +116,11 @@ public class McqServiceImpl implements McqService {
 	
 	
 	
-	public Dto getById(String questionId, String questionNo) {
+	public Dto getById(String questionId, String questionType) {
 		
 		McqEmbedded bed = new McqEmbedded();
 		bed.setQuestionId(questionId);
-		bed.setQuestionNo(questionNo);
+		bed.setQuestionType(questionType);
 		
 		Optional<McqEntity>entity1=mcqrep.findById(bed); 
 		
@@ -123,7 +128,7 @@ public class McqServiceImpl implements McqService {
 	
 		
 		Dto dto =new Dto();
-		dto.setQuestionNo(entity.getPrimarykey().getQuestionNo());
+		dto.setQuestionType(entity.getPrimarykey().getQuestionType());
 		dto.setQuestionId(entity.getPrimarykey().getQuestionId());
 		dto.setQuestion(entity.getQuestion());
 		dto.setOptionA(entity.getOptionA());
@@ -146,7 +151,7 @@ public class McqServiceImpl implements McqService {
 		
 		McqEmbedded obj=new McqEmbedded();
 		obj.setQuestionId(dto.getQuestionId());
-		obj.setQuestionNo(dto.getQuestionNo());
+		obj.setQuestionType(dto.getQuestionType());
 		Optional<McqEntity> existingQuestion = mcqrep.findById(obj);
 		if(existingQuestion.isPresent())
 		{
@@ -188,7 +193,7 @@ public class McqServiceImpl implements McqService {
 		McqEmbedded emb= new McqEmbedded();
 		try {
 			emb.setQuestionId(dto1.getQuestionId());
-			emb.setQuestionNo(dto1.getQuestionNo());
+			emb.setQuestionType(dto1.getQuestionType());
 			mcqentity.setPrimarykey(emb);
 			
 			Optional<McqEntity> question = mcqrep.findById(emb);
@@ -220,11 +225,11 @@ public class McqServiceImpl implements McqService {
     
     
     @Override
-	public ServiceResponse delete(String questionNo, String questionId) throws RecordNotFoundException {
+	public ServiceResponse delete(String questionId, String questionType) throws RecordNotFoundException {
 		try {
 			McqEmbedded emb2 = new McqEmbedded();
 			
-			emb2.setQuestionNo(questionNo);
+			emb2.setQuestionType(questionType);
 			emb2.setQuestionId(questionId);
 			Optional<McqEntity> findByKey = mcqrep.findById(emb2);
 			if (!findByKey.isPresent()) {
@@ -271,7 +276,7 @@ public class McqServiceImpl implements McqService {
 			Collections.shuffle(questions);
 			for (McqEntity question : questions) {
 				JSONObject obj = new JSONObject();
-				obj.put(Constants.QUESTIONNO, question.getPrimarykey().getQuestionNo());
+				obj.put(Constants.QUESTIONNO, question.getPrimarykey().getQuestionType());
 				obj.put(Constants.QUESTIONID, question.getPrimarykey().getQuestionId());
 				obj.put(Constants.NO, i++);
 				obj.put(Constants.DESC, question.getQuestion());
@@ -286,8 +291,55 @@ public class McqServiceImpl implements McqService {
 		}
 		return array;
 	}
- 	
+	
+	
+	
+	public ServiceResponse mcqResult(Dto dto)  {
+    	try {
+		
+	    McqResultsEntity mcqResults = new McqResultsEntity();
+		
+		McqResultPk resultObj=new McqResultPk();
+		McqEmbedded mcqObj=new McqEmbedded();
+		mcqObj.setQuestionId(dto.getQuestionId());
+		mcqObj.setQuestionType(dto.getQuestionType());
+		resultObj.setQuestionId(dto.getQuestionId());
+		resultObj.setQuestionType(dto.getQuestionType());
+		resultObj.setStudentId(dto.getStudentId());
+		Optional<McqEntity> storedQuestion = mcqrep.findById(mcqObj);
+		McqEntity checkAnswer = storedQuestion.get();
+		Optional<McqResultsEntity> RespondedQuestion = mcqResultrepo.findById(resultObj);
+		if(RespondedQuestion.isPresent())
+		{
+			throw new RecordCreateException("Already Answerd");
+			
+		}
+		else
+		{
+			mcqResults.setResultPk(resultObj);;
+			mcqResults.setQuestion(dto.getQuestion());
+			mcqResults.setAnswer(dto.getAnswers());
+	    	mcqResults.setResponse(dto.getResponse());
+	    	if(dto.getResponse() == checkAnswer.getAnswers() ) {
+	    		mcqResults.setStatus(Constants.TRUE);
+	    	}else {
+	    		mcqResults.setStatus(Constants.FALSE);
+	    	}
+	    	
+	    	mcqResultrepo.save(mcqResults);
+	    }
+    	return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,null,null);
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+		return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,null, null);
 }
+    	
+}
+	
+}	
+	
 	
 
 

@@ -43,8 +43,8 @@ public class McqController {
 	
 	
 	
-	@GetMapping("/Get/{questionNo}/{questionId}")
-	public ResponseEntity<Dto> getUserById(@PathVariable("questionNo") String questionNo,@PathVariable("questionId")String questionId ) {
+	@GetMapping("/Get/{questionId}/{questionType}")
+	public ResponseEntity<Dto> getUserById(@PathVariable("questionId") String questionNo,@PathVariable("questionType")String questionId ) {
 			return new ResponseEntity<>(mcqservice.getById(questionNo,questionId), new HttpHeaders(), HttpStatus.ACCEPTED);
 		} 
 	
@@ -73,6 +73,9 @@ public class McqController {
 	public ResponseEntity<JSONArray> getQuestions(){
 		return new ResponseEntity<>(mcqservice.getQuestions(), new HttpHeaders(), HttpStatus.OK);
 	}
-
+	@PostMapping("/McqResult")
+	public ResponseEntity<ServiceResponse> mcqStudentRsponse( @RequestBody Dto dto){
+	return new ResponseEntity<>(mcqservice.mcqResult(dto), new HttpHeaders(), HttpStatus.OK);
+	}
 
 }
