@@ -178,10 +178,14 @@ public class McqServiceImpl implements McqService {
 	    	}
 	    	
 	    	mcqrep.save(mcqentity);
+	    	return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,null,null);
 
-	    }
-	}
-
+	    } 
+    	}catch (Exception e) {
+			e.printStackTrace();
+			return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,null, null);
+    	}
+	}	
 
 	
     @Override
