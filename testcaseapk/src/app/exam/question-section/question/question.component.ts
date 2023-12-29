@@ -1,6 +1,8 @@
 import { Component , ElementRef, OnInit } from '@angular/core';
 import { Student } from '../model/student';
 import Swal from 'sweetalert2';
+import { QuestionService } from '../services/question.service';
+import { Question } from '../model/question';
 
 declare var $:any;
 declare var jQuery:any;
@@ -12,176 +14,7 @@ declare var jQuery:any;
 export class QuestionComponent implements OnInit {
 
   Obj:QuestionComponent;
-  Questions:any=[]=[
-    {
-      "id":"1",
-      "no":"1",
-      "desc":"qwerty",
-      "answer":"a",
-      "a":"option1",
-      "b":"option2",
-      "c":"option3",
-      "d":"option4",
-      "e":"option5",
-      "status":"not attempted"
-    },
-    {
-      "id":"2",
-      "no":"2",
-      "desc":"b",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"3",
-      "no":"3",
-      "desc":"xyz",
-      "answer":"ans",
-      "a":"optionX",
-      "b":"optionY",
-      "c":"optionZ",
-      "d":"",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"4",
-      "no":"4",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"5",
-      "no":"5",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"6",
-      "no":"6",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"7",
-      "no":"7",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"8",
-      "no":"8",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"9",
-      "no":"9",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"10",
-      "no":"10",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"11",
-      "no":"11",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"12",
-      "no":"12",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"13",
-      "no":"13",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    },
-    {
-      "id":"14",
-      "no":"14",
-      "desc":"abcdef",
-      "answer":"ans",
-      "a":"optionA",
-      "b":"optionB",
-      "c":"optionC",
-      "d":"optionD",
-      "e":"",
-      "status":"not attempted"
-    }
-  ];
+  Questions:Question[]=[];
 
   pageSize: number = 1;
   currentPage: any = 1;
@@ -195,19 +28,27 @@ export class QuestionComponent implements OnInit {
   notAttemptedNo: any;
 
 
-  constructor(private el:ElementRef) { }
+  constructor(private el:ElementRef, private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.setPage(1);
-    for (let index = 0; index < this.totalPages; index++) {
-      const student = new Student();
-      student.studentId = '1';
-      student.questionId = (index+1).toString();
-      student.answer = '';
-      student.status = '';
-      this.students[index] = student;
-    }
-    this.notAttemptedNo = this.totalPages;
+    this.getQuestions();
+  }
+
+  getQuestions(){
+    this.questionService.getQuestions().subscribe( (data) => {
+      this.Questions = data;
+      this.setPage(1);
+      for (let index = 0; index < this.totalPages; index++) {
+        const student = new Student();
+        student.studentId = '1';
+        student.questionId = '';
+        student.no = index+1;
+        student.answer = '';
+        student.status = '';
+        this.students[index] = student;
+      }
+      this.notAttemptedNo = this.totalPages;
+    });
   }
 
   setPage(page: number) {
@@ -228,13 +69,13 @@ export class QuestionComponent implements OnInit {
 
   }
   
-  next(questionId:any){
-    const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+  next(no:number, questionId:string){
+    const existingStudentIndex = this.students.findIndex(student => student.no === no);
     if (existingStudentIndex !== -1) {
       this.students[existingStudentIndex].status = 'not attempted';
     }
     const value=$('input[name="options"]:checked').val();
-    this.onRadioChange(value, questionId);
+    this.onRadioChange(value, no, questionId);
     if (this.currentPage < this.pages.length) {
       this.setPage(this.currentPage + 1);
     } else {
@@ -247,8 +88,8 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  save(questionId:any){
-    const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+  save(no:number, questionId:string){
+    const existingStudentIndex = this.students.findIndex(student => student.no === no);
     if (existingStudentIndex !== -1) {
       this.students[existingStudentIndex].status = 'not attempted';
     }
@@ -268,12 +109,12 @@ export class QuestionComponent implements OnInit {
       //   position: 'top'
       // })
     }
-    this.onRadioChange(value, questionId);
+    this.onRadioChange(value, no, questionId);
   }
 
-  previous(questionId:any){
+  previous(no:number, questionId:string){
     const value=$('input[name="options"]:checked').val();
-    this.onRadioChange(value, questionId);
+    this.onRadioChange(value, no, questionId);
     if (this.currentPage <= this.pages.length && this.currentPage != 1) {
       this.setPage(this.currentPage - 1);
     } else {
@@ -286,17 +127,19 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  onRadioChange(value: string, questionId: string) {
+  onRadioChange(value: string, no: number, questionId:string) {
     if (value != undefined || value != null) {
-      const existingStudentIndex = this.students.findIndex(student => student.questionId === questionId);
+      const existingStudentIndex = this.students.findIndex(student => student.no === no);
       if (existingStudentIndex !== -1) {
         if (this.students[existingStudentIndex].answer=='') {
           this.students[existingStudentIndex].answer = value;
+          this.students[existingStudentIndex].questionId = questionId;
           this.students[existingStudentIndex].status = 'attempted';
           this.attemptedNo++;
           this.notAttemptedNo--;
         } else if (this.students[existingStudentIndex].answer!='') {
           this.students[existingStudentIndex].answer = value;
+          this.students[existingStudentIndex].questionId = questionId;
           this.students[existingStudentIndex].status = 'attempted';
         }
       }

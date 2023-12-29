@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule,MatSnackBarModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

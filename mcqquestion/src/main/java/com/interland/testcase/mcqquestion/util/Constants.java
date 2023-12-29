@@ -4,6 +4,8 @@ package com.interland.testcase.mcqquestion.util;
 public class Constants {
 	
 	public final static String QUESTIONNO="questionNo";
+	public final static String NO="no";
+	public final static String DESC="desc";
 	public final static String QUESTIONID="questionId";
 	public final static String QUESTION="question";
 	public final static String OPTIONA="optionA";

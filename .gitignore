@@ -7,3 +7,4 @@ testcase/src/main/resources/logback.xml
 testcase/src/main/resources/application.properties
 
 *.properties
+mcqquestion/src/main/resources/application.properties

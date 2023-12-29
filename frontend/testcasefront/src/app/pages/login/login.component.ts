@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/services/login.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
 
   constructor(private snack:MatSnackBar, private login:LoginService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -54,5 +56,6 @@ export class LoginComponent implements OnInit {
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
+
 
 }
