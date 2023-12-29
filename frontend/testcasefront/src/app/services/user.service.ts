@@ -6,10 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
+  baseUrl='http://localhost:8080/auth';
+
   constructor(private http:HttpClient) { }
 
+  //add user
   public addUser(user:any){
-    const url="http://localhost:8080/auth/create";
-    return this.http.post(url,user);
+    return this.http.post(`${this.baseUrl}/create`,user);
   }
+  
 }
