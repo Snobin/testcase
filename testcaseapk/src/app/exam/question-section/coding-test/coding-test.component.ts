@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 import { CodeRequest } from '../../model/code-request';
 import * as Prism from 'prismjs';
-import * as ace from 'ace-builds';
+
 
 @Component({
   selector: 'app-coding-test',
