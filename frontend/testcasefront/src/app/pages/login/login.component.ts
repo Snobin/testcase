@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
       (data:any) => {
         if (data.token && data.role == 'USER') {
           this.login.loginUser(data.token);
+          this.login.setUser(data.username);
+          this.login.setUserRole(data.role);
           this.router.navigate([`./home`]);
           this.snack.open("Welcome to Interland",'',{
             duration:3000,
@@ -51,6 +53,8 @@ export class LoginComponent implements OnInit {
           });
         } else if (data.token && data.role == 'ADMIN') {
           this.login.loginUser(data.token);
+          this.login.setUser(data.username);
+          this.login.setUserRole(data.role);
           this.router.navigate([`./admin`]);
           this.snack.open("Welcome to admin dasboard",'',{
             duration:3000,

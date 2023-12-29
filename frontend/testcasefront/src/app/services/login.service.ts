@@ -35,6 +35,7 @@ export class LoginService {
   public logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     return true;
   }
 
@@ -45,14 +46,14 @@ export class LoginService {
 
   //set userDetails
   public setUser(user) {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", user);
   }
 
   //get userDetails
   public getUser() {
     let userStr = localStorage.getItem("user");
     if (userStr != null) {
-      return JSON.stringify(userStr);
+      return userStr;
     } else {
       this.logout();
       return null;
@@ -61,8 +62,12 @@ export class LoginService {
 
   //get user role
   public getUserRole() {
-    let user = this.getUser();
-    // return user.authorities[0].authorities
+    return localStorage.getItem("role");
+  }
+
+  //set user role
+  public setUserRole(role) {
+    localStorage.setItem("role", role);
   }
 
 }

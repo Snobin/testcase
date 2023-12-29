@@ -11,4 +11,7 @@
     <a routerLink="/signup" mat-icon-button class="text-white mr20" aria-label="Example icon-button with heart icon" *ngIf="isLogged()==false">
       Register
     </a>
+    <a routerLink="/login" mat-icon-button class="text-white mr20" aria-label="Example icon-button with heart icon" (click)="logout()" *ngIf="isLogged()==true">
+      Logout
+    </a>
   </mat-toolbar>
