@@ -28,10 +28,13 @@ import com.interland.testcase.mcqquestion.dto.ServiceResponse;
 import com.interland.testcase.mcqquestion.entity.FileEntity;
 import com.interland.testcase.mcqquestion.entity.McqEmbedded;
 import com.interland.testcase.mcqquestion.entity.McqEntity;
+import com.interland.testcase.mcqquestion.entity.McqResultPk;
+import com.interland.testcase.mcqquestion.entity.McqResultsEntity;
 import com.interland.testcase.mcqquestion.exception.RecordCreateException;
 import com.interland.testcase.mcqquestion.exception.RecordNotFoundException;
 import com.interland.testcase.mcqquestion.repository.FileRepository;
 import com.interland.testcase.mcqquestion.repository.McqRepository;
+import com.interland.testcase.mcqquestion.repository.McqResultRepository;
 import com.interland.testcase.mcqquestion.repository.specification.McqQuestionSpec;
 import com.interland.testcase.mcqquestion.util.Constants;
 
@@ -45,6 +48,8 @@ public class McqServiceImpl implements McqService {
 	FileRepository filerep;
 	@Autowired
 	MessageSource messageSource;
+	@Autowired
+	McqResultRepository mcqResultrepo;
 	
 	private static Logger logger = LogManager.getLogger(McqServiceImpl.class);
 	
@@ -287,8 +292,55 @@ public class McqServiceImpl implements McqService {
 		}
 		return array;
 	}
- 	
+	
+	
+	
+	public ServiceResponse mcqResult(Dto dto)  {
+    	try {
+		
+	    McqResultsEntity mcqResults = new McqResultsEntity();
+		
+		McqResultPk resultObj=new McqResultPk();
+		McqEmbedded mcqObj=new McqEmbedded();
+		mcqObj.setQuestionId(dto.getQuestionId());
+		mcqObj.setQuestionType(dto.getQuestionType());
+		resultObj.setQuestionId(dto.getQuestionId());
+		resultObj.setQuestionType(dto.getQuestionType());
+		resultObj.setStudentId(dto.getStudentId());
+		Optional<McqEntity> storedQuestion = mcqrep.findById(mcqObj);
+		McqEntity checkAnswer = storedQuestion.get();
+		Optional<McqResultsEntity> RespondedQuestion = mcqResultrepo.findById(resultObj);
+		if(RespondedQuestion.isPresent())
+		{
+			throw new RecordCreateException("Already Answerd");
+			
+		}
+		else
+		{
+			mcqResults.setResultPk(resultObj);;
+			mcqResults.setQuestion(dto.getQuestion());
+			mcqResults.setAnswer(dto.getAnswers());
+	    	mcqResults.setResponse(dto.getResponse());
+	    	if(dto.getResponse() == checkAnswer.getAnswers() ) {
+	    		mcqResults.setStatus(Constants.TRUE);
+	    	}else {
+	    		mcqResults.setStatus(Constants.FALSE);
+	    	}
+	    	
+	    	mcqResultrepo.save(mcqResults);
+	    }
+    	return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,null,null);
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+		return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,null, null);
 }
+    	
+}
+	
+}	
+	
 	
 
 

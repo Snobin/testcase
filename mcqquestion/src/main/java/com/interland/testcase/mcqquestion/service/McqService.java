@@ -12,6 +12,7 @@ public interface McqService {
 	public JSONObject searchByLimit(String searchParam, int start, int pageSize);
 	public Dto getById(String questionId, String questionNo);
 	public ServiceResponse create(Dto dto);
+	public ServiceResponse mcqResult(Dto dto);
 	public ServiceResponse updateQuestion(Dto dto1);
 	public ServiceResponse verifyQuestion(Dto dto2) throws RecordNotFoundException;
 	public ServiceResponse delete(String questionNo, String questionId) throws RecordNotFoundException;

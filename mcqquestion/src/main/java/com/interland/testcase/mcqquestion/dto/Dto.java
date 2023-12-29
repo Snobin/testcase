@@ -2,6 +2,7 @@ package com.interland.testcase.mcqquestion.dto;
 
 public class Dto {
 	
+	private String StudentId;
 	
 	private String questionId;
 	
@@ -21,12 +22,24 @@ public class Dto {
 	
 	private String score;
 	
+	private String response;
+	
     private byte[] file;
 	
 	private String fileName;
 
 	
 	private String status;
+
+
+	public String getStudentId() {
+		return StudentId;
+	}
+
+
+	public void setStudentId(String studentId) {
+		StudentId = studentId;
+	}
 
 
 	public String getQuestionId() {
@@ -119,6 +132,16 @@ public class Dto {
 	}
 
 
+	public String getResponse() {
+		return response;
+	}
+
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+
 	public byte[] getFile() {
 		return file;
 	}
@@ -149,9 +172,11 @@ public class Dto {
 	}
 
 
-	public Dto(String questionId, String questionType, String question, String optionA, String optionB, String optionC,
-			String optionD, String answers, String score, byte[] file, String fileName, String status) {
+	public Dto(String studentId, String questionId, String questionType, String question, String optionA,
+			String optionB, String optionC, String optionD, String answers, String score, String response, byte[] file,
+			String fileName, String status) {
 		super();
+		this.StudentId = studentId;
 		this.questionId = questionId;
 		this.questionType = questionType;
 		this.question = question;
@@ -161,6 +186,7 @@ public class Dto {
 		this.optionD = optionD;
 		this.answers = answers;
 		this.score = score;
+		this.response = response;
 		this.file = file;
 		this.fileName = fileName;
 		this.status = status;
@@ -170,6 +196,6 @@ public class Dto {
 	public Dto() {
 		super();
 	}
-	
+
 
 }
