@@ -12,11 +12,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.authentication.JwtAuthCoustom.JWT.JwtRequestFilter;
 
-import lombok.RequiredArgsConstructor;
-
 @EnableWebSecurity
 @Configuration
-@RequiredArgsConstructor
 public class SecurityConfig 
 {
 	@Autowired
