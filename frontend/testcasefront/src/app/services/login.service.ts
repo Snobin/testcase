@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  baseUrl = 'http://localhost:8080/auth';
+  baseUrl = 'http://localhost:8081/auth';
 
   constructor(private http: HttpClient) { }
 
   //generate token
   public generateToken(loginData: any) {
-    return this.http.post(`${this.baseUrl}/generate-token`, loginData);
+    return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
   //login user: set token in localStorage
