@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 import { CodeRequest } from '../../model/code-request';
 
-declare var CodeMirror: any;
 
 @Component({
   selector: 'app-coding-test',
