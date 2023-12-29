@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 import { CodeRequest } from '../../model/code-request';
 
-
+declare var CodeMirror:any;
 @Component({
   selector: 'app-coding-test',
   templateUrl: './coding-test.component.html',
@@ -110,7 +110,7 @@ export class CodingTestComponent implements OnInit {
     localStorage.setItem(localStorageKey, this.editor.getValue());
     // Save the current code to local storage before changing the language
     const localStorageOutput = `${this.selectedLanguage}OutputCode`;
-    localStorage.setItem(localStorageOutput, this.editor.getValue());
+    localStorage.setItem(localStorageOutput, this.output.getValue());
     
   }
 

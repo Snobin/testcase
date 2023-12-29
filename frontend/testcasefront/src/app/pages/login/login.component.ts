@@ -11,13 +11,12 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   loginData = {
-    username: '',
+    email: '',
     password: ''
   }
   hidePassword = true;
 
   constructor(private snack:MatSnackBar, private login:LoginService) { }
-  constructor() { }
 
   ngOnInit(): void {
   }
@@ -25,8 +24,8 @@ export class LoginComponent implements OnInit {
   formSubmit() {
     console.log('Form Submitted!');
     // Add the logic to validate and submit the data here
-    if (this.loginData.username.trim()=='' || this.loginData.username.trim()==null) {
-      this.snack.open("Username is required !",'',{
+    if (this.loginData.email.trim()=='' || this.loginData.email.trim()==null) {
+      this.snack.open("Email is required !",'',{
         duration:3000,
         verticalPosition:'top'
       });
