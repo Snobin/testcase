@@ -4,10 +4,14 @@
     </a>
     <span>TestCase</span>
     <span class="example-spacer"></span>
-    <a routerLink="'/login" mat-icon-button class="example-icon favorite-icon " aria-label="Example icon-button with heart icon">
+    <a routerLink="/login" mat-icon-button class="text-white mr20" aria-label="Example icon-button with heart icon" *ngIf="isLogged()==false">
       Login
     </a>
-    <a routerLink="'/signup" mat-icon-button class="example-icon favorite-icon mr20" aria-label="Example icon-button with heart icon">
+    
+    <a routerLink="/signup" mat-icon-button class="text-white mr20" aria-label="Example icon-button with heart icon" *ngIf="isLogged()==false">
       Register
+    </a>
+    <a routerLink="/login" mat-icon-button class="text-white mr20" aria-label="Example icon-button with heart icon" (click)="logout()" *ngIf="isLogged()==true">
+      Logout
     </a>
   </mat-toolbar>

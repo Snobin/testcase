@@ -2,8 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service/service.service';
 import { CodeRequest } from '../../model/code-request';
 
-declare var CodeMirror: any;
-
+declare var CodeMirror:any;
 @Component({
   selector: 'app-coding-test',
   templateUrl: './coding-test.component.html',
@@ -12,8 +11,10 @@ declare var CodeMirror: any;
 export class CodingTestComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
+  @ViewChild('output', { static: false }) outputTextarea: ElementRef;
 
   private editor: any;
+  private output: any;
   selectedLanguage: string = 'java';
   testCases: string[] = [];
   result: any = { success: true, output: '' };
@@ -36,6 +37,25 @@ export class CodingTestComponent implements OnInit {
 
   ngAfterViewInit(){
     this.initializeCodeMirror();
+    this.initializeCodeMirrorOutput();
+  }
+
+  initializeCodeMirrorOutput() {
+    if (this.output) {
+      // If the output already exists, just set the new mode and theme
+      this.output.setOption("mode", "text/x-java");
+      // Set the code value
+      this.output.setValue(this.result.output);
+    } else {
+      // If the output doesn't exist, create it
+      this.output = CodeMirror.fromTextArea(this.outputTextarea.nativeElement, {
+        mode: "text/x-java",
+        theme: "dracula",
+      });
+      this.output.setSize(window, 173);
+      // Set the code to the CodeMirror output
+      this.output.setValue('');
+    }
   }
 
   initializeCodeMirror() {
@@ -81,12 +101,16 @@ export class CodingTestComponent implements OnInit {
     }
     // Initialize CodeMirror
     this.initializeCodeMirror();
+    this.initializeCodeMirrorOutput();
   }
 
   save(){
     // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
+    // Save the current code to local storage before changing the language
+    const localStorageOutput = `${this.selectedLanguage}OutputCode`;
+    localStorage.setItem(localStorageOutput, this.output.getValue());
     
   }
 
@@ -102,7 +126,7 @@ export class CodingTestComponent implements OnInit {
 
         this.result.output = response.output;
         this.executionTime = response.processingTime;
-
+        this.initializeCodeMirror();
       } else {
         this.result = { success: false, output: 'Please select a programming language and enter code.' };
       }
@@ -126,6 +150,12 @@ export class CodingTestComponent implements OnInit {
     this.code = '';
     // Clear the code in the CodeMirror editor
     this.editor.setValue('');
+    // Remove the stored code in local storage
+    const localStorageOutput = `${this.selectedLanguage}OutputCode`;
+    localStorage.removeItem(localStorageOutput);
+    this.result.output = '';
+    // Clear the code in the CodeMirror Output
+    this.editor.setValue('');
   }
 
   clearAll(){
@@ -133,6 +163,10 @@ export class CodingTestComponent implements OnInit {
     localStorage.removeItem('cppEditorCode');
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
+    localStorage.removeItem('javaOutputCode');
+    localStorage.removeItem('cppOutputCode');
+    localStorage.removeItem('cOutputCode');
+    localStorage.removeItem('pythonOutputCode');
   }
 
 }

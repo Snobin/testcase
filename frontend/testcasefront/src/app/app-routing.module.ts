@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
     pathMatch: 'full'
   },
   {

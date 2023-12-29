@@ -23,8 +23,12 @@ public class Constants {
 	public final static String TOTAL_DISPLAY_RECORD = "iTotalDisplayRecords";
 	public final static String TOTAL_RECORD = "iTotalRecords";
 	public final static String COUNT_BY_STATUS = "countByStatus";
+
 	public final static String TRUE = "TRUE";
 	public final static String FALSE = "FALSE";
+
+	public final static String DAQ = "DAQ";
+
 
 
 
