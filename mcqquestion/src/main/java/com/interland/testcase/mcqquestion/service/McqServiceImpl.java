@@ -140,41 +140,47 @@ public class McqServiceImpl implements McqService {
 	
 	public ServiceResponse create(Dto dto)  {
     	try {
-		McqEntity mcqentity = new McqEntity();
-		FileEntity fileentity = new FileEntity();
-
-		
-		McqEmbedded obj=new McqEmbedded();
-		obj.setQuestionId(dto.getQuestionId());
-		obj.setQuestionNo(dto.getQuestionNo());
-		Optional<McqEntity> existingQuestion = mcqrep.findById(obj);
-		if(existingQuestion.isPresent())
-		{
-			throw new RecordCreateException("Question already present");
+			McqEntity mcqentity = new McqEntity();
+			FileEntity fileentity = new FileEntity();
+	
 			
+			McqEmbedded obj=new McqEmbedded();
+			obj.setQuestionId(dto.getQuestionId());
+			obj.setQuestionNo(dto.getQuestionNo());
+			Optional<McqEntity> existingQuestion = mcqrep.findById(obj);
+			if(existingQuestion.isPresent())
+			{
+				throw new RecordCreateException("Question already present");
+				
+			}
+			else
+			{
+				mcqentity.setPrimarykey(obj);
+				mcqentity.setQuestion(dto.getQuestion());
+				mcqentity.setOptionA(dto.getOptionA());
+				mcqentity.setOptionB(dto.getOptionB());
+				mcqentity.setOptionC(dto.getOptionC());
+				mcqentity.setOptionD(dto.getOptionD());
+				mcqentity.setAnswers(dto.getAnswers());
+		    	mcqentity.setScore(dto.getScore());
+		    	mcqentity.setStatus(Constants.MESSAGE_STATUS.PROCESSED);
+		    	if(dto.getFileName()!=null) {
+		    	  fileentity.setPrimarykey(obj);
+		    	  fileentity.setFileName(dto.getFileName());
+		    	  fileentity.setFile(dto.getFile());
+		    	  System.out.println(fileentity);
+		    	  filerep.save(fileentity);
+		    	}
+		    	
+		    	mcqrep.save(mcqentity);
+				return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,
+						messageSource.getMessage("mcq.test.tst.VAL0004", null, LocaleContextHolder.getLocale()), null);
+	
+		    }
+    	} catch (Exception e) {
+			return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,
+					messageSource.getMessage("mcq.test.tst.VAL0010", null, LocaleContextHolder.getLocale()), null);
 		}
-		else
-		{
-			mcqentity.setPrimarykey(obj);
-			mcqentity.setQuestion(dto.getQuestion());
-			mcqentity.setOptionA(dto.getOptionA());
-			mcqentity.setOptionB(dto.getOptionB());
-			mcqentity.setOptionC(dto.getOptionC());
-			mcqentity.setOptionD(dto.getOptionD());
-			mcqentity.setAnswers(dto.getAnswers());
-	    	mcqentity.setScore(dto.getScore());
-	    	mcqentity.setStatus(Constants.MESSAGE_STATUS.PROCESSED);
-	    	if(dto.getFileName()!=null) {
-	    	  fileentity.setPrimarykey(obj);
-	    	  fileentity.setFileName(dto.getFileName());
-	    	  fileentity.setFile(dto.getFile());
-	    	  System.out.println(fileentity);
-	    	  filerep.save(fileentity);
-	    	}
-	    	
-	    	mcqrep.save(mcqentity);
-
-	    }
 	}
 
 
