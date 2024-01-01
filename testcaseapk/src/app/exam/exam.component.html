@@ -1,12 +1,3 @@
-<section class="centered-content" *ngIf="!obj.isLoggedIn">
-    <div>
-        <h1>Login to access this page.</h1><br><br><br>
-        <div>
-            <button class="btn btn-dark" (click)="backToLogin()">Login</button>
-        </div>
-    </div>
-</section>
-
-<div class="margin custom" *ngIf="obj.isLoggedIn">
+<div>
     <router-outlet></router-outlet>
 </div>
