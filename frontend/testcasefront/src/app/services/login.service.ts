@@ -10,13 +10,17 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  public getCurrentUser(){
+    return this.http.get(`${this.baseUrl}/current-user`);
+  }
+
   //generate token
   public generateToken(loginData: any) {
-    return this.http.post(`${this.baseUrl}/generate-token`, loginData);
+    return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 
   //login user: set token in localStorage
-  loginUser(token) {
+  public loginUser(token) {
     localStorage.setItem('token', token);
     return true;
   }
@@ -52,17 +56,17 @@ export class LoginService {
   public getUser() {
     let userStr = localStorage.getItem("user");
     if (userStr != null) {
-      return JSON.stringify(userStr);
+      return JSON.parse(userStr);
     } else {
       this.logout();
       return null;
     }
   }
 
-  //get user role
+  // get user role
   public getUserRole() {
     let user = this.getUser();
-    // return user.authorities[0].authorities
+    return user.authorities[0].authority;
   }
 
 }

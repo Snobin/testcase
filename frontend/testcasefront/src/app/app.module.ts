@@ -24,6 +24,7 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './services/auth.interceptor';
 
 
 
@@ -48,12 +49,12 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule,MatSnackBarModule
+    MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule,MatSnackBarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

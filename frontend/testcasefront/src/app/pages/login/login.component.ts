@@ -11,13 +11,13 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
 
   loginData = {
-    username: '',
+    email: '',
     password: ''
   }
   hidePassword = true;
 
-  constructor(private snack:MatSnackBar, private login:LoginService) { }
-  constructor() { }
+  constructor(private snack: MatSnackBar, private login: LoginService) { }
+
 
   ngOnInit(): void {
   }
@@ -25,30 +25,52 @@ export class LoginComponent implements OnInit {
   formSubmit() {
     console.log('Form Submitted!');
     // Add the logic to validate and submit the data here
-    if (this.loginData.username.trim()=='' || this.loginData.username.trim()==null) {
-      this.snack.open("Username is required !",'',{
-        duration:3000,
-        verticalPosition:'top'
+    if (this.loginData.email.trim() == '' || this.loginData.email.trim() == null) {
+      this.snack.open("Username is required !", '', {
+        duration: 3000,
+        verticalPosition: 'top'
       });
       return;
     }
-    if (this.loginData.password.trim()=='' || this.loginData.password.trim()==null) {
-      this.snack.open("Password is required !",'',{
-        duration:3000,
-        verticalPosition:'top'
+    if (this.loginData.password.trim() == '' || this.loginData.password.trim() == null) {
+      this.snack.open("Password is required !", '', {
+        duration: 3000,
+        verticalPosition: 'top'
       });
       return;
     }
 
     //request to server to generate token
     this.login.generateToken(this.loginData).subscribe(
-      (data:any) => {
+      (data: any) => {
         console.log('success');
         console.log(data);
+
+        this.login.loginUser(data.token);
+        this.login.getCurrentUser().subscribe(
+          (user: any) => {
+            this.login.setUser(user);
+            console.log(user);
+
+            if (this.login.getUserRole() == "ADMIN") {
+              window.location.href = "/admin";
+            } else if (this.login.getUserRole() == "USER") {
+              window.location.href = "/user-dashboard";
+            }
+            else {
+              this.login.logout();
+            }
+
+          }
+        );
+
       },
       (error) => {
         console.log('Error !');
         console.log(error);
+        this.snack.open("Invalid Details....Try again","",{
+          duration:2000,
+        });
       }
     )
   }

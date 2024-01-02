@@ -42,7 +42,7 @@ public class JwtRequestFilter extends OncePerRequestFilter
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) 
         {
         	CustomUserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-        	System.out.println("Not validated token");
+//        	System.out.println("Not validated token");
             if (jwtUtil.validateToken(jwt, userDetails))
             {
             	System.out.println("Validated token");
