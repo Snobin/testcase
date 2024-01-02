@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
+  public loginStatusSubject
+  
+
   baseUrl = 'http://localhost:8080/auth';
 
   constructor(private http: HttpClient) { }

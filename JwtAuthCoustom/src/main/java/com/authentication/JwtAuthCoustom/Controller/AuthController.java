@@ -58,14 +58,13 @@ public class AuthController
             String token = jwtUtil.generateToken(userDetails);
             JwtResponseDTO jwt=new JwtResponseDTO();
             jwt.setToken(token);
-            jwt.setUsername(dto.getName());
+            jwt.setUsername(userDetails.getUsername());
+            jwt.setRole(userDetails.getRole());
             return new ResponseEntity<>(jwt,HttpStatus.OK);
     	}
     	else
     	{
-    		return new ResponseEntity<>("UserName or Password is Incorrect", HttpStatus.BAD_REQUEST);
-
-
+    		return new ResponseEntity<>("Email or Password is Incorrect", HttpStatus.BAD_REQUEST);
     	}
 
     }

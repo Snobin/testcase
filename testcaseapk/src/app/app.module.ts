@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { QuestionSectionModule } from './exam/question-section/question-section.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -20,7 +21,7 @@ import { QuestionSectionModule } from './exam/question-section/question-section.
     AuthComponent,
     LoginComponent,
     NotFoundComponent, 
-    
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

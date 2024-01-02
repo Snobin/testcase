@@ -50,9 +50,7 @@ import { authInterceptorProviders } from './services/auth.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule,MatSnackBarModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,MatCardModule,MatToolbarModule,MatIconModule,MatListModule,MatInputModule,MatFormFieldModule
+
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ExamComponent implements OnInit {
 
-  constructor(public obj: AppComponent,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
