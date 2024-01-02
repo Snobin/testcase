@@ -5,6 +5,10 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { AdminGuard } from './services/admin.guard';
+
 import { HomeComponent } from './pages/home/home.component';
 
 
@@ -28,17 +32,21 @@ const routes: Routes = [
   {
     path: 'admin',
     component: DashboardComponent,
-    // canActivate:[AdminGuard],
-    children: [
-      {
-        path: '',
-        component: WelcomeComponent
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent
-      }
-    ]
+    canActivate:[AdminGuard],
+    // children: [
+    //   {
+    //     path: '',
+    //     component: WelcomeComponent
+    //   },
+    //   {
+    //     path: 'profile',
+    //     component: ProfileComponent
+    //   }
+    // ]
+  },
+  {
+    path: 'user-dashboard',
+    component:UserDashboardComponent
   }
 ];
 

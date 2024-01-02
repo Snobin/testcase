@@ -1,8 +1,12 @@
 package com.authentication.JwtAuthCoustom.Controller;
 
+import java.security.Principal;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +18,9 @@ import com.authentication.JwtAuthCoustom.DTO.CustomUserDetails;
 import com.authentication.JwtAuthCoustom.DTO.JwtResponseDTO;
 import com.authentication.JwtAuthCoustom.DTO.LoginDTO;
 import com.authentication.JwtAuthCoustom.DTO.SignupDTO;
+import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.authentication.JwtAuthCoustom.JWT.JWTServices;
+import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 import com.authentication.JwtAuthCoustom.ServiceImp.AuthServiceImp;
 
 import io.jsonwebtoken.Claims;
@@ -31,6 +37,8 @@ public class AuthController
 	
     @Autowired
     private AuthServiceImp userDetailsService;
+    @Autowired
+    private AuthRepository authRepository;
     
     
 	@PostMapping("/signup")
@@ -44,7 +52,9 @@ public class AuthController
     {
     	if(service.checkemailpassword(dto))
     	{
-            final CustomUserDetails userDetails = service.loadUserByUsername(dto.getEmail());
+    		Optional<UserEntity> username=authRepository.findByEmail(dto.getEmail());
+    		UserEntity obj= username.get();
+            final CustomUserDetails userDetails = service.loadUserByUsername(obj.getUsername());
             String token = jwtUtil.generateToken(userDetails);
             JwtResponseDTO jwt=new JwtResponseDTO();
             jwt.setToken(token);
@@ -93,6 +103,26 @@ public class AuthController
     	System.out.println(num);
     	return new ResponseEntity(num,HttpStatus.OK);
     }
+    @GetMapping("/current-user")
+    public ResponseEntity<?> getCurrentUser(Principal principal) {
+        if (principal != null && principal instanceof UsernamePasswordAuthenticationToken) {
+            UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
+
+            // Assuming sub is the username in your case, modify this line accordingly
+            CustomUserDetails usernameObj = (CustomUserDetails) authenticationToken.getPrincipal();
+            
+            System.err.println(usernameObj.toString());
+            
+            String username = principal.getName();
+            
+
+            return new ResponseEntity<>(this.userDetailsService.loadUserByUsername(username), HttpStatus.OK);
+        } else {
+            // Handle the case when there's no authentication information
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
 
     
 }

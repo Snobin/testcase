@@ -6,9 +6,16 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  baseUrl = 'http://localhost:8081/auth';
+  public loginStatusSubject
+  
+
+  baseUrl = 'http://localhost:8080/auth';
 
   constructor(private http: HttpClient) { }
+
+  public getCurrentUser(){
+    return this.http.get(`${this.baseUrl}/current-user`);
+  }
 
   //generate token
   public generateToken(loginData: any) {
@@ -16,7 +23,7 @@ export class LoginService {
   }
 
   //login user: set token in localStorage
-  loginUser(token) {
+  public loginUser(token) {
     localStorage.setItem('token', token);
     return true;
   }
@@ -35,7 +42,6 @@ export class LoginService {
   public logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    localStorage.removeItem("role");
     return true;
   }
 
@@ -46,28 +52,24 @@ export class LoginService {
 
   //set userDetails
   public setUser(user) {
-    localStorage.setItem("user", user);
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   //get userDetails
   public getUser() {
     let userStr = localStorage.getItem("user");
     if (userStr != null) {
-      return userStr;
+      return JSON.parse(userStr);
     } else {
       this.logout();
       return null;
     }
   }
 
-  //get user role
+  // get user role
   public getUserRole() {
-    return localStorage.getItem("role");
-  }
-
-  //set user role
-  public setUserRole(role) {
-    localStorage.setItem("role", role);
+    let user = this.getUser();
+    return user.authorities[0].authority;
   }
 
 }

@@ -17,60 +17,62 @@ export class LoginComponent implements OnInit {
   }
   hidePassword = true;
 
-  constructor(private snack:MatSnackBar, private login:LoginService, private router: Router) { }
+  constructor(private snack: MatSnackBar, private login: LoginService,private router:Router) { }
+
 
   ngOnInit(): void {
   }
 
   formSubmit() {
+    console.log('Form Submitted!');
     // Add the logic to validate and submit the data here
-    if (this.loginData.email.trim()=='' || this.loginData.email.trim()==null) {
-      this.snack.open("Email is required !",'',{
-        duration:3000,
-        verticalPosition:'top'
+    if (this.loginData.email.trim() == '' || this.loginData.email.trim() == null) {
+      this.snack.open("Username is required !", '', {
+        duration: 3000,
+        verticalPosition: 'top'
       });
       return;
     }
-    if (this.loginData.password.trim()=='' || this.loginData.password.trim()==null) {
-      this.snack.open("Password is required !",'',{
-        duration:3000,
-        verticalPosition:'top'
+    if (this.loginData.password.trim() == '' || this.loginData.password.trim() == null) {
+      this.snack.open("Password is required !", '', {
+        duration: 3000,
+        verticalPosition: 'top'
       });
       return;
     }
 
     //request to server to generate token
     this.login.generateToken(this.loginData).subscribe(
-      (data:any) => {
-        if (data.token && data.role == 'USER') {
-          this.login.loginUser(data.token);
-          this.login.setUser(data.username);
-          this.login.setUserRole(data.role);
-          this.router.navigate([`./home`]);
-          this.snack.open("Welcome to Interland",'',{
-            duration:3000,
-            verticalPosition:'top'
-          });
-        } else if (data.token && data.role == 'ADMIN') {
-          this.login.loginUser(data.token);
-          this.login.setUser(data.username);
-          this.login.setUserRole(data.role);
-          this.router.navigate([`./admin`]);
-          this.snack.open("Welcome to admin dasboard",'',{
-            duration:3000,
-            verticalPosition:'top'
-          });
-        } else {
-          this.snack.open("An unexpected error occured !",'',{
-            duration:3000,
-            verticalPosition:'top'
-          });
-        }
+      (data: any) => {
+        console.log('success');
+        console.log(data);
+
+        this.login.loginUser(data.token);
+        this.login.getCurrentUser().subscribe(
+          (user: any) => {
+            this.login.setUser(user);
+            console.log(user);
+
+            if (this.login.getUserRole() == "ADMIN") {
+              // window.location.href = "/admin";
+              this.router.navigate(['admin'])
+            } else if (this.login.getUserRole() == "USER") {
+              // window.location.href = "/user-dashboard";
+              this.router.navigate(['user-dashboard'])
+            }
+            else {
+              this.login.logout();
+            }
+
+          }
+        );
+
       },
       (error) => {
-        this.snack.open(error.error+' !','',{
-          duration:3000,
-          verticalPosition:'top'
+        console.log('Error !');
+        console.log(error);
+        this.snack.open("Invalid Details....Try again","",{
+          duration:2000,
         });
       }
     )
