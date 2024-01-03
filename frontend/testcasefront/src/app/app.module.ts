@@ -25,6 +25,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './services/auth.interceptor';
+import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
+import { AddCategoriesComponent } from './pages/admin/add-categories/add-categories.component';
 
 
 
@@ -41,6 +43,8 @@ import { authInterceptorProviders } from './services/auth.interceptor';
     ProfileComponent,
     SidebarComponent,
     WelcomeComponent,
+    ViewCategoriesComponent,
+    AddCategoriesComponent,
     
   ],
   imports: [

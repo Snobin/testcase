@@ -7,6 +7,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
+import { UserGuard } from './services/user.guard';
+import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 
 
 const routes: Routes = [
@@ -25,20 +27,27 @@ const routes: Routes = [
     path: 'admin',
     component: DashboardComponent,
     canActivate:[AdminGuard],
-    // children: [
-    //   {
-    //     path: '',
-    //     component: WelcomeComponent
-    //   },
-    //   {
-    //     path: 'profile',
-    //     component: ProfileComponent
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        component: WelcomeComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'categories',
+        component: ViewCategoriesComponent
+      }
+    ]
   },
   {
     path: 'user-dashboard',
-    component:UserDashboardComponent
+    component:UserDashboardComponent,
+    pathMatch:'full',
+    canActivate:[UserGuard],
+
   }
 ];
 
