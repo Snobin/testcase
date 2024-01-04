@@ -12,4 +12,9 @@ export class QuestionService {
   public getQuestions(qid){
     return this.http.get(`${this.baseUrl}/quiz/all/${qid}`);
   }
+
+  // Add Question
+  public addQuestion(question){
+    return this.http.post(`${this.baseUrl}/`,question);
+  }
 }
