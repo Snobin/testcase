@@ -11,9 +11,9 @@
                     <h1 class="text-center">Login</h1>
                     <!-- {{loginData|json}} -->
                     <form (ngSubmit)="formSubmit()">
-                        <!-- username field -->
+                        <!-- email field -->
                         <mat-form-field class="full-width" appearance="outline">
-                            <mat-label>User Name</mat-label>
+                            <mat-label>Email</mat-label>
                             <input
                                 [(ngModel)]="loginData.email"
                                 name="email"
@@ -23,7 +23,7 @@
                         </mat-form-field>
                         <!-- password field -->
                         <mat-form-field class="full-width" appearance="outline">
-                            <mat-label>User Password</mat-label>
+                            <mat-label>Password</mat-label>
                             <input
                                 [(ngModel)]="loginData.password"
                                 [type]="hidePassword ? 'password' : 'text'"

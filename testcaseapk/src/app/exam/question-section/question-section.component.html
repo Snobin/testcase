@@ -1,17 +1,39 @@
-
-
-    <div class="margin text-dark" style="background-color: #c9d4e6;padding: 0px;min-width: 954px;">
-        <div class="col-md-12 col-sm-12 col-lg-12" style="padding: 15px;padding-bottom: 0px;">
-            <h3>Exam Portal</h3>
-        </div>
-        <hr>
-        <ul class="nav nav-tabs" style="background-color: #c9d4e6;margin-top: 10px;margin-left: 8.33333333%;">
-            <li class="nav-item"><a class="nav-link" [class.active]="class" (click)="AptitudeTest()">Aptitude Test</a></li>
-            <li class="nav-item"><a class="nav-link" [class.active]="!class" (click)="CodingTest()">Coding Test</a></li>
-        </ul>
-    </div>
-    <div style="height: 100%;">
-        <main role="main" class="col-sm-12 col-md-12 col-lg-12 full-view-height">
-            <router-outlet></router-outlet>
-        </main>
-    </div>
+<div class="margin text-dark"
+    style="background-color: #c9d4e6;padding: 0px;min-width: 954px;padding: 0px;">
+    <hr>
+    <ul class="nav nav-tabs"
+        style="background-color: #c9d4e6;margin-top: 10px;margin-left: 8.33333333%;">
+        <li class="nav-item" style="margin-top: auto;"><a class="nav-link" [class.active]="class"
+                (click)="AptitudeTest()">Aptitude Test</a></li>
+        <li class="nav-item" style="margin-top: auto;"><a class="nav-link" [class.active]="!class"
+                (click)="CodingTest()">Coding Test</a></li>
+        <li style="margin-left: auto;margin-right: 20px;">
+            <div class="card overflow-hidden" style="padding: 0px;">
+                <div class="d-flex flex-row">
+                    <div class="p-2"
+                        [class.bg-success-subtle]="countdownMinutes>=9"
+                        [class.bg-danger-subtle]="countdownMinutes<9">
+                        <h3 class="box mb-0"
+                            [class.text-success]="countdownMinutes>=9"
+                            [class.text-danger]="countdownMinutes<9">
+                            <i class="bi bi-clock"></i>
+                        </h3>
+                    </div>
+                    <div class="p-2">
+                        <h3 class="mb-0 fs-6"
+                        [class.text-success]="countdownMinutes>=9"
+                        [class.text-danger]="countdownMinutes<9">{{ countdownMinutes
+                            }}:{{ countdownSeconds < 10 ? '0' : ''}}{{
+                            countdownSeconds }} Minutes</h3>
+                        <span class="text-muted">Left</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="full-view-height">
+    <main role="main" class="col-sm-12 col-md-12 col-lg-12 full-view-height">
+        <router-outlet></router-outlet>
+    </main>
+</div>

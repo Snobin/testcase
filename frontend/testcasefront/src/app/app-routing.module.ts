@@ -5,10 +5,18 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { UserGuard } from './services/user.guard';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
+
+import { HomeComponent } from './pages/home/home.component';
+import { AddCategoriesComponent } from './pages/admin/add-categories/add-categories.component';
+import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
+import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
+import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
+import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
 
 
 const routes: Routes = [
@@ -24,9 +32,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'home',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'admin',
     component: DashboardComponent,
-    canActivate:[AdminGuard],
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',
@@ -39,14 +52,31 @@ const routes: Routes = [
       {
         path: 'categories',
         component: ViewCategoriesComponent
+      }, {
+        path: 'add-categories',
+        component: AddCategoriesComponent
+      }
+      , {
+        path: 'quizzes',
+        component: ViewQuizzesComponent
+      }
+      , {
+        path: 'add-quiz',
+        component: AddQuizComponent
+      }, {
+        path: 'quiz/:qid',
+        component: UpdateQuizComponent
+      }, {
+        path: 'view-questions/:qid/:title',
+        component: ViewQuizQuestionsComponent
       }
     ]
   },
   {
     path: 'user-dashboard',
-    component:UserDashboardComponent,
-    pathMatch:'full',
-    canActivate:[UserGuard],
+    component: UserDashboardComponent,
+    pathMatch: 'full',
+    canActivate: [UserGuard],
 
   }
 ];

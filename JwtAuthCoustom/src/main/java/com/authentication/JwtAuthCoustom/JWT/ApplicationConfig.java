@@ -18,10 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 
-import lombok.RequiredArgsConstructor;
+
 
 @Configuration
-@RequiredArgsConstructor
 public class ApplicationConfig {
 
 	@Autowired

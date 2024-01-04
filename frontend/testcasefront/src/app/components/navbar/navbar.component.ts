@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from 'src/app/pages/login/login.component';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -9,10 +8,12 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class NavbarComponent implements OnInit {
 
+
   isLoggedIn=false;
   user=null;
 
   constructor(public login:LoginService) { }
+
 
   ngOnInit(): void {
     this.isLoggedIn=this.login.isloggedin();
@@ -29,5 +30,7 @@ export class NavbarComponent implements OnInit {
     this.login.logout();  
     window.location.reload();
   }
+
+
 
 }

@@ -1,10 +1,12 @@
 export class User {
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    name: string;
+    role: string;
     email: string;
     phoneNumber: number;
+lastName: any;
+firstName: any;
   
   }
   

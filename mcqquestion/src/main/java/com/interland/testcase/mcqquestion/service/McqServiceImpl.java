@@ -25,11 +25,13 @@ import org.springframework.stereotype.Service;
 
 import com.interland.testcase.mcqquestion.dto.Dto;
 import com.interland.testcase.mcqquestion.dto.ServiceResponse;
+import com.interland.testcase.mcqquestion.entity.DescriptiveEntity;
 import com.interland.testcase.mcqquestion.entity.FileEntity;
 import com.interland.testcase.mcqquestion.entity.McqEmbedded;
 import com.interland.testcase.mcqquestion.entity.McqEntity;
 import com.interland.testcase.mcqquestion.exception.RecordCreateException;
 import com.interland.testcase.mcqquestion.exception.RecordNotFoundException;
+import com.interland.testcase.mcqquestion.repository.DescRepository;
 import com.interland.testcase.mcqquestion.repository.FileRepository;
 import com.interland.testcase.mcqquestion.repository.McqRepository;
 import com.interland.testcase.mcqquestion.repository.specification.McqQuestionSpec;
@@ -44,7 +46,10 @@ public class McqServiceImpl implements McqService {
 	@Autowired
 	FileRepository filerep;
 	@Autowired
+	DescRepository descrep;
+	@Autowired
 	MessageSource messageSource;
+	private String DAQ;
 	
 	private static Logger logger = LogManager.getLogger(McqServiceImpl.class);
 	
@@ -131,53 +136,54 @@ public class McqServiceImpl implements McqService {
 	    return dto;
 	}
 
+
 	
 	public ServiceResponse create(Dto dto)  {
     	try {
-		McqEntity mcqentity = new McqEntity();
-		FileEntity fileentity = new FileEntity();
-
-		
-		McqEmbedded obj=new McqEmbedded();
-		obj.setQuestionId(dto.getQuestionId());
-		obj.setQuestionNo(dto.getQuestionNo());
-		Optional<McqEntity> existingQuestion = mcqrep.findById(obj);
-		if(existingQuestion.isPresent())
-		{
-			throw new RecordCreateException("Question already present");
+			McqEntity mcqentity = new McqEntity();
+			FileEntity fileentity = new FileEntity();
+	
 			
+			McqEmbedded obj=new McqEmbedded();
+			obj.setQuestionId(dto.getQuestionId());
+			obj.setQuestionNo(dto.getQuestionNo());
+			Optional<McqEntity> existingQuestion = mcqrep.findById(obj);
+			if(existingQuestion.isPresent())
+			{
+				throw new RecordCreateException("Question already present");
+				
+			}
+			else
+			{
+				mcqentity.setPrimarykey(obj);
+				mcqentity.setQuestion(dto.getQuestion());
+				mcqentity.setOptionA(dto.getOptionA());
+				mcqentity.setOptionB(dto.getOptionB());
+				mcqentity.setOptionC(dto.getOptionC());
+				mcqentity.setOptionD(dto.getOptionD());
+				mcqentity.setAnswers(dto.getAnswers());
+		    	mcqentity.setScore(dto.getScore());
+		    	mcqentity.setStatus(Constants.MESSAGE_STATUS.PROCESSED);
+		    	if(dto.getFileName()!=null) {
+		    	  fileentity.setPrimarykey(obj);
+		    	  fileentity.setFileName(dto.getFileName());
+		    	  fileentity.setFile(dto.getFile());
+		    	  System.out.println(fileentity);
+		    	  filerep.save(fileentity);
+		    	}
+		    	
+		    	mcqrep.save(mcqentity);
+				return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,
+						messageSource.getMessage("mcq.test.tst.VAL0004", null, LocaleContextHolder.getLocale()), null);
+	
+		    }
+    	} catch (Exception e) {
+			return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,
+					messageSource.getMessage("mcq.test.tst.VAL0010", null, LocaleContextHolder.getLocale()), null);
 		}
-		else
-		{
-			mcqentity.setPrimarykey(obj);
-			mcqentity.setQuestion(dto.getQuestion());
-			mcqentity.setOptionA(dto.getOptionA());
-			mcqentity.setOptionB(dto.getOptionB());
-			mcqentity.setOptionC(dto.getOptionC());
-			mcqentity.setOptionD(dto.getOptionD());
-			mcqentity.setAnswers(dto.getAnswers());
-	    	mcqentity.setScore(dto.getScore());
-	    	mcqentity.setStatus(Constants.MESSAGE_STATUS.PROCESSED);
-	    	if(dto.getFileName()!=null) {
-	    	  fileentity.setPrimarykey(obj);
-	    	  fileentity.setFileName(dto.getFileName());
-	    	  fileentity.setFile(dto.getFile());
-	    	  System.out.println(fileentity);
-	    	  filerep.save(fileentity);
-	    	}
-	    	
-	    	mcqrep.save(mcqentity);
-	    }
-    	return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,null,null);
+	}
 
-	} catch (Exception e) {
-		e.printStackTrace();
-		
-		return new ServiceResponse(Constants.MESSAGE_STATUS.FAILED,null, null);
-}
-    	
-}
-    
+
 	
     @Override
 	public ServiceResponse updateQuestion(Dto dto1) {
@@ -206,7 +212,6 @@ public class McqServiceImpl implements McqService {
 			newEntity.setAnswers(dto1.getAnswers());
 			newEntity.setScore(dto1.getScore());
 			newEntity.setStatus(dto1.getStatus());
-	
 			mcqrep.save(newEntity);
 			return new ServiceResponse(Constants.MESSAGE_STATUS.SUCCESS,
 					messageSource.getMessage("mcq.test.tst.VAL0004", null, LocaleContextHolder.getLocale()), null);
@@ -290,6 +295,7 @@ public class McqServiceImpl implements McqService {
  	
 }
 	
+
 
 
 		

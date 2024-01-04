@@ -10,6 +10,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
 
 
 
+
 @NgModule({
   declarations: [
     ExamComponent,
@@ -17,6 +18,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
   ],
   imports: [
     CommonModule,
+
     HttpClientModule,
     ExamRoutingModule,
     FormsModule

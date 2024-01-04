@@ -9,7 +9,7 @@ import { Question } from '../model/question';
 export class QuestionService {
 
   
-  private baseUrl= "http://localhost:8081/MCQ";
+  private baseUrl= "http://localhost:8082/MCQ";
 
   constructor(private http: HttpClient) { }
 

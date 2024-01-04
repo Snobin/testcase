@@ -1,11 +1,5 @@
 /* Add global styles here */
 body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .app-container {
-    display: flex;
-  }
-  
-  /* Add styles for each component in their respective CSS files */
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+}

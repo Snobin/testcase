@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -14,7 +15,7 @@ export class SignupComponent implements OnInit {
 
   userdata: User=new User();
 
-  constructor(private userservice:UserService,private snack:MatSnackBar) { }
+  constructor(private userservice:UserService,private snack:MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +31,12 @@ export class SignupComponent implements OnInit {
     }
     this.userservice.addUser(this.userdata).subscribe(
       (data)=>{
-        console.log(data);
-        Swal.fire("Success",'User is Registered','success')
+        if (data.body == 'Successfully Inserted') {
+          this.router.navigate([`./login`]);
+          Swal.fire("Success",'User is Registered','success')
+        } else {
+          Swal.fire('Error!', data.body,'error');
+        }
       },
       (error)=>{
         console.log(error);
