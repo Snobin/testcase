@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   formSubmit() {
-    console.log('Form Submitted!');
     // Add the logic to validate and submit the data here
     if (this.loginData.email.trim() == '' || this.loginData.email.trim() == null) {
       this.snack.open("Username is required !", '', {
@@ -60,7 +59,7 @@ export class LoginComponent implements OnInit {
 
             } else if (this.login.getUserRole() == "USER") {
               // window.location.href = "/user-dashboard";
-              this.router.navigate(['user-dashboard']);
+              this.router.navigate(['user-dashboard/0']);
               this.login.loginStatusSubject.next(true);
 
 
