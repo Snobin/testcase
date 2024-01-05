@@ -1,5 +1,7 @@
 package com.interland.testcase.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuizService;
 
@@ -42,5 +45,23 @@ public class QuizController {
 	@DeleteMapping("/{qid}")
 	public void delete(@PathVariable("qid") Long qid) {
 		this.quizService.deleteQuiz(qid);
+	}
+	
+	@GetMapping("/category/{cid}")
+	public List<Quiz> getQuizzesCategory(@PathVariable("cid") Long cid){
+		Category category=new Category();
+		category.setCid(cid);
+		return this.quizService.getQuizzesCategory(category);
+	}
+	@GetMapping("/active")
+	public List<Quiz> getActive(){
+		return this.quizService.getActiveQuizes();
+	}
+	
+	@GetMapping("/category/active/{cid}")
+	public List<Quiz> getActiveQuiz(@PathVariable("cid") Long cid){
+		Category category=new Category();
+		category.setCid(cid);
+		return this.quizService.getAtiveQuizzesCategory(category);
 	}
 }

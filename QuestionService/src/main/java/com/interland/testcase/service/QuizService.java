@@ -1,19 +1,27 @@
 package com.interland.testcase.service;
 
+import java.util.List;
 import java.util.Set;
 
+import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 
 public interface QuizService {
 
 	public Quiz addQuiz(Quiz quiz);
-	
+
 	public Quiz updateQuiz(Quiz quiz);
-	
+
 	public Set<Quiz> getQuizzes();
-	
+
 	public Quiz getQuiz(Long quizId);
-	
+
 	public void deleteQuiz(Long quizId);
-	
+
+	public List<Quiz> getQuizzesCategory(Category category);
+
+	public List<Quiz> getActiveQuizes();
+
+	public List<Quiz> getAtiveQuizzesCategory(Category category);
+
 }

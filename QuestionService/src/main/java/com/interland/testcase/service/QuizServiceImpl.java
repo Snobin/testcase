@@ -1,11 +1,13 @@
 package com.interland.testcase.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.repository.QuizRepository;
 
@@ -38,6 +40,21 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public void deleteQuiz(Long quizId) {
 		this.quizRepository.deleteById(quizId);
+	}
+
+	@Override
+	public List<Quiz> getQuizzesCategory(Category category) {
+		return this.quizRepository.findByCategory(category);
+	}
+
+	@Override
+	public List<Quiz> getActiveQuizes() {
+		return this.quizRepository.findByActive(true);
+	}
+
+	@Override
+	public List<Quiz> getAtiveQuizzesCategory(Category category) {
+		return this.quizRepository.findByCategoryAndActive(category,true);
 	}
 
 }
