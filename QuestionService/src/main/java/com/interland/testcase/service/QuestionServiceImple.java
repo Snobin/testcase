@@ -3,8 +3,10 @@ package com.interland.testcase.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -18,13 +20,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
+import com.interland.testcase.entity.Question;
+import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.repository.CompetitiveQuestionRepository;
 import com.interland.testcase.repository.McqQuestionRepository;
+import com.interland.testcase.repository.QuestionRepository;
 
 @Service
 public class QuestionServiceImple implements QuestionService {
 
     @Autowired
+    private QuestionRepository questionRepository;
+	
+	@Autowired
     private McqQuestionRepository mcqQuestionRepository;
 
     @Autowired
@@ -155,5 +163,43 @@ public class QuestionServiceImple implements QuestionService {
                 return null;
         }
     }
+
+
+	@Override
+	public Question addQuestion(Question question) {
+		return this.questionRepository.save(question);
+	}
+
+
+	@Override
+	public Question updateQuestion(Question question) {
+		return this.questionRepository.save(question);
+	}
+
+
+	@Override
+	public Set<Question> getQuestions() {
+		return new HashSet<>(this.questionRepository.findAll());
+	}
+
+
+	@Override
+	public Question getQuestion(Long questionId) {
+		return this.questionRepository.findById(questionId).get();
+	}
+
+
+	@Override
+	public Set<Question> getQuestionsOfQuiz(Quiz quiz) {
+		return this.questionRepository.findByQuiz(quiz);
+	}
+
+
+	@Override
+	public void deleteQuestion(Long quesId) {
+		Question question= new Question();
+		question.setQuesId(quesId);
+		this.questionRepository.delete(question);
+	}
 
 }
