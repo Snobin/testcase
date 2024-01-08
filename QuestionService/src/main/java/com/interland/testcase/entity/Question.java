@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Question {
@@ -29,6 +30,19 @@ public class Question {
 	private String option4;
 	
 	private String answer;
+	
+	@Transient
+	private String givenAnswer;
+
+
+	public String getGivenAnswer() {
+		return givenAnswer;
+	}
+
+
+	public void setGivenAnswer(String givenAnswer) {
+		this.givenAnswer = givenAnswer;
+	}
 
 
 	@ManyToOne(fetch = FetchType.EAGER)
