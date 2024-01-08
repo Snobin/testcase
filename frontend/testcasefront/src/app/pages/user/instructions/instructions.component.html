@@ -5,39 +5,91 @@
                 <mat-card class="mt20">
                     <mat-card-header>
                         <mat-card-title>
-
                             Read the instructions
                         </mat-card-title>
                         <mat-card-subtitle>
-                            One step more
+                            Thank you for participating in the exam. Please carefully read the following instructions before proceeding.
                         </mat-card-subtitle>
                     </mat-card-header>
-                    <mat-card-content class="ml20">
-                        <h1>{{quizdata.title}}</h1>
-                        <p>{{quizdata.description}}</p>
-                        <mat-divider></mat-divider>
-
-                        <h1>Important instructions</h1>
-                        <br>
+                    <mat-card-content>
+                        <hr>
                         <ul>
-                            <li>This quiz is fdhgiyife</li>
-                            <li>Time:{{quizdata.numberOfQuestions*2}}</li>
+                            <li>Description of {{quizdata.title}} : {{quizdata.description}}</li>
+                            <li>Total time : <b>{{quizdata.numberOfQuestions*2}} Minutes</b></li>
                             <li>There are <b>{{quizdata.numberOfQuestions}} Questions</b></li>
-                            <li>Each question marks{{quizdata.maxMarks/quizdata.numberOfQuestions}} marks.</li>
-                            <li>All questions is MCQ Type</li>
-                        </ul>
-                        <mat-divider></mat-divider>
-                        <br>
-                        <h1>Attempting Quiz</h1>
-                        <ul>
-                            <li>Click <b>Start Quiz</b> button to start
+                            <li>Total marks for the quiz is <b>{{quizdata.maxMarks}}</b>.</li>
+                            <li>Each question will have <b>{{quizdata.maxMarks/quizdata.numberOfQuestions}} marks</b>.</li>
+                            <li>All questions are MCQ Type</li>
+                            <li>
+                                <strong>Attempting Quiz:</strong>
+                                <ul>
+                                    <li>Click <span class="badge bg-primary">Start Quiz</span> to start
+                                    </li>
+                                    <li>
+                                        Click on any question number on the sidebar to see the corresponding question and its options.
+                                    </li>
+                                    <li>
+                                        Click <span class="badge bg-dark">Next</span> / <span class="badge bg-dark">Previous</span> to view next / previous question respectively.      
+                                    </li>
+                                    <li>
+                                        Click <span class="badge bg-success">Save</span> after selecting your answer for every question.
+                                    </li>
+                                    <li>
+                                        Question status colors will be as show below.
+                                        <ul>
+                                            <li>
+                                                <span class="badge bg-success">Attempted question</span>
+                                            </li>
+                                            <li>
+                                                <span class="badge bg-danger">Not attempted question</span>
+                                            </li>
+                                            <li>
+                                                <span class="badge bg-dark">Current question</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Click <span class="badge bg-primary">Submit</span> when you have completed.
+                                    </li>
+                                    <li>
+                                        Countdown time will be show on the top right.
+                                    </li>
+                                    <li>
+                                        The exam will automatically submit at the end of time.
+                                    </li>
+                                    <li>
+                                        You can <b>not go back or refresh</b> the page during the quiz. If you leave this page, your progress will be lost.
+                                    </li>
+                                </ul>
                             </li>
-                            <li>feguhjkmldjnk</li>
-                            <li>ftyguhnjkmhbnj</li>
-                            <li>fghjnkl</li>
-                            <li>ftyghbjnkml</li>
-                            <li>Report of quiz automatically generated</li>
+                            <li>
+                                <strong>Technical Requirements:</strong>
+                                <ul>
+                                    <li>Ensure a stable internet connection throughout the exam.</li>
+                                    <li>Use a laptop or desktop computer with a webcam and microphone.</li>
+                                    <li>Close all unnecessary applications and browser tabs.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Review and Feedback:</strong>
+                                <ul>
+                                    <li>After the exam, review your performance and note areas for improvement.</li>
+                                    <li>Provide constructive feedback to help us enhance the exam experience.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Conclusion:</strong>
+                                <ul>
+                                    <li>Thank you for participating in the Interview Exam. We appreciate your time and effort.</li>
+                                    <li>Results and further instructions will be communicated after the evaluation process.</li>
+                                </ul>
+                            </li>
                         </ul>
+                        <hr>
+                        <mat-card-subtitle>
+                            <strong>All the best !</strong>
+                        </mat-card-subtitle>
+                        <hr>
                     </mat-card-content>
                     <mat-card-actions class="text-center">
                         <button (click)="startQuiz()" class="" mat-raised-button color="primary">Start Quiz</button>
