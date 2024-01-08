@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-@Injectable({
+@Injectable({  
   providedIn: 'root'
 })
 export class QuestionService {
@@ -13,6 +13,10 @@ export class QuestionService {
     return this.http.get(`${this.baseUrl}/quiz/all/${qid}`);
   }
 
+  public getQuestionsForQuiz(qid){
+    return this.http.get(`${this.baseUrl}/quiz/${qid}`);
+  }
+
   // Add Question
   public addQuestion(question){
     return this.http.post(`${this.baseUrl}/`,question);
@@ -22,4 +26,8 @@ export class QuestionService {
   public deleteQuestion(questionId){
     return this.http.delete(`${this.baseUrl}/${questionId}`);
   }
+  public evalQuiz(questions){
+    return this.http.post(`${this.baseUrl}/eval`,questions)
+  }
+
 }

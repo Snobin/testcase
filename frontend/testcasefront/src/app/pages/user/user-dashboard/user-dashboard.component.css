@@ -4,5 +4,5 @@
     padding-right: var(--bs-gutter-x,.75rem);
     padding-left: var(--bs-gutter-x,.75rem);
     width: 100%;
-    max-width: max-content;
+    max-width: 100%;
 }

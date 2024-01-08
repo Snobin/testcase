@@ -36,6 +36,10 @@ import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/vi
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 import { SidebaruserComponent } from './pages/user/sidebaruser/sidebaruser.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,8 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
     AddQuestionComponent,
     SidebaruserComponent,
     LoadQuizComponent,
+    InstructionsComponent,
+    StartComponent,
     
   ],
   imports: [
@@ -66,7 +72,7 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatButtonModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule
+    MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule
 
   ],
   providers: [authInterceptorProviders],
