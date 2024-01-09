@@ -21,6 +21,8 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
+import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
+import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 
 
 const routes: Routes = [
@@ -76,6 +78,12 @@ const routes: Routes = [
       }, {
         path: 'add-question/:qid/:title',
         component: AddQuestionComponent
+      }, {
+        path: 'add-code',
+        component: AddCodingComponent
+      }, {
+        path: 'view-answer',
+        component: ViewAnswerComponent
       }
     ]
   },

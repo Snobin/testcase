@@ -40,6 +40,8 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
 import { StartComponent } from './pages/user/start/start.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
+import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoadQuizComponent,
     InstructionsComponent,
     StartComponent,
+    AddCodingComponent,
+    ViewAnswerComponent,
     
   ],
   imports: [
