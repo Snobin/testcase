@@ -1,1 +1,91 @@
-<p>add-coding works!</p>
+<div class="bootstrap-wrapper">
+    <div class="row mt20">
+        <div class="col-md-12">
+            <h1>Add question to {{qTitle}}</h1>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>
+                        Enter the details of the new question
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <form class="mt20" (submit)="formSubmit()">
+                        <!-- questing heading -->
+                        <mat-form-field class="w100">
+                            <mat-label>Write question heading</mat-label>
+                            <input type="text" matInput required
+                                [(ngModel)]="question.heading" name="option2" />
+                        </mat-form-field>
+                        <!-- question description -->
+                        <mat-form-field class="w100">
+                            <mat-label>Write question description</mat-label>
+                            <textarea rows="8" matInput required
+                                [(ngModel)]="question.description" name="content"
+                                placeholder="Enter here"></textarea>
+                        </mat-form-field>
+
+                        <!-- examples -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- example1 -->
+                                <mat-form-field class="w100">
+                                    <mat-label>Enter example 1</mat-label>
+                                    <textarea rows="5" matInput required
+                                        [(ngModel)]="question.example1"
+                                        name="example1"
+                                        placeholder="Enter example1"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- example2 -->
+                                <mat-form-field class="w100">
+                                    <mat-label>Enter example 2</mat-label>
+                                    <textarea rows="5" matInput required
+                                        [(ngModel)]="question.example2"
+                                        name="example2"
+                                        placeholder="Enter example2"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- constraint -->
+                        <mat-form-field class="w100">
+                            <mat-label>Enter contraints</mat-label>
+                            <textarea id="constraints" matInput
+                                name="content" rows="5"
+                                placeholder="Enter constraints"></textarea>
+                        </mat-form-field>
+                        <!-- file upload -->
+                        <mat-form-field class="w100" appearance="outline">
+                            <div>
+                                <mat-toolbar>
+                                    <input matInput [value]="fileName" disabled/>
+                                    <button
+                                        mat-flat-button
+                                        color="primary"
+                                        style="z-index: 5;"
+                                        (click)="browseFiles()">
+                                        Browse
+                                    </button>
+                                </mat-toolbar>
+                                <input
+                                    type="file"
+                                    class="w100"
+                                    id="fileInput"
+                                    (change)="selectFile($event)"
+                                    style="z-index: 1;"
+                                    name="fileInput" />
+                            </div>
+                        </mat-form-field>
+                        <div *ngIf="message" class="message w100">
+                            {{ message }}
+                        </div>
+                        <div class="container text-center">
+                            <button mat-raised-button
+                                color="primary">Add</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
