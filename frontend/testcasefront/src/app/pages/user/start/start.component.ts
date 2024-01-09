@@ -78,7 +78,7 @@ export class StartComponent implements OnInit {
     let ss = this.timer - mm * 60;
     // Formatting single-digit seconds
     let formattedSS = ss < 10 ? `0${ss}` : ss;
-    return `${mm} min : ${formattedSS} sec`;
+    return `${mm} : ${formattedSS} Minutes`;
   }
   eval() {
     // this.isSubmit = true;

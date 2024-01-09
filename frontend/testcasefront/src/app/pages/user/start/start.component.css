@@ -1,0 +1,20 @@
+.timer-container {
+    position: relative;
+    width: fit-content;
+    stroke: #198754;
+    color: #198754;
+    margin: auto;
+}
+
+.time-center {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.mat-green {
+    stroke: #198754;
+}
