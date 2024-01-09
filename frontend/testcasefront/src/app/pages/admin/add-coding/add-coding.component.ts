@@ -1,12 +1,9 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
-declare var $: any;
-declare var jQuery: any;
 @Component({
   selector: 'app-add-coding',
   templateUrl: './add-coding.component.html',
@@ -30,6 +27,7 @@ export class AddCodingComponent implements OnInit {
   message = '';
 
   fileName = 'Select File';
+  codingData: any;
 
   constructor(private route: ActivatedRoute, private service: QuestionService, private router: Router) { }
 
@@ -138,6 +136,16 @@ export class AddCodingComponent implements OnInit {
         });
     }
 
+  }
+  addCodingQuestion() {
+    // Implement the logic to add coding question
+    console.log(this.codingData);
+  }
+
+  onFileChange(event: any) {
+    // Implement logic to handle file change (e.g., uploading test cases)
+    const file = event.target.files[0];
+    console.log(file);
   }
 
 }
