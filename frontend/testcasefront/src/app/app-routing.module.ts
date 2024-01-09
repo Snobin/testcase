@@ -23,6 +23,7 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
 import { StartComponent } from './pages/user/start/start.component';
 import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
+import { ConsoleComponent } from './pages/user/console/console.component';
 
 
 const routes: Routes = [
@@ -99,7 +100,7 @@ const routes: Routes = [
       {
         path: 'instructions/:qid',
         component: InstructionsComponent
-      },
+      }
 
     ],
   }, {
@@ -107,7 +108,11 @@ const routes: Routes = [
     component: StartComponent,
     canActivate: [UserGuard]
 
-  }
+  },
+  {
+    path: 'coding',
+    component: ConsoleComponent
+  },
 ];
 
 @NgModule({

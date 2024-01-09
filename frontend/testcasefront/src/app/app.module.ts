@@ -42,6 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
+import { ConsoleComponent } from './pages/user/console/console.component';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.compo
     StartComponent,
     AddCodingComponent,
     ViewAnswerComponent,
+    ConsoleComponent,
     
   ],
   imports: [
