@@ -1,0 +1,77 @@
+body {
+
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns with equal width */
+    height: 88vh;
+
+}
+
+.code-editor {
+margin: 10px;
+}
+
+pre {
+margin: 0;
+}
+
+.code-input {
+display: block;
+padding: 10px;
+background-color: #f4f4f4;
+border: 1px solid #ddd;
+border-radius: 5px;
+white-space: pre-wrap;
+word-wrap: break-word;
+height: 100%;
+overflow-y: auto;
+text-align: left;
+}
+.code-output {
+display: block;
+padding: 10px;
+background-color: #f4f4f4;
+border: 1px solid #ddd;
+border-radius: 5px;
+white-space: pre-wrap;
+word-wrap: break-word;
+height: 100%;
+overflow-y: auto;
+}
+
+.contain {
+display: flex;
+height: 100vh;
+}
+
+.resizable {
+width: 200px;
+height: 100px;
+border: 1px solid #ccc;
+resize: horizontal; /* Allow horizontal resizing */
+overflow: auto; /* Enable scrolling if content exceeds div size */
+cursor: col-resize;
+}
+.resize-card {
+flex: .5;
+resize: both;
+overflow: auto;
+}
+.custom-row {
+display: flex;
+flex-wrap: wrap;
+}
+
+
+/* ::ng-deep .p-splitter-gutter {
+background-color: #ff5500; /* Set the background color of the gutter */
+/* } */
+.textarea{
+height: 100%;
+width: 100%;
+resize:both;
+}
+
+.custom-height{
+min-height: 214px;
+}

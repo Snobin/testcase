@@ -43,6 +43,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 import { ConsoleComponent } from './pages/user/console/console.component';
+import { SplitterModule } from 'primeng/splitter';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 
 
 @NgModule({
@@ -71,7 +73,6 @@ import { ConsoleComponent } from './pages/user/console/console.component';
     AddCodingComponent,
     ViewAnswerComponent,
     ConsoleComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -79,6 +80,8 @@ import { ConsoleComponent } from './pages/user/console/console.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SplitterModule,
+    FormsModule,
     MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
