@@ -30,15 +30,29 @@ export class ConsoleComponent implements OnInit {
   testInput31: any;
   testInput32: any;
 
+  questiondata;
+
   constructor(private service: CodeService) { }
 
   ngOnInit(): void {
     this.clearAll();
+    this.qnData(1);
   }
 
   ngAfterViewInit() {
     this.initializeCodeMirror();
     this.initializeCodeMirrorOutput();
+  }
+
+  qnData(qid){
+    this.service.questionReq(qid).subscribe(
+      (data:any)=>{
+        this.questiondata=data;
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
 
   initializeCodeMirrorOutput() {

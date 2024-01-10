@@ -1,7 +1,11 @@
 package com.interland.testcase.entity;
 
+import java.sql.Blob;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class CompetitiveQuestion {
@@ -15,6 +19,75 @@ public class CompetitiveQuestion {
     private String outputFormat;
     private String expectedOutput;
     private String additionalInfo;
+    
+    @Lob
+   	@Column(name = "fileContent")
+       private Blob fileContent; 
+    
+    public Blob getFileContent() {
+		return fileContent;
+	}
+
+	public void setFileContent(Blob fileContent) {
+		this.fileContent = fileContent;
+	}
+
+	@Column(name = "title", nullable = false)
+    private String title;
+	
+	@Column(name = "description", nullable = false)
+    private String description;
+	
+	@Column(name = "example1", nullable = false)
+    private String example1;
+	
+	@Column(name = "example2", nullable = false)
+    private String example2;
+	
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getExample1() {
+		return example1;
+	}
+
+	public void setExample1(String example1) {
+		this.example1 = example1;
+	}
+
+	public String getExample2() {
+		return example2;
+	}
+
+	public void setExample2(String example2) {
+		this.example2 = example2;
+	}
+
+	public String getConstraints() {
+		return constraints;
+	}
+
+	public void setConstraints(String constraints) {
+		this.constraints = constraints;
+	}
+
+	@Column(name = "constraints")
+    private String constraints;
 
     // Getters and setters
 

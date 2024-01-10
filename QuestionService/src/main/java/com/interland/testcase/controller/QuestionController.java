@@ -62,14 +62,14 @@ public class QuestionController {
 		Collections.shuffle(list);
 		return ResponseEntity.ok(list);
 	}
-	
+
 	@GetMapping("/quiz/all/{qid}")
 	public ResponseEntity<?> getQuestionOfQuizAdmin(@PathVariable("qid") Long qid) {
 		Quiz quiz = new Quiz();
 		quiz.setQid(qid);
 		Set<Question> questionsofQuiz = this.questionService.getQuestionsOfQuiz(quiz);
 		return ResponseEntity.ok(questionsofQuiz);
-		
+
 	}
 
 	@GetMapping("/{quesId}")
@@ -81,29 +81,37 @@ public class QuestionController {
 	public void delete(@PathVariable("quesId") Long quesId) {
 		this.questionService.deleteQuestion(quesId);
 	}
-	
+
 	@PostMapping("/eval")
-	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions){
-		int marksGot=0;
-		Integer correctAnswers=0;
-		Integer attempted=0;
-		for(Question q:questions) {
-			Question question=this.questionService.get(q.getQuesId());
-			if(question.getAnswer().equals(q.getGivenAnswer())) {
+	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
+		int marksGot = 0;
+		Integer correctAnswers = 0;
+		Integer attempted = 0;
+		for (Question q : questions) {
+			Question question = this.questionService.get(q.getQuesId());
+			if (question.getAnswer().equals(q.getGivenAnswer())) {
 				correctAnswers++;
-				double marksSingle=Double.parseDouble(questions.get(0).getQuiz().getMaxMarks())/questions.size();
-				marksGot+=marksSingle;
+				double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
+				marksGot += marksSingle;
 			}
-			if(q.getGivenAnswer()!=null) {
+			if (q.getGivenAnswer() != null) {
 				attempted++;
 			}
 		}
-		Map<Object, Object> map=Map.of("marksGot",marksGot,"correctAnswers",correctAnswers,"attempted",attempted);
+		Map<Object, Object> map = Map.of("marksGot", marksGot, "correctAnswers", correctAnswers, "attempted",
+				attempted);
 		return ResponseEntity.ok(map);
 	}
-	
+
 	@PostMapping("/addCodingQuestion")
-    public ResponseEntity<?> addCodingQuestion(@RequestParam String heading,@RequestParam String description,@RequestParam String example1,@RequestParam String example2,@RequestParam String constraints,@RequestPart(required = false) MultipartFile file) {
+	public ResponseEntity<?> addCodingQuestion(@RequestParam String heading, @RequestParam String description,
+			@RequestParam String example1, @RequestParam String example2, @RequestParam String constraints,
+			@RequestPart(required = false) MultipartFile file) {
 		return questionService.addCodingQuestion(heading, description, example1, example1, constraints, file);
+	}
+	
+	@GetMapping("/qndata/{quesId}")
+	public ResponseEntity<?> getQnData(@PathVariable("quesId") Long quesId){
+		return questionService.getQnData(quesId);
 	}
 }
