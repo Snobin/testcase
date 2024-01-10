@@ -10002,6 +10002,10 @@ body {
 
 
 /* custom styles */
+.h-92{
+    height: 92%;
+}
+
 .select {
     border-radius: 5px;
     width: 100%;
@@ -10013,9 +10017,25 @@ body {
     box-shadow: 0 0 0 2px transparent;
 }
 
-.btn {
+.btn{
     font-size: small;
     padding-top: 2px;
     padding-bottom: 2px;
     width: 80px;
+}
+
+btn:focus-visible {
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+}
+
+btn-check:focus+.btn-secondary, .btn-secondary:focus, :focus+.btn-success, .btn-success:focus,:focus+.btn-primary, .btn-primary:focus,:focus+.btn-danger, .btn-danger:focus,:focus+.btn-warning, .btn-warning:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 0px transparent;
+}
+
+.custom-splitter {
+    width: 100%;
+    height: 100%;
 }

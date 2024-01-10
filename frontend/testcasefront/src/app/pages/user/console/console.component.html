@@ -1,7 +1,9 @@
-<div class="flex h-full w-full flex-col">
-    <div class="flex w-full flex-grow overflow-y-hidden">
-        <div id="qd-content" class="bg-gray-2 dark:bg-dark-layer-bg flex h-full w-full min-w-[800px] p-2">
-            <div class="h-full flex-col ssg__qd-splitter-primary-w" style="width: calc(44.4661% - 4px);">
+<div class="flex h-92 w-full flex-col">
+    <div class="flex w-full flex-grow">
+        <div class="bg-gray-2 dark:bg-dark-layer-bg flex h-full w-full p-2">
+            <p-splitter [panelSizes]="[50, 50]" style="width: 100%;height: 100%;" [gutterSize]="15">
+            <ng-template pTemplate="panel">
+            <div class="h-full flex-col ssg__qd-splitter-primary-w h-full w-full">
                 <div class="relative flex h-full flex-col">
                     <div class="min-h-0 flex-grow" style="height: 100%;">
                         <div class="flex h-full flex-col rounded bg-layer-1 dark:bg-dark-layer-1">
@@ -100,44 +102,7 @@
                                                     <strong>32-bit</strong>
                                                     integer.
                                                 </p>
-
-                                                <p>&nbsp;</p>
-                                                <p><strong class="example">Example
-                                                        1:</strong></p>
-
-                                                <pre><strong>Input:</strong> nums = [2,4,6,8,10]
-<strong>Output:</strong> 7
-<strong>Explanation:</strong> All arithmetic subsequence slices are:
-[2,4,6]
-[4,6,8]
-[6,8,10]
-[2,4,6,8]
-[4,6,8,10]
-[2,4,6,8,10]
-[2,6,10]
-</pre>
-
-                                                <p><strong class="example">Example
-                                                        2:</strong></p>
-
-                                                <pre><strong>Input:</strong> nums = [7,7,7,7,7]
-<strong>Output:</strong> 16
-<strong>Explanation:</strong> Any subsequence of this array is arithmetic.
-</pre>
-
-                                                <p>&nbsp;</p>
-                                                <p><strong>Constraints:</strong></p>
-
-                                                <ul>
-                                                    <li><code>1&nbsp; &lt;=
-                                                            nums.length &lt;=
-                                                            1000</code></li>
-                                                    <li><code>-2<sup>31</sup>
-                                                            &lt;= nums[i] &lt;=
-                                                            2<sup>31</sup> -
-                                                            1</code>
-                                                    </li>
-                                                </ul>
+                                                
                                             </div>
                                         </div>
                                         <div class="px-5 pt-4"></div>
@@ -149,7 +114,8 @@
                     </div>
                 </div>
             </div>
-            <div
+        </ng-template>
+            <!-- <div
                 class="group flex h-full items-center justify-center transition hover:bg-blue-s dark:hover:bg-dark-blue-s w-2 hover:cursor-col-resize">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 14" width="2" height="14" fill="currentColor"
                     class="text-gray-5 dark:text-dark-gray-5 transition -translate-y-6 group-hover:text-white dark:group-hover:text-white">
@@ -157,8 +123,10 @@
                     <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 7)"></circle>
                     <circle r="1" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 1 13)"></circle>
                 </svg>
-            </div>
-            <div class="h-full flex-col ssg__qd-splitter-secondary-w" style="width: calc(55.5339% - 4px);">
+            </div> -->
+            
+    <ng-template pTemplate="panel">
+            <div class="h-full flex-col ssg__qd-splitter-secondary-w w-full h-full">
                 <div class="relative flex h-full flex-col">
                     <div class="min-h-0 flex-grow">
                         <div class="flex h-full flex-col rounded bg-layer-1 dark:bg-dark-layer-1">
@@ -189,7 +157,7 @@
                                             </div>
                                         </div>
                                         <div class="ml-auto flex gap-3">
-                                            <button type="button" class="btn btn-secondary">
+                                            <button type="button" class="btn btn-warning">
                                                 Run
                                             </button>
                                             <button type="button" class="btn btn-success">
@@ -210,10 +178,10 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
+        </ng-template>
+</p-splitter>
         </div>
     </div>
 </div>
