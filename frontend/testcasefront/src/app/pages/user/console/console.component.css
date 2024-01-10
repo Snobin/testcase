@@ -159,17 +159,17 @@
     height: 100%;
     min-height: 1px;
     width: var(--swiper-centered-offset-after);
-  }
-  
-  .swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child {
+}
+
+.swiper-centered.swiper-vertical>.swiper-wrapper>.swiper-slide:first-child {
     margin-block-start: var(--swiper-centered-offset-before);
-  }
-  
-  .swiper-centered.swiper-vertical>.swiper-wrapper:before {
+}
+
+.swiper-centered.swiper-vertical>.swiper-wrapper:before {
     height: var(--swiper-centered-offset-after);
     min-width: 1px;
     width: 100%;
-  }
+}
 
 .swiper-centered>.swiper-wrapper>.swiper-slide {
     scroll-snap-align: center center;
@@ -26555,71 +26555,19 @@ html.dark .nav-li-after:after {
     background-color: #f5f5f5
 }
 
-.mde-editor .EasyMDEContainer .CodeMirror {
-    border: none;
-    height: 100%
-}
-
-.mde-editor .editor-preview blockquote {
-    --tw-border-opacity: 1;
-    --tw-text-opacity: 1;
-    border-color: rgb(229 229 229/var(--tw-border-opacity));
-    border-left-width: 4px;
-    color: rgb(140 140 140/var(--tw-text-opacity));
-    padding-left: .5rem;
-    padding-right: .5rem
-}
-
-:is(.dark .mde-editor .editor-preview blockquote) {
-    --tw-border-opacity: 1;
-    --tw-text-opacity: 1;
-    border-color: rgb(66 66 66/var(--tw-border-opacity));
-    color: rgb(138 138 138/var(--tw-text-opacity))
-}
-
-.mde-editor .EasyMDEContainer {
-    height: 100%
-}
-
-.dark .CodeMirror {
-    --tw-bg-opacity: 1;
-    --tw-text-opacity: 1;
-    background-color: rgb(40 40 40/var(--tw-bg-opacity));
-    color: rgb(255 255 255/var(--tw-text-opacity))
-}
-
-.dark .CodeMirror-selected {
-    background-color: #0a84ff40 !important
-}
-
-.dark .cm-s-easymde .CodeMirror-cursor {
-    --tw-border-opacity: 1;
-    border-color: rgb(255 255 255/var(--tw-border-opacity))
-}
-
-.dark .editor-toolbar button:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(138 138 138/var(--tw-bg-opacity))
-}
-
-.cm-s-easymde .cm-comment,
-.dark .editor-preview,
-.dark .editor-toolbar>.active,
-.editor-preview pre,
-.editor-toolbar>button:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(28 28 28/var(--tw-bg-opacity))
-}
-
-.dark .mde-editor.no-background .CodeMirror,
-.mde-editor.no-background .CodeMirror {
-    background-color: initial
-}
-
-.prism-player .prism-big-play-btn {
-    z-index: 20 !important
-}
-
 .katex-html {
     overflow: unset !important
+}
+
+.select {
+    border-radius: 5px;
+    width: 150%;
+    margin-left: 5px;
+}
+
+/* Apply styles to form select when focused */
+.form-select:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px transparent;
+    /* Additional styles for focus state if needed */
 }

@@ -19,7 +19,7 @@ export class ConsoleComponent implements OnInit {
   selectedLanguage: string = 'java';
   testCases: string[] = [];
   result: any = { success: true, output: '' };
-  code: string = '';
+  code: string = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
   case: any = 1;
@@ -74,21 +74,26 @@ export class ConsoleComponent implements OnInit {
         autoCloseBrackets: true,
       });
       // Set the code to the CodeMirror editor
-      this.editor.setValue('');
+      this.editor.setValue(this.code);
     }
   }
 
   getEditorMode(): string {
     // Determine the CodeMirror mode based on the selected language
     if (this.selectedLanguage == 'java') {
+      this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
       return "text/x-java";
     } else if (this.selectedLanguage == 'cpp') {
+      this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << 'Hello World!';\n\treturn 0;\n}"
       return "text/x-c++src";
     } else if (this.selectedLanguage == 'python') {
+      this.code = "# This program prints Hello, world!\n\nprint('Hello, world!')";
       return "text/x-python";
     } else if (this.selectedLanguage == 'c') {
+      this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf('Hello, World!');\n\treturn 0;\n}";
       return "text/x-csrc";
     } else {
+      this.code = "// This program prints Hello, world! \n\n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
       return "text/x-java";
     }
   }
