@@ -46,6 +46,7 @@ import { ConsoleComponent } from './pages/user/console/console.component';
 import { SplitterModule } from 'primeng/splitter';
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.compo
     HttpClientModule,
     SplitterModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],

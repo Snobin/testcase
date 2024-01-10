@@ -4,12 +4,15 @@ import java.sql.Blob;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
 @Entity
 public class CompetitiveQuestion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String questionId; // Add the questionId field
@@ -38,10 +41,10 @@ public class CompetitiveQuestion {
 	@Column(name = "description", nullable = false)
     private String description;
 	
-	@Column(name = "example1", nullable = false)
+	@Column(name = "example1")
     private String example1;
 	
-	@Column(name = "example2", nullable = false)
+	@Column(name = "example2")
     private String example2;
 	
 	
