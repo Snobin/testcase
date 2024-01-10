@@ -169,6 +169,4 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cOutputCode');
     localStorage.removeItem('pythonOutputCode');
   }
-
-
 }
