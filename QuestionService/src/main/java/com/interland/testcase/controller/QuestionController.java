@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
@@ -97,5 +100,10 @@ public class QuestionController {
 		}
 		Map<Object, Object> map=Map.of("marksGot",marksGot,"correctAnswers",correctAnswers,"attempted",attempted);
 		return ResponseEntity.ok(map);
+	}
+	
+	@PostMapping("/addCodingQuestion")
+    public ResponseEntity<?> addCodingQuestion(@RequestParam String heading,@RequestParam String description,@RequestParam String example1,@RequestParam String example2,@RequestParam String constraints,@RequestPart(required = false) MultipartFile file) {
+		return questionService.addCodingQuestion(heading, description, example1, example1, constraints, file);
 	}
 }

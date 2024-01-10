@@ -1,12 +1,17 @@
 package com.interland.testcase.service;
 
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import javax.sql.rowset.RowSetProvider;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -15,22 +20,35 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.interland.testcase.entity.CodingQuestion;
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
+import com.interland.testcase.repository.CodingQuestionRepository;
 import com.interland.testcase.repository.CompetitiveQuestionRepository;
 import com.interland.testcase.repository.McqQuestionRepository;
 import com.interland.testcase.repository.QuestionRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class QuestionServiceImple implements QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
+    
+    @Autowired
+    private CodingQuestionRepository codingQuestionRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 	
 	@Autowired
     private McqQuestionRepository mcqQuestionRepository;
@@ -164,7 +182,38 @@ public class QuestionServiceImple implements QuestionService {
         }
     }
 
+    @Override
+    public ResponseEntity<?> addCodingQuestion(String heading,String description,String example1,String example2,String constraints,MultipartFile file) {
+    	try {
+            // Create a new Question entity
+            CodingQuestion codingQuestion = new CodingQuestion();
+            codingQuestion.setHeading(heading);
+            codingQuestion.setDescription(description);
+            codingQuestion.setExample1(example1);
+            codingQuestion.setExample2(example2);
+            codingQuestion.setConstraints(constraints);
+            // Set file content as Blob
+            if (file != null && !file.isEmpty()) {
+                Blob fileContent = createBlob(file.getBytes());
+                codingQuestion.setFileContent(fileContent);
+            }
+            // Save the question
+            codingQuestionRepository.save(codingQuestion);
+            return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
+        } catch (IOException | SQLException e) {
+            return new ResponseEntity<>("Error adding question: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
+    private Blob createBlob(byte[] bytes) throws SQLException {
+    	try {
+            return new javax.sql.rowset.serial.SerialBlob(bytes);
+        } catch (SQLFeatureNotSupportedException e) {
+            // If javax.sql.rowset.serial.SerialBlob is not available, fallback to the default Blob
+            return entityManager.unwrap(java.sql.Connection.class).createBlob();
+        }
+    }
+    
 	@Override
 	public Question addQuestion(Question question) {
 		return this.questionRepository.save(question);

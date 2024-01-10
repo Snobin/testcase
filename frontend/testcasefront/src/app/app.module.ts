@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,8 +40,14 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
 import { StartComponent } from './pages/user/start/start.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
+import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
+import { ConsoleComponent } from './pages/user/console/console.component';
+import { SplitterModule } from 'primeng/splitter';
+
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -64,7 +70,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LoadQuizComponent,
     InstructionsComponent,
     StartComponent,
-    
+    AddCodingComponent,
+    ViewAnswerComponent,
+    ConsoleComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +80,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule
+    SplitterModule,
+    FormsModule,
+    MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
   providers: [authInterceptorProviders],
