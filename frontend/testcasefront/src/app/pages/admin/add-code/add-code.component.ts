@@ -1,37 +1,18 @@
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
-
 declare var $: any;
 declare var jQuery: any;
 @Component({
-  selector: 'app-add-coding',
-  templateUrl: './add-coding.component.html',
-  styleUrls: ['./add-coding.component.css']
+  selector: 'app-add-code',
+  templateUrl: './add-code.component.html',
+  styleUrls: ['./add-code.component.css']
 })
-export class AddCodingComponent implements OnInit {
-addQuiz() {
-throw new Error('Method not implemented.');
-}
-
+export class AddCodeComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  categories = []
-
-  Data = {
-    title: '',
-    description: '',
-    maxMarks: '',
-    numberOfQuestions: '',
-    active: true,
-    category: {
-      cid: ''
-    },
-  }
-
+  constructor(private route: ActivatedRoute, private service: QuestionService, private router: Router) { }
   constraintsElement:any;
   qId;
   qTitle;
@@ -45,9 +26,6 @@ throw new Error('Method not implemented.');
   };
   message = '';
   fileName = 'Select File';
-
-  constructor(private route: ActivatedRoute, private service: QuestionService, private router: Router) { }
-
   ngOnInit(): void {
     this.constraint();
     this.qId = this.route.snapshot.params.qid;
@@ -137,4 +115,5 @@ throw new Error('Method not implemented.');
   }
 
 }
+
 
