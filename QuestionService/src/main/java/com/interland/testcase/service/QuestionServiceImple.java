@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.sql.rowset.RowSetProvider;
@@ -186,8 +187,8 @@ public class QuestionServiceImple implements QuestionService {
     public ResponseEntity<?> addCodingQuestion(String heading,String description,String example1,String example2,String constraints,MultipartFile file) {
     	try {
             // Create a new Question entity
-            CodingQuestion codingQuestion = new CodingQuestion();
-            codingQuestion.setHeading(heading);
+            CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
+            codingQuestion.setTitle(heading);
             codingQuestion.setDescription(description);
             codingQuestion.setExample1(example1);
             codingQuestion.setExample2(example2);
@@ -198,7 +199,7 @@ public class QuestionServiceImple implements QuestionService {
                 codingQuestion.setFileContent(fileContent);
             }
             // Save the question
-            codingQuestionRepository.save(codingQuestion);
+            competitiveQuestionRepository.save(codingQuestion);
             return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
         } catch (IOException | SQLException e) {
             return new ResponseEntity<>("Error adding question: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -255,6 +256,13 @@ public class QuestionServiceImple implements QuestionService {
 	@Override
 	public Question get(Long questionId) {
 		return this.questionRepository.getOne(questionId);
+	}
+
+
+	@Override
+	public ResponseEntity<?> getQnData(Long qnId) {
+		Optional<?> data=this.competitiveQuestionRepository.findById(qnId);
+		 return new ResponseEntity<>(data,HttpStatus.ACCEPTED);
 	}
 
 }

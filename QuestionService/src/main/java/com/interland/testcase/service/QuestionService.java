@@ -29,6 +29,8 @@ public interface QuestionService {
 	public Question get(Long questionId);
 
 	public List<McqQuestion> createMcqQuestions(MultipartFile questionFile);
+	
+	public ResponseEntity<?> getQnData(Long qnId);
 
 	public List<CompetitiveQuestion> createCompetitiveQuestions(MultipartFile questionFile);
 

@@ -1,19 +1,15 @@
 <div class="flex h-full w-full flex-col">
 
     <div class="flex w-full flex-grow overflow-y-hidden">
-        <div id="qd-content"
-            class="bg-gray-2 dark:bg-dark-layer-bg flex h-full w-full min-w-[800px] p-2">
-            <div class="h-full flex-col ssg__qd-splitter-primary-w"
-                style="width: calc(44.4661% - 4px);">
+        <div id="qd-content" class="bg-gray-2 dark:bg-dark-layer-bg flex h-full w-full min-w-[800px] p-2">
+            <div class="h-full flex-col ssg__qd-splitter-primary-w" style="width: calc(44.4661% - 4px);">
                 <div class="relative flex h-full flex-col">
                     <div class="min-h-0 flex-grow" style="height: 100%;">
-                        <div
-                            class="flex h-full flex-col rounded bg-layer-1 dark:bg-dark-layer-1">
+                        <div class="flex h-full flex-col rounded bg-layer-1 dark:bg-dark-layer-1">
                             <div>
                                 <div
                                     class="bg-layer-2 dark:bg-dark-layer-2 border-fill-3 dark:border-dark-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
-                                    <div
-                                        class="flex h-full w-full flex-row gap-6"><a
+                                    <div class="flex h-full w-full flex-row gap-6"><a
                                             href="/problems/arithmetic-slices-ii-subsequence/description?envType=daily-question&amp;envId=2024-01-09">
                                             <div
                                                 class="relative flex h-full select-none items-center whitespace-nowrap text-xs text-label-1 dark:text-dark-label-1 font-medium hover:text-label-1 dark:hover:text-dark-label-1 shrink">
@@ -25,40 +21,29 @@
                                         </a></div>
                                 </div>
                             </div>
-                            <div
-                                class="flex h-full w-full overflow-y-auto rounded-b">
+                            <div class="flex h-full w-full overflow-y-auto rounded-b">
                                 <div class="flex h-full w-full overflow-y-auto">
-                                    <div
-                                        class="flex h-full w-full flex-1 flex-col">
+                                    <div class="flex h-full w-full flex-1 flex-col">
                                         <div class="w-full px-5 pt-5">
                                             <div class="w-full">
                                                 <div class="flex space-x-4">
                                                     <div class="flex-1">
-                                                        <div
-                                                            class="flex h-full items-center"><a
-                                                                class="mr-2 text-label-1 dark:text-dark-label-1 hover:text-label-1 dark:hover:text-dark-label-1 text-lg font-medium"
-                                                                href="/problems/arithmetic-slices-ii-subsequence/">446.
-                                                                Arithmetic
-                                                                Slices II -
-                                                                Subsequence</a>
+                                                        <div class="flex h-full items-center">
+                                                            <p class="mr-2 text-label-1 dark:text-dark-label-1 hover:text-label-1 dark:hover:text-dark-label-1 text-lg font-medium">
+                                                                {{questiondata.questionText}}
+                                                            </p>
                                                             <div
                                                                 class="inline-flex min-h-[20px] items-center space-x-2 align-top mt-1">
-                                                                <div
-                                                                    class="inline-flex items-center space-x-2"></div>
+                                                                <div class="inline-flex items-center space-x-2"></div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div
-                                                        class="flex items-center">
-                                                        <div
-                                                            class="inline-flex gap-2 text-lg">
-                                                            <div
-                                                                class="popover-wrapper inline-block"
+                                                    <div class="flex items-center">
+                                                        <div class="inline-flex gap-2 text-lg">
+                                                            <div class="popover-wrapper inline-block"
                                                                 data-headlessui-state>
                                                                 <div>
-                                                                    <div
-                                                                        aria-expanded="false"
-                                                                        data-headlessui-state
+                                                                    <div aria-expanded="false" data-headlessui-state
                                                                         id="headlessui-popover-button-:r4:">
 
                                                                     </div>
@@ -75,27 +60,8 @@
                                         </div>
                                         <div class="px-5 pt-4">
                                             <div class="flex"></div>
-                                            <div class="xFUwe"
-                                                data-track-load="description_content">
-                                                <p>Given an integer array
-                                                    <code>nums</code>, return
-                                                    <em>the number of
-                                                        all the
-                                                        <strong>arithmetic
-                                                            subsequences</strong>
-                                                        of</em>
-                                                    <code>nums</code>.
-                                                </p>
-
-                                                <p>A sequence of numbers is
-                                                    called arithmetic if it
-                                                    consists of
-                                                    <strong>at least three
-                                                        elements</strong> and if
-                                                    the difference
-                                                    between any two consecutive
-                                                    elements is the same.
-                                                </p>
+                                            <div class="xFUwe" data-track-load="description_content">
+                                               <p>{{questiondata.additionalInfo}}</p>
 
                                                 <ul>
                                                     <li>For example, <code>[1,
@@ -118,7 +84,8 @@
                                                     that can be
                                                     formed by removing some
                                                     elements (possibly none) of
-                                                    the array.</p>
+                                                    the array.
+                                                </p>
 
                                                 <ul>
                                                     <li>For example,
@@ -135,8 +102,7 @@
                                                 </p>
 
                                                 <p>&nbsp;</p>
-                                                <p><strong
-                                                        class="example">Example
+                                                <p><strong class="example">Example
                                                         1:</strong></p>
 
                                                 <pre><strong>Input:</strong> nums = [2,4,6,8,10]
@@ -151,8 +117,7 @@
 [2,6,10]
 </pre>
 
-                                                <p><strong
-                                                        class="example">Example
+                                                <p><strong class="example">Example
                                                         2:</strong></p>
 
                                                 <pre><strong>Input:</strong> nums = [7,7,7,7,7]
