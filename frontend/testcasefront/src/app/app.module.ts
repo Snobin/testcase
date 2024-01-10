@@ -44,6 +44,8 @@ import { AddCodingComponent } from './pages/admin/add-coding/add-coding.componen
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 import { ConsoleComponent } from './pages/user/console/console.component';
 import { SplitterModule } from 'primeng/splitter';
+import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
+import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
 
 
 @NgModule({
@@ -73,6 +75,8 @@ import { SplitterModule } from 'primeng/splitter';
     AddCodingComponent,
     ViewAnswerComponent,
     ConsoleComponent,
+    AddCodeComponent,
+    ViewCodingComponent,
   ],
   imports: [
     BrowserModule,
