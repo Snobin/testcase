@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CodeRequest } from '../model/code-request';
 import { CodeService } from 'src/app/services/code.service';
 
-declare var CodeMirror:any;
+declare var CodeMirror: any;
 @Component({
   selector: 'app-console',
   templateUrl: './console.component.html',
@@ -10,7 +10,7 @@ declare var CodeMirror:any;
 })
 export class ConsoleComponent implements OnInit {
 
-  
+
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
   @ViewChild('output', { static: false }) outputTextarea: ElementRef;
 
@@ -22,7 +22,7 @@ export class ConsoleComponent implements OnInit {
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
-  case: any=1;
+  case: any = 1;
   testInput11: any;
   testInput12: any;
   testInput21: any;
@@ -36,7 +36,7 @@ export class ConsoleComponent implements OnInit {
     this.clearAll();
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.initializeCodeMirror();
     this.initializeCodeMirrorOutput();
   }
@@ -105,14 +105,14 @@ export class ConsoleComponent implements OnInit {
     this.initializeCodeMirrorOutput();
   }
 
-  save(){
+  save() {
     // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
     // Save the current code to local storage before changing the language
     const localStorageOutput = `${this.selectedLanguage}OutputCode`;
     localStorage.setItem(localStorageOutput, this.output.getValue());
-    
+
   }
 
   async executeCode() {
@@ -159,7 +159,7 @@ export class ConsoleComponent implements OnInit {
     this.editor.setValue('');
   }
 
-  clearAll(){
+  clearAll() {
     localStorage.removeItem('javaEditorCode');
     localStorage.removeItem('cppEditorCode');
     localStorage.removeItem('cEditorCode');

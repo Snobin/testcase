@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,10 +44,10 @@ import { AddCodingComponent } from './pages/admin/add-coding/add-coding.componen
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 import { ConsoleComponent } from './pages/user/console/console.component';
 import { SplitterModule } from 'primeng/splitter';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     NavbarComponent,

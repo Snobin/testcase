@@ -1,9 +1,12 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
+declare var $: any;
+declare var jQuery: any;
 @Component({
   selector: 'app-add-coding',
   templateUrl: './add-coding.component.html',
@@ -11,6 +14,9 @@ import Swal from 'sweetalert2';
 })
 export class AddCodingComponent implements OnInit {
 
+  @ViewChild('fileInput') fileInput: ElementRef;
+
+  constraintsElement:any;
   qId;
   qTitle;
   question = {
@@ -19,15 +25,10 @@ export class AddCodingComponent implements OnInit {
     example1: '',
     example2: '',
     constraints: '',
-    file: ''
+    file: null,
   };
-  
-  currentFile?: File;
-  progress = 0;
   message = '';
-
   fileName = 'Select File';
-  codingData: any;
 
   constructor(private route: ActivatedRoute, private service: QuestionService, private router: Router) { }
 
@@ -37,33 +38,36 @@ export class AddCodingComponent implements OnInit {
     this.qTitle = this.route.snapshot.params.title;
   }
 
+  ngAfterViewInit() {
+    this.fileInput.nativeElement;
+  }
+
   constraint() {
     document.addEventListener('DOMContentLoaded', () => {
-      const constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
-    
+      this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
       // Handle focus event
-      constraintsElement.addEventListener('focus', () => {
-        if (constraintsElement.value === '') {
-          constraintsElement.value += '• ';
+      this.constraintsElement.addEventListener('focus', () => {
+        if (this.constraintsElement.value === '') {
+          this.constraintsElement.value += '• ';
         }
       });
-    
       // Handle keyup event
-      constraintsElement.addEventListener('keyup', (event) => {
+      this.constraintsElement.addEventListener('keyup', (event) => {
         const keycode = event.keyCode ? event.keyCode : event.which;
-    
         if (keycode === 13) {
-          constraintsElement.value += '• ';
+          this.constraintsElement.value += '• ';
         }
-    
-        const txtval = constraintsElement.value;
-    
+        const txtval = this.constraintsElement.value;
         if (txtval.substr(txtval.length - 1) === '\n') {
-          constraintsElement.value = txtval.substring(0, txtval.length - 1);
+          this.constraintsElement.value = txtval.substring(0, txtval.length - 1);
         }
       });
     });
-    
+
+  }
+
+  browseFiles() {
+    this.fileInput.nativeElement.click();
   }
 
   formSubmit() {
@@ -79,18 +83,26 @@ export class AddCodingComponent implements OnInit {
     if (this.question.example2.trim() == '' || this.question.example2 == null || this.question.example2 == undefined) {
       return;
     }
-    if (this.question.file.trim() == '' || this.question.file == null || this.question.file == undefined) {
+    if (this.question.file == null || this.question.file == undefined || this.fileName == 'Select File') {
+      this.message = 'Please choose a file for testcases.';
+      console.log(this.message);
       return;
     }
+    if (this.message != 'Please choose a file for testcases.') {
+      this.message = '';
+    }
+    console.log(this.message);
     // form submit
-    this.service.addQuestion(this.question).subscribe(
+    this.service.addCodingQuestion(this.question).subscribe(
       (data: any) => {
         this.question.heading = '';
         this.question.description = '';
         this.question.example1 = '';
         this.question.example2 = '';
         this.question.constraints = '';
-        this.question.file = '';
+        this.constraintsElement.value = '';
+        this.question.file = null;
+        this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
       }, (error) => {
         Swal.fire('Error', 'Error in adding question', 'error');
@@ -98,54 +110,14 @@ export class AddCodingComponent implements OnInit {
     )
   }
 
-
   selectFile(event: any): void {
     if (event.target.files && event.target.files[0]) {
       const file: File = event.target.files[0];
-      this.currentFile = file;
-      this.fileName = this.currentFile.name;
+      this.question.file = file;
+      this.fileName = this.question.file.name;
     } else {
       this.fileName = 'Select File';
     }
-  }
-
-  upload(): void {
-    this.progress = 0;
-    this.message = "";
-
-    if (this.currentFile) {
-      this.service.upload(this.currentFile).subscribe(
-        (event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progress = Math.round(100 * event.loaded / event.total);
-          } else if (event instanceof HttpResponse) {
-            this.message = event.body.message;
-          }
-        },
-        (err: any) => {
-          console.log(err);
-          this.progress = 0;
-
-          if (err.error && err.error.message) {
-            this.message = err.error.message;
-          } else {
-            this.message = 'Could not upload the file!';
-          }
-
-          this.currentFile = undefined;
-        });
-    }
-
-  }
-  addCodingQuestion() {
-    // Implement the logic to add coding question
-    console.log(this.codingData);
-  }
-
-  onFileChange(event: any) {
-    // Implement logic to handle file change (e.g., uploading test cases)
-    const file = event.target.files[0];
-    console.log(file);
   }
 
 }

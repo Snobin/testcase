@@ -9,7 +9,7 @@
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <form class="mt20" (submit)="formSubmit()">
+                    <form class="mt20">
                         <!-- questing heading -->
                         <mat-form-field class="w100">
                             <mat-label>Write question heading</mat-label>
@@ -51,7 +51,7 @@
                         <mat-form-field class="w100">
                             <mat-label>Enter contraints</mat-label>
                             <textarea id="constraints" matInput
-                                name="content" rows="5"
+                                name="constraints" rows="5"
                                 placeholder="Enter constraints"></textarea>
                         </mat-form-field>
                         <!-- file upload -->
@@ -63,11 +63,12 @@
                                         mat-flat-button
                                         color="primary"
                                         style="z-index: 5;"
-                                        (click)="upload()">
+                                        (click)="browseFiles()">
                                         Browse
                                     </button>
                                 </mat-toolbar>
-                                <input
+                                <input #fileInput
+                                    required
                                     type="file"
                                     class="w100"
                                     id="fileInput"
@@ -81,7 +82,9 @@
                         </div>
                         <div class="container text-center">
                             <button mat-raised-button
-                                color="primary">Add</button>
+                                color="primary"
+                                (click)="formSubmit()"
+                                >Add</button>
                         </div>
                     </form>
                 </mat-card-content>
