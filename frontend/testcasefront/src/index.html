@@ -91,17 +91,26 @@
           border-radius: 5px;
           max-width: 1243px;
           overflow-x: scroll;
+          -ms-overflow-style: none;
+          /* IE and Edge */
+          scrollbar-width: none;
+          /* Firefox */
         }
         /* Hide scrollbar for Chrome, Safari and Opera */
         .CodeMirror::-webkit-scrollbar {
           display: none;
         }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .CodeMirror {
+        .CodeMirror-sizer {
+          min-width: 320px !important; /* You can use !important if needed */
+          max-width: 320px;
           -ms-overflow-style: none;
           /* IE and Edge */
           scrollbar-width: none;
           /* Firefox */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .CodeMirror-sizer::-webkit-scrollbar {
+          display: none;
         }
         .p-splitter {
             display: flex;
