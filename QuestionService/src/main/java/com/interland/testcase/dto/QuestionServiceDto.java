@@ -8,7 +8,6 @@ public class QuestionServiceDto {
     private String additionalInfo;
     private String answer;
 
-    // Constructors, getters, and setters can be added based on your requirements
 
     public QuestionServiceDto() {
     }

@@ -20,79 +20,63 @@ import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 
 
 
-
 @Configuration
 public class ApplicationConfig {
-	
+
 	@Autowired
 	AuthRepository repo;
 
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsService() {
 
-	  @Bean
-	  public UserDetailsService userDetailsService() 
-	  {
-	    return new UserDetailsService()
-	    {
-	    		
-	    	@Override
-	    	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-	    	{
-	    		if (usernameExistsInYourSystem(username)) 
-		        {
+			@Override
+			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+				if (usernameExistsInYourSystem(username)) {
 //
-		            return buildUserDetails(username);
-		        } 
-		        else 
-		        {
+					return buildUserDetails(username);
+				} else {
 //		            
-		            throw new UsernameNotFoundException("Username not found: " + username);
-		        }
-	    	}
-	    };
-	    
-	    
-	  }
+					throw new UsernameNotFoundException("Username not found: " + username);
+				}
+			}
+		};
 
-  @Bean
-  public AuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(userDetailsService());
-    authProvider.setPasswordEncoder(passwordEncoder());
-    return authProvider;
-  }
+	}
 
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService());
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
+	}
 
-  @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-    return config.getAuthenticationManager();
-  }
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
+	}
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
-  
-  private boolean usernameExistsInYourSystem(String username) 
-  {
-      Optional<UserEntity> opt = repo.findIdByEmail(username);
-      if(opt!=null)
-      {
-      	return true;
-      }
-      else
-      {
-      	return false;
-      }
-      
-  }
-  
-  private UserDetails buildUserDetails(String username) 
-  {
-  	Optional<UserEntity> opt = repo.findIdByEmail(username);
-  	UserEntity details=opt.get();
-  	System.out.println((UserDetails) details);
-  	return (UserDetails) details;
-  }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	private boolean usernameExistsInYourSystem(String username) {
+		Optional<UserEntity> opt = repo.findByEmail(username);
+		if (opt != null) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	private UserDetails buildUserDetails(String username) {
+		Optional<UserEntity> opt = repo.findByEmail(username);
+		UserEntity details = opt.get();
+		System.out.println((UserDetails) details);
+		return (UserDetails) details;
+	}
 
 }
-

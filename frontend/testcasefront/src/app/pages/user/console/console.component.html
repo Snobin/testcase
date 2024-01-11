@@ -1,0 +1,169 @@
+<div class="flex h-92 w-full flex-col">
+    <div class="flex w-full flex-grow">
+        <div class="bg-gray-2 flex h-full w-full p-2">
+            <p-splitter [panelSizes]="[50, 50]"
+                style="width: 100%;height: 100%;" [gutterSize]="15">
+                <ng-template pTemplate="panel">
+                    <div
+                        class="h-full flex-col h-full w-full">
+                        <div class="relative flex h-full flex-col">
+                            <div class="min-h-0 flex-grow"
+                                style="height: 100%;">
+                                <div
+                                    class="flex h-full flex-col rounded bg-layer-1">
+                                    <div>
+                                        <div
+                                            class="bg-layer-2 border-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
+                                            <div
+                                                class="flex h-full w-full flex-row gap-6">
+                                                <a
+                                                    href="">
+                                                    <div
+                                                        class="relative flex h-full select-none items-center whitespace-nowrap text-xs text-label-1 font-medium hover:text-label-1 shrink">
+                                                        <span>Description</span>
+                                                        <div
+                                                            class="bg-gray-7 absolute -bottom-[1px] h-[2px] w-full">
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex h-full w-full overflow-y-auto rounded-b">
+                                        <div class="flex h-full w-full overflow-y-auto">
+                                            <div class="flex h-full w-full flex-1 flex-col">
+                                                <div class="w-full px-5 pt-5">
+                                                    <div class="w-full">
+                                                        <div class="flex space-x-4">
+                                                            <div class="flex-1">
+                                                                <div class="flex h-full items-center">
+                                                                    <p
+                                                                        class="mr-2 text-label-1 dark:text-dark-label-1 hover:text-label-1 dark:hover:text-dark-label-1 text-lg font-medium">
+                                                                        {{questiondata.title}}
+                                                                    </p>
+                                                                    <div
+                                                                        class="inline-flex min-h-[20px] items-center space-x-2 align-top mt-1">
+                                                                        <div class="inline-flex items-center space-x-2">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <div class="inline-flex gap-2 text-lg">
+                                                                    <div class="popover-wrapper inline-block"
+                                                                        data-headlessui-state>
+                                                                        <div>
+                                                                            <div aria-expanded="false"
+                                                                                data-headlessui-state
+                                                                                id="headlessui-popover-button-:r4:">
+
+                                                                            </div>
+                                                                            <div
+                                                                                style="position: fixed; z-index: 40; inset: 0px auto auto 0px; transform: translate(676px, -467px);">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="px-5 pt-4">
+                                                    <div class="flex"></div>
+                                                    <div class="xFUwe" data-track-load="description_content">
+                                                        <p>{{questiondata.description}}</p>
+                                                
+                                                        <ul>
+                                                            <ul>
+                                                                <li>Input: "{{questiondata.example1Input}}"</li>
+                                                                <li>Output: {{questiondata.example1Output}}</li>
+                                                                <li>Explanation: {{questiondata.example1Exp}}</li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li>Input: "{{questiondata.example2Input}}"</li>
+                                                                <li>Output: {{questiondata.example2Output}}</li>
+                                                                <li>Explanation: {{questiondata.example2Exp}}</li>
+                                                            </ul>
+                                                        </ul>
+                                                
+                                                        <p>{{questiondata.constraints}}</p>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="px-5 pt-4"></div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+
+                <ng-template pTemplate="panel">
+                    <div
+                        class="h-full flex-col w-full h-full max-h-90">
+                        <div class="relative flex h-full flex-col">
+                            <div class="min-h-0 flex-grow">
+                                <div
+                                    class="flex h-full flex-col rounded bg-layer-1">
+                                    <div class="flex h-full flex-col">
+                                        <div
+                                            class="relative flex h-full flex-col overflow-hidden rounded"
+                                            id="editor">
+                                            <div
+                                                class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
+                                                <div
+                                                    class="mr-auto flex flex-nowrap items-center gap-3">
+                                                    <div>
+                                                        <div>
+                                                            <select class="select form-select"
+                                                                [(ngModel)]="selectedLanguage"
+                                                                (change)="onChangeLang()">
+                                                                <option value="java">
+                                                                    Java
+                                                                </option>
+                                                                <option value="python">
+                                                                    Python
+                                                                </option>
+                                                                <option value="cpp">
+                                                                    C++
+                                                                </option>
+                                                                <option value="c">
+                                                                    C
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-auto flex gap-3">
+                                                    <button type="button" class="btn btn-warning">
+                                                        Run<i class="bi bi-play-fill"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-success">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="flex flex-1 flex-col overflow-hidden">
+                                                <div
+                                                    class="flex-1 overflow-hidden">
+                                                    <textarea id="editor"
+                                                        #editor type="text"
+                                                        class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-splitter>
+        </div>
+    </div>
+</div>

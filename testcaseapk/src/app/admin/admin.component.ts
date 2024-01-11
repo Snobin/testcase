@@ -9,10 +9,9 @@ import { AppComponent } from '../app.component';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public obj: AppComponent,private router:Router) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.obj.isLoggedIn=true;
   }
   backToLogin(){
     this.router.navigate([`./login`]);

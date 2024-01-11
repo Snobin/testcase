@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="user">
     <h1>Profile Details</h1>
     <mat-card-content>
         <div class="bootstrap-wrapper">
@@ -16,16 +16,24 @@
                         <table class="table">
                             <tr>
                                 <td>Username</td>
-                                <td>Admin</td>
+                                <td>{{user.username}}</td>
                             </tr>
                             <tr>
                                 <td>Role</td>
-                                <td>Admin</td>
+                                <td>{{user.role}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Role</td>
+                                <td>{{user.role}}</td>
                             </tr>
                             <tr>
                                 <td>Status</td>
                                 <td>Active</td>
-                            </tr>
+                            </tr> -->
                         </table>
                     </div>
                 </div>

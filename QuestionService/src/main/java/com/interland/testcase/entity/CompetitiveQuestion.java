@@ -1,24 +1,75 @@
 package com.interland.testcase.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import java.sql.Blob;
+
+import jakarta.persistence.*;
 
 @Entity
 public class CompetitiveQuestion {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String questionId; // Add the questionId field
+    @Column(name = "question_id")
+    private String questionId;
 
+    @Column(name = "question_text")
     private String questionText;
+
     private String input;
+
+    @Column(name = "output_format")
     private String outputFormat;
+
+    @Column(name = "expected_output")
     private String expectedOutput;
+
+    @Column(name = "additional_info")
     private String additionalInfo;
 
-    // Getters and setters
+    @Lob
+    @Column(name = "file_content")
+    private Blob fileContent;
 
-    public String getAdditionalInfo() {
+    @Column(name = "title", nullable = false)
+    private String title;
+
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @Column(name = "example1_input")
+    private String example1Input;
+
+    @Column(name = "example2_input")
+    private String example2Input;
+
+    @Column(name = "example1_output")
+    private String example1Output;
+
+    @Column(name = "example2_output")
+    private String example2Output;
+
+    @Column(name = "example1_exp")
+    private String example1Exp;
+
+    @Column(name = "example2_exp")
+    private String example2Exp;
+
+    @Column(name = "constraints")
+    private String constraints;
+
+    private boolean active = false;
+
+    public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getAdditionalInfo() {
         return additionalInfo;
     }
 
@@ -74,5 +125,83 @@ public class CompetitiveQuestion {
         this.expectedOutput = expectedOutput;
     }
 
-    // Other methods as needed
+    public Blob getFileContent() {
+        return fileContent;
+    }
+
+    public void setFileContent(Blob fileContent) {
+        this.fileContent = fileContent;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getExample1Input() {
+        return example1Input;
+    }
+
+    public void setExample1Input(String example1Input) {
+        this.example1Input = example1Input;
+    }
+
+    public String getExample2Input() {
+        return example2Input;
+    }
+
+    public void setExample2Input(String example2Input) {
+        this.example2Input = example2Input;
+    }
+
+    public String getExample1Output() {
+        return example1Output;
+    }
+
+    public void setExample1Output(String example1Output) {
+        this.example1Output = example1Output;
+    }
+
+    public String getExample2Output() {
+        return example2Output;
+    }
+
+    public void setExample2Output(String example2Output) {
+        this.example2Output = example2Output;
+    }
+
+    public String getExample1Exp() {
+        return example1Exp;
+    }
+
+    public void setExample1Exp(String example1Exp) {
+        this.example1Exp = example1Exp;
+    }
+
+    public String getExample2Exp() {
+        return example2Exp;
+    }
+
+    public void setExample2Exp(String example2Exp) {
+        this.example2Exp = example2Exp;
+    }
+
+    public String getConstraints() {
+        return constraints;
+    }
+
+    public void setConstraints(String constraints) {
+        this.constraints = constraints;
+    }
 }
