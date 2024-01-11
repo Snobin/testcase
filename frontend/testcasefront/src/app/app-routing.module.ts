@@ -24,6 +24,8 @@ import { StartComponent } from './pages/user/start/start.component';
 import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 import { ConsoleComponent } from './pages/user/console/console.component';
+import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
+import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 
 
 const routes: Routes = [
@@ -81,10 +83,13 @@ const routes: Routes = [
         component: AddQuestionComponent
       }, {
         path: 'add-code',
-        component: AddCodingComponent
+        component: AddCodeComponent
       }, {
         path: 'view-answer',
         component: ViewAnswerComponent
+      },{
+        path: 'view-code',
+        component: ViewCodingComponent
       }
     ]
   },

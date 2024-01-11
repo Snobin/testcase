@@ -1,91 +1,74 @@
+<!-- add-code.component.html -->
 
 <div class="bootstrap-wrapper">
-    <div class="row mt20">
+    <div class="row mt-4">
         <div class="col-md-12">
-            <h1>Add question to {{qTitle}}</h1>
-            <mat-card>
+            <h1 class="question-title">Add Question to {{ qTitle }}</h1>
+            <mat-card class="mt-3">
                 <mat-card-header>
-                    <mat-card-subtitle>
-                        Enter the details of the new question
-                    </mat-card-subtitle>
+                    <mat-card-subtitle>Enter the Details of the New Question</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <form class="mt20">
-                        <!-- questing heading -->
-                        <mat-form-field class="w100">
-                            <mat-label>Write question Title</mat-label>
-                            <input type="text" matInput required
-                                [(ngModel)]="question.heading" name="option2" />
-                        </mat-form-field>
-                        <!-- question description -->
-                        <mat-form-field class="w100">
-                            <mat-label>Write question description</mat-label>
-                            <textarea rows="8" matInput required
-                                [(ngModel)]="question.description" name="content"
-                                placeholder="Enter here"></textarea>
+                    <form class="mt-3" >
+
+                        <!-- Question Heading -->
+                        <mat-form-field class="w-100">
+                            <mat-label class="form-label">Write Question Title</mat-label>
+                            <input type="text" matInput [(ngModel)]="heading" required class="form-control"  name="first"/>
                         </mat-form-field>
 
-                        <!-- examples -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- example1 -->
-                                <mat-form-field class="w100">
-                                    <mat-label>Enter example 1</mat-label>
-                                    <textarea rows="5" matInput 
-                                        [(ngModel)]="question.example1"
-                                        name="example1"
-                                        placeholder="Enter example1"></textarea>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-6">
-                                <!-- example2 -->
-                                <mat-form-field class="w100">
-                                    <mat-label>Enter example 2</mat-label>
-                                    <textarea rows="5" matInput 
-                                        [(ngModel)]="question.example2"
-                                        name="example2"
-                                        placeholder="Enter example2"></textarea>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <!-- constraint -->
-                        <mat-form-field class="w100">
-                            <mat-label>Enter contraints</mat-label>
-                            <textarea id="constraints" matInput
-                                name="constraints" rows="5"
-                                placeholder="Enter constraints"></textarea>
+                        <!-- Question Description -->
+                        <mat-form-field class="w-100">
+                            <mat-label class="form-label">Write Question Description</mat-label>
+                            <textarea rows="8" matInput required [(ngModel)]="description" placeholder="Enter here"  name="firsts"
+                                class="form-control"></textarea>
+                         
                         </mat-form-field>
-                        <!-- file upload -->
-                        <mat-form-field class="w100" appearance="outline">
+
+                        <!-- Input -->
+                        <mat-form-field class="w-100">
+                            <mat-label class="form-label">Input</mat-label>
+                            <textarea rows="2" matInput  placeholder="Enter input for example"></textarea>
+                        </mat-form-field>
+
+                        <!-- Output -->
+                        <mat-form-field class="w-100">
+                            <mat-label class="form-label">Output</mat-label>
+                            <textarea rows="2" matInput  placeholder="Enter output for example "></textarea>
+                        </mat-form-field>
+
+                        <!-- Explanation -->
+                        <mat-form-field class="w-100">
+                            <mat-label class="form-label">Explanation</mat-label>
+                            <textarea rows="5" matInput  placeholder="Enter explanation for example "></textarea>
+                        </mat-form-field>
+
+                        <!-- Constraint -->
+                        <mat-form-field class="w-100">
+                            <mat-label class="form-label">Enter Constraints</mat-label>
+                            <textarea id="constraints" matInput  rows="5"
+                                placeholder="Enter constraints" class="form-control"></textarea>
+                        </mat-form-field>
+
+                        <!-- File upload -->
+                        <mat-form-field class="w-100" appearance="outline">
                             <div>
                                 <mat-toolbar>
-                                    <input matInput [value]="fileName" disabled/>
-                                    <button
-                                        mat-flat-button
-                                        color="primary"
-                                        style="z-index: 5;"
-                                        (click)="browseFiles()">
-                                        Browse
-                                    </button>
+                                    <input matInput [value]="fileName" disabled class="form-control" />
+                                    <button mat-flat-button color="primary" style="z-index: 5;"
+                                        (click)="browseFiles()">Browse</button>
                                 </mat-toolbar>
-                                <input #fileInput
-                                    required
-                                    type="file"
-                                    class="w100"
-                                    id="fileInput"
-                                    (change)="selectFile($event)"
-                                    style="z-index: 1;"
-                                    name="fileInput" />
+                                <input #fileInput required type="file" class="w-100 form-control" id="fileInput"
+                                    (change)="selectFile($event)" style="z-index: 1;" name="fileInput" />
                             </div>
                         </mat-form-field>
-                        <div *ngIf="message" class="message w100">
+
+                        <div *ngIf="message" class="message w-100 mt-3">
                             {{ message }}
                         </div>
-                        <div class="container text-center">
-                            <button mat-raised-button
-                                color="primary"
-                                (click)="formSubmit()"
-                                >Add</button>
+
+                        <div class="container text-center mt-3">
+                            <button mat-raised-button color="primary" (click)="formSubmit()">Add</button>
                         </div>
                     </form>
                 </mat-card-content>

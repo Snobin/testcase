@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
-declare var $: any;
-declare var jQuery: any;
+
 @Component({
   selector: 'app-add-code',
   templateUrl: './add-code.component.html',
@@ -11,53 +11,50 @@ declare var jQuery: any;
 })
 export class AddCodeComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
-
-  constructor(private route: ActivatedRoute, private service: QuestionService, private router: Router) { }
-  constraintsElement:any;
+  constraintsElement: HTMLTextAreaElement;
   qId;
   qTitle;
-  question = {
-    heading: '',
-    description: '',
-    example1: '',
-    example2: '',
-    constraints: '',
-    file: null,
-  };
-  message = '';
   fileName = 'Select File';
+  message = '';
+
+  // Individual form controls
+  heading = '';
+  description = '';
+  input = '';
+  output = '';
+  explanation = '';
+  constraints = '';
+  file: File | null = null;
+
+  constructor(
+    private route: ActivatedRoute,
+    private service: QuestionService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
+
   ngOnInit(): void {
-    this.constraint();
     this.qId = this.route.snapshot.params.qid;
     this.qTitle = this.route.snapshot.params.title;
-  }
+    this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
 
-  ngAfterViewInit() {
-    this.fileInput.nativeElement;
-  }
-
-  constraint() {
-    document.addEventListener('DOMContentLoaded', () => {
-      this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
-      // Handle focus event
-      this.constraintsElement.addEventListener('focus', () => {
-        if (this.constraintsElement.value === '') {
-          this.constraintsElement.value += '• ';
-        }
-      });
-      // Handle keyup event
-      this.constraintsElement.addEventListener('keyup', (event) => {
-        const keycode = event.keyCode ? event.keyCode : event.which;
-        if (keycode === 13) {
-          this.constraintsElement.value += '• ';
-        }
-        const txtval = this.constraintsElement.value;
-        if (txtval.substr(txtval.length - 1) === '\n') {
-          this.constraintsElement.value = txtval.substring(0, txtval.length - 1);
-        }
-      });
+    // Handle focus and keyup events for constraints
+    this.constraintsElement.addEventListener('focus', () => {
+      if (this.constraintsElement.value === '') {
+        this.constraintsElement.value += '• ';
+      }
     });
 
+    this.constraintsElement.addEventListener('keyup', (event) => {
+      const keycode = event.keyCode ? event.keyCode : event.which;
+      if (keycode === 13) {
+        this.constraintsElement.value += '• ';
+      }
+      const txtval = this.constraintsElement.value;
+      if (txtval.substr(txtval.length - 1) === '\n') {
+        this.constraintsElement.value = txtval.substring(0, txtval.length - 1);
+      }
+    });
   }
 
   browseFiles() {
@@ -65,55 +62,54 @@ export class AddCodeComponent implements OnInit {
   }
 
   formSubmit() {
-    if (this.question.heading.trim() == '' || this.question.heading == null || this.question.heading == undefined) {
+    if (!this.heading || !this.description) {
+      // Handle validation here as needed
+      console.log("hifeuyufe")
       return;
     }
-    if (this.question.description.trim() == '' || this.question.description == null || this.question.description == undefined) {
-      return;
-    }
-    if (this.question.example1.trim() == '' || this.question.example1 == null || this.question.example1 == undefined) {
-      return;
-    }
-    if (this.question.example2.trim() == '' || this.question.example2 == null || this.question.example2 == undefined) {
-      return;
-    }
-    if (this.question.file == null || this.question.file == undefined || this.fileName == 'Select File') {
-      this.message = 'Please choose a file for testcases.';
-      console.log(this.message);
-      return;
-    }
-    if (this.message != 'Please choose a file for testcases.') {
-      this.message = '';
-    }
-    console.log(this.message);
-    // form submit
-    this.service.addCodingQuestion(this.question).subscribe(
+    console.log("hello")
+
+
+    // Form submit
+    const questionData = {
+      heading: this.heading,
+      description: this.description,
+      examples: {
+        input: this.input,
+        output: this.output,
+        explanation: this.explanation,
+      },
+      constraints: this.constraints,
+      file: this.file,
+    };
+
+    this.service.addCodingQuestion(questionData).subscribe(
       (data: any) => {
-        this.question.heading = '';
-        this.question.description = '';
-        this.question.example1 = '';
-        this.question.example2 = '';
-        this.question.constraints = '';
-        this.constraintsElement.value = '';
-        this.question.file = null;
+
+        // Reset individual form controls
+        this.heading = '';
+        this.description = '';
+        this.input = '';
+        this.output = '';
+        this.explanation = '';
+        this.constraints = '';
+        this.file = null;
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
-      }, (error) => {
+      },
+      (error) => {
+        console.log(error)
         Swal.fire('Error', 'Error in adding question', 'error');
       }
-    )
+    );
   }
 
   selectFile(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      const file: File = event.target.files[0];
-      this.question.file = file;
-      this.fileName = this.question.file.name;
+      this.file = event.target.files[0];
+      this.fileName = this.file.name;
     } else {
       this.fileName = 'Select File';
     }
   }
-
 }
-
-

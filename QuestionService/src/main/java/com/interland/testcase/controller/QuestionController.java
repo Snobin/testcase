@@ -107,6 +107,7 @@ public class QuestionController {
 	public ResponseEntity<?> addCodingQuestion(@RequestParam String heading, @RequestParam String description,
 			@RequestParam String example1, @RequestParam String example2, @RequestParam String constraints,
 			@RequestPart(required = false) MultipartFile file) {
+		System.out.println(heading+description);
 		return questionService.addCodingQuestion(heading, description, example1, example1, constraints, file);
 	}
 	

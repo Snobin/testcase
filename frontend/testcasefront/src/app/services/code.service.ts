@@ -20,4 +20,10 @@ export class CodeService {
   questionReq(qid){
     return this.http.get(`${this.baseUrl}/qndata/${qid}`);
   }
+
+  public Questions(){
+    return this.http.get(`${this.baseUrl}/`)
+  }
+
+
 }
