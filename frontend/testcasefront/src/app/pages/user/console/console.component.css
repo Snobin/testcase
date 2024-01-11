@@ -10006,6 +10006,10 @@ body {
     height: 92%;
 }
 
+.max-h-90{
+    max-height: 90vh;
+}
+
 .select {
     border-radius: 5px;
     width: 100%;
