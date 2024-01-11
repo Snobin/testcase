@@ -3,9 +3,11 @@ package com.interland.testcase.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.Table;
 
 @Entity
 @IdClass(Student.class)
+@Table(name="ExecutionResult")
 public class CodeExecutionResult {
 
     @Id

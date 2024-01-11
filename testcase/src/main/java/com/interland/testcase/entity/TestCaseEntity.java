@@ -1,8 +1,10 @@
 package com.interland.testcase.entity;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Table;
 
 @Embeddable
+@Table(name="testcases")
 public class TestCaseEntity {
 
     private String inputs;

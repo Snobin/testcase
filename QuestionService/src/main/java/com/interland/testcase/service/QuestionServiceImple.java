@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.sql.rowset.RowSetProvider;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -26,7 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.interland.testcase.entity.CodingQuestion;
+import com.interland.testcase.dto.CodingQuestionInputDto;
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
 import com.interland.testcase.entity.Question;
@@ -185,26 +185,29 @@ public class QuestionServiceImple implements QuestionService {
 	}
 
 	@Override
-	public ResponseEntity<?> addCodingQuestion(String heading, String description, String example1, String example2,
-			String constraints, MultipartFile file) {
+	public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto obj) {
 		try {
-			// Create a new Question entity
+
 			CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
-			codingQuestion.setTitle(heading);
-			System.out.println(codingQuestion.getTitle());
-			codingQuestion.setDescription(description);
-			codingQuestion.setExample1(example1);
-			codingQuestion.setExample2(example2);
-			codingQuestion.setConstraints(constraints);
-			// Set file content as Blob
-			if (file != null && !file.isEmpty()) {
-				Blob fileContent = createBlob(file.getBytes());
+			codingQuestion.setTitle(obj.getTitle());
+			codingQuestion.setDescription(obj.getDescription());
+			codingQuestion.setExample1Input(obj.getExample1Input());
+			codingQuestion.setExample2Input(obj.getExample2Input());
+			codingQuestion.setExample1Output(obj.getExample1Output());
+			codingQuestion.setExample2Output(obj.getExample2Output());
+			codingQuestion.setExample1Exp(obj.getExample1Exp());
+			codingQuestion.setExample2Exp(obj.getExample2Exp());
+			codingQuestion.setConstraints(obj.getConstraints());
+
+			if (obj.getFileContent() != null) {
+				Blob fileContent = new SerialBlob(
+						obj.getFileContent().getBytes(1, (int) obj.getFileContent().length()));
 				codingQuestion.setFileContent(fileContent);
 			}
-			// Save the question
+
 			competitiveQuestionRepository.save(codingQuestion);
 			return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
-		} catch (IOException | SQLException e) {
+		} catch (SQLException e) {
 			return new ResponseEntity<>("Error adding question: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

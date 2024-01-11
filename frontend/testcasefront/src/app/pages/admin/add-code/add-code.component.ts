@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
+import { AddQuestion } from 'src/app/model/AddQuestion';
 
 @Component({
   selector: 'app-add-code',
@@ -11,20 +12,14 @@ import Swal from 'sweetalert2';
 })
 export class AddCodeComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
+
+  codeInput: AddQuestion =new AddQuestion();
+
   constraintsElement: HTMLTextAreaElement;
   qId;
   qTitle;
   fileName = 'Select File';
   message = '';
-
-  // Individual form controls
-  heading = '';
-  description = '';
-  input = '';
-  output = '';
-  explanation = '';
-  constraints = '';
-  file: File | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +33,6 @@ export class AddCodeComponent implements OnInit {
     this.qTitle = this.route.snapshot.params.title;
     this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
 
-    // Handle focus and keyup events for constraints
     this.constraintsElement.addEventListener('focus', () => {
       if (this.constraintsElement.value === '') {
         this.constraintsElement.value += '• ';
@@ -62,38 +56,40 @@ export class AddCodeComponent implements OnInit {
   }
 
   formSubmit() {
-    if (!this.heading || !this.description) {
-      // Handle validation here as needed
-      console.log("hifeuyufe")
+    if (!this.codeInput.title || !this.codeInput.desc) {
+      console.log("Validation failed");
       return;
     }
-    console.log("hello")
 
-
-    // Form submit
-    const questionData = {
-      heading: this.heading,
-      description: this.description,
-      examples: {
-        input: this.input,
-        output: this.output,
-        explanation: this.explanation,
-      },
-      constraints: this.constraints,
-      file: this.file,
+    const questionData: AddQuestion = {
+      title: this.codeInput.title,
+      desc: this.codeInput.desc,
+      ex1input: this.codeInput.ex1input,
+      ex1output: this.codeInput.ex1output,
+      ex1explanation: this.codeInput.ex1explanation,
+      ex2input: this.codeInput.ex2input,
+      ex2output: this.codeInput.ex2output,
+      ex2explanation: this.codeInput.ex2explanation,
+      constraints: this.codeInput.constraints,
+      file: this.codeInput.file,
+      active:this.codeInput.active
     };
 
     this.service.addCodingQuestion(questionData).subscribe(
       (data: any) => {
-
-        // Reset individual form controls
-        this.heading = '';
-        this.description = '';
-        this.input = '';
-        this.output = '';
-        this.explanation = '';
-        this.constraints = '';
-        this.file = null;
+        this.codeInput = {
+          title: '',
+          desc: '',
+          ex1input: '',
+          ex1output: '',
+          ex1explanation: '',
+          ex2input: '',
+          ex2output: '',
+          ex2explanation: '',
+          constraints: [],
+          file:null,
+          active:null
+        };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
       },
@@ -106,8 +102,9 @@ export class AddCodeComponent implements OnInit {
 
   selectFile(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      this.file = event.target.files[0];
-      this.fileName = this.file.name;
+      const file: File = event.target.files[0];
+      this.codeInput.file = file;
+      this.fileName = file.name;
     } else {
       this.fileName = 'Select File';
     }

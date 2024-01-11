@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.interland.testcase.dto.CodingQuestionInputDto;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuestionService;
@@ -104,11 +105,9 @@ public class QuestionController {
 	}
 
 	@PostMapping("/addCodingQuestion")
-	public ResponseEntity<?> addCodingQuestion(@RequestParam String heading, @RequestParam String description,
-			@RequestParam String example1, @RequestParam String example2, @RequestParam String constraints,
-			@RequestPart(required = false) MultipartFile file) {
-		System.out.println(heading+description);
-		return questionService.addCodingQuestion(heading, description, example1, example1, constraints, file);
+	public ResponseEntity<?> addCodingQuestion(@RequestBody CodingQuestionInputDto codingQuestionInputDto) {
+		System.out.println(codingQuestionInputDto.toString());
+		return questionService.addCodingQuestion(codingQuestionInputDto);
 	}
 	
 	@GetMapping("/qndata/{quesId}")
