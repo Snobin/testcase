@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="CodingQuestion")
 public class QuestionEntity {
 
     @Id

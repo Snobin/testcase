@@ -6,7 +6,7 @@ import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.interland.testcase.entity.CodingQuestion;
+import com.interland.testcase.dto.CodingQuestionInputDto;
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
 import com.interland.testcase.entity.Question;
@@ -34,6 +34,6 @@ public interface QuestionService {
 
 	public List<CompetitiveQuestion> createCompetitiveQuestions(MultipartFile questionFile);
 
-    public ResponseEntity<?> addCodingQuestion(String heading,String description,String example1,String example2,String constraints,MultipartFile file);
+    public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
 	
 }
