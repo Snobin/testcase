@@ -10044,3 +10044,15 @@ btn-check:focus+.btn-secondary, .btn-secondary:focus, :focus+.btn-success, .btn-
     width: 100%;
     height: 100%;
 }
+/* Add this to your CSS or styles file */
+.gutter-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.grip-icon {
+    cursor: col-resize; /* Set the cursor to indicate the resizing action */
+    font-size: 20px; /* Adjust the font size of the grip icon as needed */
+}
