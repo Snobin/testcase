@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CodeRequest } from '../model/code-request';
 import { CodeService } from 'src/app/services/code.service';
-import { AddQuestion } from 'src/app/model/AddQuestion';
 
 declare var CodeMirror: any;
 @Component({
