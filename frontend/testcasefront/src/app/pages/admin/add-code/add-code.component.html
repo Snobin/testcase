@@ -12,7 +12,8 @@
           </mat-form-field>
           <mat-form-field class="w100" appearance="fill">
             <mat-label>Enter Description</mat-label>
-            <textarea [(ngModel)]="codeInput.desc" name="description" placeholder="Enter here" matInput required="" rows="4"></textarea>
+            <textarea [(ngModel)]="codeInput.desc" name="description" placeholder="Enter here" matInput required=""
+              rows="4"></textarea>
           </mat-form-field>
           <div class="row">
             <div class="col-md-6">
@@ -21,19 +22,19 @@
               </mat-card-header>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 1 Input</mat-label>
-                <input [(ngModel)]="codeInput.ex1input" type="text" name="maxMarks" placeholder="Enter here" matInput />
+                <textarea [(ngModel)]="codeInput.ex1input" type="text" name="ex1in" placeholder="Enter here" matInput
+                  rows="1"></textarea>
               </mat-form-field>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 1 Output</mat-label>
-                <input [(ngModel)]="codeInput.ex1explanation" type="text" name="maxMarks" placeholder="Enter here"
-                  matInput />
+                <textarea [(ngModel)]="codeInput.ex1output" type="text" name="ex1op" placeholder="Enter here" rows="1"
+                  matInput></textarea>
               </mat-form-field>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 1 Explanation</mat-label>
-                <input [(ngModel)]="codeInput.ex1explanation" type="text" name="maxMarks" placeholder="Enter here"
-                  matInput />
+                <textarea [(ngModel)]="codeInput.ex1explanation" type="text" name="ex1exp" placeholder="Enter here"
+                  rows="1" matInput></textarea>
               </mat-form-field>
-
             </div>
             <div class="col-md-6">
               <mat-card-header>
@@ -41,17 +42,18 @@
               </mat-card-header>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 2 Input</mat-label>
-                <input [(ngModel)]="codeInput.ex1input" type="text" name="maxMarks" placeholder="Enter here" matInput />
+                <textarea [(ngModel)]="codeInput.ex2input" type="text" name="ex2in" placeholder="Enter here" matInput
+                  rows="1"></textarea>
               </mat-form-field>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 2 Output</mat-label>
-                <input [(ngModel)]="codeInput.ex1explanation" type="text" name="maxMarks" placeholder="Enter here"
-                  matInput />
+                <textarea [(ngModel)]="codeInput.ex2output" type="text" name="ex2op" placeholder="Enter here" rows="1"
+                  matInput></textarea>
               </mat-form-field>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 2 Explanation</mat-label>
-                <input [(ngModel)]="codeInput.ex1explanation" type="text" name="maxMarks" placeholder="Enter here"
-                  matInput />
+                <textarea [(ngModel)]="codeInput.ex2explanation" type="text" name="ex2exp" placeholder="Enter here"
+                  rows="1" matInput></textarea>
               </mat-form-field>
             </div>
           </div>

@@ -31,7 +31,6 @@ import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
-import com.interland.testcase.repository.CodingQuestionRepository;
 import com.interland.testcase.repository.CompetitiveQuestionRepository;
 import com.interland.testcase.repository.McqQuestionRepository;
 import com.interland.testcase.repository.QuestionRepository;
@@ -45,8 +44,8 @@ public class QuestionServiceImple implements QuestionService {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	@Autowired
-	private CodingQuestionRepository codingQuestionRepository;
+//	@Autowired
+//	private CodingQuestionRepository codingQuestionRepository;
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -190,13 +189,13 @@ public class QuestionServiceImple implements QuestionService {
 
 			CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
 			codingQuestion.setTitle(obj.getTitle());
-			codingQuestion.setDescription(obj.getDescription());
-			codingQuestion.setExample1Input(obj.getExample1Input());
-			codingQuestion.setExample2Input(obj.getExample2Input());
-			codingQuestion.setExample1Output(obj.getExample1Output());
-			codingQuestion.setExample2Output(obj.getExample2Output());
-			codingQuestion.setExample1Exp(obj.getExample1Exp());
-			codingQuestion.setExample2Exp(obj.getExample2Exp());
+			codingQuestion.setDescription(obj.getDesc());
+			codingQuestion.setExample1Input(obj.getEx1input());
+			codingQuestion.setExample2Input(obj.getEx2input());
+			codingQuestion.setExample1Output(obj.getEx1output());
+			codingQuestion.setExample2Output(obj.getEx2output());
+			codingQuestion.setExample1Exp(obj.getEx1explanation());
+			codingQuestion.setExample2Exp(obj.getEx2explanation());
 			codingQuestion.setConstraints(obj.getConstraints());
 
 			if (obj.getFileContent() != null) {

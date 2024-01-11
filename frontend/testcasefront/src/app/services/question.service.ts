@@ -29,7 +29,7 @@ export class QuestionService {
     if (question.file) {
       formData.append('file', question.file, question.file.name);
     }
-    return this.http.post(`${this.baseUrl}/addCodingQuestion`, formData)
+    return this.http.post(`${this.baseUrl}/addCodingQuestion`, question)
   }
 
   // Add Question

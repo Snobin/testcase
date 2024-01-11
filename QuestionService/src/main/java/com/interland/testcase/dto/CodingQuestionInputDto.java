@@ -8,21 +8,21 @@ public class CodingQuestionInputDto {
 
 	private String title;
 
-	private String description;
+	private String desc;
 
-	private String example1Input;
+	private String ex1input;
 
 	private boolean active = false;
 
-	private String example2Input;
+	private String ex2input;
 
-	private String example1Output;
+	private String ex1output;
 
-	private String example2Output;
+	private String ex2output;
 
-	private String example1Exp;
+	private String ex1explanation;
 
-	private String example2Exp;
+	private String ex2explanation;
 
 	private String constraints;
 
@@ -50,60 +50,60 @@ public class CodingQuestionInputDto {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
-	public String getExample1Input() {
-		return example1Input;
+	public String getEx1input() {
+		return ex1input;
 	}
 
-	public void setExample1Input(String example1Input) {
-		this.example1Input = example1Input;
+	public void setEx1input(String ex1input) {
+		this.ex1input = ex1input;
 	}
 
-	public String getExample2Input() {
-		return example2Input;
+	public String getEx2input() {
+		return ex2input;
 	}
 
-	public void setExample2Input(String example2Input) {
-		this.example2Input = example2Input;
+	public void setEx2input(String ex2input) {
+		this.ex2input = ex2input;
 	}
 
-	public String getExample1Output() {
-		return example1Output;
+	public String getEx1output() {
+		return ex1output;
 	}
 
-	public void setExample1Output(String example1Output) {
-		this.example1Output = example1Output;
+	public void setEx1output(String ex1output) {
+		this.ex1output = ex1output;
 	}
 
-	public String getExample2Output() {
-		return example2Output;
+	public String getEx2output() {
+		return ex2output;
 	}
 
-	public void setExample2Output(String example2Output) {
-		this.example2Output = example2Output;
+	public void setEx2output(String ex2output) {
+		this.ex2output = ex2output;
 	}
 
-	public String getExample1Exp() {
-		return example1Exp;
+	public String getEx1explanation() {
+		return ex1explanation;
 	}
 
-	public void setExample1Exp(String example1Exp) {
-		this.example1Exp = example1Exp;
+	public void setEx1explanation(String ex1explanation) {
+		this.ex1explanation = ex1explanation;
 	}
 
-	public String getExample2Exp() {
-		return example2Exp;
+	public String getEx2explanation() {
+		return ex2explanation;
 	}
 
-	public void setExample2Exp(String example2Exp) {
-		this.example2Exp = example2Exp;
+	public void setEx2explanation(String ex2explanation) {
+		this.ex2explanation = ex2explanation;
 	}
 
 	public String getConstraints() {

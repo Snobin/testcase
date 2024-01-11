@@ -10022,6 +10022,39 @@ body {
     box-shadow: 0 0 0 2px transparent;
 }
 
+.px-5 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.pt-4 {
+    padding-top: 1rem;
+}
+
+.flex {
+    /* Add your flex styles here */
+}
+
+.xFUwe {
+    margin-top: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+code {
+    background-color: #f2f2f2;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+
 .btn{
     font-size: small;
     padding-top: 2px;
