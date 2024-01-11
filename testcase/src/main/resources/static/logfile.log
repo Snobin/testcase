@@ -325,3 +325,4 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot add or upda
 12:25:19.776 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
 12:25:19.791 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path ''
 12:25:19.797 [main] INFO  c.i.testcase.TestcaseApplication - Started TestcaseApplication in 4.022 seconds (process running for 4.729)
+14:15:11.577 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h4m52s485ms195µs100ns).
