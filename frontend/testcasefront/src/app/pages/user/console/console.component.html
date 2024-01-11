@@ -1,30 +1,32 @@
 <div class="flex h-92 w-full flex-col">
     <div class="flex w-full flex-grow">
-        <div class="bg-gray-2 dark:bg-dark-layer-bg flex h-full w-full p-2">
+        <div class="bg-gray-2 flex h-full w-full p-2">
             <p-splitter [panelSizes]="[50, 50]"
                 style="width: 100%;height: 100%;" [gutterSize]="15">
                 <ng-template pTemplate="panel">
                     <div
-                        class="h-full flex-col ssg__qd-splitter-primary-w h-full w-full">
+                        class="h-full flex-col h-full w-full">
                         <div class="relative flex h-full flex-col">
                             <div class="min-h-0 flex-grow"
                                 style="height: 100%;">
                                 <div
-                                    class="flex h-full flex-col rounded bg-layer-1 dark:bg-dark-layer-1">
+                                    class="flex h-full flex-col rounded bg-layer-1">
                                     <div>
                                         <div
-                                            class="bg-layer-2 dark:bg-dark-layer-2 border-fill-3 dark:border-dark-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
+                                            class="bg-layer-2 border-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
                                             <div
-                                                class="flex h-full w-full flex-row gap-6"><a
-                                                    href="/problems/arithmetic-slices-ii-subsequence/description?envType=daily-question&amp;envId=2024-01-09">
+                                                class="flex h-full w-full flex-row gap-6">
+                                                <a
+                                                    href="">
                                                     <div
-                                                        class="relative flex h-full select-none items-center whitespace-nowrap text-xs text-label-1 dark:text-dark-label-1 font-medium hover:text-label-1 dark:hover:text-dark-label-1 shrink">
+                                                        class="relative flex h-full select-none items-center whitespace-nowrap text-xs text-label-1 font-medium hover:text-label-1 shrink">
                                                         <span>Description</span>
                                                         <div
-                                                            class="bg-gray-7 dark:bg-dark-gray-7 absolute -bottom-[1px] h-[2px] w-full">
+                                                            class="bg-gray-7 absolute -bottom-[1px] h-[2px] w-full">
                                                         </div>
                                                     </div>
-                                                </a></div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div
@@ -41,39 +43,12 @@
                                                                 <div
                                                                     class="flex h-full items-center">
                                                                     <p
-                                                                        class="mr-2 text-label-1 dark:text-dark-label-1 hover:text-label-1 dark:hover:text-dark-label-1 text-lg font-medium">
+                                                                        class="mr-2 text-label-1 hover:text-label-1 text-lg font-medium">
                                                                         {{questiondata.questionText}}
                                                                     </p>
-                                                                    <div
-                                                                        class="inline-flex min-h-[20px] items-center space-x-2 align-top mt-1">
-                                                                        <div
-                                                                            class="inline-flex items-center space-x-2"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="flex items-center">
-                                                                <div
-                                                                    class="inline-flex gap-2 text-lg">
-                                                                    <div
-                                                                        class="popover-wrapper inline-block"
-                                                                        data-headlessui-state>
-                                                                        <div>
-                                                                            <div
-                                                                                aria-expanded="false"
-                                                                                data-headlessui-state
-                                                                                id="headlessui-popover-button-:r4:">
-
-                                                                            </div>
-                                                                            <div
-                                                                                style="position: fixed; z-index: 40; inset: 0px auto auto 0px; transform: translate(676px, -467px);">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                                 <div class="px-5 pt-4">
@@ -81,7 +56,6 @@
                                                     <div class="xFUwe"
                                                         data-track-load="description_content">
                                                         <p>{{questiondata.additionalInfo}}</p>
-
                                                         <ul>
                                                             <li>For example,
                                                                 <code>[1,
@@ -105,7 +79,6 @@
                                                                 arithmetic
                                                                 sequence.</li>
                                                         </ul>
-
                                                         <p>A
                                                             <strong>subsequence</strong>
                                                             of an array is a
@@ -117,7 +90,6 @@
                                                             none) of
                                                             the array.
                                                         </p>
-
                                                         <ul>
                                                             <li>For example,
                                                                 <code>[2,5,10]</code>
@@ -126,7 +98,6 @@
                                                                 <code>[1,2,1,2,4,1,5,10]</code>.
                                                             </li>
                                                         </ul>
-
                                                         <p>The test cases are
                                                             generated
                                                             so that the answer
@@ -134,10 +105,8 @@
                                                             <strong>32-bit</strong>
                                                             integer.
                                                         </p>
-
                                                     </div>
                                                 </div>
-                                                <div class="px-5 pt-4"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -148,18 +117,17 @@
                 </ng-template>
                 <ng-template pTemplate="panel">
                     <div
-                        class="h-full flex-col ssg__qd-splitter-secondary-w w-full h-full max-h-90">
+                        class="h-full flex-col w-full h-full max-h-90">
                         <div class="relative flex h-full flex-col">
                             <div class="min-h-0 flex-grow">
                                 <div
-                                    class="flex h-full flex-col rounded bg-layer-1 dark:bg-dark-layer-1">
+                                    class="flex h-full flex-col rounded bg-layer-1">
                                     <div class="flex h-full flex-col">
                                         <div
                                             class="relative flex h-full flex-col overflow-hidden rounded"
                                             id="editor">
-
                                             <div
-                                                class="flex h-9 items-center pr-4 bg-layer-2 dark:bg-dark-layer-2 border-fill-3 dark:border-dark-fill-3 rounded-t border-b">
+                                                class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
                                                 <div
                                                     class="mr-auto flex flex-nowrap items-center gap-3">
                                                     <div>
@@ -201,18 +169,12 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="flex flex-1 flex-col overflow-hidden"
-                                                data-track-load="code_editor"
-                                                translate="no">
+                                                class="flex flex-1 flex-col overflow-hidden">
                                                 <div
                                                     class="flex-1 overflow-hidden">
                                                     <textarea id="editor"
                                                         #editor type="text"
-                                                        class="form-control">
-                                            </textarea>
-                                                </div>
-                                                <div
-                                                    class="text-label-2 dark:text-dark-label-2 bg-gray-2 dark:bg-dark-gray-2">
+                                                        class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
