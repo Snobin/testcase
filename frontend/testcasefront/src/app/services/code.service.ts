@@ -7,22 +7,30 @@ import { Observable } from 'rxjs';
 })
 export class CodeService {
 
-  private apiUrl = 'http://localhost:8081/execute';
+  private apiUrl = 'http://localhost:8082/execute';
   private baseUrl = 'http://localhost:8083/question';
+  private url='http://localhost:8083/code';
+
   constructor(private http: HttpClient) { }
 
   compileAndTest(codeRequest: any): Observable<any> {
-    console.log("hdwiouh")
-
     return this.http.post<any>(this.apiUrl, codeRequest);
   }
 
-  questionReq(qid){
+  questionReq(qid) {
     return this.http.get(`${this.baseUrl}/qndata/${qid}`);
   }
 
-  public Questions(){
-    return this.http.get(`${this.baseUrl}/`)
+  public Questions() {
+    return this.http.get(`${this.baseUrl}/`);
+  }
+
+  public codingQuestions(){
+    return this.http.get(`${this.url}`);
+  }
+
+  public updateCode(data){
+    return this.http.post(`${this.baseUrl}`,data);
   }
 
 

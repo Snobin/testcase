@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddQuestion } from 'src/app/model/AddQuestion';
 import { CodeService } from 'src/app/services/code.service';
 import Swal from 'sweetalert2';
 
@@ -8,12 +9,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-coding.component.css']
 })
 export class ViewCodingComponent implements OnInit {
-quizzes: any;
+
+  quizzes: any;
+  codeInput: AddQuestion = new AddQuestion();
+
 
   constructor(private code: CodeService) { }
 
   ngOnInit(): void {
-    this.code.Questions().subscribe(
+    this.code.codingQuestions().subscribe(
       (data: any) => {
         this.quizzes = data;
         console.log(this.quizzes);
@@ -25,7 +29,16 @@ quizzes: any;
     )
   }
 
-
-  
-
+  onToggleChange() {
+    console.log("hello");
+    
+    this.code.updateCode(this.codeInput).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
 }

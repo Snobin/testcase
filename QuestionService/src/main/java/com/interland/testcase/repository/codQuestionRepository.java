@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.interland.testcase.entity.QuestionEntity;
 
-public interface QuestionRepository extends JpaRepository<QuestionEntity, Integer> {
+public interface codQuestionRepository extends JpaRepository<QuestionEntity, Integer> {
 
 	Optional<QuestionEntity> findByQuestionId(String questionId);
 

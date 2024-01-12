@@ -36,7 +36,7 @@ export class ConsoleComponent implements OnInit {
 
   ngOnInit(): void {
     this.clearAll();
-    this.qnData(1);
+    this.qnData("Q1");
   }
 
   ngAfterViewInit() {
@@ -44,12 +44,12 @@ export class ConsoleComponent implements OnInit {
     this.initializeCodeMirrorOutput();
   }
 
-  qnData(qid){
+  qnData(qid) {
     this.service.questionReq(qid).subscribe(
-      (data:any)=>{
-        this.questiondata=data;
+      (data: any) => {
+        this.questiondata = data;
       },
-      (error)=>{
+      (error) => {
         console.log(error)
       }
     )
@@ -141,9 +141,8 @@ export class ConsoleComponent implements OnInit {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
-
+        this.codereq.qnId = this.questiondata.questionId;
         const response = await this.service.compileAndTest(this.codereq).toPromise();
-
         this.result.output = response.output;
         this.executionTime = response.processingTime;
         this.initializeCodeMirror();
@@ -188,4 +187,6 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cOutputCode');
     localStorage.removeItem('pythonOutputCode');
   }
+
+
 }

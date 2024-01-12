@@ -10,8 +10,9 @@
     ex2output: string;
     ex2explanation: string;
     constraints: string[] = [];
-    file:File;
+    fileContent:File;
     active:boolean;
+    QID:string;
 
   }
   

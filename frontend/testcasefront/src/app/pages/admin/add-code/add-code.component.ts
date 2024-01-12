@@ -13,7 +13,7 @@ import { AddQuestion } from 'src/app/model/AddQuestion';
 export class AddCodeComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  codeInput: AddQuestion =new AddQuestion();
+  codeInput: AddQuestion = new AddQuestion();
 
   constraintsElement: HTMLTextAreaElement;
   qId;
@@ -51,9 +51,7 @@ export class AddCodeComponent implements OnInit {
     });
   }
 
-  browseFiles() {
-    this.fileInput.nativeElement.click();
-  }
+
 
   formSubmit() {
     if (!this.codeInput.title || !this.codeInput.desc) {
@@ -71,11 +69,12 @@ export class AddCodeComponent implements OnInit {
       ex2output: this.codeInput.ex2output,
       ex2explanation: this.codeInput.ex2explanation,
       constraints: this.codeInput.constraints,
-      file: this.codeInput.file,
-      active:this.codeInput.active
+      fileContent: this.codeInput.fileContent,
+      active: this.codeInput.active,
+      QID: this.codeInput.QID
     };
 
-    this.service.addCodingQuestion(questionData).subscribe(
+    this.service.addCodingQuestion(questionData,this.codeInput.fileContent).subscribe(
       (data: any) => {
         this.codeInput = {
           title: '',
@@ -87,26 +86,32 @@ export class AddCodeComponent implements OnInit {
           ex2output: '',
           ex2explanation: '',
           constraints: [],
-          file:null,
-          active:null
+          fileContent: null,
+          active: null,
+          QID: '',
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
       },
       (error) => {
-        console.log(error)
+        console.log(error);
         Swal.fire('Error', 'Error in adding question', 'error');
       }
     );
   }
 
-  selectFile(event: any): void {
-    if (event.target.files && event.target.files[0]) {
-      const file: File = event.target.files[0];
-      this.codeInput.file = file;
-      this.fileName = file.name;
-    } else {
-      this.fileName = 'Select File';
+  onFileChange(event: any): void {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      this.codeInput.fileContent = file;
+      this.fileName = file.name; // Set the file name for display if needed
+      console.log(file); 
+      console.log(this.codeInput);
+      
+      // Log the file to see if it's properly captured
     }
   }
+  
+  
 }

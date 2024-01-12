@@ -11,15 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.interland.testcase.dto.CodingQuestionInputDto;
 import com.interland.testcase.entity.Question;
@@ -105,13 +103,19 @@ public class QuestionController {
 	}
 
 	@PostMapping("/addCodingQuestion")
-	public ResponseEntity<?> addCodingQuestion(@RequestBody CodingQuestionInputDto codingQuestionInputDto) {
+	public ResponseEntity<?> addCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
 		System.out.println(codingQuestionInputDto.toString());
 		return questionService.addCodingQuestion(codingQuestionInputDto);
 	}
-	
+
+	@PostMapping("/updateCodingQuestion")
+	public ResponseEntity<?> updateCodingQuestion(@RequestBody CodingQuestionInputDto codingQuestionInputDto) {
+		System.out.println(codingQuestionInputDto.toString());
+		return questionService.updateCodingQuestion(codingQuestionInputDto);
+	}
+
 	@GetMapping("/qndata/{quesId}")
-	public ResponseEntity<?> getQnData(@PathVariable("quesId") Long quesId){
+	public ResponseEntity<?> getQnData(@PathVariable("quesId") String quesId) {
 		return questionService.getQnData(quesId);
 	}
 }

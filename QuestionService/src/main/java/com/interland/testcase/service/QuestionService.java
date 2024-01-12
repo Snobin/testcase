@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.interland.testcase.dto.CodingQuestionInputDto;
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
@@ -27,10 +28,16 @@ public interface QuestionService {
 	public void deleteQuestion(Long quesId);
 	
 	public Question get(Long questionId);
+	
+	public Set<CompetitiveQuestion>  getData();
+	
+	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
 
 	public List<McqQuestion> createMcqQuestions(MultipartFile questionFile);
 	
-	public ResponseEntity<?> getQnData(Long qnId);
+	public ResponseEntity<?> getQnData(String qnId);
+	
+	public ObjectNode processExcelData(MultipartFile excelFile);
 
 	public List<CompetitiveQuestion> createCompetitiveQuestions(MultipartFile questionFile);
 

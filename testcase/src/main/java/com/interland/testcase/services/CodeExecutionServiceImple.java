@@ -31,7 +31,7 @@ import com.interland.testcase.dto.CodeResponse;
 import com.interland.testcase.entity.CodeExecutionResult;
 import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.TestCaseEntity;
-import com.interland.testcase.repository.QuestionRepository;
+import com.interland.testcase.repository.codQuestionRepository;
 import com.interland.testcase.repository.codeExecutionResultRepository;
 
 @Service
@@ -39,7 +39,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 	private static final Logger LOGGER = Logger.getLogger(CodeExecutionServiceImple.class.getName());
 	@Autowired
-	private QuestionRepository questionRepository;
+	private codQuestionRepository questionRepository;
 	@Autowired
 	private codeExecutionResultRepository codeExecutionResultRepository;
 
