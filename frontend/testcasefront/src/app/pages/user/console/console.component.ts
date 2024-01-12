@@ -12,14 +12,13 @@ export class ConsoleComponent implements OnInit {
 
 
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
-  @ViewChild('output', { static: false }) outputTextarea: ElementRef;
 
   private editor: any;
   private output: any;
   selectedLanguage: string = 'java';
   testCases: string[] = [];
-  result: any = { success: true, output: '' };
-  code: string = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+  result: any = { success: true, output: '// Your output will show here.' };
+  code: string = '';
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
   case: any = 1;
@@ -31,6 +30,7 @@ export class ConsoleComponent implements OnInit {
   testInput32: any;
 
   questiondata;
+  isOpen = false;
 
   constructor(private service: CodeService) { }
 
@@ -41,36 +41,33 @@ export class ConsoleComponent implements OnInit {
 
   ngAfterViewInit() {
     this.initializeCodeMirror();
-    this.initializeCodeMirrorOutput();
   }
 
-  qnData(qid){
-    this.service.questionReq(qid).subscribe(
-      (data:any)=>{
-        this.questiondata=data;
+  toggleOpen() {
+    this.isOpen = !this.isOpen;
+  }
+
+  openOutput(){
+    this.isOpen = true;
+  }
+
+  qnData(qid) {
+    this.service.questionReq(3).subscribe(
+      (data: any) => {
+        this.questiondata = data;
       },
-      (error)=>{
+      (error) => {
         console.log(error)
       }
     )
   }
 
-  initializeCodeMirrorOutput() {
-    if (this.output) {
-      // If the output already exists, just set the new mode and theme
-      this.output.setOption("mode", "text/x-java");
-      // Set the code value
-      this.output.setValue(this.result.output);
-    } else {
-      // If the output doesn't exist, create it
-      this.output = CodeMirror.fromTextArea(this.outputTextarea.nativeElement, {
-        mode: "text/x-java",
-        theme: "dracula",
-      });
-      this.output.setSize(window, 173);
-      // Set the code to the CodeMirror output
-      this.output.setValue('');
-    }
+  get constraints(): string {
+    // Replace all occurrences of '•' with '<br>•', except the first one
+    const modifiedString = this.questiondata.constraints.replace(/(•)(?!$)/g, (_, first, index:number = 0) => {
+      return index === 0 ? '•' : '<br>•';
+    });
+    return "<i>" + modifiedString + "</i>";
   }
 
   initializeCodeMirror() {
@@ -121,7 +118,6 @@ export class ConsoleComponent implements OnInit {
     }
     // Initialize CodeMirror
     this.initializeCodeMirror();
-    this.initializeCodeMirrorOutput();
   }
 
   save() {

@@ -9877,12 +9877,16 @@ body {
 
 
 /* custom styles */
-.h-92{
+.h-92 {
     height: 92%;
 }
 
-.max-h-90{
+.max-h-90 {
     max-height: 90vh;
+}
+
+.min-w-300 {
+    min-width: 300px;
 }
 
 .select {
@@ -9930,7 +9934,7 @@ code {
     border-radius: 3px;
 }
 
-.btn{
+.btn {
     font-size: small;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -9943,24 +9947,34 @@ btn:focus-visible {
     box-shadow: none;
 }
 
-btn-check:focus+.btn-secondary, .btn-secondary:focus, :focus+.btn-success, .btn-success:focus,:focus+.btn-primary, .btn-primary:focus,:focus+.btn-danger, .btn-danger:focus,:focus+.btn-warning, .btn-warning:focus {
+btn-check:focus+.btn-secondary,
+.btn-secondary:focus,
+:focus+.btn-success,
+.btn-success:focus,
+:focus+.btn-primary,
+.btn-primary:focus,
+:focus+.btn-danger,
+.btn-danger:focus,
+:focus+.btn-warning,
+.btn-warning:focus,
+:focus+.btn,
+.btn:focus {
     border-color: #000;
     box-shadow: 0 0 0 0px transparent;
 }
 
-.custom-splitter {
+#output {
+    background-color: #000;
     width: 100%;
-    height: 100%;
-}
-/* Add this to your CSS or styles file */
-.gutter-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    height: 0;
+    border-radius: 5px;
+    padding: 0px 5px;
+    color: #50fa7b;
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;;
+    overflow: hidden;
+    transition: height 0.5s ease;
 }
 
-.grip-icon {
-    cursor: col-resize; /* Set the cursor to indicate the resizing action */
-    font-size: 20px; /* Adjust the font size of the grip icon as needed */
+#output.open {
+    height: 150px;
 }

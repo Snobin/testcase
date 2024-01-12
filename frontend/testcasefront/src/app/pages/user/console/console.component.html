@@ -5,7 +5,7 @@
                 style="width: 100%;height: 100%;" [gutterSize]="15">
                 <ng-template pTemplate="panel">
                     <div
-                        class="h-full flex-col h-full w-full">
+                        class="h-full flex-col h-full w-full max-h-90 min-w-300">
                         <div class="relative flex h-full flex-col">
                             <div class="min-h-0 flex-grow"
                                 style="height: 100%;">
@@ -56,7 +56,8 @@
                                                         <p><i>{{questiondata.description}}</i></p>
                                                         <ul class="mt-3">
                                                             <hr>
-                                                            <li class="mt-3" *ngIf="(questiondata.example1Input&&questiondata.example1Output)">
+                                                            <li class="mt-3"
+                                                                *ngIf="(questiondata.example1Input&&questiondata.example1Output)">
                                                                 <b><u>Example
                                                                         1</u></b>
                                                                 <ul
@@ -93,7 +94,8 @@
                                                                 </ul>
                                                             </li>
                                                             <hr>
-                                                            <li class="mt-3" *ngIf="(questiondata.example2Input&&questiondata.example2Output)">
+                                                            <li class="mt-3"
+                                                                *ngIf="(questiondata.example2Input&&questiondata.example2Output)">
                                                                 <b><u>Example
                                                                         2</u></b>
                                                                 <ul
@@ -133,12 +135,10 @@
                                                         <ul>
                                                             <hr>
                                                             <li class="mt-3">
-                                                                <b>Constraints:</b>
+                                                                <b><u>Constraints:</u></b>
                                                                 <ul
-                                                                    class="ml-10">
-                                                                    <li>
-                                                                        <i>{{questiondata.constraints}}</i>
-                                                                    </li>
+                                                                    class="ml-10"
+                                                                    [innerHTML]="constraints">
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -195,7 +195,7 @@
                                                 </div>
                                                 <div class="ml-auto flex gap-3">
                                                     <button type="button"
-                                                        class="btn btn-warning">
+                                                        class="btn btn-warning" (click)="openOutput()">
                                                         Run<i
                                                             class="bi bi-play-fill"></i>
                                                     </button>
@@ -213,6 +213,24 @@
                                                         #editor type="text"
                                                         class="form-control"></textarea>
                                                 </div>
+                                            </div>
+                                            <div
+                                                class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
+                                                <div
+                                                    class="mr-auto flex flex-nowrap items-center gap-3">
+                                                    <div>
+                                                        <div>
+                                                            <button
+                                                                type="button"
+                                                                class="btn ml-2" (click)="toggleOpen()">
+                                                                Output <i class="bi" [class.bi-chevron-up]="isOpen == false" [class.bi-chevron-down]="isOpen == true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="output" [ngClass]="{ 'open': isOpen }">
+                                                {{result.output}}
                                             </div>
                                         </div>
                                     </div>
