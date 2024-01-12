@@ -9977,4 +9977,5 @@ btn-check:focus+.btn-secondary,
 
 #output.open {
     height: 150px;
+    overflow-y: scroll;
 }
