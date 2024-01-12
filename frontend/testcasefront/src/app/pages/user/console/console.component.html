@@ -195,7 +195,8 @@
                                                 </div>
                                                 <div class="ml-auto flex gap-3">
                                                     <button type="button"
-                                                        class="btn btn-warning" (click)="openOutput()">
+                                                        class="btn btn-warning"
+                                                        (click)="openOutput()">
                                                         Run<i
                                                             class="bi bi-play-fill"></i>
                                                     </button>
@@ -222,15 +223,55 @@
                                                         <div>
                                                             <button
                                                                 type="button"
-                                                                class="btn ml-2" (click)="toggleOpen()">
-                                                                Output <i class="bi" [class.bi-chevron-up]="isOpen == false" [class.bi-chevron-down]="isOpen == true"></i>
+                                                                class="btn ml-2"
+                                                                style="width: 100%;"
+                                                                (click)="toggleOpen()">
+                                                                Console <i
+                                                                    class="bi"
+                                                                    [class.bi-chevron-up]="isOpen == false"
+                                                                    [class.bi-chevron-down]="isOpen == true"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="output" [ngClass]="{ 'open': isOpen }">
-                                                {{result.output}}
+                                            <div id="console" class="console"
+                                                [ngClass]="{ 'open': isOpen }">
+                                                <div class="row">
+                                                    <div class="col-md-12"
+                                                        style="padding-top: 10px;">
+                                                        <button type="button"
+                                                            class="btn position-relative" [class.btn-case]="case1 == false" [class.btn-case-active]="case1 == true" (click)="activateCase1()">
+                                                            case 1
+                                                            <span
+                                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                                                                style="background-color: #f0f0f0;color: #000;">
+                                                                x
+                                                            </span>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn position-relative ml10" [class.btn-case]="case2 == false" [class.btn-case-active]="case2 == true" (click)="activateCase2()">
+                                                            case 2
+                                                            <span
+                                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                                                                style="background-color: #f0f0f0;color: #000;">
+                                                                x
+                                                            </span>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn position-relative ml10" [class.btn-case]="case3 == false" [class.btn-case-active]="case3 == true" (click)="activateCase3()">
+                                                            case 3
+                                                            <span
+                                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                                                                style="background-color: #f0f0f0;color: #000;">
+                                                                x
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-12">
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
