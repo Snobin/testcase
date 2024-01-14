@@ -1,4 +1,4 @@
-<div class="flex h-92 w-full flex-col">
+<div class="flex h-92 w-full flex-col ">
     <div class="flex w-full flex-grow">
         <div class="bg-gray-2 flex h-full w-full p-2">
             <p-splitter [panelSizes]="[50, 50]" style="width: 100%;height: 100%;" [gutterSize]="15">
@@ -239,82 +239,124 @@
                                                         <div *ngFor="let case of [case1, case2]; let i = index">
                                                             <!-- Display details only for the active case -->
                                                             <div *ngIf="activeCase === i">
-                                                              <div class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">Input</div>
-                                                              <div class="space-y-2">
-                                                                <div class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                  <div class="relative py-[10px]">
-                                                                    <div class="absolute right-3 top-2.5 z-base-1">
-                                                                      <div class="relative cursor-pointer flex h-[14px] w-[14px] items-center justify-center rounded group-hover:bg-transparent dark:group-hover:bg-transparent" data-state="closed">
-                                                                        <div>
-                                                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="h-4 w-4 hidden group-hover:block text-label-2 dark:text-dark-label-2 hover:text-label-1 dark:hover:text-dark-label-1">
-                                                                            <path fill-rule="evenodd" d="M11.3 8.3H19a3 3 0 013 3V19a3 3 0 01-3 3h-7.7a3 3 0 01-3-3v-7.7a3 3 0 013-3zm0 2a1 1 0 00-1 1V19a1 1 0 001 1H19a1 1 0 001-1v-7.7a1 1 0 00-1-1h-7.7zm-5.6 3.4a1 1 0 110 2h-.9A2.8 2.8 0 012 12.9V4.8A2.8 2.8 0 014.8 2h8.1a2.8 2.8 0 012.8 2.8v.9a1 1 0 11-2 0v-.9a.8.8 0 00-.8-.8H4.8a.8.8 0 00-.8.8v8.1a.8.8 0 00.8.8h.9z" clip-rule="evenodd"></path>
-                                                                          </svg>
+                                                                <div
+                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
+                                                                    Input</div>
+                                                                <div class="space-y-2">
+                                                                    <div
+                                                                        class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
+                                                                        <div class="relative py-[10px]">
+                                                                            <div
+                                                                                class="absolute right-3 top-2.5 z-base-1">
+                                                                                <div class="relative cursor-pointer flex h-[14px] w-[14px] items-center justify-center rounded group-hover:bg-transparent dark:group-hover:bg-transparent"
+                                                                                    data-state="closed">
+                                                                                    <div>
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            width="1em" height="1em"
+                                                                                            fill="currentColor"
+                                                                                            class="h-4 w-4 hidden group-hover:block text-label-2 dark:text-dark-label-2 hover:text-label-1 dark:hover:text-dark-label-1">
+                                                                                            <path fill-rule="evenodd"
+                                                                                                d="M11.3 8.3H19a3 3 0 013 3V19a3 3 0 01-3 3h-7.7a3 3 0 01-3-3v-7.7a3 3 0 013-3zm0 2a1 1 0 00-1 1V19a1 1 0 001 1H19a1 1 0 001-1v-7.7a1 1 0 00-1-1h-7.7zm-5.6 3.4a1 1 0 110 2h-.9A2.8 2.8 0 012 12.9V4.8A2.8 2.8 0 014.8 2h8.1a2.8 2.8 0 012.8 2.8v.9a1 1 0 11-2 0v-.9a.8.8 0 00-.8-.8H4.8a.8.8 0 00-.8.8v8.1a.8.8 0 00.8.8h.9z"
+                                                                                                clip-rule="evenodd">
+                                                                                            </path>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
+                                                                                <div style="overflow-wrap: break-word;">
+                                                                                    {{ this.result[i].input }}</div>
+                                                                            </div>
                                                                         </div>
-                                                                      </div>
                                                                     </div>
-                                                                    <div class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                      <div style="overflow-wrap: break-word;">{{ this.result[i].input }}</div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
+                                                                    Output</div>
+                                                                <div *ngIf="this.result[i]"
+                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
+                                                                    <div class="relative py-[10px]">
+                                                                        <div *ngIf="this.result[i].output"
+                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
+                                                                            <span class="leading-3.5">{{
+                                                                                this.result[i].output }}</span>
+                                                                        </div>
                                                                     </div>
-                                                                  </div>
                                                                 </div>
-                                                              </div>
-                                                          
-                                                              <div class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">Output</div>
-                                                              <div *ngIf="this.result[i]" class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                <div class="relative py-[10px]">
-                                                                  <div *ngIf="this.result[i].output" class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                    <span class="leading-3.5">{{ this.result[i].output }}</span>
-                                                                  </div>
+
+                                                                <div
+                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
+                                                                    Success</div>
+                                                                <div *ngIf="this.result[i]"
+                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
+                                                                    <div class="relative py-[10px]">
+                                                                        <div
+                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
+                                                                            <span class="leading-3.5">{{
+                                                                                this.result[i].success }}</span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                              </div>
-                                                          
-                                                              <div class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">Success</div>
-                                                              <div *ngIf="this.result[i]" class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                <div class="relative py-[10px]">
-                                                                  <div class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                    <span class="leading-3.5">{{ this.result[i].success }}</span>
-                                                                  </div>
+
+                                                                <div
+                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
+                                                                    Processing Time</div>
+                                                                <div *ngIf="this.result[i]"
+                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
+                                                                    <div class="relative py-[10px]">
+                                                                        <div
+                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
+                                                                            <span class="leading-3.5">{{
+                                                                                this.result[i].processingTime }}</span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                              </div>
-                                                          
-                                                              <div class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">Processing Time</div>
-                                                              <div *ngIf="this.result[i]" class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                <div class="relative py-[10px]">
-                                                                  <div class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                    <span class="leading-3.5">{{ this.result[i].processingTime }}</span>
-                                                                  </div>
+
+                                                                <div
+                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
+                                                                    Message</div>
+                                                                <div *ngIf="this.result[i]"
+                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
+                                                                    <div class="relative py-[10px]">
+                                                                        <div
+                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
+                                                                            <span class="leading-3.5">{{
+                                                                                this.result[i].message }}</span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                              </div>
-                                                          
-                                                              <div class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">Message</div>
-                                                              <div *ngIf="this.result[i]" class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                <div class="relative py-[10px]">
-                                                                  <div class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                    <span class="leading-3.5">{{ this.result[i].message }}</span>
-                                                                  </div>
-                                                                </div>
-                                                              </div>
                                                             </div>
-                                                          
+
                                                             <!-- Add or remove the 'active' class based on the active case -->
-                                                            <div *ngIf="case" class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                              Case {{ i + 1 }}
-                                                              <div class="space-y-2">
-                                                                <!-- Add or remove the 'active' class based on the active case -->
-                                                                <div class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4" [class.active]="activeCase === i">
-                                                                  <div class="relative py-[10px]">
-                                                                    <button type="button" class="btn position-relative" [class.btn-case]="!case" [class.btn-case-active]="case" (click)="activateCase(i)">
-                                                                      Case {{ i + 1 }}
-                                                                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #f0f0f0;color: #000;">
-                                                                        x
-                                                                      </span>
-                                                                    </button>
-                                                                  </div>
+                                                            <div *ngIf="case"
+                                                                class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
+                                                                Case {{ i + 1 }}
+                                                                <div class="space-y-2">
+                                                                    <!-- Add or remove the 'active' class based on the active case -->
+                                                                    <div class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4"
+                                                                        [class.active]="activeCase === i">
+                                                                        <div class="relative py-[10px]">
+                                                                            <button type="button"
+                                                                                class="btn position-relative"
+                                                                                [class.btn-case]="!case"
+                                                                                [class.btn-case-active]="case"
+                                                                                (click)="activateCase(i)">
+                                                                                Case {{ i + 1 }}
+                                                                                <span
+                                                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                                                                                    style="background-color: #f0f0f0;color: #000;">
+                                                                                    x
+                                                                                </span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                              </div>
                                                             </div>
-                                                          </div>
-                                                          
+                                                        </div>
+
 
                                                     </div>
                                                 </div>

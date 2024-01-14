@@ -5697,7 +5697,6 @@ body {
     --tw-scale-y: 400%
 }
 
-  
 .scale-\[calc\(11\/12\)\] {
     --tw-scale-x: 0.91667;
     --tw-scale-y: 0.91667
@@ -9900,21 +9899,6 @@ btn:focus-visible {
     box-shadow: none;
 }
 
-btn-check:focus+.btn-secondary,
-.btn-secondary:focus,
-:focus+.btn-success,
-.btn-success:focus,
-:focus+.btn-primary,
-.btn-primary:focus,
-:focus+.btn-danger,
-.btn-danger:focus,
-:focus+.btn-warning,
-.btn-warning:focus,
-:focus+.btn,
-.btn:focus {
-    border-color: #000;
-    box-shadow: 0 0 0 0px transparent;
-}
 
 #console {
     background-color: #fff;

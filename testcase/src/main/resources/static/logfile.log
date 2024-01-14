@@ -1195,3 +1195,515 @@ Caused by: java.sql.SQLSyntaxErrorException: Can't DROP 'FK65sw7nafsf18oyr47e384
 11:36:38.702 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 11:36:38.705 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 11:36:38.719 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+11:42:57.149 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+11:42:57.198 [main] INFO  c.i.testcase.TestcaseApplication - Starting TestcaseApplication using Java 19.0.1 with PID 26684 (D:\testcase\testcase\target\classes started by user in D:\testcase\testcase)
+11:42:57.199 [main] INFO  c.i.testcase.TestcaseApplication - No active profile set, falling back to 1 default profile: "default"
+11:42:57.923 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:42:57.979 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+11:42:58.455 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
+11:42:58.463 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+11:42:58.465 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+11:42:58.465 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+11:42:58.547 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:42:58.547 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1298 ms
+11:42:58.677 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:42:58.754 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+11:42:58.798 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:42:59.037 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:42:59.064 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:42:59.448 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@df9d400
+11:42:59.451 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:42:59.875 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.interland.testcase.entity.Student
+11:42:59.875 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.interland.testcase.entity.Student
+11:43:00.492 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:43:00.567 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:43:00.814 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+11:43:01.223 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:43:01.591 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+11:43:01.616 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path ''
+11:43:01.622 [main] INFO  c.i.testcase.TestcaseApplication - Started TestcaseApplication in 4.792 seconds (process running for 5.584)
+11:43:09.771 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:43:09.772 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+11:43:09.774 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+11:43:13.513 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:43:13.513 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:43:13.525 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:43:13.525 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:43:13.531 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:43:13.531 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:44:39.549 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+11:44:39.549 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+11:44:39.557 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+11:44:39.557 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+11:44:39.570 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+11:44:39.570 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+11:54:41.990 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:54:41.990 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:54:41.994 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:54:41.994 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:54:41.999 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:54:42.000 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:55:13.456 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+11:55:13.456 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+11:55:13.463 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+11:55:13.463 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+11:55:13.469 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+11:55:13.469 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+11:55:25.943 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:55:25.943 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:55:25.948 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:55:25.948 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+11:55:25.953 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+11:55:25.953 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+13:02:58.896 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m29s529ms720µs100ns).
+15:24:18.986 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h11m19s86ms255µs900ns).
+17:37:42.740 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m52s103ms820µs400ns).
+18:06:18.142 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m34s854ms442µs600ns).
+21:10:13.577 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m22s328ms965µs).
+02:29:38.489 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h24m50s947ms896µs200ns).
+05:04:51.098 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h35m12s608ms723µs400ns).
+07:29:12.616 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h24m21s518ms762µs400ns).
+09:02:40.719 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h33m28s102ms891µs400ns).
+10:31:26.377 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=26m14s629ms354µs400ns).
+11:34:17.839 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=35m50s998ms383µs600ns).
+13:36:41.274 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=57m52s422ms706µs300ns).
+14:56:01.508 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+14:56:01.509 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+14:56:01.516 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+14:56:01.516 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+14:56:01.522 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+14:56:01.522 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:03:10.252 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:03:10.253 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:03:10.262 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:03:10.263 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:03:10.269 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:03:10.269 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:27:34.650 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:27:34.650 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:27:34.659 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:27:34.659 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:27:34.666 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:27:34.666 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:29:11.018 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:29:11.018 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:29:11.027 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:29:11.027 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:29:11.038 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:29:11.038 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:31:24.893 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:31:24.893 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:31:24.901 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:31:24.901 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:31:24.909 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+15:31:24.909 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+15:50:07.824 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:07.824 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:07.834 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:07.834 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:07.844 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:07.845 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:11.383 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:11.384 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:11.394 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:11.395 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:11.403 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:11.404 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:13.269 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:13.269 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:13.281 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:13.281 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:13.291 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:13.291 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:13.537 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:13.538 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:13.546 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:13.546 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:13.554 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:13.555 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:14.244 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:14.245 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:14.256 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:14.256 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+15:50:14.266 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+15:50:14.267 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:41.487 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:41.487 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:41.498 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:41.498 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:41.508 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:41.508 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:43.746 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:43.746 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:43.756 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:43.757 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:43.768 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:43.768 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:44.127 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:44.127 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:44.136 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:44.137 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:44.147 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:44.147 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:45.521 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:45.521 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:45.530 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:45.530 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:45.540 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:45.540 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:45.812 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:45.812 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:45.822 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:45.822 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:45.830 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:45.831 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:46.093 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:46.093 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:46.101 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:46.102 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:46.111 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:46.111 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:51.091 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:51.092 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:51.101 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:51.101 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:51.109 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:51.109 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:53.867 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:53.867 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:53.876 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:53.876 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:53.884 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:53.885 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:54.269 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:54.269 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:54.279 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:54.279 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:54.287 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:54.288 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:56.123 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:56.123 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:56.133 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:56.133 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:56.142 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:56.142 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:56.324 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:56.325 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:56.335 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:56.335 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:56.345 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:56.346 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:57.458 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:57.458 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:57.468 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:57.468 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:01:57.479 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:01:57.479 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:02.020 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:02.021 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:02.028 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:02.028 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:02.034 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:02.034 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:05.318 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:05.318 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:05.329 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:05.330 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:05.343 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:05.343 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:05.595 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:05.596 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:05.606 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:05.607 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:05.616 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:05.616 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:07.777 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:07.778 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:07.792 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:07.793 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:07.805 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:07.805 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:09.528 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:09.528 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:09.535 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:09.535 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:09.547 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:09.547 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:10.007 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:10.007 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:10.012 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:10.012 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:10.021 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:10.021 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:14.258 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:14.258 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:14.267 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:14.267 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:14.278 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:14.279 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:16.016 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:16.017 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:16.031 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:16.031 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:16.045 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:16.046 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:16.556 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:16.556 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:16.568 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:16.569 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:16.582 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:16.583 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:18.594 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:18.594 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:18.602 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:18.602 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:18.607 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:18.607 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:21.167 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:21.168 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:21.178 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:21.178 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:21.190 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:21.190 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:21.553 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:21.554 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:21.564 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:21.565 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:21.575 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:21.575 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:26.493 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:26.494 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:26.504 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:26.504 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:26.516 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:26.516 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:29.367 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:29.367 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:29.378 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:29.378 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:29.388 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:29.388 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:29.671 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:29.671 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:29.680 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:29.680 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:29.689 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:29.689 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:30.334 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:30.335 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:30.354 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:30.354 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:30.365 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:30.365 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:32.127 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:32.127 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:32.136 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:32.136 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:32.144 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:32.145 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:34.621 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:34.621 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:34.628 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:34.628 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:34.635 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:34.635 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:38.773 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:38.773 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:38.785 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:38.785 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:38.795 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:38.795 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:40.072 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:40.072 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:40.082 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:40.082 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:40.092 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:40.092 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.155 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.155 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.169 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.169 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.182 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.182 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.632 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.633 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.643 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.643 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.652 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.652 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.926 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.926 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.933 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.933 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:02:41.940 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:02:41.940 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:26.913 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:26.913 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:26.918 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:26.918 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:26.925 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:26.925 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:30.987 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:30.987 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:30.992 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:30.992 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:30.996 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:30.996 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:31.916 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:31.916 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:31.921 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:31.921 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:31.925 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:31.925 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:32.876 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:32.876 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:32.881 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:32.881 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:32.888 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:32.888 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:49.362 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:49.362 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:49.367 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:49.368 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:49.373 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:49.373 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:50.041 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:50.041 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:50.045 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:50.046 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:50.050 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:50.050 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:50.920 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:50.920 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:50.925 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:50.925 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:50.930 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:50.930 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:51.867 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:51.867 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:51.874 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:51.875 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:51.883 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:51.883 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:58.926 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:58.926 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:58.936 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:58.936 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:06:58.942 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:06:58.942 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:31:38.733 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:31:38.733 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:31:38.740 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:31:38.740 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:31:38.747 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:31:38.747 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:32:57.704 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:32:57.704 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:32:57.708 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:32:57.708 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:32:57.713 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:32:57.713 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:37:32.601 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:37:32.602 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:37:32.606 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:37:32.606 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:37:32.616 [http-nio-8082-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:37:32.616 [http-nio-8082-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:37:35.833 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:37:35.833 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:37:35.842 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:37:35.842 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:37:35.856 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:37:35.856 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:38:03.894 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:38:03.894 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:38:03.904 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:38:03.904 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:38:03.915 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:38:03.916 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:39:01.376 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:39:01.376 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:39:01.384 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:39:01.384 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:39:01.388 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:39:01.388 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:39:33.112 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:39:33.112 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:39:33.116 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:39:33.116 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:39:33.121 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:39:33.121 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:20.221 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:20.221 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:20.227 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:20.227 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:20.233 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:20.233 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:23.755 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:23.755 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:23.761 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:23.761 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:23.767 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:23.767 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:37.152 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:37.152 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:37.160 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:37.160 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:37.166 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:44:37.167 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:44:50.268 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+16:44:50.268 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+16:44:50.275 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+16:44:50.275 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+16:44:50.281 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+16:44:50.281 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+16:55:40.153 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:55:40.153 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:55:40.160 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:55:40.160 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+16:55:40.164 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+16:55:40.164 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:01:40.574 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:01:40.574 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:01:40.578 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:01:40.578 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:01:40.582 [http-nio-8082-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:01:40.582 [http-nio-8082-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:11:43.276 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:11:43.276 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:11:43.281 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:11:43.281 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:11:43.285 [http-nio-8082-exec-7] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:11:43.285 [http-nio-8082-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:18:32.980 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:18:32.980 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:18:32.984 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:18:32.984 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:18:32.989 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:18:32.989 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:34:50.573 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:34:50.573 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:34:50.576 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:34:50.577 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:34:50.580 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:34:50.580 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:41:06.768 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:41:06.768 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:41:06.774 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:41:06.774 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:41:06.779 [http-nio-8082-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:41:06.779 [http-nio-8082-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:50:49.963 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:50:49.964 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:50:49.969 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:50:49.970 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+17:50:49.975 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+17:50:49.975 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+18:24:49.550 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+18:24:49.550 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+18:24:49.553 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+18:24:49.553 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+18:24:49.557 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+18:24:49.557 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
+19:13:23.949 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m7s335ms304µs300ns).
+22:23:14.231 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h46m48s948ms383µs900ns).

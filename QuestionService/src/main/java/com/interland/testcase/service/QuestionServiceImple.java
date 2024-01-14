@@ -307,13 +307,29 @@ public class QuestionServiceImple implements QuestionService {
 
 		for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
 			String inputs = getCellStringValue(currentRow.getCell(i));
+//			String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
+//			inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
+//			expectedOutputs = expectedOutputs.endsWith(".0")
+//					? expectedOutputs.substring(0, expectedOutputs.length() - 2)
+//					: expectedOutputs;
+//
+//			testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
 			String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
 			inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
-			expectedOutputs = expectedOutputs.endsWith(".0")
-					? expectedOutputs.substring(0, expectedOutputs.length() - 2)
-					: expectedOutputs;
+
+			// Add a null check for expectedOutputs
+			if (expectedOutputs != null) {
+			    expectedOutputs = expectedOutputs.endsWith(".0")
+			            ? expectedOutputs.substring(0, expectedOutputs.length() - 2)
+			            : expectedOutputs;
+			} else {
+			    // Handle the case when expectedOutputs is null (e.g., provide a default value or skip the test case)
+			    // For example, you can set it to an empty string:
+			    expectedOutputs = "true";
+			}
 
 			testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
+
 		}
 		return testCases;
 	}
@@ -383,6 +399,8 @@ public class QuestionServiceImple implements QuestionService {
 	        if (codingQuestionInputDto.getFileContent() != null) {
 	            // Process the file content here if needed
 	            System.out.println("File content processing...");
+	    		processExcelData(codingQuestionInputDto.getFileContent());
+
 	        }
 
 	        // Save the updated question back to the database
