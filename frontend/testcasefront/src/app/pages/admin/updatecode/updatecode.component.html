@@ -64,7 +64,7 @@
             
               <mat-form-field appearance="fill" style="margin-left: 20%; width: 40%;">
                 <mat-label>Question ID</mat-label>
-                <input style="width: 40%;" [(ngModel)]="codeInput.QID" type="text" name="QID" placeholder="Enter here" matInput/>
+                <input style="width: 40%;" [(ngModel)]="codeInput.qid" type="text" name="QID" placeholder="Enter here" matInput/>
               </mat-form-field>
             </div>
     
@@ -74,30 +74,7 @@
               <textarea id="constraints" matInput rows="3" placeholder="Enter constraints"
                 [(ngModel)]="codeInput.constraints" name="constraints"></textarea>
             </mat-form-field>
-            <!-- <mat-form-field class="w-100" appearance="outline">
-              <div>
-                <mat-toolbar>
-                  <input matInput [value]="fileName" disabled class="form-control" />
-                  <button mat-flat-button color="primary" style="z-index: 5;" (click)="browseFiles()">Browse</button>
-                </mat-toolbar>
-                <input #fileInput required type="file" class="w-100 form-control" id="fileInput"
-                  (change)="selectFile($event)" style="z-index: 1;" name="fileInput" />
-              </div>
-            </mat-form-field> -->
-            <!-- <div class="custom-container mt-4 text-center">
-              <form class="my-4"  action="/excel" method="post" enctype="multipart/form-data">
-                  <div class="mb-3">
-                      <label for="excelFile" class="form-label">
-                          <h4 class="text-primary">Upload Excel Sheet Instead</h4>
-                      </label>
-                      <div class="input-group">
-                          <input type="file" (change)="onFileChange($event)" #excelFile class="form-control visually-hidden" id="excelFile" name="excelFile" accept=".xlsx, .xls" required>
-                      </div>
-                  </div>
-                          
-               
-              </form>
-          </div> -->
+           
           <input type="file" (change)="onFileChange($event)" #fileInput  />
           
           

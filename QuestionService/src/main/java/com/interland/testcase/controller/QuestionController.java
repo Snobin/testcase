@@ -108,8 +108,8 @@ public class QuestionController {
 		return questionService.addCodingQuestion(codingQuestionInputDto);
 	}
 
-	@PostMapping("/updateCodingQuestion")
-	public ResponseEntity<?> updateCodingQuestion(@RequestBody CodingQuestionInputDto codingQuestionInputDto) {
+	@PutMapping("/updateCodingQuestion")
+	public ResponseEntity<?> updateCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
 		System.out.println(codingQuestionInputDto.toString());
 		return questionService.updateCodingQuestion(codingQuestionInputDto);
 	}
@@ -117,5 +117,11 @@ public class QuestionController {
 	@GetMapping("/qndata/{quesId}")
 	public ResponseEntity<?> getQnData(@PathVariable("quesId") String quesId) {
 		return questionService.getQnData(quesId);
+	}
+	
+	@PostMapping("/getcode")
+	public ResponseEntity<?> getcodingdata(@RequestBody String codingQuestionInputDto ){
+		return questionService.getcodeData(codingQuestionInputDto);
+		
 	}
 }

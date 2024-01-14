@@ -25,7 +25,11 @@ public class CodingQuestionInputDto {
 	private String ex2explanation;
 
 	private String constraints;
+
+	private String qid;
 	
+	
+
 	public String getQid() {
 		return qid;
 	}
@@ -33,8 +37,6 @@ public class CodingQuestionInputDto {
 	public void setQid(String qid) {
 		this.qid = qid;
 	}
-
-	private String qid;
 
 	public boolean isActive() {
 		return active;
@@ -44,18 +46,8 @@ public class CodingQuestionInputDto {
 		this.active = active;
 	}
 
-
 	public MultipartFile getFileContent() {
 		return fileContent;
-	}
-	
-
-	@Override
-	public String toString() {
-		return "CodingQuestionInputDto [fileContent=" + fileContent + ", title=" + title + ", desc=" + desc
-				+ ", ex1input=" + ex1input + ", active=" + active + ", ex2input=" + ex2input + ", ex1output="
-				+ ex1output + ", ex2output=" + ex2output + ", ex1explanation=" + ex1explanation + ", ex2explanation="
-				+ ex2explanation + ", constraints=" + constraints + ", qid=" + qid + "]";
 	}
 
 	public void setFileContent(MultipartFile fileContent) {
@@ -64,7 +56,7 @@ public class CodingQuestionInputDto {
 
 	public String getTitle() {
 		return title;
-		
+
 	}
 
 	public void setTitle(String title) {
@@ -133,6 +125,14 @@ public class CodingQuestionInputDto {
 
 	public void setConstraints(String constraints) {
 		this.constraints = constraints;
+	}
+
+	@Override
+	public String toString() {
+		return "CodingQuestionInputDto [fileContent=" + fileContent + ", title=" + title + ", desc=" + desc
+				+ ", ex1input=" + ex1input + ", active=" + active + ", ex2input=" + ex2input + ", ex1output="
+				+ ex1output + ", ex2output=" + ex2output + ", ex1explanation=" + ex1explanation + ", ex2explanation="
+				+ ex2explanation + ", constraints=" + constraints + ", qid=" + qid + "]";
 	}
 
 }

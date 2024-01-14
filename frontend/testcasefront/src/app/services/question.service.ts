@@ -44,7 +44,7 @@ export class QuestionService {
     formData.append('ex2output', question.ex2output);
     formData.append('ex2explanation', question.ex2explanation);
     formData.append('constraints', question.constraints);
-    formData.append('qid', question.QID);
+    formData.append('qid', question.qid);
     formData.append('active', (question.active || false).toString());
   
     console.log(50, file);
@@ -54,6 +54,11 @@ export class QuestionService {
     }
   
     return this.http.post(`${this.baseUrl}/addCodingQuestion`, formData);
+  }
+
+  getCodingQuestion(qid){
+    console.log(qid)
+    return this.http.post(`${this.baseUrl}/getcode`,qid);
   }
   
 

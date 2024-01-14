@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 @Entity
 public class CompetitiveQuestion {
 
+
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
@@ -14,8 +15,21 @@ public class CompetitiveQuestion {
 	@Column(name = "question_id", nullable = false, unique = true)
 	private String questionId;
 
+    
+
 	@Column(name = "question_text")
 	private String questionText;
+	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	private String category;
 
 	private String input;
 

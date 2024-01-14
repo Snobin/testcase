@@ -2,7 +2,7 @@
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"> </div>
         <mat-card-title>
-            {{q.questionId}} - {{q.title}} 
+            {{q.questionId}} - {{q.title}}
         </mat-card-title>
         <mat-card-subtitle>
             {{q.title}}
@@ -13,11 +13,14 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-stroked-button color="primary" class="ml20">Marks: {{q.maxMarks}}</button>
-        <button  mat-stroked-button color="primary" class="ml20">Questions: {{q.numberOfQuestions}}</button>
-        <button [routerLink]="'/admin/code/'+ q.qid" mat-flat-button color="primary" class="ml20">Update</button>
-        <mat-slide-toggle name="active" [(ngModel)]="codeInput.active" class="mt20 ml20" color="primary" (change)="onToggleChange()">
+        <button [routerLink]="'/admin/code/'+ q.questionId" mat-flat-button color="primary" class="ml20">Update</button>
+        <!-- view-coding.component.html -->
+
+        <mat-slide-toggle name="active" [(ngModel)]="q.active" class="mt20 ml20" color="primary"
+            (change)="onToggleChange(q.questionId,q.active,q)">
             Publish Status
-          </mat-slide-toggle>
+        </mat-slide-toggle>
+
         <!-- <button mat-flat-button color="primary" class="ml20">Attempts</button> -->
         <!-- <button mat-flat-button color="warn" class="ml20" (click)="deleteQuiz(q.qid)">Delete</button> -->
     </mat-card-actions>

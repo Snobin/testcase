@@ -31,7 +31,11 @@ public interface QuestionService {
 	
 	public Set<CompetitiveQuestion>  getData();
 	
+	public Set<CompetitiveQuestion>  getActiveData();
+	
 	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
+	
+	public ResponseEntity<?> getcodeData(String id);
 
 	public List<McqQuestion> createMcqQuestions(MultipartFile questionFile);
 	

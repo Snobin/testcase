@@ -29,6 +29,10 @@ public class CodeController {
 	public ResponseEntity<?> getCodeData() {
 		return ResponseEntity.ok(questionService.getData());
 	}
+	@GetMapping("/active")
+	public ResponseEntity<?> getActiveCodeData() {
+		return ResponseEntity.ok(questionService.getActiveData());
+	}
 
 	@PostMapping("/excel")
 	public ResponseEntity<?> createExcel(@RequestParam("excelFile") MultipartFile excelFile) {

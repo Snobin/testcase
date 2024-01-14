@@ -116,10 +116,9 @@ const routes: Routes = [
     path: 'start/:qid',
     component: StartComponent,
     canActivate: [UserGuard]
-
   },
   {
-    path: 'coding',
+    path: 'coding/:qid',
     component: ConsoleComponent
   },
 ];

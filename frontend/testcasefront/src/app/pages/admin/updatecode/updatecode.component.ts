@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddQuestion } from 'src/app/model/AddQuestion';
+import { CodeService } from 'src/app/services/code.service';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
@@ -24,12 +25,15 @@ export class UpdatecodeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: QuestionService,
+    private CODE :CodeService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
+    // this.getData(this.qId);
+    this.getData();
     this.qTitle = this.route.snapshot.params.title;
     this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
 
@@ -49,6 +53,26 @@ export class UpdatecodeComponent implements OnInit {
         this.constraintsElement.value = txtval.substring(0, txtval.length - 1);
       }
     });
+  }
+  getData() {
+    this.service.getCodingQuestion(this.qId).subscribe(
+      (data: any) => {
+        this.codeInput = data;
+        this.codeInput.desc = data.description;
+        this.codeInput.ex1explanation = data.example1Exp;
+        this.codeInput.ex2explanation = data.example2Exp;
+        this.codeInput.active = data.active;
+        this.codeInput.ex1input = data.example1Input;
+        this.codeInput.ex2input = data.example2Input;
+        this.codeInput.ex1output = data.example1Output;
+        this.codeInput.ex2output = data.example2Output;
+        this.codeInput.qid=data.questionId;
+      },
+      (error) => {
+        console.log(error);
+
+      }
+    )
   }
 
 
@@ -71,10 +95,10 @@ export class UpdatecodeComponent implements OnInit {
       constraints: this.codeInput.constraints,
       fileContent: this.codeInput.fileContent,
       active: this.codeInput.active,
-      QID: this.codeInput.QID
+      qid: this.codeInput.qid
     };
 
-    this.service.addCodingQuestion(questionData,this.codeInput.fileContent).subscribe(
+    this.CODE.updateCode(questionData, this.codeInput.fileContent).subscribe(
       (data: any) => {
         this.codeInput = {
           title: '',
@@ -88,7 +112,7 @@ export class UpdatecodeComponent implements OnInit {
           constraints: [],
           fileContent: null,
           active: null,
-          QID: '',
+          qid: '',
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
@@ -106,12 +130,12 @@ export class UpdatecodeComponent implements OnInit {
       const file: File = fileList[0];
       this.codeInput.fileContent = file;
       this.fileName = file.name; // Set the file name for display if needed
-      console.log(file); 
+      console.log(file);
       console.log(this.codeInput);
-      
+
       // Log the file to see if it's properly captured
     }
   }
-  
-  
+
+
 }

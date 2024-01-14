@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -46,21 +47,20 @@ public class QuestionServiceImple implements QuestionService {
 
 	@Autowired
 	private QuestionRepository questionRepository;
-	
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
+	private final ObjectMapper objectMapper = new ObjectMapper();
 
 //	@Autowired
 //	private CodingQuestionRepository codingQuestionRepository;
-    
-    @Autowired
+
+	@Autowired
 	private QuizRepository quizRepository;
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Autowired
-    private codQuestionRepository questionRepo;
+	private codQuestionRepository questionRepo;
 
 	@Autowired
 	private McqQuestionRepository mcqQuestionRepository;
@@ -199,6 +199,7 @@ public class QuestionServiceImple implements QuestionService {
 	public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto obj) {
 		CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
 		codingQuestion.setTitle(obj.getTitle());
+		codingQuestion.setCategory("CODING");
 		codingQuestion.setQuestionId(obj.getQid());
 		codingQuestion.setDescription(obj.getDesc());
 		codingQuestion.setExample1Input(obj.getEx1input());
@@ -209,7 +210,6 @@ public class QuestionServiceImple implements QuestionService {
 		codingQuestion.setExample2Exp(obj.getEx2explanation());
 		codingQuestion.setConstraints(obj.getConstraints());
 		processExcelData(obj.getFileContent());
-		
 
 		competitiveQuestionRepository.save(codingQuestion);
 		return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
@@ -267,91 +267,92 @@ public class QuestionServiceImple implements QuestionService {
 		Optional<?> data = this.competitiveQuestionRepository.findByQuestionId(qnId);
 		return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
 	}
-	
-	
-	 @Override
-	    public ObjectNode processExcelData(MultipartFile excelFile) {
-	        ObjectNode response = objectMapper.createObjectNode();
-	        ArrayNode results = objectMapper.createArrayNode();
 
-	        try (InputStream inputStream = excelFile.getInputStream();
-	             Workbook workbook = new XSSFWorkbook(inputStream)) {
+	@Override
+	public ObjectNode processExcelData(MultipartFile excelFile) {
+		ObjectNode response = objectMapper.createObjectNode();
+		ArrayNode results = objectMapper.createArrayNode();
 
-	            Sheet sheet = workbook.getSheetAt(0);
+		try (InputStream inputStream = excelFile.getInputStream(); Workbook workbook = new XSSFWorkbook(inputStream)) {
 
-	            Iterator<Row> rowIterator = sheet.iterator();
+			Sheet sheet = workbook.getSheetAt(0);
 
-	            if (rowIterator.hasNext()) {
-	                rowIterator.next();
-	            }
+			Iterator<Row> rowIterator = sheet.iterator();
 
-	            while (rowIterator.hasNext()) {
-	                Row currentRow = rowIterator.next();
-	                String questionId = getCellStringValue(currentRow.getCell(0));
-	                List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
-	                saveQuestion(questionId, testCases);
-	                results.add(createSuccessResult(questionId));
-	            }
+			if (rowIterator.hasNext()) {
+				rowIterator.next();
+			}
 
-	            response.set("results", results);
-	            response.put("status", "success");
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            response.put("status", "error");
-	            response.put("message", "Error processing Excel data");
-	        }
+			while (rowIterator.hasNext()) {
+				Row currentRow = rowIterator.next();
+				String questionId = getCellStringValue(currentRow.getCell(0));
+				List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
+				saveQuestion(questionId, testCases);
+				results.add(createSuccessResult(questionId));
+			}
 
-	        return response;
-	    }
-	 private List<TestCaseEntity> extractTestCasesFromRow(Row currentRow, String questionId) {
-	        List<TestCaseEntity> testCases = new ArrayList<>();
+			response.set("results", results);
+			response.put("status", "success");
+		} catch (IOException e) {
+			e.printStackTrace();
+			response.put("status", "error");
+			response.put("message", "Error processing Excel data");
+		}
 
-	        for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
-	            String inputs = getCellStringValue(currentRow.getCell(i));
-	            String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
-	            inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
-	            expectedOutputs = expectedOutputs.endsWith(".0") ? expectedOutputs.substring(0, expectedOutputs.length() - 2) : expectedOutputs;
+		return response;
+	}
 
-	            testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
-	        }
-	        return testCases;
-	    }
-	 
-	  private ObjectNode createSuccessResult(String message) {
-	        ObjectNode result = objectMapper.createObjectNode();
-	        result.put("status", "success");
-	        result.put("message", message != null ? message : "Success");
-	        return result;
-	    }
+	private List<TestCaseEntity> extractTestCasesFromRow(Row currentRow, String questionId) {
+		List<TestCaseEntity> testCases = new ArrayList<>();
 
-	    private void saveQuestion(String questionId, List<TestCaseEntity> testCases) {
-	        Optional<QuestionEntity> optionalExistingQuestion = questionRepo.findByQuestionId(questionId);
+		for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
+			String inputs = getCellStringValue(currentRow.getCell(i));
+			String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
+			inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
+			expectedOutputs = expectedOutputs.endsWith(".0")
+					? expectedOutputs.substring(0, expectedOutputs.length() - 2)
+					: expectedOutputs;
 
-	        if (optionalExistingQuestion.isPresent()) {
-	            QuestionEntity existingQuestion = optionalExistingQuestion.get();
-	            existingQuestion.setTestCases(testCases);
-	            questionRepo.save(existingQuestion);
-	        } else {
-	            QuestionEntity newQuestion = new QuestionEntity();
-	            newQuestion.setQuestionId(questionId);
-	            newQuestion.setTestCases(testCases);
-	            questionRepo.save(newQuestion);
-	        }
-	    }
-	 
-	   private String getCellStringValue(Cell cell) {
-	        if (cell == null) {
-	            return null;
-	        }
-	        switch (cell.getCellType()) {
-	            case STRING:
-	                return cell.getStringCellValue();
-	            case NUMERIC:
-	                return String.valueOf(cell.getNumericCellValue());
-	            default:
-	                return null;
-	        }
-	    }
+			testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
+		}
+		return testCases;
+	}
+
+	private ObjectNode createSuccessResult(String message) {
+		ObjectNode result = objectMapper.createObjectNode();
+		result.put("status", "success");
+		result.put("message", message != null ? message : "Success");
+		return result;
+	}
+
+	private void saveQuestion(String questionId, List<TestCaseEntity> testCases) {
+		Optional<QuestionEntity> optionalExistingQuestion = questionRepo.findByQuestionId(questionId);
+
+		if (optionalExistingQuestion.isPresent()) {
+			QuestionEntity existingQuestion = optionalExistingQuestion.get();
+			existingQuestion.setTestCases(testCases);
+			questionRepo.save(existingQuestion);
+		} else {
+			QuestionEntity newQuestion = new QuestionEntity();
+			newQuestion.setQuestionId(questionId);
+			newQuestion.setTestCases(testCases);
+			questionRepo.save(newQuestion);
+		}
+	}
+
+	private String getCellStringValue(Cell cell) {
+		if (cell == null) {
+			return null;
+		}
+		switch (cell.getCellType()) {
+		case STRING:
+			return cell.getStringCellValue();
+		case NUMERIC:
+			return String.valueOf(cell.getNumericCellValue());
+		default:
+			return null;
+		}
+	}
 
 	@Override
 	public Set<CompetitiveQuestion> getData() {
@@ -360,23 +361,29 @@ public class QuestionServiceImple implements QuestionService {
 
 	@Override
 	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto) {
-	    // Retrieve the existing coding question from the database
 	    Optional<CompetitiveQuestion> optionalQuestion = competitiveQuestionRepository.findByQuestionId(codingQuestionInputDto.getQid());
 
 	    if (optionalQuestion.isPresent()) {
 	        CompetitiveQuestion existingQuestion = optionalQuestion.get();
 
-	        // Update the fields based on the input DTO
-	        existingQuestion.setTitle(codingQuestionInputDto.getTitle());
-	        existingQuestion.setDescription(codingQuestionInputDto.getDesc());
-	        existingQuestion.setExample1Input(codingQuestionInputDto.getEx1input());
-	        existingQuestion.setExample2Input(codingQuestionInputDto.getEx2input());
-	        existingQuestion.setExample1Output(codingQuestionInputDto.getEx1output());
-	        existingQuestion.setExample2Output(codingQuestionInputDto.getEx2output());
-	        existingQuestion.setExample1Exp(codingQuestionInputDto.getEx1explanation());
-	        existingQuestion.setExample2Exp(codingQuestionInputDto.getEx2explanation());
-	        existingQuestion.setConstraints(codingQuestionInputDto.getConstraints());
-	        processExcelData(codingQuestionInputDto.getFileContent());
+	        // Update active field
+	        existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
+
+	        // Update fields only if they are present in the dto
+	        updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
+	        updateField(existingQuestion::setExample2Input, codingQuestionInputDto.getEx2input());
+	        updateField(existingQuestion::setExample1Output, codingQuestionInputDto.getEx1output());
+	        updateField(existingQuestion::setExample2Output, codingQuestionInputDto.getEx2output());
+	        updateField(existingQuestion::setExample1Exp, codingQuestionInputDto.getEx1explanation());
+	        updateField(existingQuestion::setExample2Exp, codingQuestionInputDto.getEx2explanation());
+	        updateField(existingQuestion::setConstraints, codingQuestionInputDto.getConstraints());
+	        updateField(existingQuestion::setTitle, codingQuestionInputDto.getTitle());
+	        updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
+	        System.out.println(codingQuestionInputDto.getDesc());
+	        if (codingQuestionInputDto.getFileContent() != null) {
+	            // Process the file content here if needed
+	            System.out.println("File content processing...");
+	        }
 
 	        // Save the updated question back to the database
 	        competitiveQuestionRepository.save(existingQuestion);
@@ -387,5 +394,21 @@ public class QuestionServiceImple implements QuestionService {
 	    }
 	}
 
+	private <T> void updateField(Consumer<T> setter, T value) {
+	    if (value != null) {
+	        setter.accept(value);
+	    }
+	}
+
+
+	@Override
+	public ResponseEntity<?> getcodeData(String id) {
+		Optional<CompetitiveQuestion> data = competitiveQuestionRepository.findByQuestionId(id);
+		return ResponseEntity.ok(data);
+	}
+
+	@Override
+	public Set<CompetitiveQuestion> getActiveData() {
+		return new HashSet<>(competitiveQuestionRepository.findByActive(true));	}
 
 }
