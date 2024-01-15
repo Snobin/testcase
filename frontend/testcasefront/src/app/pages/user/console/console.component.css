@@ -9936,4 +9936,38 @@ btn:focus-visible {
 
 .btn-case {
     border-color: #f0f0f0;
+    box-shadow: 0 0 0 1px #f0f0f0;
+}
+
+.ml5{
+    margin-left: 5px;
+}
+
+.btn-check:focus+.btn, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0px transparent;
+}
+
+.h-20 {
+    height: 20%;
+}
+
+.p-tb-10{
+    padding: 10px;
+}
+
+.border-b {
+    border-bottom: 1px solid #f2f3f4;
+}
+
+.case-body {
+    padding: 0px 20px;
+}
+
+.color-danger {
+    color: #dc3545;
+}
+
+.color-success {
+    color: #198754;
 }
