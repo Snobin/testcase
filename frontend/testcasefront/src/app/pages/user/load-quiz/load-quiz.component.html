@@ -1,36 +1,60 @@
 <div class="bootstrap-wrapper">
     <div class="container-fluid">
-        <h1 class="mt20"> Available Quizzes</h1>
-        <div class="row mt20" *ngIf="quizzes">
-            <div class="col-md-4" *ngFor="let q of quizzes">
+        <h1 class="mt20"> Available Content</h1>
+        <div class="row mt20" *ngIf="quizzes && codingQuestions">
+            <!-- Display Quizzes -->
+            <div class="col-md-4" *ngFor="let quiz of quizzes">
                 <mat-card class="mb20">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
-                            {{q.title}}
+                            {{quiz.title}}
                         </mat-card-title>
                         <mat-card-subtitle>
-                            {{q.category.title}}
+                            {{quiz.category.title}}
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
-                        <p class="truncate">{{q.description}}</p>
+                        <p class="truncate">{{quiz.description}}</p>
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-button color="primary">View</button>
-                        <button mat-button color="primary" [routerLink]="'/user-dashboard/instructions/'+q.qid">Start</button>
-                        <button mat-button color="warn">Questions :{{q.numberOfQuestions}}</button>
-                        <button mat-button color="warn">Marks :{{q.maxMarks}}</button>
+                        <button mat-button color="primary" [routerLink]="'/user-dashboard/instructions/'+quiz.qid">Start</button>
+                        <button mat-button color="warn">Questions: {{quiz.numberOfQuestions}}</button>
+                        <button mat-button color="warn">Marks: {{quiz.maxMarks}}</button>
                     </mat-card-actions>
                 </mat-card>
             </div>
-            <div class="col-md-12" *ngIf="quizzes.length == 0">
-                <mat-card>
+
+            <!-- Display Coding Questions -->
+            <div class="col-md-4" *ngFor="let codingQuestion of codingQuestions">
+                <mat-card class="mb20">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            {{codingQuestion.title}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            Coding Question
+                        </mat-card-subtitle>
+                    </mat-card-header>
                     <mat-card-content>
-                        <h1>No Data Category</h1>
+                        <p class="truncate">{{codingQuestion.description}}</p>
                     </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button color="primary" [routerLink]="'/user-dashboard/instructions/'+codingQuestion.questionId">Start</button>
+                    </mat-card-actions>
                 </mat-card>
             </div>
+        </div>
+
+        <!-- Handle the case when no quizzes or coding questions are available -->
+        <div class="col-md-12" *ngIf="!(quizzes?.length || codingQuestions?.length)">
+            <mat-card>
+                <mat-card-content>
+                    <h1>No Data Available</h1>
+                </mat-card-content>
+            </mat-card>
         </div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 package com.interland.testcase.dto;
 
-import java.sql.Blob;
+import org.springframework.web.multipart.MultipartFile;
 
 public class CodingQuestionInputDto {
 
-	private Blob fileContent;
+	private MultipartFile fileContent;
 
 	private String title;
 
@@ -26,6 +26,18 @@ public class CodingQuestionInputDto {
 
 	private String constraints;
 
+	private String qid;
+	
+	
+
+	public String getQid() {
+		return qid;
+	}
+
+	public void setQid(String qid) {
+		this.qid = qid;
+	}
+
 	public boolean isActive() {
 		return active;
 	}
@@ -34,16 +46,17 @@ public class CodingQuestionInputDto {
 		this.active = active;
 	}
 
-	public Blob getFileContent() {
+	public MultipartFile getFileContent() {
 		return fileContent;
 	}
 
-	public void setFileContent(Blob fileContent) {
+	public void setFileContent(MultipartFile fileContent) {
 		this.fileContent = fileContent;
 	}
 
 	public String getTitle() {
 		return title;
+
 	}
 
 	public void setTitle(String title) {
@@ -112,6 +125,14 @@ public class CodingQuestionInputDto {
 
 	public void setConstraints(String constraints) {
 		this.constraints = constraints;
+	}
+
+	@Override
+	public String toString() {
+		return "CodingQuestionInputDto [fileContent=" + fileContent + ", title=" + title + ", desc=" + desc
+				+ ", ex1input=" + ex1input + ", active=" + active + ", ex2input=" + ex2input + ", ex1output="
+				+ ex1output + ", ex2output=" + ex2output + ", ex1explanation=" + ex1explanation + ", ex2explanation="
+				+ ex2explanation + ", constraints=" + constraints + ", qid=" + qid + "]";
 	}
 
 }

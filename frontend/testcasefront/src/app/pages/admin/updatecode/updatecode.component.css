@@ -1,0 +1,44 @@
+/* add-code.component.css */
+
+/* Full width class */
+.w-100 {
+    width: 100%;
+  }
+  
+  /* File input styles */
+  #fileInput {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  
+  /* Custom styling for mat-toolbar */
+  .mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+    padding: 0;
+  }
+  
+  .mat-toolbar-single-row button {
+    width: 100px;
+  }
+  
+  /* Full width for mat-form-field */
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  /* Message styling */
+  .message {
+    background-color: #ddd;
+    padding: 15px;
+    color: #333;
+    border: #aaa solid 1px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  

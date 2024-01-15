@@ -47,6 +47,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ConsoleComponent,
     AddCodeComponent,
     ViewCodingComponent,
+    UpdatecodeComponent,
   ],
   imports: [
     BrowserModule,

@@ -5715,46 +5715,6 @@ body {
     --tw-scale-y: .75
 }
 
-.scale-y-75,
-.transform {
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
-.transform-gpu {
-    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
-}
-
-.transform-none {
-    transform: none
-}
-
-.animate-\[pulse_1s_cubic-bezier\(0\.4\2c 0\2c 0\.6\2c 1\)_infinite\] {
-    animation: pulse 1s cubic-bezier(.4, 0, .6, 1) infinite
-}
-
-.animate-\[wiggle_1s_ease-in-out_infinite\] {
-    animation: wiggle 1s ease-in-out infinite
-}
-
-@keyframes pulse {
-    50% {
-        opacity: .5
-    }
-}
-
-.animate-pulse {
-    animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(1turn)
-    }
-}
-
-.animate-spin {
-    animation: spin 1s linear infinite
-}
 
 .\!cursor-default {
     cursor: default !important
@@ -8579,15 +8539,7 @@ body {
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
 }
 
-.from-transparent {
-    --tw-gradient-from: #0000 var(--tw-gradient-from-position);
-    --tw-gradient-to: #0000 var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
-}
 
-.from-0\% {
-    --tw-gradient-from-position: 0%
-}
 
 .via-\[\#E7E7E7\] {
     --tw-gradient-to: #e7e7e700 var(--tw-gradient-to-position);
@@ -9877,12 +9829,16 @@ body {
 
 
 /* custom styles */
-.h-92{
+.h-92 {
     height: 92%;
 }
 
-.max-h-90{
+.max-h-90 {
     max-height: 90vh;
+}
+
+.min-w-300 {
+    min-width: 300px;
 }
 
 .select {
@@ -9930,7 +9886,7 @@ code {
     border-radius: 3px;
 }
 
-.btn{
+.btn {
     font-size: small;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -9943,24 +9899,41 @@ btn:focus-visible {
     box-shadow: none;
 }
 
-btn-check:focus+.btn-secondary, .btn-secondary:focus, :focus+.btn-success, .btn-success:focus,:focus+.btn-primary, .btn-primary:focus,:focus+.btn-danger, .btn-danger:focus,:focus+.btn-warning, .btn-warning:focus {
-    border-color: #000;
-    box-shadow: 0 0 0 0px transparent;
-}
 
-.custom-splitter {
+#console {
+    background-color: #fff;
     width: 100%;
-    height: 100%;
-}
-/* Add this to your CSS or styles file */
-.gutter-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    height: 0;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* color: #50fa7b; */
+    /* font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; */
+    overflow: hidden;
+    transition: height 0.5s ease;
 }
 
-.grip-icon {
-    cursor: col-resize; /* Set the cursor to indicate the resizing action */
-    font-size: 20px; /* Adjust the font size of the grip icon as needed */
+/* Hide scrollbar for Chrome, Safari and Opera */
+.console::-webkit-scrollbar {
+    display: none;
+}
+.console {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+#console.open {
+    height: 35%;
+    overflow-y: scroll;
+}
+
+.btn-case-active {
+    background-color: #f0f0f0;
+    border-color: transparent;
+}
+
+.btn-case {
+    border-color: #f0f0f0;
 }
