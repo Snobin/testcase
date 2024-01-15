@@ -325,7 +325,7 @@ public class QuestionServiceImple implements QuestionService {
 			} else {
 			    // Handle the case when expectedOutputs is null (e.g., provide a default value or skip the test case)
 			    // For example, you can set it to an empty string:
-			    expectedOutputs = "true";
+			    expectedOutputs = "";
 			}
 
 			testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));

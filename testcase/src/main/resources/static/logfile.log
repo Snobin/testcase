@@ -1707,3 +1707,152 @@ Caused by: java.sql.SQLSyntaxErrorException: Can't DROP 'FK65sw7nafsf18oyr47e384
 18:24:49.557 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'student_id' cannot be null
 19:13:23.949 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m7s335ms304µs300ns).
 22:23:14.231 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h46m48s948ms383µs900ns).
+23:50:54.234 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+23:50:54.237 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+23:50:54.245 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+23:50:54.245 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+23:50:54.253 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+23:50:54.253 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+23:51:23.798 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+23:51:23.798 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+23:51:23.803 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+23:51:23.803 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+23:51:23.809 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+23:51:23.809 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:09:23.752 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9h49m46s208ms168µs400ns).
+10:10:17.253 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:10:17.253 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:10:17.259 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:10:17.259 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:10:17.264 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:10:17.264 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:11:33.873 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:11:33.873 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:11:33.878 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:11:33.878 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:11:33.882 [http-nio-8082-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:11:33.882 [http-nio-8082-exec-6] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:12:29.169 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:12:29.169 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:12:29.177 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:12:29.177 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:12:29.183 [http-nio-8082-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:12:29.183 [http-nio-8082-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:13:22.933 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:13:22.933 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:13:22.938 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:13:22.938 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:13:22.943 [http-nio-8082-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:13:22.943 [http-nio-8082-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'code' at row 1
+10:14:32.535 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:14:32.535 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:14:32.541 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:14:32.541 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:14:32.547 [http-nio-8082-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:14:32.547 [http-nio-8082-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:14:54.503 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:14:54.503 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:14:54.510 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:14:54.511 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:14:54.516 [http-nio-8082-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:14:54.516 [http-nio-8082-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:47:45.388 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:47:45.388 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:47:45.392 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:47:45.392 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+10:47:45.397 [http-nio-8082-exec-5] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1406, SQLState: 22001
+10:47:45.397 [http-nio-8082-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Data truncation: Data too long for column 'output' at row 1
+12:12:34.024 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.interland.testcase.TestcaseApplicationTests]: TestcaseApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:12:34.200 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.interland.testcase.TestcaseApplication for test class com.interland.testcase.TestcaseApplicationTests
+12:12:34.592 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+12:12:34.613 [main] INFO  c.i.t.TestcaseApplicationTests - Starting TestcaseApplicationTests using Java 19.0.1 with PID 36660 (started by user in D:\testcase\testcase)
+12:12:34.614 [main] INFO  c.i.t.TestcaseApplicationTests - No active profile set, falling back to 1 default profile: "default"
+12:12:35.609 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+12:12:35.665 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 2 JPA repository interfaces.
+12:12:36.299 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+12:12:36.402 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+12:12:36.459 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+12:12:36.771 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+12:12:36.792 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:12:37.198 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@279c4e3b
+12:12:37.202 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+12:12:37.722 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.interland.testcase.entity.Student
+12:12:37.723 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.interland.testcase.entity.Student
+12:12:38.320 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+12:12:38.417 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+12:12:38.840 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+12:12:39.561 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+12:12:40.165 [main] INFO  c.i.t.TestcaseApplicationTests - Started TestcaseApplicationTests in 5.8 seconds (process running for 7.162)
+12:12:40.761 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+12:12:40.766 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+12:12:40.786 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+12:33:39.797 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.interland.testcase.TestcaseApplicationTests]: TestcaseApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:33:39.930 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.interland.testcase.TestcaseApplication for test class com.interland.testcase.TestcaseApplicationTests
+12:33:40.300 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+12:33:40.321 [main] INFO  c.i.t.TestcaseApplicationTests - Starting TestcaseApplicationTests using Java 19.0.1 with PID 26916 (started by user in D:\testcase\testcase)
+12:33:40.321 [main] INFO  c.i.t.TestcaseApplicationTests - No active profile set, falling back to 1 default profile: "default"
+12:33:41.341 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+12:33:41.402 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+12:33:42.114 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+12:33:42.223 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+12:33:42.266 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+12:33:42.606 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+12:33:42.633 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:33:43.000 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d2046bb
+12:33:43.002 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+12:33:43.549 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.interland.testcase.entity.Student
+12:33:43.549 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.interland.testcase.entity.Student
+12:33:44.149 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+12:33:44.225 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+12:33:44.798 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+12:33:45.716 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+12:33:46.548 [main] INFO  c.i.t.TestcaseApplicationTests - Started TestcaseApplicationTests in 6.457 seconds (process running for 7.558)
+12:33:47.134 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+12:33:47.141 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+12:33:47.152 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+12:59:08.147 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+12:59:08.292 [main] INFO  c.i.testcase.TestcaseApplication - Starting TestcaseApplication v0.0.1-SNAPSHOT using Java 19.0.1 with PID 39576 (D:\testcase\testcase\target\testcase-0.0.1-SNAPSHOT.jar started by user in C:\Windows\system32)
+12:59:08.294 [main] INFO  c.i.testcase.TestcaseApplication - No active profile set, falling back to 1 default profile: "default"
+12:59:09.671 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+12:59:09.722 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 2 JPA repository interfaces.
+12:59:10.578 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
+12:59:10.587 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+12:59:10.589 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:59:10.590 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+12:59:10.666 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:59:10.668 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2267 ms
+12:59:11.069 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+12:59:11.173 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+12:59:11.248 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+12:59:11.526 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+12:59:11.554 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:59:11.948 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@580ffea
+12:59:11.950 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+12:59:12.531 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.interland.testcase.entity.Student
+12:59:12.532 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.interland.testcase.entity.Student
+12:59:13.226 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+12:59:13.318 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+12:59:13.772 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+12:59:14.437 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+12:59:15.096 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+12:59:15.103 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+12:59:15.104 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+12:59:15.107 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+12:59:15.117 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+12:59:15.137 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+12:59:15.155 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8082 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8082 or configure this application to listen on another port.
+
