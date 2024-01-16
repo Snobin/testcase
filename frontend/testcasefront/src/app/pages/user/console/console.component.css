@@ -9876,6 +9876,7 @@ code {
     background-color: #f2f2f2;
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
+    min-height: 30px;
 }
 
 .btn {
