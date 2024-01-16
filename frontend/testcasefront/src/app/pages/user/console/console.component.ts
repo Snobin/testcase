@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Case } from '../model/case';
+import { Splitter } from 'primeng/splitter';
 
 
 declare var CodeMirror: any;
@@ -25,15 +26,12 @@ declare var CodeMirror: any;
   ]
 })
 export class ConsoleComponent implements OnInit {
-  qId: any;
-  case1OutputMessage: any;
-  case2OutputMessage: any;
-
-
-
 
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
 
+  qId: any;
+  case1OutputMessage: any;
+  case2OutputMessage: any;
   private editor: any;
   selectedLanguage: string = 'java';
   testCases: string[] = [];

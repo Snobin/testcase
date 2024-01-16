@@ -9862,14 +9862,6 @@ body {
     padding-top: 1rem;
 }
 
-.flex {
-    /* Add your flex styles here */
-}
-
-.xFUwe {
-    margin-top: 1rem;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
@@ -9974,7 +9966,7 @@ btn:focus-visible {
     color: #198754;
 }
 
-.loader-body{
+.loader-body {
     display: flex;
     justify-content: center;
     align-items: center;
