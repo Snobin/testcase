@@ -1,11 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CodeRequest } from '../model/code-request';
 import { CodeService } from 'src/app/services/code.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Case } from '../model/case';
-import { Splitter } from 'primeng/splitter';
 
 
 declare var CodeMirror: any;
@@ -55,11 +54,13 @@ export class ConsoleComponent implements OnInit {
   loading: boolean = true;
   submit: string = 'Submit';
 
-  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy) { }
+  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy,private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.clearAll();
     // this.preventBackButton();
+    this.renderer.addClass(this.el.nativeElement, 'default-class');
+
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
   }

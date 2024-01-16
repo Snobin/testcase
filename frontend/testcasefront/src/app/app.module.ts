@@ -51,6 +51,7 @@ import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.compone
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { McqComponent } from './pages/user/mcq/mcq.component';
 
 
 
@@ -84,6 +85,7 @@ import { MatSortModule } from '@angular/material/sort';
     AddCodeComponent,
     ViewCodingComponent,
     UpdatecodeComponent,
+    McqComponent,
   ],
   imports: [
     BrowserModule,
