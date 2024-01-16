@@ -2,7 +2,8 @@ package com.authentication.JwtAuthCoustom.DTO;
 
 public class SignupDTO 
 {
-	private String name;
+	private String firstName;
+	private String lastName;
     private String email;
     private String phoneNumber;
     private String password;
@@ -11,6 +12,19 @@ public class SignupDTO
     
     
     
+    
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -23,12 +37,7 @@ public class SignupDTO
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getEmail() {
 		return email;
 	}

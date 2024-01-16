@@ -22,15 +22,13 @@ public class UserEntity
     @Column(nullable = false,name="PASSWORD")
     private String password;
 
-    @Column(nullable = false,name="NAME")
-    private String name;
+    @Column(nullable = false,name="FIRSTNAME")
+    private String firstName;
 
-    @Override
-	public String toString() {
-		return "UserEntity [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name
-				+ ", phoneNumber=" + phoneNumber + ", Roles=" + Roles + ", username=" + username + "]";
-	}
+    @Column(nullable = false,name="LASTNAME")
+    private String lastName;
 
+  
 	@Column(nullable = false,name="PHONE-NUMBER")
     private String phoneNumber;
     
@@ -41,6 +39,22 @@ public class UserEntity
     
     
     
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -81,14 +95,6 @@ public class UserEntity
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -96,6 +102,15 @@ public class UserEntity
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	@Override
+	public String toString() {
+		return "UserEntity [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", Roles=" + Roles + ", username="
+				+ username + "]";
+	}
+	
+	
 
 }
 
