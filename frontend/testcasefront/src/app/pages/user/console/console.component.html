@@ -1,39 +1,51 @@
 <div class="flex h-92 w-full flex-col ">
     <div class="flex w-full flex-grow">
         <div class="bg-gray-2 flex h-full w-full p-2">
-            <p-splitter [panelSizes]="[50, 50]" style="width: 100%;height: 100%;" [gutterSize]="15">
+            <p-splitter [panelSizes]="[50, 50]" layout="horizontal"
+                style="width: 100%;height: 100%;" [gutterSize]="15">
                 <ng-template pTemplate="panel">
-                    <div class="h-full flex-col h-full w-full max-h-90 min-w-300">
+                    <div
+                        class="h-full flex-col h-full w-full max-h-90 min-w-300">
                         <div class="relative flex h-full flex-col">
-                            <div class="min-h-0 flex-grow" style="height: 100%;">
-                                <div class="flex h-full flex-col rounded bg-layer-1">
+                            <div class="min-h-0 flex-grow"
+                                style="height: 100%;">
+                                <div
+                                    class="flex h-full flex-col rounded bg-layer-1">
                                     <div>
                                         <div
                                             class="bg-layer-2 border-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
-                                            <div class="flex h-full w-full flex-row gap-6">
+                                            <div
+                                                class="flex h-full w-full flex-row gap-6">
                                                 <a href>
                                                     <div
                                                         class="relative flex h-full select-none items-center whitespace-nowrap text-xs text-label-1 font-medium hover:text-label-1 shrink">
                                                         <span>Description</span>
-                                                        <div class="bg-gray-7 absolute -bottom-[1px] h-[2px] w-full">
+                                                        <div
+                                                            class="bg-gray-7 absolute -bottom-[1px] h-[2px] w-full">
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex h-full w-full overflow-y-auto rounded-b">
-                                        <div class="flex h-full w-full overflow-y-auto">
-                                            <div class="flex h-full w-full flex-1 flex-col">
+                                    <div
+                                        class="flex h-full w-full overflow-y-auto rounded-b">
+                                        <div
+                                            class="flex h-full w-full overflow-y-auto">
+                                            <div
+                                                class="flex h-full w-full flex-1 flex-col">
                                                 <div class="w-full px-3 pt-3">
                                                     <div class="w-full">
                                                         <div class="flex">
                                                             <div class="flex-1">
-                                                                <div class="flex h-full items-center">
+                                                                <div
+                                                                    class="flex h-full items-center">
                                                                     <p
                                                                         class="mr-2 text-label-1 hover:text-label-1 text-lg font-medium">
                                                                         <b>
-                                                                            <p>{{ questiondata?.title }}</p>
+                                                                            <p>{{
+                                                                                questiondata?.title
+                                                                                }}</p>
                                                                         </b>
                                                                     </p>
                                                                 </div>
@@ -51,11 +63,13 @@
                                                                 *ngIf="(questiondata.example1Input&&questiondata.example1Output)">
                                                                 <b><u>Example
                                                                         1</u></b>
-                                                                <ul class="ml-10">
+                                                                <ul
+                                                                    class="ml-10">
                                                                     <li>
                                                                         <b>Input:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example1Input}}</code>
                                                                             </li>
@@ -64,7 +78,8 @@
                                                                     <li>
                                                                         <b>Output:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example1Output}}</code>
                                                                             </li>
@@ -72,7 +87,8 @@
                                                                     </li>
                                                                     <li>
                                                                         <b>Explanation:</b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <i>{{questiondata.example1Exp}}</i>
                                                                             </li>
@@ -85,11 +101,13 @@
                                                                 *ngIf="(questiondata.example2Input&&questiondata.example2Output)">
                                                                 <b><u>Example
                                                                         2</u></b>
-                                                                <ul class="ml-10">
+                                                                <ul
+                                                                    class="ml-10">
                                                                     <li>
                                                                         <b>Input:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example2Input}}</code>
                                                                             </li>
@@ -98,7 +116,8 @@
                                                                     <li>
                                                                         <b>Output:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example2Output}}</code>
                                                                             </li>
@@ -106,7 +125,8 @@
                                                                     </li>
                                                                     <li>
                                                                         <b>Explanation:</b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <i>{{questiondata.example2Exp}}</i>
                                                                             </li>
@@ -119,7 +139,9 @@
                                                             <hr>
                                                             <li class="mt-3">
                                                                 <b><u>Constraints:</u></b>
-                                                                <ul class="ml-10" [innerHTML]="constraints">
+                                                                <ul
+                                                                    class="ml-10"
+                                                                    [innerHTML]="constraints">
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -133,31 +155,40 @@
                         </div>
                     </div>
                 </ng-template>
-                <ng-template pTemplate="panel">
+                <ng-template pTemplate>
                     <div class="h-full flex-col w-full h-full max-h-90">
                         <div class="relative flex h-full flex-col">
                             <div class="min-h-0 flex-grow">
-                                <div class="flex h-full flex-col rounded bg-layer-1">
+                                <div
+                                    class="flex h-full flex-col rounded bg-layer-1">
                                     <div class="flex h-full flex-col">
-                                        <div class="relative flex h-full flex-col overflow-hidden rounded" id="editor">
+                                        <div
+                                            class="relative flex h-full flex-col overflow-hidden rounded"
+                                            id="editor">
                                             <div
                                                 class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
-                                                <div class="mr-auto flex flex-nowrap items-center gap-3">
+                                                <div
+                                                    class="mr-auto flex flex-nowrap items-center gap-3">
                                                     <div>
                                                         <div>
-                                                            <select class="select form-select"
+                                                            <select
+                                                                class="select form-select"
                                                                 [(ngModel)]="selectedLanguage"
                                                                 (change)="onChangeLang()">
-                                                                <option value="java">
+                                                                <option
+                                                                    value="java">
                                                                     Java
                                                                 </option>
-                                                                <option value="python">
+                                                                <option
+                                                                    value="python">
                                                                     Python
                                                                 </option>
-                                                                <option value="cpp">
+                                                                <option
+                                                                    value="cpp">
                                                                     C++
                                                                 </option>
-                                                                <option value="c">
+                                                                <option
+                                                                    value="c">
                                                                     C
                                                                 </option>
                                                             </select>
@@ -165,33 +196,47 @@
                                                     </div>
                                                 </div>
                                                 <div class="ml-auto flex gap-3">
-                                                    <button type="button" class="btn btn-warning"
+                                                    <button type="button"
+                                                        class="btn btn-warning"
                                                         (click)="openOutput()">
-                                                        Run<i class="bi bi-play-fill"></i>
+                                                        Run<i
+                                                            class="bi bi-play-fill"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-success"
-                                                        (click)="executeCode()">
-                                                        Submit
+                                                    <button type="button"
+                                                        class="btn btn-case-active"
+                                                        (click)="save()">
+                                                        <i
+                                                            class="bi bi-floppy2-fill"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                        class="btn btn-success"
+                                                        (click)="executeCode()"
+                                                        [innerHTML]="submit">
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-1 flex-col overflow-hidden">
-                                                <div class="flex-1 overflow-hidden">
-                                                    <textarea id="editor" #editor type="text"
+                                            <div
+                                                class="flex flex-1 flex-col overflow-hidden">
+                                                <div
+                                                    class="flex-1 overflow-hidden">
+                                                    <textarea id="editor"
+                                                        #editor type="text"
                                                         class="form-control"></textarea>
                                                 </div>
                                             </div>
 
-
                                             <!-- Console Toggle Button -->
                                             <div
                                                 class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
-                                                <div class="mr-auto flex flex-nowrap items-center gap-3">
+                                                <div
+                                                    class="mr-auto flex flex-nowrap items-center gap-3">
                                                     <div>
-                                                        <button type="button" class="btn ml-2 w-full flex items-center"
+                                                        <button type="button"
+                                                            class="btn ml-2 w-full flex items-center"
                                                             (click)="toggleOpen()">
                                                             <span>Console</span>
-                                                            <i class="bi" [class.bi-chevron-up]="!isOpen"
+                                                            <i class="bi"
+                                                                [class.bi-chevron-up]="!isOpen"
                                                                 [class.bi-chevron-down]="isOpen"></i>
                                                         </button>
                                                     </div>
@@ -200,171 +245,166 @@
                                             </div>
 
                                             <!-- Console Content -->
-                                            <div id="console" class="console" [ngClass]="{ 'open': isOpen }"
-                                                [@fadeInOut]>
-                                                <div class="row">
-                                                    <div class="col-md-12" style="padding-top: 10px;">
-
+                                            <div id="console" class="console"
+                                                [ngClass]="{ 'open': isOpen }">
+                                                <div *ngIf="loading == true"
+                                                    class="loader-body">
+                                                    <div class="loader">
+                                                        <span>{{braceLeft}}</span><span>{{braceRight}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row"
+                                                    *ngIf="loading == false">
+                                                    <div
+                                                        class="col-md-12 h-full">
                                                         <!-- Case Buttons -->
-                                                        <div class="flex">
-                                                            <button type="button" class="btn position-relative mr-2"
+                                                        <div
+                                                            class="flex p-1 border-b">
+                                                            <button
+                                                                type="button"
+                                                                class="btn position-relative"
                                                                 [class.btn-case]="!case1"
                                                                 [class.btn-case-active]="case1"
-                                                                (click)="activateCase(0)">
-                                                                Case 1
-                                                                <span
-                                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
-                                                                    style="background-color: #f0f0f0;color: #000;">
-                                                                    x
-                                                                </span>
+                                                                (click)="activateCase1()">
+                                                                Case 1 <i
+                                                                    class="bi"
+                                                                    [class.color-danger]="case_1.success == 'false'"
+                                                                    [class.color-success]="case_1.success == 'true'"
+                                                                    [class.bi-check-circle-fill]="case_1.success == 'true'"
+                                                                    [class.bi-x-circle-fill]="case_1.success == 'false'"></i>
                                                             </button>
-
-                                                            <button type="button" class="btn position-relative"
+                                                            <button
+                                                                type="button"
+                                                                class="btn ml5"
                                                                 [class.btn-case]="!case2"
                                                                 [class.btn-case-active]="case2"
-                                                                (click)="activateCase(1)">
-                                                                Case 2
-                                                                <span
-                                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
-                                                                    style="background-color: #f0f0f0;color: #000;">
-                                                                    x
-                                                                </span>
+                                                                (click)="activateCase2()">
+                                                                Case 2 <i
+                                                                    class="bi"
+                                                                    [class.color-danger]="case_2.success == 'false'"
+                                                                    [class.color-success]="case_2.success == 'true'"
+                                                                    [class.bi-check-circle-fill]="case_2.success == 'true'"
+                                                                    [class.bi-x-circle-fill]="case_2.success == 'false'"></i>
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                class="btn ml5"
+                                                                [class.btn-case]="!case3"
+                                                                [class.btn-case-active]="case3"
+                                                                (click)="activateCase3()">
+                                                                Case 3 <i
+                                                                    class="bi"
+                                                                    [class.color-danger]="case_3.success == 'false'"
+                                                                    [class.color-success]="case_3.success == 'true'"
+                                                                    [class.bi-check-circle-fill]="case_3.success == 'true'"
+                                                                    [class.bi-x-circle-fill]="case_3.success == 'false'"></i>
                                                             </button>
                                                         </div>
-
-                                                        <!-- Case Content -->
-
-
-
-                                                        <div *ngFor="let case of [case1, case2]; let i = index">
-                                                            <!-- Display details only for the active case -->
-                                                            <div *ngIf="activeCase === i">
+                                                    </div>
+                                                    <!-- Case Content -->
+                                                    <div class="col-md-12">
+                                                        <div class="card"
+                                                            *ngIf="case1 == true">
+                                                            <div
+                                                                class="case-body">
                                                                 <div
-                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                                    Input</div>
-                                                                <div class="space-y-2">
-                                                                    <div
-                                                                        class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                        <div class="relative py-[10px]">
-                                                                            <div
-                                                                                class="absolute right-3 top-2.5 z-base-1">
-                                                                                <div class="relative cursor-pointer flex h-[14px] w-[14px] items-center justify-center rounded group-hover:bg-transparent dark:group-hover:bg-transparent"
-                                                                                    data-state="closed">
-                                                                                    <div>
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            viewBox="0 0 24 24"
-                                                                                            width="1em" height="1em"
-                                                                                            fill="currentColor"
-                                                                                            class="h-4 w-4 hidden group-hover:block text-label-2 dark:text-dark-label-2 hover:text-label-1 dark:hover:text-dark-label-1">
-                                                                                            <path fill-rule="evenodd"
-                                                                                                d="M11.3 8.3H19a3 3 0 013 3V19a3 3 0 01-3 3h-7.7a3 3 0 01-3-3v-7.7a3 3 0 013-3zm0 2a1 1 0 00-1 1V19a1 1 0 001 1H19a1 1 0 001-1v-7.7a1 1 0 00-1-1h-7.7zm-5.6 3.4a1 1 0 110 2h-.9A2.8 2.8 0 012 12.9V4.8A2.8 2.8 0 014.8 2h8.1a2.8 2.8 0 012.8 2.8v.9a1 1 0 11-2 0v-.9a.8.8 0 00-.8-.8H4.8a.8.8 0 00-.8.8v8.1a.8.8 0 00.8.8h.9z"
-                                                                                                clip-rule="evenodd">
-                                                                                            </path>
-                                                                                        </svg>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                                <div style="overflow-wrap: break-word;">
-                                                                                    {{ this.result[i].input }}</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Input</p>
+                                                                    <code>{{case_1.input}}</code>
                                                                 </div>
-
                                                                 <div
-                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                                    Output</div>
-                                                                <div *ngIf="this.result[i]"
-                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                    <div class="relative py-[10px]">
-                                                                        <div *ngIf="this.result[i].output"
-                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                            <span class="leading-3.5">{{
-                                                                                this.result[i].output }}</span>
-                                                                        </div>
-                                                                    </div>
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Output</p>
+                                                                    <code>{{case_1.output}}</code>
                                                                 </div>
-
                                                                 <div
-                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                                    Success</div>
-                                                                <div *ngIf="this.result[i]"
-                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                    <div class="relative py-[10px]">
-                                                                        <div
-                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                            <span class="leading-3.5">{{
-                                                                                this.result[i].success }}</span>
-                                                                        </div>
-                                                                    </div>
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Expected
+                                                                        Output</p>
+                                                                    <code>{{case_1.expectedOutput}}</code>
                                                                 </div>
-
                                                                 <div
-                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                                    Processing Time</div>
-                                                                <div *ngIf="this.result[i]"
-                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                    <div class="relative py-[10px]">
-                                                                        <div
-                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                            <span class="leading-3.5">{{
-                                                                                this.result[i].processingTime }}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                                    Message</div>
-                                                                <div *ngIf="this.result[i]"
-                                                                    class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4">
-                                                                    <div class="relative py-[10px]">
-                                                                        <div
-                                                                            class="font-menlo relative mx-3 whitespace-pre-wrap break-all text-label-1 dark:text-dark-label-1">
-                                                                            <span class="leading-3.5">{{
-                                                                                this.result[i].message }}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Add or remove the 'active' class based on the active case -->
-                                                            <div *ngIf="case"
-                                                                class="mb-2 text-xs font-medium text-label-3 dark:text-dark-label-3">
-                                                                Case {{ i + 1 }}
-                                                                <div class="space-y-2">
-                                                                    <!-- Add or remove the 'active' class based on the active case -->
-                                                                    <div class="group relative rounded-lg bg-fill-4 dark:bg-dark-fill-4"
-                                                                        [class.active]="activeCase === i">
-                                                                        <div class="relative py-[10px]">
-                                                                            <button type="button"
-                                                                                class="btn position-relative"
-                                                                                [class.btn-case]="!case"
-                                                                                [class.btn-case-active]="case"
-                                                                                (click)="activateCase(i)">
-                                                                                Case {{ i + 1 }}
-                                                                                <span
-                                                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
-                                                                                    style="background-color: #f0f0f0;color: #000;">
-                                                                                    x
-                                                                                </span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Message</p>
+                                                                    <code
+                                                                        [class.color-danger]="case_1.success == 'false'"
+                                                                        [class.color-success]="case_1.success == 'true'">{{case_1.message}}</code>
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
+                                                        <div class="card"
+                                                            *ngIf="case2 == true">
+                                                            <div
+                                                                class="case-body">
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Input</p>
+                                                                    <code>{{case_2.input}}</code>
+                                                                </div>
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Output</p>
+                                                                    <code>{{case_2.output}}</code>
+                                                                </div>
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Expected
+                                                                        Output</p>
+                                                                    <code>{{case_2.expectedOutput}}</code>
+                                                                </div>
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Message</p>
+                                                                    <code
+                                                                        [class.color-danger]="case_2.success == 'false'"
+                                                                        [class.color-success]="case_2.success == 'true'">{{case_2.message}}</code>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card"
+                                                            *ngIf="case3 == true">
+                                                            <div
+                                                                class="case-body">
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Input</p>
+                                                                    <code>{{case_3.input}}</code>
+                                                                </div>
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Output</p>
+                                                                    <code>{{case_3.output}}</code>
+                                                                </div>
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Expected
+                                                                        Output</p>
+                                                                    <code>{{case_3.expectedOutput}}</code>
+                                                                </div>
+                                                                <div
+                                                                    class="row">
+                                                                    <p
+                                                                        class="p-0">Message</p>
+                                                                    <code
+                                                                        [class.color-danger]="case_3.success == 'false'"
+                                                                        [class.color-success]="case_3.success == 'true'">{{case_3.message}}</code>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
                                         </div>
                                     </div>
                                 </div>

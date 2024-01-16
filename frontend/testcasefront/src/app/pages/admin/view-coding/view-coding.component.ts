@@ -38,6 +38,12 @@ export class ViewCodingComponent implements OnInit {
     console.log(this.codeInput);
     this.codeInput.desc=q.description;
     this.codeInput.qid = questionId;
+    this.codeInput.ex1explanation=q.example1Exp;
+    this.codeInput.ex1input=q.example1Input;
+    this.codeInput.ex1output=q.example1Output;
+    this.codeInput.ex2explanation=q.example2Exp;
+    this.codeInput.ex2input=q.example2Input;
+    this.codeInput.ex2output=q.example2Output;
     this.codeInput.active =act;
     // Assuming you have a function in your code service to update the question's active status
     this.code.updateCode(this.codeInput,this.file).subscribe(

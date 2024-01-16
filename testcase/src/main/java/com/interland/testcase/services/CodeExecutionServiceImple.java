@@ -373,13 +373,14 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			String input = inputs.get(i);
 			String expectedOutput = expectedOutputs.get(i);
 
-//			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
-//
-//			try {
+			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
+
+			try {
 //				codeExecutionResultRepository.save(result);
-//			} catch (DataIntegrityViolationException e) {
-//				handleSaveResultError(e);
-//			}
+			} catch (DataIntegrityViolationException e) {
+				handleSaveResultError(e);
+			}
+
 		}
 	}
 
