@@ -46,32 +46,7 @@ export class ConsoleComponent implements OnInit {
   case_1: Case = new Case();
   case_2: Case = new Case();
   case_3: Case = new Case();
-  cases: Case[] = [
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-  ];
+  cases: Case[] = [];
 
   questiondata;
   isOpen = false;
