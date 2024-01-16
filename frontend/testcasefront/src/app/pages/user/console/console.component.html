@@ -1,7 +1,7 @@
 <div class="flex h-92 w-full flex-col ">
     <div class="flex w-full flex-grow">
         <div class="bg-gray-2 flex h-full w-full p-2">
-            <p-splitter [panelSizes]="[50, 50]"
+            <p-splitter [panelSizes]="[50, 50]" layout="horizontal"
                 style="width: 100%;height: 100%;" [gutterSize]="15">
                 <ng-template pTemplate="panel">
                     <div
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                 </ng-template>
-                <ng-template pTemplate="panel">
+                <ng-template pTemplate>
                     <div class="h-full flex-col w-full h-full max-h-90">
                         <div class="relative flex h-full flex-col">
                             <div class="min-h-0 flex-grow">
@@ -205,12 +205,13 @@
                                                     <button type="button"
                                                         class="btn btn-case-active"
                                                         (click)="save()">
-                                                        <i class="bi bi-floppy2-fill"></i>
+                                                        <i
+                                                            class="bi bi-floppy2-fill"></i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-success"
-                                                        (click)="executeCode()">
-                                                        Submit
+                                                        (click)="executeCode()"
+                                                        [innerHTML]="submit">
                                                     </button>
                                                 </div>
                                             </div>
@@ -246,7 +247,14 @@
                                             <!-- Console Content -->
                                             <div id="console" class="console"
                                                 [ngClass]="{ 'open': isOpen }">
-                                                <div class="row">
+                                                <div *ngIf="loading == true"
+                                                    class="loader-body">
+                                                    <div class="loader">
+                                                        <span>{{braceLeft}}</span><span>{{braceRight}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row"
+                                                    *ngIf="loading == false">
                                                     <div
                                                         class="col-md-12 h-full">
                                                         <!-- Case Buttons -->
