@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CodeRequest } from '../model/code-request';
 import { CodeService } from 'src/app/services/code.service';
 import { ActivatedRoute } from '@angular/router';
@@ -54,12 +54,15 @@ export class ConsoleComponent implements OnInit {
   loading: boolean = true;
   submit: string = 'Submit';
 
-  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy,private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy,private el: ElementRef) { }
 
   ngOnInit(): void {
+    // if (localStorage.getItem('hasReloaded') == 'true') {
+    //   localStorage.setItem('hasReloaded','false')
+    //   window.location.reload();
+    // }
     this.clearAll();
     // this.preventBackButton();
-    this.renderer.addClass(this.el.nativeElement, 'default-class');
 
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
@@ -206,11 +209,19 @@ export class ConsoleComponent implements OnInit {
     this.initializeCodeMirror();
   }
 
+  //saving using Ctrl + S
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.ctrlKey && event.key === 's') {
+      event.preventDefault(); // Prevent the default browser behavior (e.g., saving the page)
+      this.save();
+    }
+  }
+
   save() {
     // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
-
   }
 
   async executeCode() {

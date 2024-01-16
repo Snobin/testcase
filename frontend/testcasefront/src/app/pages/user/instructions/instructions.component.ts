@@ -49,7 +49,11 @@ export class InstructionsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.qid.startsWith('Q')) {
-          this.router.navigate(['/coding/' + this.qid]);
+          // const hasReloaded = localStorage.getItem('hasReloaded');
+          // if (!hasReloaded || localStorage.getItem('hasReloaded') == 'false') {
+          //   localStorage.setItem('hasReloaded', 'true');
+          // }
+          this.router.navigate([`/coding/${this.qid}`]);
         } else {
           this.router.navigate(['/start/' + this.qid]);
         }
