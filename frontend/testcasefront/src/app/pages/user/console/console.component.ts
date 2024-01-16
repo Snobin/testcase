@@ -4,6 +4,7 @@ import { CodeService } from 'src/app/services/code.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Case } from '../model/case';
 
 
 declare var CodeMirror: any;
@@ -26,7 +27,7 @@ declare var CodeMirror: any;
 export class ConsoleComponent implements OnInit {
   qId: any;
   case1OutputMessage: any;
-case2OutputMessage: any;
+  case2OutputMessage: any;
 
 
 
@@ -34,54 +35,54 @@ case2OutputMessage: any;
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
 
   private editor: any;
-  private output: any;
   selectedLanguage: string = 'java';
   testCases: string[] = [];
   result: any = { success: true, output: '// Your output will show here.', };
   code: string = '';
   codereq: CodeRequest = new CodeRequest();
   executionTime: any = 0;
-  case: any = 1;
-  testInput11: any;
-  testInput12: any;
-  testInput21: any;
-  testInput22: any;
-  testInput31: any;
-  testInput32: any;
+
+  case1: boolean = false;
+  case2: boolean = false;
+  case3: boolean = false;
+  case_1: Case = new Case();
+  case_2: Case = new Case();
+  case_3: Case = new Case();
+  cases: Case[] = [
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+  ];
 
   questiondata;
   isOpen = false;
-  case1: any;
-  case2: any;
-  case3: any;
 
   constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy) { }
 
-  // activateCase(caseNumber: number): void {
-  //   // Reset all cases to false
-  //   this.case1 = false;
-  //   this.case2 = false;
-
-  //   // Activate the selected case
-  //   if (caseNumber === 0) {
-  //     this.case1 = true;
-  //   } else if (caseNumber === 1) {
-  //     this.case2 = true;
-  //   }
-
-  //   // Additional logic or actions if needed
-  // }
-// Add a variable to track the active case
-activeCase: number | null = null;
-
-// Function to activate a case
-activateCase(index: number): void {
-  this.activeCase = index;
-}
-
-
   ngOnInit(): void {
     this.clearAll();
+    this.activateCase1();
     // this.preventBackButton();
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
@@ -90,6 +91,7 @@ activateCase(index: number): void {
   ngAfterViewInit() {
     this.initializeCodeMirror();
   }
+
   preventBackButton() {
     history.pushState(null, null, location.href);
     this.locationst.onPopState(() => {
@@ -100,13 +102,37 @@ activateCase(index: number): void {
   toggleOpen() {
     this.isOpen = !this.isOpen;
   }
+
   toggle() {
     this.isOpen = true;
   }
-  
 
   openOutput() {
     this.isOpen = true;
+  }
+
+  activateCase1() {
+    if (this.case1 == false) {
+      this.case1 = true;
+      this.case2 = false;
+      this.case3 = false;
+    }
+  }
+
+  activateCase2() {
+    if (this.case2 == false) {
+      this.case1 = false;
+      this.case2 = true;
+      this.case3 = false;
+    }
+  }
+
+  activateCase3() {
+    if (this.case3 == false) {
+      this.case1 = false;
+      this.case2 = false;
+      this.case3 = true;
+    }
   }
 
   qnData(qid) {
@@ -123,8 +149,10 @@ activateCase(index: number): void {
         console.log(error);
       }
     );
+    this.case_1 = this.cases[0];
+    this.case_2 = this.cases[1];
+    this.case_3 = this.cases[2];
   }
-
 
   get constraints(): string {
     // Replace all occurrences of '•' with '<br>•', except the first one
@@ -156,19 +184,37 @@ activateCase(index: number): void {
   getEditorMode(): string {
     // Determine the CodeMirror mode based on the selected language
     if (this.selectedLanguage == 'java') {
-      this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+      if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
+        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+      }
       return "text/x-java";
     } else if (this.selectedLanguage == 'cpp') {
-      this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << 'Hello World!';\n\treturn 0;\n}"
+      if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
+        this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << 'Hello World!';\n\treturn 0;\n}"
+      } else {
+        this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
+      }
       return "text/x-c++src";
     } else if (this.selectedLanguage == 'python') {
-      this.code = "# This program prints Hello, world!\n\nprint('Hello, world!')";
+      if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
+        this.code = "# This program prints Hello, world!\n\nprint('Hello, world!')";
+      } else {
+        this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
+      }
       return "text/x-python";
     } else if (this.selectedLanguage == 'c') {
-      this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf('Hello, World!');\n\treturn 0;\n}";
+      if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
+        this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf('Hello, World!');\n\treturn 0;\n}";
+      } else {
+        this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
+      }
       return "text/x-csrc";
     } else {
-      this.code = "// This program prints Hello, world! \n\n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+      if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
+        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+      } else {
+        this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
+      }
       return "text/x-java";
     }
   }
@@ -188,15 +234,14 @@ activateCase(index: number): void {
     // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
-    // Save the current code to local storage before changing the language
-    const localStorageOutput = `${this.selectedLanguage}OutputCode`;
-    localStorage.setItem(localStorageOutput, this.output.getValue());
 
   }
 
   async executeCode() {
     // Get the code from the CodeMirror editor
-    this.toggle()
+    this.save();
+    this.activateCase1();
+    this.toggle();
     this.code = this.editor.getValue();
     try {
       if (this.selectedLanguage && this.code) {
@@ -204,24 +249,32 @@ activateCase(index: number): void {
         this.codereq.code = this.code;
         this.codereq.qnId = this.questiondata.questionId;
         const response = await this.service.compileAndTest(this.codereq).toPromise();
-        this.result=response;
-        this.result.output = response.output;
-        this.executionTime = response.processingTime;
-        console.log(this.result);
-        
+        this.cases = response;
+        this.case_1 = this.cases[0];
+        this.case_2 = this.cases[1];
+        this.case_3 = this.cases[2];
+
         this.initializeCodeMirror();
       } else {
-        this.result = { success: false, output: 'Please select a programming language and enter code.' };
+        this.case_1.message = 'Please select a programming language and enter code.';
+        this.case_2.message = 'Please select a programming language and enter code.';
+        this.case_3.message = 'Please select a programming language and enter code.';
       }
     } catch (error) {
       console.error('Error:', error);
 
       if (error.status === 400) {
-        this.result.output = 'Bad Request';
+        this.case_1.message = 'Bad Request';
+        this.case_2.message = 'Bad Request';
+        this.case_3.message = 'Bad Request';
       } else if (error.status === 500) {
-        this.result.output = 'Internal Server Error';
+        this.case_1.message = 'Internal Server Error';
+        this.case_2.message = 'Internal Server Error';
+        this.case_3.message = 'Internal Server Error';
       } else {
-        this.result.output = 'An unexpected error occurred.';
+        this.case_1.message = 'An unexpected error occurred.';
+        this.case_2.message = 'An unexpected error occurred.';
+        this.case_3.message = 'An unexpected error occurred.';
       }
     }
   }
@@ -233,12 +286,7 @@ activateCase(index: number): void {
     this.code = '';
     // Clear the code in the CodeMirror editor
     this.editor.setValue('');
-    // Remove the stored code in local storage
-    const localStorageOutput = `${this.selectedLanguage}OutputCode`;
-    localStorage.removeItem(localStorageOutput);
     this.result.output = '';
-    // Clear the code in the CodeMirror Output
-    this.editor.setValue('');
   }
 
   clearAll() {
@@ -246,11 +294,6 @@ activateCase(index: number): void {
     localStorage.removeItem('cppEditorCode');
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
-    localStorage.removeItem('javaOutputCode');
-    localStorage.removeItem('cppOutputCode');
-    localStorage.removeItem('cOutputCode');
-    localStorage.removeItem('pythonOutputCode');
   }
-
 
 }

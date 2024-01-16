@@ -48,6 +48,10 @@ import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 @NgModule({
@@ -90,7 +94,7 @@ import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.compone
     SplitterModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
+    MatButtonModule,MatPaginatorModule,MatSortModule,MatTableModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
   providers: [authInterceptorProviders],

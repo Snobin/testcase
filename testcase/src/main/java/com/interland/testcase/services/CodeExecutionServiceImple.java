@@ -50,8 +50,8 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 		String questionId = codeRequest.getQnId();
 
-		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionIdWithTestCases(questionId);
-
+		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionId(questionId);
+		System.out.println(optionalQuestionEntity.toString());
 		if (optionalQuestionEntity.isPresent()) {
 			List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
 
@@ -376,7 +376,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
 
 			try {
-				codeExecutionResultRepository.save(result);
+//				codeExecutionResultRepository.save(result);
 			} catch (DataIntegrityViolationException e) {
 				handleSaveResultError(e);
 			}

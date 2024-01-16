@@ -19,18 +19,11 @@ public class CompetitiveQuestion {
 
 	@Column(name = "question_text")
 	private String questionText;
-	
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
+	@Column(name = "category")
 	private String category;
 
+	@Column(name = "input")
 	private String input;
 
 	@Column(name = "output_format")
@@ -81,6 +74,14 @@ public class CompetitiveQuestion {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getAdditionalInfo() {
