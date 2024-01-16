@@ -77,12 +77,15 @@ export class ConsoleComponent implements OnInit {
 
   questiondata;
   isOpen = false;
+  braceLeft: string = '{';
+  braceRight: string = '}';
+  loading: boolean = true;
+  submit: string = 'Submit';
 
   constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy) { }
 
   ngOnInit(): void {
     this.clearAll();
-    this.activateCase1();
     // this.preventBackButton();
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
@@ -103,16 +106,13 @@ export class ConsoleComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
-  toggle() {
-    this.isOpen = true;
-  }
-
   openOutput() {
     this.isOpen = true;
   }
 
   activateCase1() {
     if (this.case1 == false) {
+      this.loading = false;
       this.case1 = true;
       this.case2 = false;
       this.case3 = false;
@@ -121,6 +121,7 @@ export class ConsoleComponent implements OnInit {
 
   activateCase2() {
     if (this.case2 == false) {
+      this.loading = false;
       this.case1 = false;
       this.case2 = true;
       this.case3 = false;
@@ -129,6 +130,7 @@ export class ConsoleComponent implements OnInit {
 
   activateCase3() {
     if (this.case3 == false) {
+      this.loading = false;
       this.case1 = false;
       this.case2 = false;
       this.case3 = true;
@@ -239,9 +241,10 @@ export class ConsoleComponent implements OnInit {
 
   async executeCode() {
     // Get the code from the CodeMirror editor
+    this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
+    this.loading = true;
     this.save();
-    this.activateCase1();
-    this.toggle();
+    this.openOutput();
     this.code = this.editor.getValue();
     try {
       if (this.selectedLanguage && this.code) {
@@ -249,6 +252,11 @@ export class ConsoleComponent implements OnInit {
         this.codereq.code = this.code;
         this.codereq.qnId = this.questiondata.questionId;
         const response = await this.service.compileAndTest(this.codereq).toPromise();
+        if (response) {
+          this.loading = false;
+          this.submit = 'Submit';
+          this.activateCase1();
+        }
         this.cases = response;
         this.case_1 = this.cases[0];
         this.case_2 = this.cases[1];
@@ -256,6 +264,7 @@ export class ConsoleComponent implements OnInit {
 
         this.initializeCodeMirror();
       } else {
+        this.loading = false;
         this.case_1.message = 'Please select a programming language and enter code.';
         this.case_2.message = 'Please select a programming language and enter code.';
         this.case_3.message = 'Please select a programming language and enter code.';
@@ -264,14 +273,17 @@ export class ConsoleComponent implements OnInit {
       console.error('Error:', error);
 
       if (error.status === 400) {
+        this.loading = false;
         this.case_1.message = 'Bad Request';
         this.case_2.message = 'Bad Request';
         this.case_3.message = 'Bad Request';
       } else if (error.status === 500) {
+        this.loading = false;
         this.case_1.message = 'Internal Server Error';
         this.case_2.message = 'Internal Server Error';
         this.case_3.message = 'Internal Server Error';
       } else {
+        this.loading = false;
         this.case_1.message = 'An unexpected error occurred.';
         this.case_2.message = 'An unexpected error occurred.';
         this.case_3.message = 'An unexpected error occurred.';

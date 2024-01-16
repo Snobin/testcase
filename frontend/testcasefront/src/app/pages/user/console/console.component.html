@@ -205,12 +205,13 @@
                                                     <button type="button"
                                                         class="btn btn-case-active"
                                                         (click)="save()">
-                                                        <i class="bi bi-floppy2-fill"></i>
+                                                        <i
+                                                            class="bi bi-floppy2-fill"></i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-success"
-                                                        (click)="executeCode()">
-                                                        Submit
+                                                        (click)="executeCode()"
+                                                        [innerHTML]="submit">
                                                     </button>
                                                 </div>
                                             </div>
@@ -246,7 +247,14 @@
                                             <!-- Console Content -->
                                             <div id="console" class="console"
                                                 [ngClass]="{ 'open': isOpen }">
-                                                <div class="row">
+                                                <div *ngIf="loading == true"
+                                                    class="loader-body">
+                                                    <div class="loader">
+                                                        <span>{{braceLeft}}</span><span>{{braceRight}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row"
+                                                    *ngIf="loading == false">
                                                     <div
                                                         class="col-md-12 h-full">
                                                         <!-- Case Buttons -->

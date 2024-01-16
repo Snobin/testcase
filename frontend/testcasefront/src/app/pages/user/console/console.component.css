@@ -9917,6 +9917,7 @@ btn:focus-visible {
 .console::-webkit-scrollbar {
     display: none;
 }
+
 .console {
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -9939,11 +9940,12 @@ btn:focus-visible {
     box-shadow: 0 0 0 1px #f0f0f0;
 }
 
-.ml5{
+.ml5 {
     margin-left: 5px;
 }
 
-.btn-check:focus+.btn, .btn:focus {
+.btn-check:focus+.btn,
+.btn:focus {
     outline: 0;
     box-shadow: 0 0 0 0px transparent;
 }
@@ -9952,7 +9954,7 @@ btn:focus-visible {
     height: 20%;
 }
 
-.p-tb-10{
+.p-tb-10 {
     padding: 10px;
 }
 
@@ -9970,4 +9972,37 @@ btn:focus-visible {
 
 .color-success {
     color: #198754;
+}
+
+.loader-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    height: 96%;
+    margin-bottom: 10px;
+}
+
+.loader {
+    color: #000;
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-weight: bold;
+    font-size: 50px;
+    opacity: 0.8;
+}
+
+.loader span {
+    display: inline-block;
+    animation: pulse 0.4s alternate infinite ease-in-out;
+}
+
+.loader span:nth-child(odd) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+    to {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
 }
