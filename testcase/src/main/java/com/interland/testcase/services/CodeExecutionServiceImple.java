@@ -50,7 +50,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 		String questionId = codeRequest.getQnId();
 
-		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionIdWithTestCases(questionId);
+		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionId(questionId);
 
 		if (optionalQuestionEntity.isPresent()) {
 			List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
@@ -373,13 +373,13 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			String input = inputs.get(i);
 			String expectedOutput = expectedOutputs.get(i);
 
-			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
-
-			try {
-				codeExecutionResultRepository.save(result);
-			} catch (DataIntegrityViolationException e) {
-				handleSaveResultError(e);
-			}
+//			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
+//
+//			try {
+//				codeExecutionResultRepository.save(result);
+//			} catch (DataIntegrityViolationException e) {
+//				handleSaveResultError(e);
+//			}
 		}
 	}
 

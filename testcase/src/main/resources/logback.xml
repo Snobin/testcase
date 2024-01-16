@@ -10,7 +10,7 @@
 
     <!-- File Appender -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>D:\testcase\testcase\src\main\resources\static\logfile.log</file> <!-- Specify the path to your log file -->
+        <file>C:\Users\user\Documents\project\testcase\testcase\src\main\resources\static\logfile.log</file> <!-- Specify the path to your log file -->
 
         <append>true</append>
         <encoder>
