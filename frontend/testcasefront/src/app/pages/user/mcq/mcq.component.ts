@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-mcq',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mcq.component.css']
 })
 export class McqComponent implements OnInit {
+  quizzes;
 
-  constructor() { }
+  constructor(private quiz: QuizService) { }
 
   ngOnInit(): void {
+    // Fetch all quizzes
+    this.quiz.getActiveQuizzes().subscribe(
+      (data: any) => {
+        this.quizzes = data;
+        console.log(this.quizzes);
+      },
+      (error) => {
+        console.log(error);
+        // Handle error
+      }
+    );
   }
-
 }

@@ -14,6 +14,8 @@ export class SidebaruserComponent implements OnInit {
   ngOnInit(): void {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
+      console.log(this.categories);
+      
     },
       (error) => {
         this.snack.open('Error in loading categories from server', '', {

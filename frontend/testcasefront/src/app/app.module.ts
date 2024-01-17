@@ -52,6 +52,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { McqComponent } from './pages/user/mcq/mcq.component';
+import { CodingquestionComponent } from './pages/user/codingquestion/codingquestion.component';
 
 
 
@@ -86,6 +87,7 @@ import { McqComponent } from './pages/user/mcq/mcq.component';
     ViewCodingComponent,
     UpdatecodeComponent,
     McqComponent,
+    CodingquestionComponent,
   ],
   imports: [
     BrowserModule,
