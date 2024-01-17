@@ -251,7 +251,7 @@ export class ConsoleComponent implements OnInit {
     localStorage.setItem(localStorageKey, this.editor.getValue());
     setTimeout(() => {
       this.saveText = "<i class='bi bi-floppy2-fill'></i>";
-    }, 800);
+    }, 500);
   }
 
   async executeCode() {
