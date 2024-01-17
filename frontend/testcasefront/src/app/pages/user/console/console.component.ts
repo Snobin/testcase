@@ -79,8 +79,9 @@ export class ConsoleComponent implements OnInit {
   loading: boolean = true;
   submit: string = 'Submit';
   saveText: string = "<i class='bi bi-floppy2-fill'></i>";
+  toast: boolean = false;
 
-  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy,private el: ElementRef) { }
+  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
 
   ngOnInit(): void {
     // if (localStorage.getItem('hasReloaded') == 'true') {
@@ -251,6 +252,10 @@ export class ConsoleComponent implements OnInit {
     localStorage.setItem(localStorageKey, this.editor.getValue());
     setTimeout(() => {
       this.saveText = "<i class='bi bi-floppy2-fill'></i>";
+      this.toast = true;
+      setTimeout(() => {
+        this.toast = false;
+      }, 2000);
     }, 500);
   }
 
