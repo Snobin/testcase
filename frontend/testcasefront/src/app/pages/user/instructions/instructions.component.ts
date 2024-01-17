@@ -41,7 +41,7 @@ export class InstructionsComponent implements OnInit {
   }
   startQuiz() {
     Swal.fire({
-      title: 'Do you want to start the quiz?',
+      title: 'Do you want to start the Assesment?',
       showCancelButton: true,
       confirmButtonText: 'Start',
       denyButtonText: 'Dont Save',
