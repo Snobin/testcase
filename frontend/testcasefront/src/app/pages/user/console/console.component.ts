@@ -45,7 +45,32 @@ export class ConsoleComponent implements OnInit {
   case_1: Case = new Case();
   case_2: Case = new Case();
   case_3: Case = new Case();
-  cases: Case[] = [];
+  cases: Case[] = [
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+  ];
 
   questiondata;
   isOpen = false;
@@ -246,15 +271,16 @@ export class ConsoleComponent implements OnInit {
           this.loading = false;
           this.submit = 'Submit';
           this.activateCase1();
+          this.cases = response;
+          this.case_1 = this.cases[0];
+          this.case_2 = this.cases[1];
+          this.case_3 = this.cases[2];
         }
-        this.cases = response;
-        this.case_1 = this.cases[0];
-        this.case_2 = this.cases[1];
-        this.case_3 = this.cases[2];
-
         this.initializeCodeMirror();
       } else {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'Please select a programming language and enter code.';
         this.case_2.message = 'Please select a programming language and enter code.';
         this.case_3.message = 'Please select a programming language and enter code.';
@@ -263,16 +289,22 @@ export class ConsoleComponent implements OnInit {
       console.error('Error:', error);
       if (error.status === 400) {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'Bad Request';
         this.case_2.message = 'Bad Request';
         this.case_3.message = 'Bad Request';
       } else if (error.status === 500) {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'Internal Server Error';
         this.case_2.message = 'Internal Server Error';
         this.case_3.message = 'Internal Server Error';
       } else {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'An unexpected error occurred.';
         this.case_2.message = 'An unexpected error occurred.';
         this.case_3.message = 'An unexpected error occurred.';
