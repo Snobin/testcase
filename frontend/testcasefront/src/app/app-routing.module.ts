@@ -47,6 +47,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'instructions',
+    component: InstructionsComponent
+  },
+  {
     path: 'admin',
     component: DashboardComponent,
     canActivate: [AdminGuard],
@@ -108,10 +112,6 @@ const routes: Routes = [
       }, {
         path: ':title/:catId',
         component: LoadQuizComponent
-      },
-      {
-        path: 'valid/instructions/:qid',
-        component: InstructionsComponent
       }
 
     ],

@@ -39,26 +39,16 @@ export class InstructionsComponent implements OnInit {
       )
     }
   }
-  startQuiz() {
+  next() {
     Swal.fire({
-      title: 'Do you want to start the quiz?',
+      title: 'Do you want to start the exam?',
       showCancelButton: true,
       confirmButtonText: 'Start',
-      denyButtonText: 'Dont Save',
+      denyButtonText: "Don't Save",
       icon: 'info',
     }).then((result) => {
       if (result.isConfirmed) {
-        if (this.qid.startsWith('Q')) {
-          // const hasReloaded = localStorage.getItem('hasReloaded');
-          // if (!hasReloaded || localStorage.getItem('hasReloaded') == 'false') {
-          //   localStorage.setItem('hasReloaded', 'true');
-          // }
-          this.router.navigate([`/coding/${this.qid}`]);
-        } else {
-          this.router.navigate(['/start/' + this.qid]);
-        }
-      } else if (result.isDenied) {
-        Swal.fire('changes are not saved', '', 'info');
+        this.router.navigate([`./user-dashboard`])
       }
     });
   }
