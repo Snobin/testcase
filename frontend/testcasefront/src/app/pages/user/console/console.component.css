@@ -9921,6 +9921,7 @@ btn:focus-visible {
 #console.open {
     height: 35%;
     overflow-y: scroll;
+    margin-bottom: 10px;
 }
 
 .btn-case-active {
@@ -9972,8 +9973,7 @@ btn:focus-visible {
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
-    height: 96%;
-    margin-bottom: 10px;
+    height: 100%;
 }
 
 .loader {
