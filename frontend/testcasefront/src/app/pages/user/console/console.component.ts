@@ -191,7 +191,7 @@ export class ConsoleComponent implements OnInit {
     // Determine the CodeMirror mode based on the selected language
     if (this.selectedLanguage == 'java') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World!\"); \n\t}\n}";
       }
       return "text/x-java";
     } else if (this.selectedLanguage == 'cpp') {

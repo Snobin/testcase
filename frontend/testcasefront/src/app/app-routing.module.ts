@@ -105,9 +105,12 @@ const routes: Routes = [
       {
         path: ':catId',
         component: LoadQuizComponent
+      }, {
+        path: ':title/:catId',
+        component: LoadQuizComponent
       },
       {
-        path: 'instructions/:qid',
+        path: 'valid/instructions/:qid',
         component: InstructionsComponent
       }
 
