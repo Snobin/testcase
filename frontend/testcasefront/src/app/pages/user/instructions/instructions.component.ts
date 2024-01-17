@@ -41,7 +41,7 @@ export class InstructionsComponent implements OnInit {
   }
   next() {
     Swal.fire({
-      title: 'Do you want to start the exam?',
+      title: 'Do you want to start the Assesment?',
       showCancelButton: true,
       confirmButtonText: 'Start',
       denyButtonText: "Don't Save",
