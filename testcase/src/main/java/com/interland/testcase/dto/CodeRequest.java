@@ -2,6 +2,8 @@ package com.interland.testcase.dto;
 
 import java.util.List;
 
+import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
+
 public class CodeRequest {
 	
 	private String studentId;
@@ -9,17 +11,21 @@ public class CodeRequest {
     private String langId;
     private String input;
     private String qnId;
+    private String user;
     
+    
+    
+    public String getUser() {
+		return user;
+	}
 
-    public String getStudentId() {
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getStudentId() {
     	return studentId;
     }
-    
-    @Override
-	public String toString() {
-		return "CodeRequest [studentId=" + studentId + ", code=" + code + ", langId=" + langId + ", input=" + input
-				+ ", qnId=" + qnId + ", elements=" + elements + "]";
-	}
 
 	public void setStudentId(String studentId) {
     	this.studentId = studentId;
@@ -66,4 +72,12 @@ public class CodeRequest {
     public void setLangId(String langId) {
         this.langId = langId;
     }
+
+	@Override
+	public String toString() {
+		return "CodeRequest [studentId=" + studentId + ", code=" + code + ", langId=" + langId + ", input=" + input
+				+ ", qnId=" + qnId + ", user=" + user + ", elements=" + elements + "]";
+	}
+    
+    
 }

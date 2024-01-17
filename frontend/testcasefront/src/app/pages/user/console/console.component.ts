@@ -32,6 +32,7 @@ export class ConsoleComponent implements OnInit {
   case1OutputMessage: any;
   case2OutputMessage: any;
   private editor: any;
+  userData = JSON.parse(localStorage.getItem('user'));
   selectedLanguage: string = 'java';
   testCases: string[] = [];
   result: any = { success: true, output: '// Your output will show here.', };
@@ -266,6 +267,7 @@ export class ConsoleComponent implements OnInit {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
         this.codereq.qnId = this.questiondata.questionId;
+        this.codereq.user=this.userData.username;
         const response = await this.service.compileAndTest(this.codereq).toPromise();
         if (response) {
           this.loading = false;
