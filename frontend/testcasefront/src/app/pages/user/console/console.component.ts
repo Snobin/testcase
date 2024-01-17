@@ -53,6 +53,7 @@ export class ConsoleComponent implements OnInit {
   braceRight: string = '}';
   loading: boolean = true;
   submit: string = 'Submit';
+  saveText: string = "<i class='bi bi-floppy2-fill'></i>";
 
   constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy,private el: ElementRef) { }
 
@@ -219,9 +220,13 @@ export class ConsoleComponent implements OnInit {
   }
 
   save() {
+    this.saveText = "<div class='spinner-border spinner-border-sm text-dark' role='status'></div>";
     // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
+    setTimeout(() => {
+      this.saveText = "<i class='bi bi-floppy2-fill'></i>";
+    }, 800);
   }
 
   async executeCode() {
@@ -256,7 +261,6 @@ export class ConsoleComponent implements OnInit {
       }
     } catch (error) {
       console.error('Error:', error);
-
       if (error.status === 400) {
         this.loading = false;
         this.case_1.message = 'Bad Request';
