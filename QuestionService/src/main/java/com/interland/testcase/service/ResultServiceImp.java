@@ -1,7 +1,9 @@
 package com.interland.testcase.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.interland.testcase.dto.SingleResultDto;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.ResultEntity;
 import com.interland.testcase.entity.ResultPk;
@@ -85,5 +88,28 @@ public class ResultServiceImp implements ResultService{
 		 
 		 return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
+    
+	 public List<SingleResultDto> getResult() {
+		  List<Object[]> resultList = singleResultRepository.singleResult();
+	        return convertToSingleResultDtoList(resultList);
+	    }
+	 
+	 public List<SingleResultDto> convertToSingleResultDtoList(List<Object[]> resultList) {
+	        return resultList.stream()
+	                .map(this::convertToSingleResultDto)
+	                .collect(Collectors.toList());
+	    }
 
+	    private SingleResultDto convertToSingleResultDto(Object[] result) {
+	        String user = (String) result[0];
+	        Long attempted = (Long) result[1];
+	        Long obtainedscore = (Long) result[2];
+	        Long correctanswer = (Long) result[3];
+	        BigDecimal bigDecimalValue = (BigDecimal) result[4];
+	        String maxscore = bigDecimalValue.toString();
+	        Long  totalquestion = (Long) result[5];
+	        // Assuming attempted is of type Long, adjust as needed
+	        return new SingleResultDto(user,attempted,obtainedscore,correctanswer,maxscore,totalquestion);
+	   }
 }
+
