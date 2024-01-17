@@ -107,10 +107,6 @@ const routes: Routes = [
         component: LoadQuizComponent
       },
       {
-        path: ':title/:catId',
-        component: LoadQuizComponent
-      },
-      {
         path: 'instructions/:qid',
         component: InstructionsComponent
       }

@@ -45,7 +45,32 @@ export class ConsoleComponent implements OnInit {
   case_1: Case = new Case();
   case_2: Case = new Case();
   case_3: Case = new Case();
-  cases: Case[] = [];
+  cases: Case[] = [
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+    {
+      output: '0',
+      input: '0',
+      processingTime: 0,
+      expectedOutput: '0',
+      message: '-----------',
+      success: ' ',
+    },
+  ];
 
   questiondata;
   isOpen = false;
@@ -53,8 +78,10 @@ export class ConsoleComponent implements OnInit {
   braceRight: string = '}';
   loading: boolean = true;
   submit: string = 'Submit';
+  saveText: string = "<i class='bi bi-floppy2-fill'></i>";
+  toast: boolean = false;
 
-  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy,private el: ElementRef) { }
+  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
 
   ngOnInit(): void {
     // if (localStorage.getItem('hasReloaded') == 'true') {
@@ -219,9 +246,17 @@ export class ConsoleComponent implements OnInit {
   }
 
   save() {
+    this.saveText = "<div class='spinner-border spinner-border-sm text-dark' role='status'></div>";
     // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
+    setTimeout(() => {
+      this.saveText = "<i class='bi bi-floppy2-fill'></i>";
+      this.toast = true;
+      setTimeout(() => {
+        this.toast = false;
+      }, 2000);
+    }, 500);
   }
 
   async executeCode() {
@@ -241,34 +276,40 @@ export class ConsoleComponent implements OnInit {
           this.loading = false;
           this.submit = 'Submit';
           this.activateCase1();
+          this.cases = response;
+          this.case_1 = this.cases[0];
+          this.case_2 = this.cases[1];
+          this.case_3 = this.cases[2];
         }
-        this.cases = response;
-        this.case_1 = this.cases[0];
-        this.case_2 = this.cases[1];
-        this.case_3 = this.cases[2];
-
         this.initializeCodeMirror();
       } else {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'Please select a programming language and enter code.';
         this.case_2.message = 'Please select a programming language and enter code.';
         this.case_3.message = 'Please select a programming language and enter code.';
       }
     } catch (error) {
       console.error('Error:', error);
-
       if (error.status === 400) {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'Bad Request';
         this.case_2.message = 'Bad Request';
         this.case_3.message = 'Bad Request';
       } else if (error.status === 500) {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'Internal Server Error';
         this.case_2.message = 'Internal Server Error';
         this.case_3.message = 'Internal Server Error';
       } else {
         this.loading = false;
+        this.submit = 'Submit';
+        this.activateCase1();
         this.case_1.message = 'An unexpected error occurred.';
         this.case_2.message = 'An unexpected error occurred.';
         this.case_3.message = 'An unexpected error occurred.';

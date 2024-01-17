@@ -204,9 +204,8 @@
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-case-active"
-                                                        (click)="save()">
-                                                        <i
-                                                            class="bi bi-floppy2-fill"></i>
+                                                        (click)="save()"
+                                                        [innerHTML]="saveText">
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-success"
@@ -241,7 +240,15 @@
                                                         </button>
                                                     </div>
                                                 </div>
-
+                                                <div
+                                                    class="fade saved-container flex ml-auto gap-3 non-selectable"
+                                                    [class.hide]="toast == false"
+                                                    [class.show]="toast == true"
+                                                    role="alert">
+                                                    <div class="color-success">
+                                                        Saved Successfully !
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <!-- Console Content -->
