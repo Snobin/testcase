@@ -31,7 +31,7 @@ import com.interland.testcase.dto.CodeResponse;
 import com.interland.testcase.entity.CodeExecutionResult;
 import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.TestCaseEntity;
-import com.interland.testcase.repository.QuestionRepository;
+import com.interland.testcase.repository.codQuestionRepository;
 import com.interland.testcase.repository.codeExecutionResultRepository;
 
 @Service
@@ -39,7 +39,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 	private static final Logger LOGGER = Logger.getLogger(CodeExecutionServiceImple.class.getName());
 	@Autowired
-	private QuestionRepository questionRepository;
+	private codQuestionRepository questionRepository;
 	@Autowired
 	private codeExecutionResultRepository codeExecutionResultRepository;
 
@@ -50,7 +50,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 		String questionId = codeRequest.getQnId();
 
-		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionIdWithTestCases(questionId);
+		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionId(questionId);
 
 		if (optionalQuestionEntity.isPresent()) {
 			List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
@@ -376,10 +376,11 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			CodeExecutionResult result = createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
 
 			try {
-				codeExecutionResultRepository.save(result);
+//				codeExecutionResultRepository.save(result);
 			} catch (DataIntegrityViolationException e) {
 				handleSaveResultError(e);
 			}
+
 		}
 	}
 

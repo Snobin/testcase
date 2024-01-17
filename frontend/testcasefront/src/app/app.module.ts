@@ -44,6 +44,14 @@ import { AddCodingComponent } from './pages/admin/add-coding/add-coding.componen
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 import { ConsoleComponent } from './pages/user/console/console.component';
 import { SplitterModule } from 'primeng/splitter';
+import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
+import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 @NgModule({
@@ -73,6 +81,9 @@ import { SplitterModule } from 'primeng/splitter';
     AddCodingComponent,
     ViewAnswerComponent,
     ConsoleComponent,
+    AddCodeComponent,
+    ViewCodingComponent,
+    UpdatecodeComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +93,8 @@ import { SplitterModule } from 'primeng/splitter';
     HttpClientModule,
     SplitterModule,
     FormsModule,
-    MatButtonModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatButtonModule,MatPaginatorModule,MatSortModule,MatTableModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
   providers: [authInterceptorProviders],

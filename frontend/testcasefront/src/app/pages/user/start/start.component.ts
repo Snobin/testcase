@@ -1,7 +1,9 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { QuestionService } from 'src/app/services/question.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,7 +22,7 @@ export class StartComponent implements OnInit {
   timer: any;
   constructor(private locationst: LocationStrategy,
     private route: ActivatedRoute,
-    private question: QuestionService) { }
+    private question: QuestionService,private loginservice:LoginService) { }
 
   ngOnInit(): void {
     this.preventBackButton();
@@ -35,6 +37,9 @@ export class StartComponent implements OnInit {
         this.timer = this.questions.length * 2 * 60;
         this.questions.forEach((q) => {
           q['givenAnswer'] = '';
+          q['qId']=this.qId;
+          const userData = JSON.parse(localStorage.getItem('user'));
+          q['user']=userData.username;
         });
         this.startTimer();
       },
@@ -100,6 +105,7 @@ export class StartComponent implements OnInit {
 
     this.question.evalQuiz(this.questions).subscribe(
       (data: any) => {
+        console.log(this.questions);
         this.attempted = data.attempted;
         this.correctAnswer = data.correctAnswers;
         this.marksGot = data.marksGot;

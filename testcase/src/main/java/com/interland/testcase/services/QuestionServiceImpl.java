@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.TestCaseEntity;
-import com.interland.testcase.repository.QuestionRepository;
+import com.interland.testcase.repository.codQuestionRepository;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -29,7 +29,7 @@ public class QuestionServiceImpl implements QuestionService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private codQuestionRepository questionRepository;
 
     @Override
     public ObjectNode processExcelData(MultipartFile excelFile) {
