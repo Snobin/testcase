@@ -1,0 +1,44 @@
+<div class="container" style="height: 100%; margin-top: 10px;">
+    <div style="height: 650px; display: flex; flex-direction: column;">
+      
+      <!-- Coding Questions Card -->
+      <mat-card [style.height]="(MCQ == false && Code == true) ? '100%' : (MCQ == true ? '50%' : '100%')" style="overflow-y: scroll;">
+        <mat-card-header>
+          <mat-card-title>Coding Questions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="overflow-y: auto;">
+          <!-- Add your content related to coding questions here -->
+          <ul>
+            <li *ngFor="let data of dataa">
+              <strong>Question:</strong> {{ data.question }},
+              <strong>Answer:</strong> {{ data.answer }},
+              <strong>Answer:</strong> {{ data.givenAnswer }}
+              <hr>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+  
+      <hr>
+  
+      <!-- MCQ Card -->
+      <mat-card [style.height]="(MCQ == true && Code == false) ? '100%' : (Code == true ? '50%' : '100%')"style="overflow-y: scroll;">
+        <mat-card-header>
+          <mat-card-title>MCQ</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="overflow-y: auto;">
+          <!-- Add your content related to MCQ questions here -->
+          <ul>
+            <li *ngFor="let data of dataa">
+              <strong>Question:</strong> {{ data.question }},
+              <strong>Correct Answer:</strong> {{ data.answer }},
+              <strong>Answer:</strong> {{ data.givenAnswer }}
+              <hr>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+      
+    </div>
+  </div>
+  

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ResultService } from 'src/app/services/result.service';
 
 export interface UserData {
@@ -25,7 +26,7 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private ans: ResultService) {
+  constructor(private ans: ResultService,private router:Router) {
     this.dataSource = new MatTableDataSource<UserData>([]);
   }
 
@@ -56,5 +57,10 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  navigateToDetails(row: UserData): void {
+    // Assuming you have a route named 'details' that takes a parameter 'userId'
+    this.router.navigate(['admin/details', row.user]);
   }
 }

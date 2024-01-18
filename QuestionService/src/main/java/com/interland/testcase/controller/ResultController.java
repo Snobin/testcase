@@ -16,20 +16,17 @@ import com.interland.testcase.entity.Question;
 import com.interland.testcase.service.QuestionService;
 import com.interland.testcase.service.ResultService;
 
-
 @RestController
 @RequestMapping("/question")
 @CrossOrigin("*")
-
 public class ResultController {
-	
-	
+
 	@Autowired
 	private QuestionService questionService;
 
 	@Autowired
 	private ResultService resultService;
-	
+
 	@PostMapping("/eval")
 	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
 		int marksGot = 0;
@@ -52,10 +49,14 @@ public class ResultController {
 		return ResponseEntity.ok(map);
 	}
 
+	@GetMapping("/singleResult")
+	public ResponseEntity<?> result() {
+		return ResponseEntity.ok(this.resultService.getResult());
+	}
 
-@GetMapping("/singleResult")
-public ResponseEntity<?> result(){
-	return ResponseEntity.ok(this.resultService.getResult());
-}
+	@PostMapping("getByUser")
+	public ResponseEntity<?> getByUser(@RequestBody String user) {
+		return ResponseEntity.ok(this.resultService.getAllResultsByUser(user));
+	}
 
 }
