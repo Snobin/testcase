@@ -27,6 +27,8 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  selectedRow: any;
+
   constructor(private ans: ResultService,private router:Router) {
     this.dataSource = new MatTableDataSource<UserData>([]);
   }
@@ -63,5 +65,19 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
   navigateToDetails(row: UserData): void {
     // Assuming you have a route named 'details' that takes a parameter 'userId'
     this.router.navigate(['admin/details', row.user]);
+  }
+
+  // handleDoubleClick(row: any): void {
+  //   this.selectedRow = row; // Set the selected row
+  //   console.log("haii")
+  // }
+
+  handleSingleClick(row: any): void {
+    this.selectedRow = row; // Set the row as selected on single click
+  }
+
+  handleDoubleClick(row: any): void {
+    // Navigate to details page on double click
+    this.navigateToDetails(row);
   }
 }
