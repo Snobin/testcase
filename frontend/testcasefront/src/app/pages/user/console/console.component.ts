@@ -28,6 +28,7 @@ export class ConsoleComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
 
+  console: boolean = true;
   qId: any;
   case1OutputMessage: any;
   case2OutputMessage: any;
@@ -175,6 +176,8 @@ export class ConsoleComponent implements OnInit {
       this.editor.setOption("mode", this.getEditorMode());
       // Set the code value
       this.editor.setValue(this.code);
+      // Update extraKeys
+      this.editor.setOption("extraKeys", this.getExtraKeys());
     } else {
       // If the editor doesn't exist, create it
       this.editor = CodeMirror.fromTextArea(this.editorTextarea.nativeElement, {
@@ -182,6 +185,7 @@ export class ConsoleComponent implements OnInit {
         theme: "dracula",
         lineNumbers: true,
         autoCloseBrackets: true,
+        extraKeys: this.getExtraKeys(),
       });
       // Set the code to the CodeMirror editor
       this.editor.setValue(this.code);
@@ -223,6 +227,35 @@ export class ConsoleComponent implements OnInit {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-java";
+    }
+  }
+
+  getExtraKeys(): any {
+    return {
+      'Ctrl-Space': (cm) => {
+        cm.showHint({
+          hint: this.getHintFunction(),
+          completeSingle: false, // Adjust as needed
+        });
+      },
+      // Add other key bindings as needed
+    };
+  }
+
+  getHintFunction(): any {
+    switch (this.selectedLanguage) {
+      case 'java':
+        return CodeMirror.hint.java;
+      case 'cpp':
+        return CodeMirror.hint.cpp;
+      case 'python':
+        return CodeMirror.hint.python;
+      case 'c':
+        return CodeMirror.hint.c;
+      // Add cases for other languages as needed
+      default:
+        // Use a default hint or set to null if no hint is needed
+        return CodeMirror.hint.auto;
     }
   }
 
@@ -272,7 +305,7 @@ export class ConsoleComponent implements OnInit {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
         this.codereq.qnId = this.questiondata.questionId;
-        this.codereq.user=this.userData.username;
+        this.codereq.user = this.userData.username;
         const response = await this.service.compileAndTest(this.codereq).toPromise();
         if (response) {
           this.loading = false;
