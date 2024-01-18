@@ -29,8 +29,11 @@ import org.springframework.stereotype.Service;
 import com.interland.testcase.dto.CodeRequest;
 import com.interland.testcase.dto.CodeResponse;
 import com.interland.testcase.entity.CodeExecutionResult;
+import com.interland.testcase.entity.CodeResult;
+import com.interland.testcase.entity.CodeResultPk;
 import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.TestCaseEntity;
+import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.codQuestionRepository;
 import com.interland.testcase.repository.codeExecutionResultRepository;
 
@@ -41,19 +44,34 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	@Autowired
 	private codQuestionRepository questionRepository;
 	@Autowired
+	private CodingResultRepository  codingResultRepository;
+	@Autowired
 	private codeExecutionResultRepository codeExecutionResultRepository;
+	
+	Integer passedtestcases=0;
+	
 
 	@Override
 	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
+		
+		CodeResult codeResult = new CodeResult();
+		CodeResultPk codeResultPk=new CodeResultPk();
 		String code = codeRequest.getCode();
 		String language = codeRequest.getLangId();
-
+        String user = codeRequest.getUser();
 		String questionId = codeRequest.getQnId();
-
+        
 		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionId(questionId);
 
 		if (optionalQuestionEntity.isPresent()) {
 			List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
+			
+			codeResultPk.setQuestionId(questionId);
+			codeResultPk.setUser(user);
+			codeResult.setCodeResultpk(codeResultPk);
+			codeResult.setCode(code);
+			codeResult.setLanguage(language);
+			codeResult.setTotalTescase(testCases.size());
 
 			List<String> inputs = testCases.stream().map(TestCaseEntity::getInputs).collect(Collectors.toList());
 			List<String> expectedOutputs = testCases.stream().map(TestCaseEntity::getExpectedOutputs)
@@ -65,16 +83,22 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			case "java":
 				codeResponses = executeJavaCode(code, inputs, expectedOutputs);
 				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				codeResult.setPassedTestcase(passedtestcases);
+				codingResultRepository.save(codeResult);
 				return codeResponses;
 
 			case "c":
 				codeResponses = executeCCode(code, inputs, expectedOutputs);
 				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				codeResult.setPassedTestcase(passedtestcases);
+				codingResultRepository.save(codeResult);
 				return codeResponses;
 
 			case "cpp":
 				codeResponses = executeCppCode(code, inputs, expectedOutputs);
 				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
+				codeResult.setPassedTestcase(passedtestcases);
+				codingResultRepository.save(codeResult);
 				return codeResponses;
 
 			case "python":
@@ -126,6 +150,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
 					codeResponse.setSuccess("true");
+					passedtestcases++;
 					codeResponse.setMessage("Test case passed!");
 				} else {
 					codeResponse.setSuccess("false");
@@ -179,6 +204,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
 					codeResponse.setSuccess("true");
+					passedtestcases++;
 					codeResponse.setMessage("Test case passed!");
 				} else {
 					codeResponse.setSuccess("false");
@@ -224,6 +250,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
 					codeResponse.setSuccess("true");
+					passedtestcases++;
 					codeResponse.setMessage("Test case passed!");
 				} else {
 					codeResponse.setSuccess("false");
