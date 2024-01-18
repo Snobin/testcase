@@ -52,17 +52,18 @@ public class ResultServiceImp implements ResultService {
 
 		for (Question q : questions) {
 			Question question = this.questionService.get(q.getQuesId());
-			resultPk.setqId(q.getqId());
-			resultPk.setQuestionId(q.getQuesId());
-			qid = q.getqId();
-			resultPk.setUser(q.getUser());
-			user = q.getUser();
-			resultEntity.setResultPk(resultPk);
-			resultEntity.setQuestion(q.getContent());
 
-			resultEntity.setGivenAnswer(q.getGivenAnswer());
-
-			resultEntity.setAnswer(question.getAnswer());
+			     resultPk.setqId(q.getqId());
+			     resultPk.setQuestionId(q.getQuesId());
+			     qid=q.getqId();
+			     resultPk.setUser(q.getUser());
+			     user=q.getUser();
+			     resultEntity.setResultPk(resultPk);
+			     resultEntity.setQuestion(q.getContent());
+			     resultEntity.setTitle(questions.get(0).getQuiz().getTitle());
+			     resultEntity.setGivenAnswer(q.getGivenAnswer());
+			    
+			     resultEntity.setAnswer(question.getAnswer());
 			if (question.getAnswer().equals(q.getGivenAnswer())) {
 				resultEntity.setSatus("TRUE");
 			} else {

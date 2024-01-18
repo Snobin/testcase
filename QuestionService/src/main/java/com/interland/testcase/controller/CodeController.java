@@ -17,7 +17,7 @@ import com.interland.testcase.service.QuestionService;
 
 @RequestMapping("/code")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+
 public class CodeController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);
