@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class CodeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);

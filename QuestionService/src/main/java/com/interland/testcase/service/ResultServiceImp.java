@@ -1,6 +1,7 @@
 package com.interland.testcase.service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import com.interland.testcase.entity.ResultEntity;
 import com.interland.testcase.entity.ResultPk;
 import com.interland.testcase.entity.SingleResult;
 import com.interland.testcase.entity.SingleResultPk;
+import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.ResultRepository;
 import com.interland.testcase.repository.SingleResultRepository;
 
@@ -32,6 +34,9 @@ public class ResultServiceImp implements ResultService {
 
 	@Autowired
 	private SingleResultRepository singleResultRepository;
+	
+	@Autowired
+	private CodingResultRepository codingResultRepository;
 
 	public ResponseEntity<?> result(@RequestBody List<Question> questions) {
 		System.out.println(questions);
@@ -87,26 +92,7 @@ public class ResultServiceImp implements ResultService {
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
-	public List<SingleResultDto> getResult() {
-		List<Object[]> resultList = singleResultRepository.singleResult();
-		return convertToSingleResultDtoList(resultList);
-	}
 
-	public List<SingleResultDto> convertToSingleResultDtoList(List<Object[]> resultList) {
-		return resultList.stream().map(this::convertToSingleResultDto).collect(Collectors.toList());
-	}
-
-	private SingleResultDto convertToSingleResultDto(Object[] result) {
-		String user = (String) result[0];
-		Long attempted = (Long) result[1];
-		Long obtainedscore = (Long) result[2];
-		Long correctanswer = (Long) result[3];
-		BigDecimal bigDecimalValue = (BigDecimal) result[4];
-		String maxscore = bigDecimalValue.toString();
-		Long totalquestion = (Long) result[5];
-		// Assuming attempted is of type Long, adjust as needed
-		return new SingleResultDto(user, attempted, obtainedscore, correctanswer, maxscore, totalquestion);
-	}
 
 	@Override
 	public List<ResultEntity> getAllResultsByUser(String user) {
@@ -119,4 +105,53 @@ public class ResultServiceImp implements ResultService {
 
 	    return resultList;
 	}
+	 public List<SingleResultDto> getResult() {
+		        List<Object[]> singleResultList = singleResultRepository.singleResult();
+		        List<Object[]> codeResultList = codingResultRepository.codeResult();
+
+		        // Combine the results from both queries
+		        List<SingleResultDto> combinedResultList = new ArrayList<>();
+
+		        for (Object[] singleResult : singleResultList) {
+		        	SingleResultDto combinedResult = new SingleResultDto();
+		            combinedResult.setUser((String) singleResult[0]);
+		            combinedResult.setAttempted((Long) singleResult[1]);
+		            combinedResult.setObtainedScore((Long) singleResult[2]);
+		            combinedResult.setCorrectAnswers((Long) singleResult[3]);
+		            combinedResult.setMaxScore((String) singleResult[4].toString());
+		            combinedResult.setTotalQuestion((Long) singleResult[5]);
+
+		            // Find the corresponding passPercentage in codeResultList
+		            Optional<Object[]> matchingCodeResult = codeResultList.stream()
+		                    .filter(codeResult -> ((String) codeResult[0]).equals(combinedResult.getUser()))
+		                    .findFirst();
+
+		            if (matchingCodeResult.isPresent()) {
+		                combinedResult.setCodingPercentage((Double) matchingCodeResult.get()[1]);
+		            }
+
+		            combinedResultList.add(combinedResult);
+		        }
+                System.out.println(combinedResultList);
+		        return combinedResultList;
+		    }
+	 
+	 public List<SingleResultDto> convertToSingleResultDtoList(List<Object[]> resultList) {
+	        return resultList.stream()
+	                .map(this::convertToSingleResultDto)
+	                .collect(Collectors.toList());
+	    }
+
+	    private SingleResultDto convertToSingleResultDto(Object[] result) {
+	        String user = (String) result[0];
+	        Long attempted = (Long) result[1];
+	        Long obtainedscore = (Long) result[2];
+	        Long correctanswer = (Long) result[3];
+	        BigDecimal bigDecimalValue = (BigDecimal) result[4];
+	        String maxscore = bigDecimalValue.toString();
+	        Long  totalquestion = (Long) result[5];
+	        // Assuming attempted is of type Long, adjust as needed
+	        return new SingleResultDto(user,attempted,obtainedscore,correctanswer,maxscore,totalquestion,null);
+	   }
+
 }

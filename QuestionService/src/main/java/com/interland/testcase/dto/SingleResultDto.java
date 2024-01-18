@@ -14,6 +14,19 @@ public class SingleResultDto {
 	private String maxScore;
 	
 	private Long totalQuestion;
+	
+	private Double codingPercentage;
+	
+	
+	
+
+	public Double getCodingPercentage() {
+		return codingPercentage;
+	}
+
+	public void setCodingPercentage(Double codingPercentage) {
+		this.codingPercentage = codingPercentage;
+	}
 
 	public String getUser() {
 		return user;
@@ -64,7 +77,7 @@ public class SingleResultDto {
 	}
 
 	public SingleResultDto(String user, Long attempted, Long obtainedScore, Long correctAnswers, String maxScore,
-			Long totalQuestion) {
+			Long totalQuestion, Double codingPercentage) {
 		super();
 		this.user = user;
 		this.attempted = attempted;
@@ -72,9 +85,12 @@ public class SingleResultDto {
 		this.correctAnswers = correctAnswers;
 		this.maxScore = maxScore;
 		this.totalQuestion = totalQuestion;
+		this.codingPercentage = codingPercentage;
 	}
 
+	public SingleResultDto() {
+		super();
+	}
 	
-
 	
 }

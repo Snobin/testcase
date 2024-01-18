@@ -6,3 +6,8 @@
     width: 100%;
     max-width: 100%;
 }
+
+.custom {
+    height: 92%;
+    padding: 20px;
+}

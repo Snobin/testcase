@@ -48,6 +48,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'instructions',
+    component: InstructionsComponent
+  },
+  {
     path: 'admin',
     component: DashboardComponent,
     canActivate: [AdminGuard],
@@ -105,19 +109,12 @@ const routes: Routes = [
     canActivate: [UserGuard],
     children: [
       {
-        path: ':catId',
-        component: LoadQuizComponent
-      }, {
         path: ':title/:catId',
         component: LoadQuizComponent
-      },
-      {
-        path: 'valid/instructions/:qid',
-        component: InstructionsComponent
       }
-
     ],
-  }, {
+  },
+  {
     path: 'start/:qid',
     component: StartComponent,
     canActivate: [UserGuard]
