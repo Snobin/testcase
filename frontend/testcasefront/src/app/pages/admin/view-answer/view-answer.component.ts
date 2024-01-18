@@ -12,6 +12,7 @@ export interface UserData {
   correctAnswers: number;
   maxScore: string;
   totalQuestion: number;
+  codingPercentage:number
 }
 
 @Component({
@@ -20,7 +21,7 @@ export interface UserData {
   styleUrls: ['./view-answer.component.css']
 })
 export class ViewAnswerComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['user', 'attempted', 'obtainedScore', 'correctAnswers', 'maxScore', 'totalQuestion'];
+  displayedColumns: string[] = ['user', 'attempted', 'obtainedScore', 'correctAnswers', 'maxScore', 'totalQuestion','codingPercentage'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
