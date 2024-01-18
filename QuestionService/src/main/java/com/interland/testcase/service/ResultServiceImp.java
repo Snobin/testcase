@@ -24,36 +24,35 @@ import com.interland.testcase.repository.ResultRepository;
 import com.interland.testcase.repository.SingleResultRepository;
 
 @Service
-public class ResultServiceImp implements ResultService{
-	
+public class ResultServiceImp implements ResultService {
+
 	@Autowired
 	private QuestionService questionService;
-	
+
 	@Autowired
 	private ResultRepository resultRepository;
-	
+
 	@Autowired
 	private SingleResultRepository singleResultRepository;
 	
 	@Autowired
 	private CodingResultRepository codingResultRepository;
 
-
-	
 	public ResponseEntity<?> result(@RequestBody List<Question> questions) {
-        System.out.println(questions);
-        ResultPk resultPk = new ResultPk();
+		System.out.println(questions);
+		ResultPk resultPk = new ResultPk();
 		ResultEntity resultEntity = new ResultEntity();
 		SingleResult singleResult = new SingleResult();
-		SingleResultPk singleResultpk = new SingleResultPk();	
+		SingleResultPk singleResultpk = new SingleResultPk();
 		int marksGot = 0;
 		Integer correctAnswers = 0;
 		Integer attempted = 0;
-		String qid ="";
-		String user="";
-		
+		String qid = "";
+		String user = "";
+
 		for (Question q : questions) {
 			Question question = this.questionService.get(q.getQuesId());
+
 			     resultPk.setqId(q.getqId());
 			     resultPk.setQuestionId(q.getQuesId());
 			     qid=q.getqId();
@@ -67,33 +66,46 @@ public class ResultServiceImp implements ResultService{
 			     resultEntity.setAnswer(question.getAnswer());
 			if (question.getAnswer().equals(q.getGivenAnswer())) {
 				resultEntity.setSatus("TRUE");
-			}else {
+			} else {
 				resultEntity.setSatus("FALSE");
 			}
-			 resultRepository.save(resultEntity);
-			 if (question.getAnswer().equals(q.getGivenAnswer())) {
-					correctAnswers++;
-					double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
-					marksGot += marksSingle;
-				}
-				if (q.getGivenAnswer() != null) {
-					attempted++;
-				}	
+			resultRepository.save(resultEntity);
+			if (question.getAnswer().equals(q.getGivenAnswer())) {
+				correctAnswers++;
+				double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
+				marksGot += marksSingle;
+			}
+			if (q.getGivenAnswer() != null) {
+				attempted++;
+			}
 		}
-		 singleResultpk.setqId(qid);
-		 singleResultpk.setUser(user);
-		 singleResult.setSingleResult(singleResultpk);
-		 singleResult.setAttempted(attempted);
-		 singleResult.setObtainedScore(marksGot);
-		 singleResult.setMaxScore(questions.get(0).getQuiz().getMaxMarks());
-		 singleResult.setTotalQuestion(questions.size());
-		 singleResult.setCorrectAnswers(correctAnswers);
-		 
-		 singleResultRepository.save(singleResult);
-		 
-		 return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		singleResultpk.setqId(qid);
+		singleResultpk.setUser(user);
+		singleResult.setSingleResult(singleResultpk);
+		singleResult.setAttempted(attempted);
+		singleResult.setObtainedScore(marksGot);
+		singleResult.setMaxScore(questions.get(0).getQuiz().getMaxMarks());
+		singleResult.setTotalQuestion(questions.size());
+		singleResult.setCorrectAnswers(correctAnswers);
+
+		singleResultRepository.save(singleResult);
+
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
-    
+
+
+
+	@Override
+	public List<ResultEntity> getAllResultsByUser(String user) {
+	    System.out.println(user);
+	    List<ResultEntity> resultList = resultRepository.findAllByResultPkUser(user);
+
+	    if (resultList.isEmpty()) {
+	        System.out.println("No Entities found for this user");
+	    }
+
+	    return resultList;
+	}
 	 public List<SingleResultDto> getResult() {
 		        List<Object[]> singleResultList = singleResultRepository.singleResult();
 		        List<Object[]> codeResultList = codingResultRepository.codeResult();
@@ -142,5 +154,5 @@ public class ResultServiceImp implements ResultService{
 	        // Assuming attempted is of type Long, adjust as needed
 	        return new SingleResultDto(user,attempted,obtainedscore,correctanswer,maxscore,totalquestion,null);
 	   }
-}
 
+}
