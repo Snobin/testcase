@@ -23,12 +23,30 @@ public class ResultEntity {
 	
 	private String satus;
 	
+	private String title;
  
 	
 	
 	
 	@Column(name = "response")
 	private String givenAnswer;
+
+
+
+
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 
 
@@ -112,14 +130,14 @@ public class ResultEntity {
 
 
 
-
-
-	public ResultEntity(ResultPk resultPk, String question, String answer, String satus, String givenAnswer) {
+	public ResultEntity(ResultPk resultPk, String question, String answer, String satus, String title,
+			String givenAnswer) {
 		super();
 		this.resultPk = resultPk;
 		this.question = question;
 		this.answer = answer;
 		this.satus = satus;
+		this.title = title;
 		this.givenAnswer = givenAnswer;
 	}
 

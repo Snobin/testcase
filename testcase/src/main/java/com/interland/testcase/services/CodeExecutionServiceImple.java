@@ -49,7 +49,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	private codeExecutionResultRepository codeExecutionResultRepository;
 	
 	Integer passedtestcases=0;
-	
+     
 
 	@Override
 	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
@@ -84,6 +84,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResponses = executeJavaCode(code, inputs, expectedOutputs);
 				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
 				codeResult.setPassedTestcase(passedtestcases);
+				passedtestcases=0;
 				codingResultRepository.save(codeResult);
 				return codeResponses;
 
@@ -91,6 +92,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResponses = executeCCode(code, inputs, expectedOutputs);
 				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
 				codeResult.setPassedTestcase(passedtestcases);
+				passedtestcases=0;
 				codingResultRepository.save(codeResult);
 				return codeResponses;
 
@@ -98,6 +100,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResponses = executeCppCode(code, inputs, expectedOutputs);
 				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs);
 				codeResult.setPassedTestcase(passedtestcases);
+				passedtestcases=0;
 				codingResultRepository.save(codeResult);
 				return codeResponses;
 

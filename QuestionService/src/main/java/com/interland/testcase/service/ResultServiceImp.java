@@ -61,8 +61,7 @@ public class ResultServiceImp implements ResultService{
 			     user=q.getUser();
 			     resultEntity.setResultPk(resultPk);
 			     resultEntity.setQuestion(q.getContent());
-			  
-			    
+			     resultEntity.setTitle(questions.get(0).getQuiz().getTitle());
 			     resultEntity.setGivenAnswer(q.getGivenAnswer());
 			    
 			     resultEntity.setAnswer(question.getAnswer());
