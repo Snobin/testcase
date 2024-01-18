@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddQuestion } from 'src/app/model/AddQuestion';
 import { CategoryService } from 'src/app/services/category.service';
 import { CodeService } from 'src/app/services/code.service';
@@ -15,38 +15,24 @@ import Swal from 'sweetalert2';
 export class LoadQuizComponent implements OnInit {
 
     catId;
-    quizzes;
+    quizzes: any = [];
     codeInput: AddQuestion = new AddQuestion();
-    codingQuestions;
+    codingQuestions: any = [];
     selectedQuestionType: string;
     title: any;
     categories: any;
-    constructor(private cat: CategoryService, private route: ActivatedRoute, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar) { }
+    constructor(private cat: CategoryService, private route: ActivatedRoute,private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar) { }
     ngOnInit(): void {
-        this.getCategories();
+        this.showList();
+    }
+
+    showList(){
         this.route.params.subscribe((params) => {
             this.catId = params.catId;
             this.title = params.title;
-            console.log(this.catId);
-            console.log(this.title);
             if (this.title === "CODING") {
-                console.log("gggd");
                 this.getCodingQuestions();
-            }
-            if (this.catId == 0) {
-                // Fetch all quizzes
-                // this.quiz.getActiveQuizzes().subscribe(
-                //     (data: any) => {
-                //         this.quizzes = data;
-                //         console.log(this.quizzes);
-                //     },
-                //     (error) => {
-                //         console.log(error);
-                //         alert('Error in loading all quizzes');
-                //     }
-                // );
             } else {
-                // Fetch specific quiz based on category ID
                 this.getActiveQuizCategory(this.catId);
             }
         });
@@ -80,18 +66,11 @@ export class LoadQuizComponent implements OnInit {
         );
     }
 
-    getCategories() {
-        this.cat.categories().subscribe((data: any) => {
-            this.categories = data;
-            console.log(this.categories);
-            
-            this.getActiveQuizCategory(this.categories[0].cid);
-        },
-            (error) => {
-                this.snack.open('Error in loading categories from server', '', {
-                    duration: 3000,
-                });
-            }
-        );
+    coding(qid: string){
+        this.router.navigate([`./coding/${qid}`])
+    }
+
+    question(qid: string){
+        this.router.navigate([`./start/${qid}`])
     }
 }

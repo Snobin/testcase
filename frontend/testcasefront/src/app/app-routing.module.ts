@@ -107,15 +107,12 @@ const routes: Routes = [
     canActivate: [UserGuard],
     children: [
       {
-        path: ':catId',
-        component: LoadQuizComponent
-      }, {
         path: ':title/:catId',
         component: LoadQuizComponent
       }
-
     ],
-  }, {
+  },
+  {
     path: 'start/:qid',
     component: StartComponent,
     canActivate: [UserGuard]
