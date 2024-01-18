@@ -1,8 +1,10 @@
 package com.interland.testcase.service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import com.interland.testcase.entity.ResultEntity;
 import com.interland.testcase.entity.ResultPk;
 import com.interland.testcase.entity.SingleResult;
 import com.interland.testcase.entity.SingleResultPk;
+import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.ResultRepository;
 import com.interland.testcase.repository.SingleResultRepository;
 
@@ -31,6 +34,9 @@ public class ResultServiceImp implements ResultService{
 	
 	@Autowired
 	private SingleResultRepository singleResultRepository;
+	
+	@Autowired
+	private CodingResultRepository codingResultRepository;
 
 
 	
@@ -90,9 +96,35 @@ public class ResultServiceImp implements ResultService{
 	}
     
 	 public List<SingleResultDto> getResult() {
-		  List<Object[]> resultList = singleResultRepository.singleResult();
-	        return convertToSingleResultDtoList(resultList);
-	    }
+		        List<Object[]> singleResultList = singleResultRepository.singleResult();
+		        List<Object[]> codeResultList = codingResultRepository.codeResult();
+
+		        // Combine the results from both queries
+		        List<SingleResultDto> combinedResultList = new ArrayList<>();
+
+		        for (Object[] singleResult : singleResultList) {
+		        	SingleResultDto combinedResult = new SingleResultDto();
+		            combinedResult.setUser((String) singleResult[0]);
+		            combinedResult.setAttempted((Long) singleResult[1]);
+		            combinedResult.setObtainedScore((Long) singleResult[2]);
+		            combinedResult.setCorrectAnswers((Long) singleResult[3]);
+		            combinedResult.setMaxScore((String) singleResult[4].toString());
+		            combinedResult.setTotalQuestion((Long) singleResult[5]);
+
+		            // Find the corresponding passPercentage in codeResultList
+		            Optional<Object[]> matchingCodeResult = codeResultList.stream()
+		                    .filter(codeResult -> ((String) codeResult[0]).equals(combinedResult.getUser()))
+		                    .findFirst();
+
+		            if (matchingCodeResult.isPresent()) {
+		                combinedResult.setCodingPercentage((Double) matchingCodeResult.get()[1]);
+		            }
+
+		            combinedResultList.add(combinedResult);
+		        }
+                System.out.println(combinedResultList);
+		        return combinedResultList;
+		    }
 	 
 	 public List<SingleResultDto> convertToSingleResultDtoList(List<Object[]> resultList) {
 	        return resultList.stream()
@@ -109,7 +141,7 @@ public class ResultServiceImp implements ResultService{
 	        String maxscore = bigDecimalValue.toString();
 	        Long  totalquestion = (Long) result[5];
 	        // Assuming attempted is of type Long, adjust as needed
-	        return new SingleResultDto(user,attempted,obtainedscore,correctanswer,maxscore,totalquestion);
+	        return new SingleResultDto(user,attempted,obtainedscore,correctanswer,maxscore,totalquestion,null);
 	   }
 }
 
