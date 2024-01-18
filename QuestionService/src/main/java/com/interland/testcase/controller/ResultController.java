@@ -19,7 +19,6 @@ import com.interland.testcase.service.ResultService;
 
 @RestController
 @RequestMapping("/question")
-@CrossOrigin("*")
 
 public class ResultController {
 	
