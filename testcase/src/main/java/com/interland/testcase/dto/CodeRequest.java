@@ -7,6 +7,16 @@ import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
 public class CodeRequest {
 	
 	private String studentId;
+	
+	private String status;
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	private String code;
     private String langId;
     private String input;
@@ -75,9 +85,11 @@ public class CodeRequest {
 
 	@Override
 	public String toString() {
-		return "CodeRequest [studentId=" + studentId + ", code=" + code + ", langId=" + langId + ", input=" + input
-				+ ", qnId=" + qnId + ", user=" + user + ", elements=" + elements + "]";
+		return "CodeRequest [studentId=" + studentId + ", status=" + status + ", code=" + code + ", langId=" + langId
+				+ ", input=" + input + ", qnId=" + qnId + ", user=" + user + ", elements=" + elements + "]";
 	}
+
+	
     
     
 }

@@ -198,6 +198,7 @@
                                                 <div class="ml-auto flex gap-3">
                                                     <button type="button"
                                                         class="btn btn-warning"
+                                                        (click)="executeCode('run')"
                                                         (click)="openOutput()">
                                                         Run<i
                                                             class="bi bi-play-fill"></i>
@@ -209,7 +210,7 @@
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-success"
-                                                        (click)="executeCode()"
+                                                        (click)="executeCode('Submit')"
                                                         [innerHTML]="submit">
                                                     </button>
                                                 </div>

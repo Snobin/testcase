@@ -4,4 +4,5 @@ export class CodeRequest {
     elements:any;
     qnId:any;
     user:any;
+    status:any;
 }
