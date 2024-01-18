@@ -27,6 +27,7 @@ import { ConsoleComponent } from './pages/user/console/console.component';
 import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
+import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 
 
 const routes: Routes = [
@@ -92,13 +93,14 @@ const routes: Routes = [
       }, {
         path: 'view-answer',
         component: ViewAnswerComponent
-      },{
+      }, {
         path: 'view-code',
         component: ViewCodingComponent
-      },{
+      }, {
         path: 'code/:qid',
         component: UpdatecodeComponent
-      }
+      },
+       { path: 'details/:userId', component: AnsDetailsComponent },
     ]
   },
   {
