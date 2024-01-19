@@ -5,4 +5,5 @@ export class Case {
     expectedOutput: string;
     processingTime: number;
     success: string;
+  active: boolean;
 }
