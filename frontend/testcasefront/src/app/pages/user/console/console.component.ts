@@ -26,6 +26,7 @@ declare var CodeMirror: any;
 })
 export class ConsoleComponent implements OnInit {
 
+
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
 
   console: boolean = true;
@@ -48,30 +49,7 @@ export class ConsoleComponent implements OnInit {
   case_2: Case = new Case();
   case_3: Case = new Case();
   cases: Case[] = [
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
+
   ];
 
   questiondata;
@@ -116,33 +94,26 @@ export class ConsoleComponent implements OnInit {
     this.isOpen = true;
   }
 
-  activateCase1() {
-    if (this.case1 == false) {
-      this.loading = false;
-      this.case1 = true;
-      this.case2 = false;
-      this.case3 = false;
-    }
-  }
 
-  activateCase2() {
-    if (this.case2 == false) {
-      this.loading = false;
-      this.case1 = false;
-      this.case2 = true;
-      this.case3 = false;
-    }
-  }
 
-  activateCase3() {
-    if (this.case3 == false) {
-      this.loading = false;
-      this.case1 = false;
-      this.case2 = false;
-      this.case3 = true;
-    }
-  }
-
+  // qnData(qid) {
+  //   this.service.questionReq(qid).subscribe(
+  //     (data: any) => {
+  //       if (data) {
+  //         this.questiondata = data;
+  //         console.log(data);
+  //       } else {
+  //         console.error('No data received from the service.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  //   this.case_1 = this.cases[0];
+  //   this.case_2 = this.cases[1];
+  //   this.case_3 = this.cases[2];
+  // }
   qnData(qid) {
     this.service.questionReq(qid).subscribe(
       (data: any) => {
@@ -157,10 +128,16 @@ export class ConsoleComponent implements OnInit {
         console.log(error);
       }
     );
-    this.case_1 = this.cases[0];
-    this.case_2 = this.cases[1];
-    this.case_3 = this.cases[2];
+    this.cases = [this.cases[0], this.cases[1], this.cases[2]]; // Assuming you have cases initialized elsewhere
   }
+
+  activateCase(index) {
+    this.loading = false;
+    this.cases.forEach((caseItem, i) => {
+      caseItem.active = i === index;
+    });
+  }
+
 
   get constraints(): string {
     // Replace all occurrences of '•' with '<br>•', except the first one
@@ -294,64 +271,70 @@ export class ConsoleComponent implements OnInit {
   }
 
   async executeCode(status: string) {
-    // Get the code from the CodeMirror editor
+    this.cases = [];
     this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
     this.loading = true;
     this.save();
     this.openOutput();
     this.code = this.editor.getValue();
+
     try {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
         this.codereq.qnId = this.questiondata.questionId;
         this.codereq.user = this.userData.username;
-         this.codereq.status = status;
+        this.codereq.status = status;
+
         const response = await this.service.compileAndTest(this.codereq).toPromise();
-        if (response) {
-          this.loading = false;
-          this.submit = 'Submit';
-          this.activateCase1();
-          this.cases = response;
-          this.case_1 = this.cases[0];
-          this.case_2 = this.cases[1];
-          this.case_3 = this.cases[2];
-        }
-        this.initializeCodeMirror();
-      } else {
+
         this.loading = false;
         this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'Please select a programming language and enter code.';
-        this.case_2.message = 'Please select a programming language and enter code.';
-        this.case_3.message = 'Please select a programming language and enter code.';
+        console.log(response);
+
+        if (response && response.length >= 3) {
+
+          for (let i = 0; i < response.length; i++) {
+            this.cases[i] = response[i];
+          }
+
+          this.activateCase(0);
+
+        }
+
+        this.initializeCodeMirror();
+
+      } else {
+        this.handleError('Please select a programming language and enter code.');
       }
     } catch (error) {
       console.error('Error:', error);
+
       if (error.status === 400) {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'Bad Request';
-        this.case_2.message = 'Bad Request';
-        this.case_3.message = 'Bad Request';
+        this.handleError('Bad Request');
       } else if (error.status === 500) {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'Internal Server Error';
-        this.case_2.message = 'Internal Server Error';
-        this.case_3.message = 'Internal Server Error';
+        this.handleError('Internal Server Error');
       } else {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'An unexpected error occurred.';
-        this.case_2.message = 'An unexpected error occurred.';
-        this.case_3.message = 'An unexpected error occurred.';
+        this.handleError('An unexpected error occurred.');
       }
     }
   }
+  handleError(errorMessage: string) {
+    this.loading = false;
+    this.submit = 'Submit';
+    this.activateCase(0); // Assuming you want to activate the first case by default
+
+    for (let i = 0; i < 3; i++) {
+      this.cases[i].message = errorMessage;
+    }
+  }
+
+  // activateCase(index) {
+  //   this.cases.forEach((caseItem, i) => {
+  //     caseItem.active = i === index;
+  //   });
+  // }
+
 
   clear() {
     // Remove the stored code in local storage
