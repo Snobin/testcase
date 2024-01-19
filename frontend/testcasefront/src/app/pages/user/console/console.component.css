@@ -10006,3 +10006,11 @@ btn:focus-visible {
     overflow-y: scroll;
     height: 215px;
 }
+
+.color-success-subtle {
+    color: #6dcba1;
+}
+
+.code-family {
+    font-family: monospace;
+}
