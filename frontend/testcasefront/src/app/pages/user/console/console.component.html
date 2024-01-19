@@ -307,6 +307,15 @@
                                                                     [class.bi-check-circle-fill]="case_3.success == 'true'"
                                                                     [class.bi-x-circle-fill]="case_3.success == 'false'"></i>
                                                             </button>
+                                                            <div class="ml-auto color-success-subtle code-family" *ngIf="case1==true">
+                                                                {{case_1.processingTime}} Ms
+                                                            </div>
+                                                            <div class="ml-auto color-success-subtle code-family" *ngIf="case2==true">
+                                                                {{case_2.processingTime}} Ms
+                                                            </div>
+                                                            <div class="ml-auto color-success-subtle code-family" *ngIf="case3==true">
+                                                                {{case_3.processingTime}} Ms
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- Case Content -->
@@ -319,7 +328,7 @@
                                                                     class="row">
                                                                     <p
                                                                         class="p-0">Input</p>
-                                                                    <code contenteditable="true">{{case_1.input}}</code>
+                                                                    <code>{{case_1.input}}</code>
                                                                 </div>
                                                                 <div
                                                                     class="row">
