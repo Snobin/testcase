@@ -3,4 +3,6 @@ export class CodeRequest {
     langId:any;
     elements:any;
     qnId:any;
+    user:any;
+    status:any;
 }

@@ -8,7 +8,7 @@ import { AddQuestion } from '../model/AddQuestion';
 })
 export class CodeService {
 
-  private apiUrl = 'http://localhost:8085/execute';
+  private apiUrl = 'http://localhost:8082/execute';
   private baseUrl = 'http://localhost:8083/question';
   private url = 'http://localhost:8083/code';
 

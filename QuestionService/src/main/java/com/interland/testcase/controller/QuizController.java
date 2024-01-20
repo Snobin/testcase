@@ -20,7 +20,7 @@ import com.interland.testcase.service.QuizService;
 
 @RequestMapping("/quiz")
 @RestController
-@CrossOrigin("*")
+
 public class QuizController {
 
 	@Autowired
@@ -60,6 +60,7 @@ public class QuizController {
 	
 	@GetMapping("/category/active/{cid}")
 	public List<Quiz> getActiveQuiz(@PathVariable("cid") Long cid){
+		System.out.println(cid);
 		Category category=new Category();
 		category.setCid(cid);
 		return this.quizService.getAtiveQuizzesCategory(category);
