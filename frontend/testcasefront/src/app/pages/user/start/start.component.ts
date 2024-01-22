@@ -23,9 +23,6 @@ export class StartComponent implements OnInit {
   attemptedNo: any = 0;
   notAttemptedNo: any;
 
-
-
-
   qId;
   questions;
   marksGot = 0;
@@ -157,7 +154,6 @@ export class StartComponent implements OnInit {
         }
       }
     }
-
   }
 
   next(no: number, questionId: string) {
@@ -197,6 +193,10 @@ export class StartComponent implements OnInit {
   }
 
   previous(no: number, questionId: string) {
+    const existingStudentIndex = this.students.findIndex(student => student.no === no);
+    if (existingStudentIndex !== -1) {
+      this.students[existingStudentIndex].status = 'not attempted';
+    }
     const value = $('input[name="options"]:checked').val();
     this.onRadioChange(value, no, questionId);
     if (this.currentPage <= this.pages.length && this.currentPage != 1) {
@@ -228,7 +228,7 @@ export class StartComponent implements OnInit {
         }
       }
     }
-    console.log(this.students); 
+    console.log(this.students);
   }
 
   status() {
