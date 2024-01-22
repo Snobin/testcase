@@ -301,10 +301,10 @@ export class ConsoleComponent implements OnInit {
         if (status == 'run') {
           this.runText = "Run<i class='bi bi-play-fill'></i>";
         }
-        console.log(response);
-        if (response && response.length >= 3) {
+        if (response && response.length) {
           for (let i = 0; i < response.length; i++) {
             this.cases[i] = response[i];
+
           }
           this.activateCase(0);
         }

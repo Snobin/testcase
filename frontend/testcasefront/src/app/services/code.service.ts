@@ -29,8 +29,8 @@ export class CodeService {
   public codingQuestions() {
     return this.http.get(`${this.url}`);
   }
-  public activeCodingQuestions() {
-    return this.http.get(`${this.url}/active`);
+  public activeCodingQuestions(userStr:string) {
+    return this.http.post(`${this.url}/active`,userStr);
   }
 
   public updateCode(question: AddQuestion, file: any) {

@@ -51,9 +51,12 @@ export class LoadQuizComponent implements OnInit {
     }
 
     getCodingQuestions() {
-        // Your logic to fetch coding questions
-        // Example:
-        this.code.activeCodingQuestions().subscribe(
+       
+        let userObject = localStorage.getItem("user");
+        const user = JSON.parse(userObject);
+        const username = user.username;
+
+        this.code.activeCodingQuestions(username).subscribe(
             (data: any) => {
                 this.codingQuestions = data;
                 console.log(data);
