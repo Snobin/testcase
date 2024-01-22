@@ -200,9 +200,7 @@
                                                     <button type="button"
                                                         class="btn btn-warning"
                                                         (click)="executeCode('run')"
-                                                        (click)="openOutput()">
-                                                        Run<i
-                                                            class="bi bi-play-fill"></i>
+                                                        [innerHTML]="runText">
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-case-active"
