@@ -1,36 +1,46 @@
 <div class="flex h-92 w-full flex-col ">
     <div class="flex w-full flex-grow">
         <div class="bg-gray-2 flex h-full w-full p-2">
-            <p-splitter [panelSizes]="[50, 50]" layout="horizontal" style="width: 100%;height: 100%;" [gutterSize]="15">
+            <p-splitter [panelSizes]="[50, 50]" layout="horizontal"
+                style="width: 100%;height: 100%;" [gutterSize]="15">
                 <ng-template pTemplate="panel">
-                    <div class="h-full flex-col h-full w-full max-h-90 min-w-300">
+                    <div
+                        class="h-full flex-col h-full w-full max-h-90 min-w-300">
                         <div class="relative flex h-full flex-col">
-                            <div class="min-h-0 flex-grow" style="height: 100%;">
-                                <div class="flex h-full flex-col rounded bg-layer-1">
+                            <div class="min-h-0 flex-grow"
+                                style="height: 100%;">
+                                <div
+                                    class="flex h-full flex-col rounded bg-layer-1">
                                     <div>
-                    
-                                    <div
+
+                                        <div
                                             class="bg-layer-2 border-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
-                                            <div class="flex h-full w-full flex-row gap-6">
+                                            <div
+                                                class="flex h-full w-full flex-row gap-6">
                                                 <a>
                                                     <div
                                                         class="relative flex h-full select-none items-center whitespace-nowrap text-xs text-label-1 font-medium hover:text-label-1 shrink">
                                                         <span>Description</span>
-                                                        <div class="bg-gray-7 absolute -bottom-[1px] h-[2px] w-full">
+                                                        <div
+                                                            class="bg-gray-7 absolute -bottom-[1px] h-[2px] w-full">
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex h-full w-full overflow-y-auto rounded-b non-selectable">
-                                        <div class="flex h-full w-full overflow-y-auto">
-                                            <div class="flex h-full w-full flex-1 flex-col">
+                                    <div
+                                        class="flex h-full w-full overflow-y-auto rounded-b non-selectable">
+                                        <div
+                                            class="flex h-full w-full overflow-y-auto">
+                                            <div
+                                                class="flex h-full w-full flex-1 flex-col">
                                                 <div class="w-full px-3 pt-3">
                                                     <div class="w-full">
                                                         <div class="flex">
                                                             <div class="flex-1">
-                                                                <div class="flex h-full items-center">
+                                                                <div
+                                                                    class="flex h-full items-center">
                                                                     <p
                                                                         class="mr-2 text-label-1 hover:text-label-1 text-lg font-medium">
                                                                         <b>
@@ -54,11 +64,13 @@
                                                                 *ngIf="(questiondata.example1Input&&questiondata.example1Output)">
                                                                 <b><u>Example
                                                                         1</u></b>
-                                                                <ul class="ml-10">
+                                                                <ul
+                                                                    class="ml-10">
                                                                     <li>
                                                                         <b>Input:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example1Input}}</code>
                                                                             </li>
@@ -67,7 +79,8 @@
                                                                     <li>
                                                                         <b>Output:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example1Output}}</code>
                                                                             </li>
@@ -75,7 +88,8 @@
                                                                     </li>
                                                                     <li>
                                                                         <b>Explanation:</b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <i>{{questiondata.example1Exp}}</i>
                                                                             </li>
@@ -88,11 +102,13 @@
                                                                 *ngIf="(questiondata.example2Input&&questiondata.example2Output)">
                                                                 <b><u>Example
                                                                         2</u></b>
-                                                                <ul class="ml-10">
+                                                                <ul
+                                                                    class="ml-10">
                                                                     <li>
                                                                         <b>Input:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example2Input}}</code>
                                                                             </li>
@@ -101,7 +117,8 @@
                                                                     <li>
                                                                         <b>Output:
                                                                         </b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <code>{{questiondata.example2Output}}</code>
                                                                             </li>
@@ -109,7 +126,8 @@
                                                                     </li>
                                                                     <li>
                                                                         <b>Explanation:</b>
-                                                                        <ul class="ml-10">
+                                                                        <ul
+                                                                            class="ml-10">
                                                                             <li>
                                                                                 <i>{{questiondata.example2Exp}}</i>
                                                                             </li>
@@ -122,7 +140,9 @@
                                                             <hr>
                                                             <li class="mt-3">
                                                                 <b><u>Constraints:</u></b>
-                                                                <ul class="ml-10" [innerHTML]="constraints">
+                                                                <ul
+                                                                    class="ml-10"
+                                                                    [innerHTML]="constraints">
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -140,27 +160,36 @@
                     <div class="h-full flex-col w-full h-full max-h-90">
                         <div class="relative flex h-full flex-col">
                             <div class="min-h-0 flex-grow">
-                                <div class="flex h-full flex-col rounded bg-layer-1">
+                                <div
+                                    class="flex h-full flex-col rounded bg-layer-1">
                                     <div class="flex h-full flex-col">
-                                        <div class="relative flex h-full flex-col overflow-hidden rounded" id="editor">
+                                        <div
+                                            class="relative flex h-full flex-col overflow-hidden rounded"
+                                            id="editor">
                                             <div
                                                 class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
-                                                <div class="mr-auto flex flex-nowrap items-center gap-3">
+                                                <div
+                                                    class="mr-auto flex flex-nowrap items-center gap-3">
                                                     <div>
                                                         <div>
-                                                            <select class="select form-select"
+                                                            <select
+                                                                class="select form-select"
                                                                 [(ngModel)]="selectedLanguage"
                                                                 (change)="onChangeLang()">
-                                                                <option value="java">
+                                                                <option
+                                                                    value="java">
                                                                     Java
                                                                 </option>
-                                                                <option value="python">
+                                                                <option
+                                                                    value="python">
                                                                     Python
                                                                 </option>
-                                                                <option value="cpp">
+                                                                <option
+                                                                    value="cpp">
                                                                     C++
                                                                 </option>
-                                                                <option value="c">
+                                                                <option
+                                                                    value="c">
                                                                     C
                                                                 </option>
                                                             </select>
@@ -168,21 +197,29 @@
                                                     </div>
                                                 </div>
                                                 <div class="ml-auto flex gap-3">
-                                                    <button type="button" class="btn btn-warning"
-                                                        (click)="executeCode('run')" (click)="openOutput()">
-                                                        Run<i class="bi bi-play-fill"></i>
+                                                    <button type="button"
+                                                        class="btn btn-warning"
+                                                        (click)="executeCode('run')"
+                                                        [innerHTML]="runText">
                                                     </button>
-                                                    <button type="button" class="btn btn-case-active" (click)="save()"
+                                                    <button type="button"
+                                                        class="btn btn-case-active"
+                                                        (click)="save()"
                                                         [innerHTML]="saveText">
                                                     </button>
-                                                    <button type="button" class="btn btn-success"
-                                                        (click)="executeCode('Submit')" [innerHTML]="submit">
+                                                    <button type="button"
+                                                        class="btn btn-success"
+                                                        (click)="executeCode('Submit')"
+                                                        [innerHTML]="submit">
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-1 flex-col overflow-hidden">
-                                                <div class="flex-1 overflow-hidden">
-                                                    <textarea id="editor" #editor type="text"
+                                            <div
+                                                class="flex flex-1 flex-col overflow-hidden">
+                                                <div
+                                                    class="flex-1 overflow-hidden">
+                                                    <textarea id="editor"
+                                                        #editor type="text"
                                                         class="form-control"></textarea>
                                                 </div>
                                             </div>
@@ -190,18 +227,23 @@
                                             <!-- Console Toggle Button -->
                                             <div
                                                 class="flex h-9 items-center pr-4 bg-layer-2 border-fill-3 rounded-t border-b">
-                                                <div class="mr-auto flex flex-nowrap items-center gap-3">
+                                                <div
+                                                    class="mr-auto flex flex-nowrap items-center gap-3">
                                                     <div>
-                                                        <button type="button" class="btn ml-2 w-full flex items-center"
+                                                        <button type="button"
+                                                            class="btn ml-2 w-full flex items-center"
                                                             (click)="toggleOpen()">
                                                             <span>Console</span>
-                                                            <i class="bi" [class.bi-chevron-up]="!isOpen"
+                                                            <i class="bi"
+                                                                [class.bi-chevron-up]="!isOpen"
                                                                 [class.bi-chevron-down]="isOpen"></i>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="fade saved-container flex ml-auto gap-3 non-selectable"
-                                                    [class.hide]="toast == false" [class.show]="toast == true"
+                                                <div
+                                                    class="fade saved-container flex ml-auto gap-3 non-selectable"
+                                                    [class.hide]="toast == false"
+                                                    [class.show]="toast == true"
                                                     role="alert">
                                                     <div class="text-success">
                                                         Saved Successfully !
@@ -210,63 +252,109 @@
                                             </div>
 
                                             <!-- Console Content -->
-                                           
-                                            <div id="console" class="console" [ngClass]="{ 'open': isOpen }">
-                                                <div *ngIf="loading" class="loader-body">
-                                                  <div class="loader">
-                                                    <span>{{braceLeft}}</span><span>{{braceRight}}</span>
-                                                  </div>
+
+                                            <div id="console" class="console"
+                                                [ngClass]="{ 'open': isOpen }">
+                                                <div *ngIf="loading"
+                                                    class="loader-body">
+                                                    <div class="loader">
+                                                        <span>{{braceLeft}}</span><span>{{braceRight}}</span>
+                                                    </div>
                                                 </div>
 
-                                                <div class="row" *ngIf="!loading">
-                                                  <div class="col-md-12 h-full">
-                                                    <div class="flex p-1 border-b">
-                                                      <button type="button" class="btn position-relative" *ngFor="let currentCase of cases; let i = index"
-                                                        [class.btn-case]="!currentCase.active" [class.btn-case-active]="currentCase.active" (click)="activateCase(i)">
-                                                        case {{(i+1)}}
-                                                        <i class="bi"
-                                                          [class.color-danger]="currentCase.success === 'false'"
-                                                          [class.color-success]="currentCase.success === 'true'"
-                                                          [class.bi-check-circle-fill]="currentCase.success === 'true'"
-                                                          [class.bi-x-circle-fill]="currentCase.success === 'false'">
-                                                        </i>
-                                                      </button>
-                                                    </div>
-                                                  </div>
-                                                  <div class="col-md-12 case-scroll-y">
-                                                    <div *ngFor="let currentCase of cases; let i = index">
-                                                        <div class="card" *ngIf="currentCase.active">
-                                                          <div class="case-body">
-                                                            <div class="row">
-                                                              <p class="p-0">Input</p>
-                                                              <code contenteditable="true">{{currentCase.input}}</code>
-
+                                                <div class="row"
+                                                    *ngIf="!loading">
+                                                    <div
+                                                        class="row col-md-12 h-full">
+                                                        <div
+                                                            class="flex p-1 border-b">
+                                                            <button
+                                                                type="button"
+                                                                class="btn position-relative mr-1"
+                                                                *ngFor="let currentCase of cases; let i = index"
+                                                                [class.btn-case]="!currentCase.active"
+                                                                [class.btn-case-active]="currentCase.active"
+                                                                (click)="activateCase(i)">
+                                                                case {{(i+1)}}
+                                                                <i class="bi"
+                                                                    [class.color-danger]="currentCase.success === 'false'"
+                                                                    [class.color-success]="currentCase.success === 'true'"
+                                                                    [class.bi-check-circle-fill]="currentCase.success === 'true'"
+                                                                    [class.bi-x-circle-fill]="currentCase.success === 'false'">
+                                                                </i>
+                                                            </button>
+                                                            <div
+                                                                class="ml-auto">
+                                                                <div
+                                                                    *ngFor="let currentCase of cases">
+                                                                    <div
+                                                                        class="color-success-subtle"
+                                                                        *ngIf="currentCase.active">
+                                                                        {{currentCase.processingTime}}
+                                                                        Ms
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="row">
-                                                              <p class="p-0">Output</p>
-                                                              <code>{{currentCase.output}}</code>
-                                                            </div>
-                                                            <div class="row">
-                                                              <p class="p-0">Expected Output</p>
-                                                              <code>{{currentCase.expectedOutput}}</code>
-                                                            </div>
-                                                            <div class="row">
-                                                              <p class="p-0">Message</p>
-                                                              <code [class.color-danger]="currentCase.success == 'false'" [class.color-success]="currentCase.success == 'true'">
-                                                                {{currentCase.message}}
-                                                              </code>
-                                                            </div>
-                                                          </div>
                                                         </div>
-                                                 
-                                                      
                                                     </div>
-                                                  </div>
+                                                    <div
+                                                        class="col-md-12 case-scroll-y">
+                                                        <div
+                                                            *ngFor="let currentCase of cases; let i = index">
+                                                            <div class="card"
+                                                                *ngIf="currentCase.active">
+                                                                <div
+                                                                    class="case-body">
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Input
+                                                                        </p>
+                                                                        <code
+                                                                            contenteditable="true">
+                                                                            {{currentCase.input}}
+                                                                        </code>
+                                                                    </div>
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Output
+                                                                        </p>
+                                                                        <code>
+                                                                            {{currentCase.output}}
+                                                                        </code>
+                                                                    </div>
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Expected
+                                                                            Output
+                                                                        </p>
+                                                                        <code>
+                                                                            {{currentCase.expectedOutput}}
+                                                                        </code>
+                                                                    </div>
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Message
+                                                                        </p>
+                                                                        <code
+                                                                            [class.color-danger]="currentCase.success == 'false'"
+                                                                            [class.color-success]="currentCase.success == 'true'">
+                                                                            {{currentCase.message}}
+                                                                        </code>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                              </div>
-                                              
-
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
