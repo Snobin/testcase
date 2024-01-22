@@ -12,6 +12,7 @@
                                 <div
                                     class="flex h-full flex-col rounded bg-layer-1">
                                     <div>
+
                                         <div
                                             class="bg-layer-2 border-fill-3 flex h-9 w-full items-center justify-between rounded-t border-b px-4">
                                             <div
@@ -198,9 +199,8 @@
                                                 <div class="ml-auto flex gap-3">
                                                     <button type="button"
                                                         class="btn btn-warning"
-                                                        (click)="openOutput()">
-                                                        Run<i
-                                                            class="bi bi-play-fill"></i>
+                                                        (click)="executeCode('run')"
+                                                        [innerHTML]="runText">
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-case-active"
@@ -209,7 +209,7 @@
                                                     </button>
                                                     <button type="button"
                                                         class="btn btn-success"
-                                                        (click)="executeCode()"
+                                                        (click)="executeCode('Submit')"
                                                         [innerHTML]="submit">
                                                     </button>
                                                 </div>
@@ -241,171 +241,114 @@
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="fade saved-container flex ml-auto gap-3 non-selectable bg-success"
+                                                    class="fade saved-container flex ml-auto gap-3 non-selectable"
                                                     [class.hide]="toast == false"
                                                     [class.show]="toast == true"
                                                     role="alert">
-                                                    <div class="text-white">
+                                                    <div class="text-success">
                                                         Saved Successfully !
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <!-- Console Content -->
+
                                             <div id="console" class="console"
                                                 [ngClass]="{ 'open': isOpen }">
-                                                <div *ngIf="loading == true"
+                                                <div *ngIf="loading"
                                                     class="loader-body">
                                                     <div class="loader">
                                                         <span>{{braceLeft}}</span><span>{{braceRight}}</span>
                                                     </div>
                                                 </div>
+
                                                 <div class="row"
-                                                    *ngIf="loading == false">
+                                                    *ngIf="!loading">
                                                     <div
-                                                        class="col-md-12 h-full">
-                                                        <!-- Case Buttons -->
+                                                        class="row col-md-12 h-full">
                                                         <div
                                                             class="flex p-1 border-b">
                                                             <button
                                                                 type="button"
-                                                                class="btn position-relative"
-                                                                [class.btn-case]="!case1"
-                                                                [class.btn-case-active]="case1"
-                                                                (click)="activateCase1()">
-                                                                Case 1 <i
-                                                                    class="bi"
-                                                                    [class.color-danger]="case_1.success == 'false'"
-                                                                    [class.color-success]="case_1.success == 'true'"
-                                                                    [class.bi-check-circle-fill]="case_1.success == 'true'"
-                                                                    [class.bi-x-circle-fill]="case_1.success == 'false'"></i>
+                                                                class="btn position-relative mr-1"
+                                                                *ngFor="let currentCase of cases; let i = index"
+                                                                [class.btn-case]="!currentCase.active"
+                                                                [class.btn-case-active]="currentCase.active"
+                                                                (click)="activateCase(i)">
+                                                                case {{(i+1)}}
+                                                                <i class="bi"
+                                                                    [class.color-danger]="currentCase.success === 'false'"
+                                                                    [class.color-success]="currentCase.success === 'true'"
+                                                                    [class.bi-check-circle-fill]="currentCase.success === 'true'"
+                                                                    [class.bi-x-circle-fill]="currentCase.success === 'false'">
+                                                                </i>
                                                             </button>
-                                                            <button
-                                                                type="button"
-                                                                class="btn ml5"
-                                                                [class.btn-case]="!case2"
-                                                                [class.btn-case-active]="case2"
-                                                                (click)="activateCase2()">
-                                                                Case 2 <i
-                                                                    class="bi"
-                                                                    [class.color-danger]="case_2.success == 'false'"
-                                                                    [class.color-success]="case_2.success == 'true'"
-                                                                    [class.bi-check-circle-fill]="case_2.success == 'true'"
-                                                                    [class.bi-x-circle-fill]="case_2.success == 'false'"></i>
-                                                            </button>
-                                                            <button
-                                                                type="button"
-                                                                class="btn ml5"
-                                                                [class.btn-case]="!case3"
-                                                                [class.btn-case-active]="case3"
-                                                                (click)="activateCase3()">
-                                                                Case 3 <i
-                                                                    class="bi"
-                                                                    [class.color-danger]="case_3.success == 'false'"
-                                                                    [class.color-success]="case_3.success == 'true'"
-                                                                    [class.bi-check-circle-fill]="case_3.success == 'true'"
-                                                                    [class.bi-x-circle-fill]="case_3.success == 'false'"></i>
-                                                            </button>
+                                                            <div
+                                                                class="ml-auto">
+                                                                <div
+                                                                    *ngFor="let currentCase of cases">
+                                                                    <div
+                                                                        class="color-success-subtle"
+                                                                        *ngIf="currentCase.active">
+                                                                        {{currentCase.processingTime}}
+                                                                        Ms
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <!-- Case Content -->
-                                                    <div class="col-md-12 case-scroll-y">
-                                                        <div class="card"
-                                                            *ngIf="case1 == true">
-                                                            <div
-                                                                class="case-body">
+                                                    <div
+                                                        class="col-md-12 case-scroll-y">
+                                                        <div
+                                                            *ngFor="let currentCase of cases; let i = index">
+                                                            <div class="card"
+                                                                *ngIf="currentCase.active">
                                                                 <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Input</p>
-                                                                    <code contenteditable="true">{{case_1.input}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Output</p>
-                                                                    <code>{{case_1.output}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Expected
-                                                                        Output</p>
-                                                                    <code>{{case_1.expectedOutput}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Message</p>
-                                                                    <code
-                                                                        [class.color-danger]="case_1.success == 'false'"
-                                                                        [class.color-success]="case_1.success == 'true'">{{case_1.message}}</code>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card"
-                                                            *ngIf="case2 == true">
-                                                            <div
-                                                                class="case-body">
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Input</p>
-                                                                    <code>{{case_2.input}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Output</p>
-                                                                    <code>{{case_2.output}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Expected
-                                                                        Output</p>
-                                                                    <code>{{case_2.expectedOutput}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Message</p>
-                                                                    <code
-                                                                        [class.color-danger]="case_2.success == 'false'"
-                                                                        [class.color-success]="case_2.success == 'true'">{{case_2.message}}</code>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card"
-                                                            *ngIf="case3 == true">
-                                                            <div
-                                                                class="case-body">
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Input</p>
-                                                                    <code>{{case_3.input}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Output</p>
-                                                                    <code>{{case_3.output}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Expected
-                                                                        Output</p>
-                                                                    <code>{{case_3.expectedOutput}}</code>
-                                                                </div>
-                                                                <div
-                                                                    class="row">
-                                                                    <p
-                                                                        class="p-0">Message</p>
-                                                                    <code
-                                                                        [class.color-danger]="case_3.success == 'false'"
-                                                                        [class.color-success]="case_3.success == 'true'">{{case_3.message}}</code>
+                                                                    class="case-body">
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Input
+                                                                        </p>
+                                                                        <code
+                                                                            contenteditable="true">
+                                                                            {{currentCase.input}}
+                                                                        </code>
+                                                                    </div>
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Output
+                                                                        </p>
+                                                                        <code>
+                                                                            {{currentCase.output}}
+                                                                        </code>
+                                                                    </div>
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Expected
+                                                                            Output
+                                                                        </p>
+                                                                        <code>
+                                                                            {{currentCase.expectedOutput}}
+                                                                        </code>
+                                                                    </div>
+                                                                    <div
+                                                                        class="row">
+                                                                        <p
+                                                                            class="p-0">
+                                                                            Message
+                                                                        </p>
+                                                                        <code
+                                                                            [class.color-danger]="currentCase.success == 'false'"
+                                                                            [class.color-success]="currentCase.success == 'true'">
+                                                                            {{currentCase.message}}
+                                                                        </code>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

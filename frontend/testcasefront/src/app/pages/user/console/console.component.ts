@@ -26,8 +26,10 @@ declare var CodeMirror: any;
 })
 export class ConsoleComponent implements OnInit {
 
+
   @ViewChild('editor', { static: false }) editorTextarea: ElementRef;
 
+  console: boolean = true;
   qId: any;
   case1OutputMessage: any;
   case2OutputMessage: any;
@@ -47,30 +49,7 @@ export class ConsoleComponent implements OnInit {
   case_2: Case = new Case();
   case_3: Case = new Case();
   cases: Case[] = [
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
-    {
-      output: '0',
-      input: '0',
-      processingTime: 0,
-      expectedOutput: '0',
-      message: '-----------',
-      success: ' ',
-    },
+
   ];
 
   questiondata;
@@ -80,6 +59,7 @@ export class ConsoleComponent implements OnInit {
   loading: boolean = true;
   submit: string = 'Submit';
   saveText: string = "<i class='bi bi-floppy2-fill'></i>";
+  runText: string = "Run<i class='bi bi-play-fill'></i>";
   toast: boolean = false;
 
   constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
@@ -115,32 +95,26 @@ export class ConsoleComponent implements OnInit {
     this.isOpen = true;
   }
 
-  activateCase1() {
-    if (this.case1 == false) {
-      this.loading = false;
-      this.case1 = true;
-      this.case2 = false;
-      this.case3 = false;
-    }
-  }
 
-  activateCase2() {
-    if (this.case2 == false) {
-      this.loading = false;
-      this.case1 = false;
-      this.case2 = true;
-      this.case3 = false;
-    }
-  }
 
-  activateCase3() {
-    if (this.case3 == false) {
-      this.loading = false;
-      this.case1 = false;
-      this.case2 = false;
-      this.case3 = true;
-    }
-  }
+  // qnData(qid) {
+  //   this.service.questionReq(qid).subscribe(
+  //     (data: any) => {
+  //       if (data) {
+  //         this.questiondata = data;
+  //         console.log(data);
+  //       } else {
+  //         console.error('No data received from the service.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  //   this.case_1 = this.cases[0];
+  //   this.case_2 = this.cases[1];
+  //   this.case_3 = this.cases[2];
+  // }
 
   qnData(qid) {
     this.service.questionReq(qid).subscribe(
@@ -156,9 +130,14 @@ export class ConsoleComponent implements OnInit {
         console.log(error);
       }
     );
-    this.case_1 = this.cases[0];
-    this.case_2 = this.cases[1];
-    this.case_3 = this.cases[2];
+    this.cases = [this.cases[0], this.cases[1], this.cases[2]]; // Assuming you have cases initialized elsewhere
+  }
+
+  activateCase(index) {
+    this.loading = false;
+    this.cases.forEach((caseItem, i) => {
+      caseItem.active = i === index;
+    });
   }
 
   get constraints(): string {
@@ -175,6 +154,8 @@ export class ConsoleComponent implements OnInit {
       this.editor.setOption("mode", this.getEditorMode());
       // Set the code value
       this.editor.setValue(this.code);
+      // Update extraKeys
+      this.editor.setOption("extraKeys", this.getExtraKeys());
     } else {
       // If the editor doesn't exist, create it
       this.editor = CodeMirror.fromTextArea(this.editorTextarea.nativeElement, {
@@ -182,6 +163,7 @@ export class ConsoleComponent implements OnInit {
         theme: "dracula",
         lineNumbers: true,
         autoCloseBrackets: true,
+        extraKeys: this.getExtraKeys(),
       });
       // Set the code to the CodeMirror editor
       this.editor.setValue(this.code);
@@ -226,6 +208,35 @@ export class ConsoleComponent implements OnInit {
     }
   }
 
+  getExtraKeys(): any {
+    return {
+      'Ctrl-Space': (cm) => {
+        cm.showHint({
+          hint: this.getHintFunction(),
+          completeSingle: false, // Adjust as needed
+        });
+      },
+      // Add other key bindings as needed
+    };
+  }
+
+  getHintFunction(): any {
+    switch (this.selectedLanguage) {
+      case 'java':
+        return CodeMirror.hint.java;
+      case 'cpp':
+        return CodeMirror.hint.cpp;
+      case 'python':
+        return CodeMirror.hint.python;
+      case 'c':
+        return CodeMirror.hint.c;
+      // Add cases for other languages as needed
+      default:
+        // Use a default hint or set to null if no hint is needed
+        return CodeMirror.hint.auto;
+    }
+  }
+
   onChangeLang() {
     // Load the saved code from local storage if available
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
@@ -260,64 +271,74 @@ export class ConsoleComponent implements OnInit {
     }, 500);
   }
 
-  async executeCode() {
-    // Get the code from the CodeMirror editor
-    this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
-    this.loading = true;
-    this.save();
-    this.openOutput();
+  async executeCode(status: string) {
+    this.cases = [];
+    if (status == 'Submit') {
+      this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
+      this.loading = true;
+      this.save();
+      this.openOutput();
+    }
+    if (status == 'run') {
+      this.runText = "Stop<i class='bi bi-stop-fill'></i>";
+      this.loading = true;
+      this.save();
+      this.openOutput();
+    }
     this.code = this.editor.getValue();
     try {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
         this.codereq.code = this.code;
         this.codereq.qnId = this.questiondata.questionId;
-        this.codereq.user=this.userData.username;
+        this.codereq.user = this.userData.username;
+        this.codereq.status = status;
         const response = await this.service.compileAndTest(this.codereq).toPromise();
-        if (response) {
-          this.loading = false;
-          this.submit = 'Submit';
-          this.activateCase1();
-          this.cases = response;
-          this.case_1 = this.cases[0];
-          this.case_2 = this.cases[1];
-          this.case_3 = this.cases[2];
+        this.loading = false;
+        if (status == 'Submit') {
+          this.submit = "Submit";
+        }
+        if (status == 'run') {
+          this.runText = "Run<i class='bi bi-play-fill'></i>";
+        }
+        console.log(response);
+        if (response && response.length >= 3) {
+          for (let i = 0; i < response.length; i++) {
+            this.cases[i] = response[i];
+          }
+          this.activateCase(0);
         }
         this.initializeCodeMirror();
       } else {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'Please select a programming language and enter code.';
-        this.case_2.message = 'Please select a programming language and enter code.';
-        this.case_3.message = 'Please select a programming language and enter code.';
+        this.handleError('Please select a programming language and enter code.');
       }
     } catch (error) {
       console.error('Error:', error);
       if (error.status === 400) {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'Bad Request';
-        this.case_2.message = 'Bad Request';
-        this.case_3.message = 'Bad Request';
+        this.handleError('Bad Request');
       } else if (error.status === 500) {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'Internal Server Error';
-        this.case_2.message = 'Internal Server Error';
-        this.case_3.message = 'Internal Server Error';
+        this.handleError('Internal Server Error');
       } else {
-        this.loading = false;
-        this.submit = 'Submit';
-        this.activateCase1();
-        this.case_1.message = 'An unexpected error occurred.';
-        this.case_2.message = 'An unexpected error occurred.';
-        this.case_3.message = 'An unexpected error occurred.';
+        this.handleError('An unexpected error occurred.');
       }
     }
   }
+
+  handleError(errorMessage: string) {
+    this.loading = false;
+    this.submit = 'Submit';
+    this.activateCase(0); // Assuming you want to activate the first case by default
+
+    for (let i = 0; i < 3; i++) {
+      this.cases[i].message = errorMessage;
+    }
+  }
+
+  // activateCase(index) {
+  //   this.cases.forEach((caseItem, i) => {
+  //     caseItem.active = i === index;
+  //   });
+  // }
 
   clear() {
     // Remove the stored code in local storage

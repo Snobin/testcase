@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-
 public class CodeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);
@@ -30,6 +29,7 @@ public class CodeController {
     @PostMapping("/execute")
     public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
         try {
+        	System.out.println(codeRequest.toString());
             List<CodeResponse> codeResponses = codeExecutionService.executeCode(codeRequest);
             return ResponseEntity.ok(codeResponses);
         } catch (Exception e) {

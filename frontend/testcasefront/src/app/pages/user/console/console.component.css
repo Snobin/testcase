@@ -9611,14 +9611,6 @@ body {
     padding-right: 1.5rem
 }
 
-.pr-8 {
-    padding-right: 2rem
-}
-
-.pr-9 {
-    padding-right: 2.25rem
-}
-
 .pr-\[10px\] {
     padding-right: 10px
 }
@@ -10013,4 +10005,12 @@ btn:focus-visible {
 .case-scroll-y {
     overflow-y: scroll;
     height: 215px;
+}
+
+.color-success-subtle {
+    color: #6dcba1;
+}
+
+.code-family {
+    font-family: monospace;
 }
