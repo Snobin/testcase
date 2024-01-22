@@ -31,7 +31,7 @@ public interface QuestionService {
 	
 	public Set<CompetitiveQuestion>  getData();
 	
-	public Set<CompetitiveQuestion>  getActiveData();
+	public Set<CompetitiveQuestion>  getActiveRandomQuestionsForUser(String userId);
 	
 	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
 	
