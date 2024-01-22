@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Case } from '../model/case';
+import { Subject } from 'rxjs';
 
 
 declare var CodeMirror: any;
@@ -48,9 +49,7 @@ export class ConsoleComponent implements OnInit {
   case_1: Case = new Case();
   case_2: Case = new Case();
   case_3: Case = new Case();
-  cases: Case[] = [
-
-  ];
+  cases: Case[] = [];
 
   questiondata;
   isOpen = false;
@@ -79,6 +78,8 @@ export class ConsoleComponent implements OnInit {
   ngAfterViewInit() {
     this.initializeCodeMirror();
   }
+
+  private cancelExecutionSubject = new Subject<void>();
 
   preventBackButton() {
     history.pushState(null, null, location.href);
@@ -273,6 +274,21 @@ export class ConsoleComponent implements OnInit {
 
   async executeCode(status: string) {
     this.cases = [];
+    if (status == 'run' && this.runText == "Stop<i class='bi bi-stop-fill'></i>") {
+      this.cancelExecution();
+      for (let i = 0; i < 3; i++) {
+        const c: any = {
+          input: '',
+          output: '',
+          expectedOutput: '',
+          processingTime: 0,
+          message: '',
+        };
+        this.cases[i] = c;
+        this.activateCase(0);
+      }
+      return;
+    }
     if (status == 'Submit') {
       this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
       this.loading = true;
@@ -293,7 +309,7 @@ export class ConsoleComponent implements OnInit {
         this.codereq.qnId = this.questiondata.questionId;
         this.codereq.user = this.userData.username;
         this.codereq.status = status;
-        const response = await this.service.compileAndTest(this.codereq).toPromise();
+        const response = await this.service.compileAndTest(this.codereq, this.cancelExecutionSubject).toPromise();
         this.loading = false;
         if (status == 'Submit') {
           this.submit = "Submit";
@@ -306,8 +322,8 @@ export class ConsoleComponent implements OnInit {
           for (let i = 0; i < response.length; i++) {
             this.cases[i] = response[i];
           }
-          this.activateCase(0);
         }
+        this.activateCase(0);
         this.initializeCodeMirror();
       } else {
         this.handleError('Please select a programming language and enter code.');
@@ -322,6 +338,10 @@ export class ConsoleComponent implements OnInit {
         this.handleError('An unexpected error occurred.');
       }
     }
+  }
+
+  cancelExecution() {
+    this.cancelExecutionSubject.next();
   }
 
   handleError(errorMessage: string) {
