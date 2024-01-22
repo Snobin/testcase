@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AddQuestion } from '../model/AddQuestion';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,11 @@ export class CodeService {
 
   constructor(private http: HttpClient) { }
 
-  compileAndTest(codeRequest: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, codeRequest);
+  compileAndTest(codeRequest: any, cancelSubject: Subject<void>): Observable<any> {
+    return this.http.post<any>(this.apiUrl, codeRequest)
+    .pipe(
+      takeUntil(cancelSubject),
+    );
   }
 
   questionReq(qid) {

@@ -306,44 +306,48 @@
                                                                 <div
                                                                     class="case-body">
                                                                     <div
-                                                                        class="row">
+                                                                        class="row placeholder-glow">
                                                                         <p
                                                                             class="p-0">
                                                                             Input
                                                                         </p>
                                                                         <code
+                                                                            [class.placeholder]="currentCase.input==''"
                                                                             contenteditable="true">
                                                                             {{currentCase.input}}
                                                                         </code>
                                                                     </div>
                                                                     <div
-                                                                        class="row">
+                                                                        class="row placeholder-glow">
                                                                         <p
                                                                             class="p-0">
                                                                             Output
                                                                         </p>
-                                                                        <code>
+                                                                        <code
+                                                                            [class.placeholder]="currentCase.output==''">
                                                                             {{currentCase.output}}
                                                                         </code>
                                                                     </div>
                                                                     <div
-                                                                        class="row">
+                                                                        class="row placeholder-glow">
                                                                         <p
                                                                             class="p-0">
                                                                             Expected
                                                                             Output
                                                                         </p>
-                                                                        <code>
+                                                                        <code
+                                                                            [class.placeholder]="currentCase.expectedOutput==''">
                                                                             {{currentCase.expectedOutput}}
                                                                         </code>
                                                                     </div>
                                                                     <div
-                                                                        class="row">
+                                                                        class="row placeholder-glow">
                                                                         <p
                                                                             class="p-0">
                                                                             Message
                                                                         </p>
                                                                         <code
+                                                                            [class.placeholder]="currentCase.message==''"
                                                                             [class.color-danger]="currentCase.success == 'false'"
                                                                             [class.color-success]="currentCase.success == 'true'">
                                                                             {{currentCase.message}}
