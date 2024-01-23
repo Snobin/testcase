@@ -9,8 +9,6 @@ export class LoginService {
 
   public loginStatusSubject=new Subject<boolean>();
 
-
-
   baseUrl = 'http://localhost:8081/auth';
 
   constructor(private http: HttpClient) { }

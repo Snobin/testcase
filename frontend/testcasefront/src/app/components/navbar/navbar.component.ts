@@ -65,12 +65,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (!this.statusSubscription) {
       this.statusSubscription = this.userService.status$.subscribe((status: boolean) => {
         this.status = status;
-
-        // Start the countdown timer when the status becomes true
-        if (this.status) {
-          this.startCountdown();
-        }
       });
+    }
+    // Start the countdown timer when the status becomes true
+    if (this.status) {
+      this.startCountdown();
     }
   }
 
