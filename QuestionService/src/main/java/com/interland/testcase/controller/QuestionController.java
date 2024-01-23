@@ -29,7 +29,6 @@ import com.interland.testcase.service.QuizService;
 
 @RestController
 @RequestMapping("/question")
-@CrossOrigin("*")
 public class QuestionController {
 
 	@Autowired

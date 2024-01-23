@@ -36,11 +36,12 @@ public class AuthController
 	
     @Autowired
     private AuthServiceImp userDetailsService;
+    
     @Autowired
     private AuthRepository authRepository;
     
     
-	@PostMapping("/signup")
+	@PostMapping("/																													")
 	ResponseEntity<?> registerUser(@RequestBody SignupDTO dto)
 	{
 		return new ResponseEntity<>(service.addUser(dto),HttpStatus.OK);
@@ -79,6 +80,7 @@ public class AuthController
     	
     }
     
+    
     @PostMapping("/allclaims")
     ResponseEntity<?> getAllClaims(@RequestBody JwtResponseDTO dtoo)
     {
@@ -86,7 +88,7 @@ public class AuthController
     	System.out.println(num);
     	return new ResponseEntity(num,HttpStatus.OK);
     }
-    
+      
     @PostMapping("/extractclaims")
     ResponseEntity<?> extractClaims(@RequestBody JwtResponseDTO dtoo)
     {
@@ -102,6 +104,8 @@ public class AuthController
     	System.out.println(num);
     	return new ResponseEntity(num,HttpStatus.OK);
     }
+    
+    
     @GetMapping("/current-user")
     public ResponseEntity<?> getCurrentUser(Principal principal) {
         if (principal != null && principal instanceof UsernamePasswordAuthenticationToken) {

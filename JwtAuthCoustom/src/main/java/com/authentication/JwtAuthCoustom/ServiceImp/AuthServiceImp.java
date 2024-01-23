@@ -35,11 +35,11 @@ public class AuthServiceImp implements AuthService {
 		UserEntity entity = new UserEntity();
 		try {
 			entity.setEmail(dto.getEmail());
-			entity.setName(dto.getName());
+			entity.setName(dto.getUsername());
 			String encodedPassword = passwordEncoder.encode(dto.getPassword());
 			entity.setPassword(encodedPassword);
 			entity.setPhoneNumber(dto.getPhoneNumber());
-			entity.setRoles(dto.getRole());
+			entity.setRoles("ADMIN");
 			entity.setUsername(dto.getUsername());
 			repo.save(entity);
 			return new ResponseEntity<>("Successfully Inserted", HttpStatus.OK);
