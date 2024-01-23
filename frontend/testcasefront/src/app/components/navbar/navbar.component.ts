@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(public login: LoginService, private router: Router, private userService: UserService) { }
 
- 
+
 
   ngOnInit(): void {
     this.isLogged();
@@ -32,12 +32,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (!this.statusSubscription) {
       this.statusSubscription = this.userService.status$.subscribe((status: boolean) => {
         this.status = status;
-
-        // Start the countdown timer when the status becomes true
-        if (this.status) {
-          this.startCountdown();
-        }
       });
+    }
+    // Start the countdown timer when the status becomes true
+    if (this.status) {
+      this.startCountdown();
     }
   }
 
@@ -59,21 +58,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   startCountdown(): void {
     const countdownInterval = setInterval(() => {
-      this.countdownSeconds--;
-
-      if (this.countdownSeconds < 0) {
-        this.countdownMinutes--;
-
-        this.countdownSeconds = 59;
-      }
-
-      if (this.countdownMinutes == 1 && this.countdownSeconds == 0) {
-       
-      }
-
-      if (this.countdownMinutes == 0 && this.countdownSeconds == 0) {
-        clearInterval(countdownInterval);
-
+      if (this.countdownSeconds === 0) {
+        if (this.countdownMinutes === 0) {
+          clearInterval(countdownInterval);
+          // Handle what happens when the countdown reaches 0
+        } else {
+          this.countdownMinutes--;
+          this.countdownSeconds = 59;
+        }
+      } else {
+        this.countdownSeconds--;
       }
     }, 1000);
   }
