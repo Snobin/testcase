@@ -20,12 +20,34 @@ export class UserService {
     return this.http.post<Response>(`${this.baseUrl}/signup`,user);
   }
 
-  private statusSubject = new BehaviorSubject<boolean>(true);
+
+  private statusSubject = new BehaviorSubject<boolean>(false);
+
   status$ = this.statusSubject.asObservable();
 
+  startCountdown(): void {
+    const countdownInterval = setInterval(() => {
+      this.countdownSeconds--;
+
+      if (this.countdownSeconds < 0) {
+        this.countdownMinutes--;
+
+        this.countdownSeconds = 59;
+      }
+
+      if (this.countdownMinutes === 0 && this.countdownSeconds === 0) {
+        clearInterval(countdownInterval);
+        this.statusSubject.next(false);
+      }
+    }, 1000);
+  }
+
+  resetTimer(): void {
+    this.countdownMinutes = 1;
+    this.countdownSeconds = 0;
+  }
+
   setStatus(status: boolean): void {
-    console.log("hello");
-    
     this.statusSubject.next(status);
   }
   

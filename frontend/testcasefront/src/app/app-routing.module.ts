@@ -28,6 +28,7 @@ import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.compo
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
+import { FinalComponent } from './pages/user/final/final.component';
 
 
 const routes: Routes = [
@@ -122,7 +123,10 @@ const routes: Routes = [
   {
     path: 'coding/:qid',
     component: ConsoleComponent
-  },
+  },{
+    path:'final',
+    component:FinalComponent
+  }
 ];
 
 @NgModule({

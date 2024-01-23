@@ -1,3 +1,4 @@
+import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,12 +22,12 @@ export class LoadQuizComponent implements OnInit {
     selectedQuestionType: string;
     title: any;
     categories: any;
-    constructor(private cat: CategoryService, private route: ActivatedRoute,private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar) { }
+    constructor(private cat: CategoryService, private route: ActivatedRoute, private locationst: LocationStrategy, private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar) { }
     ngOnInit(): void {
         this.showList();
     }
 
-    showList(){
+    showList() {
         this.route.params.subscribe((params) => {
             this.catId = params.catId;
             this.title = params.title;
@@ -35,6 +36,13 @@ export class LoadQuizComponent implements OnInit {
             } else {
                 this.getActiveQuizCategory(this.catId);
             }
+        });
+    }
+
+    preventBackButton() {
+        history.pushState(null, null, location.href);
+        this.locationst.onPopState(() => {
+            history.pushState(null, null, location.href)
         });
     }
 
@@ -51,7 +59,7 @@ export class LoadQuizComponent implements OnInit {
     }
 
     getCodingQuestions() {
-       
+
         let userObject = localStorage.getItem("user");
         const user = JSON.parse(userObject);
         const username = user.username;
@@ -69,11 +77,11 @@ export class LoadQuizComponent implements OnInit {
         );
     }
 
-    coding(qid: string){
+    coding(qid: string) {
         this.router.navigate([`./coding/${qid}`])
     }
 
-    question(qid: string){
+    question(qid: string) {
         this.router.navigate([`./start/${qid}`])
     }
 }
