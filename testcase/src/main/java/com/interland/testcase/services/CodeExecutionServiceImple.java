@@ -38,6 +38,7 @@ import com.interland.testcase.entity.CodeExecutionResult;
 
 import com.interland.testcase.repository.codeExecutionResultRepository;
 
+
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
 
@@ -48,7 +49,10 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	private CodingResultRepository codingResultRepository;
 	@Autowired
 	private codeExecutionResultRepository codeExecutionResultRepository;
-
+	@Autowired
+	private CombinedResultImplementation combinedResultImplementation;
+	
+	
 	Integer passedtestcases = 0;
 
 	@Override
@@ -88,6 +92,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResult.setPassedTestcase(passedtestcases);
 				passedtestcases = 0;
 				codingResultRepository.save(codeResult);
+                combinedResultImplementation.getResult();
 				return codeResponses;
 
 			case "c":
@@ -97,6 +102,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResult.setPassedTestcase(passedtestcases);
 				passedtestcases = 0;
 				codingResultRepository.save(codeResult);
+				combinedResultImplementation.getResult();
 				return codeResponses;
 
 			case "cpp":
@@ -106,6 +112,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResult.setPassedTestcase(passedtestcases);
 				passedtestcases = 0;
 				codingResultRepository.save(codeResult);
+				combinedResultImplementation.getResult();
 				return codeResponses;
 
 			case "python":

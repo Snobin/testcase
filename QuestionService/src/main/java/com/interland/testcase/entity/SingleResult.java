@@ -18,18 +18,8 @@ public class SingleResult {
 	private int totalQuestion;
 	
 	private Integer correctAnswers;
-	
-	private String codingPercentage;
-	
-	
+		
 
-	public String getCodingPercentage() {
-		return codingPercentage;
-	}
-
-	public void setCodingPercentage(String codingPercentage) {
-		this.codingPercentage = codingPercentage;
-	}
 
 	public SingleResultPk getSingleResult() {
 		return singleResult;
@@ -80,8 +70,9 @@ public class SingleResult {
 	}
 
 
+	
 	public SingleResult(SingleResultPk singleResult, Integer attempted, String maxScore, Integer obtainedScore,
-			int totalQuestion, Integer correctAnswers, String codingPercentage) {
+			int totalQuestion, Integer correctAnswers) {
 		super();
 		this.singleResult = singleResult;
 		this.attempted = attempted;
@@ -89,7 +80,6 @@ public class SingleResult {
 		this.obtainedScore = obtainedScore;
 		this.totalQuestion = totalQuestion;
 		this.correctAnswers = correctAnswers;
-		this.codingPercentage = codingPercentage;
 	}
 
 	public SingleResult() {
