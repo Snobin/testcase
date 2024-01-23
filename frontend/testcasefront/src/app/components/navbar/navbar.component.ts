@@ -16,10 +16,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   user = null;
   countdownMinutes: number = 1;
   countdownSeconds: number = 0;
-  status: boolean=false;
+  status: boolean = false;
   private statusSubscription: Subscription;
   private routeSubscription: Subscription;
-   showTimer: boolean = false;
+  showTimer: boolean = false;
+  private countdownInterval: any;
 
   constructor(
     public login: LoginService,
@@ -62,26 +63,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.statusSubscription.unsubscribe();
       this.statusSubscription = null; // Reset the subscription variable
     }
+    // Clear the existing interval when unsubscribing
+    this.clearCountdownInterval();
   }
-  
 
   private subscribeToStatus(): void {
     // Ensure that the subscription is set up only once
-    console.log(this.statusSubscription);
-    
     if (!this.statusSubscription) {
       this.statusSubscription = this.userService.status$.subscribe((status: boolean) => {
         this.status = status;
-        
+        // Start the countdown timer when the status becomes true
+        if (this.status) {
+          this.startCountdown();
+        }
       });
-    }
-    // Start the countdown timer when the status becomes true
-    if (this.status) {
-      this.startCountdown();
     }
   }
 
-   isTimerVisible(url: string): boolean {
+  private clearCountdownInterval(): void {
+    // Clear the existing interval if it's running
+    // This prevents multiple intervals from running simultaneously
+    clearInterval(this.countdownInterval);
+  }
+
+  isTimerVisible(url: string): boolean {
     // Add logic to check if the timer should be visible for specific routes/components
     return (
       url.includes('/user-dashboard') ||
@@ -97,8 +102,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.login.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.login.isloggedin();
       this.user = this.login.getUser();
+  
+      // Reset the timer when the user logs in
+      if (this.isLoggedIn) {
+        this.resetTimer();
+      }
     });
   }
+  resetTimer(): void {
+    this.countdownMinutes = 1; // Set the initial minutes value
+    this.countdownSeconds = 0; // Set the initial seconds value
+  }
+  
+  
 
   logout() {
     this.login.logout();
@@ -108,28 +124,28 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   startCountdown(): void {
-    const countdownInterval = setInterval(() => {
-      this.countdownSeconds--;
-
-      if (this.countdownSeconds < 0) {
+    // Clear any existing interval before starting a new one
+    this.clearCountdownInterval();
+  
+    this.countdownInterval = setInterval(() => {
+      if (this.countdownSeconds > 0) {
+        this.countdownSeconds--;
+      } else if (this.countdownMinutes > 0) {
         this.countdownMinutes--;
-
         this.countdownSeconds = 59;
-      }
-
-      if (this.countdownMinutes === 0 && this.countdownSeconds === 0) {
-        clearInterval(countdownInterval);
+      } else {
+        // When both minutes and seconds are zero, navigate and stop the interval
+        clearInterval(this.countdownInterval);
         this.router.navigate(['/final']);
         this.status = false;
       }
     }, 1000);
   }
+  
 
   ngOnDestroy(): void {
     // Unsubscribe to avoid memory leaks
-    if (this.statusSubscription) {
-      this.statusSubscription.unsubscribe();
-    }
+    this.unsubscribeFromStatus();
 
     // Unsubscribe from route changes
     if (this.routeSubscription) {

@@ -9,8 +9,8 @@ import { Response } from '../model/response';
 export class UserService {
 
   baseUrl='http://localhost:8081/auth';
-  countdownSeconds: number;
-  countdownMinutes: any;
+  countdownSeconds: number=59;
+  countdownMinutes: any=10;
 
   constructor(private http:HttpClient) { }
 
