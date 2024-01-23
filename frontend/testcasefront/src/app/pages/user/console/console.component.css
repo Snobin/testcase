@@ -9994,7 +9994,7 @@ btn:focus-visible {
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera, Firefox */
 }
 
-.saved-container{
+.saved-container {
     z-index: 1000;
     width: max-content;
     border-radius: 5px;
@@ -10013,4 +10013,8 @@ btn:focus-visible {
 
 .code-family {
     font-family: monospace;
+}
+
+.placeholder {
+    opacity: 1;
 }

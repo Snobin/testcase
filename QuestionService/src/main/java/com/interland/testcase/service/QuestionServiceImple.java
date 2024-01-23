@@ -33,10 +33,12 @@ import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.entity.TestCaseEntity;
+import com.interland.testcase.entity.UserQuestionAssociation;
 import com.interland.testcase.repository.CompetitiveQuestionRepository;
 import com.interland.testcase.repository.McqQuestionRepository;
 import com.interland.testcase.repository.QuestionRepository;
 import com.interland.testcase.repository.QuizRepository;
+import com.interland.testcase.repository.UserQuestionAssociationRepo;
 import com.interland.testcase.repository.codQuestionRepository;
 
 import jakarta.persistence.EntityManager;
@@ -67,6 +69,9 @@ public class QuestionServiceImple implements QuestionService {
 
 	@Autowired
 	private CompetitiveQuestionRepository competitiveQuestionRepository;
+	
+	@Autowired
+	private UserQuestionAssociationRepo userQuestionAssociationRepository;
 
 	public List<McqQuestion> createMcqQuestions(MultipartFile questionFile) {
 		List<McqQuestion> mcqQuestions = new ArrayList<>();
@@ -319,13 +324,14 @@ public class QuestionServiceImple implements QuestionService {
 
 			// Add a null check for expectedOutputs
 			if (expectedOutputs != null) {
-			    expectedOutputs = expectedOutputs.endsWith(".0")
-			            ? expectedOutputs.substring(0, expectedOutputs.length() - 2)
-			            : expectedOutputs;
+				expectedOutputs = expectedOutputs.endsWith(".0")
+						? expectedOutputs.substring(0, expectedOutputs.length() - 2)
+						: expectedOutputs;
 			} else {
-			    // Handle the case when expectedOutputs is null (e.g., provide a default value or skip the test case)
-			    // For example, you can set it to an empty string:
-			    expectedOutputs = "";
+				// Handle the case when expectedOutputs is null (e.g., provide a default value
+				// or skip the test case)
+				// For example, you can set it to an empty string:
+				expectedOutputs = "";
 			}
 
 			testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
@@ -377,47 +383,47 @@ public class QuestionServiceImple implements QuestionService {
 
 	@Override
 	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto) {
-	    Optional<CompetitiveQuestion> optionalQuestion = competitiveQuestionRepository.findByQuestionId(codingQuestionInputDto.getQid());
+		Optional<CompetitiveQuestion> optionalQuestion = competitiveQuestionRepository
+				.findByQuestionId(codingQuestionInputDto.getQid());
 
-	    if (optionalQuestion.isPresent()) {
-	        CompetitiveQuestion existingQuestion = optionalQuestion.get();
+		if (optionalQuestion.isPresent()) {
+			CompetitiveQuestion existingQuestion = optionalQuestion.get();
 
-	        // Update active field
-	        existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
+			// Update active field
+			existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
 
-	        // Update fields only if they are present in the dto
-	        updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
-	        updateField(existingQuestion::setExample2Input, codingQuestionInputDto.getEx2input());
-	        updateField(existingQuestion::setExample1Output, codingQuestionInputDto.getEx1output());
-	        updateField(existingQuestion::setExample2Output, codingQuestionInputDto.getEx2output());
-	        updateField(existingQuestion::setExample1Exp, codingQuestionInputDto.getEx1explanation());
-	        updateField(existingQuestion::setExample2Exp, codingQuestionInputDto.getEx2explanation());
-	        updateField(existingQuestion::setConstraints, codingQuestionInputDto.getConstraints());
-	        updateField(existingQuestion::setTitle, codingQuestionInputDto.getTitle());
-	        updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
-	        System.out.println(codingQuestionInputDto.getDesc());
-	        if (codingQuestionInputDto.getFileContent() != null) {
-	            // Process the file content here if needed
-	            System.out.println("File content processing...");
-	    		processExcelData(codingQuestionInputDto.getFileContent());
+			// Update fields only if they are present in the dto
+			updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
+			updateField(existingQuestion::setExample2Input, codingQuestionInputDto.getEx2input());
+			updateField(existingQuestion::setExample1Output, codingQuestionInputDto.getEx1output());
+			updateField(existingQuestion::setExample2Output, codingQuestionInputDto.getEx2output());
+			updateField(existingQuestion::setExample1Exp, codingQuestionInputDto.getEx1explanation());
+			updateField(existingQuestion::setExample2Exp, codingQuestionInputDto.getEx2explanation());
+			updateField(existingQuestion::setConstraints, codingQuestionInputDto.getConstraints());
+			updateField(existingQuestion::setTitle, codingQuestionInputDto.getTitle());
+			updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
+			System.out.println(codingQuestionInputDto.getDesc());
+			if (codingQuestionInputDto.getFileContent() != null) {
+				// Process the file content here if needed
+				System.out.println("File content processing...");
+				processExcelData(codingQuestionInputDto.getFileContent());
 
-	        }
+			}
 
-	        // Save the updated question back to the database
-	        competitiveQuestionRepository.save(existingQuestion);
+			// Save the updated question back to the database
+			competitiveQuestionRepository.save(existingQuestion);
 
-	        return new ResponseEntity<>(existingQuestion, HttpStatus.OK);
-	    } else {
-	        return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
-	    }
+			return new ResponseEntity<>(existingQuestion, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
+		}
 	}
 
 	private <T> void updateField(Consumer<T> setter, T value) {
-	    if (value != null) {
-	        setter.accept(value);
-	    }
+		if (value != null) {
+			setter.accept(value);
+		}
 	}
-
 
 	@Override
 	public ResponseEntity<?> getcodeData(String id) {
@@ -425,8 +431,45 @@ public class QuestionServiceImple implements QuestionService {
 		return ResponseEntity.ok(data);
 	}
 
-	@Override
-	public Set<CompetitiveQuestion> getActiveData() {
-		return new HashSet<>(competitiveQuestionRepository.findByActive(true));	}
+//	@Override
+//	public Set<CompetitiveQuestion> getActiveData() {
+//		int numberOfQuestionsToRetrieve = 2;
+//		List<CompetitiveQuestion> activeQuestions = new ArrayList<>(competitiveQuestionRepository.findByActive(true));
+//
+//		// Shuffle the list to randomize the order
+//		Collections.shuffle(activeQuestions);
+//
+//		// Take a subset of the list based on the specified number
+//		List<CompetitiveQuestion> randomQuestions = activeQuestions.subList(0,
+//				Math.min(numberOfQuestionsToRetrieve, activeQuestions.size()));
+//
+//		return new HashSet<>(randomQuestions);
+//	}
+	 @Override
+	    public Set<CompetitiveQuestion> getActiveRandomQuestionsForUser(String userId) {
+	        // Check if the user already has associated questions
+			int numberOfQuestionsToRetrieve = 2;
+
+	        UserQuestionAssociation userAssociation = userQuestionAssociationRepository.findByUserId(userId);
+
+	        if (userAssociation != null) {
+	            return userAssociation.getQuestions();
+	        }
+
+	        // If not, retrieve all active questions
+	        List<CompetitiveQuestion> activeQuestions = new ArrayList<>(competitiveQuestionRepository.findByActive(true));
+
+	        // Shuffle the list to randomize the order
+	        Collections.shuffle(activeQuestions);
+
+	        // Take a subset of the list based on the specified number
+	        List<CompetitiveQuestion> randomQuestions = activeQuestions.subList(0, Math.min(numberOfQuestionsToRetrieve, activeQuestions.size()));
+
+	        // Create a new association for the user and save it to the database
+	        UserQuestionAssociation newUserAssociation = new UserQuestionAssociation(userId, new HashSet<>(randomQuestions));
+	        userQuestionAssociationRepository.save(newUserAssociation);
+
+	        return newUserAssociation.getQuestions();
+	    }
 
 }

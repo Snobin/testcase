@@ -3,23 +3,60 @@
     aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
-  <span>TestCase</span>
-  <span class="example-spacer"></span>
+  <span>interland</span>
+  <div class="example-spacer">
+    <div class="text-center"  *ngIf="status">
+      <!-- <div class="card overflow-hidden"
+      style="padding: 0px;width: 25%;margin-left: 40%;z-index: 2000;">
+      <div class="d-flex flex-row">
+        <div class="p-2"
+          [class.bg-success-subtle]="countdownMinutes>=9"
+          [class.bg-danger-subtle]="countdownMinutes<9">
+          <h3 class="box mb-0"
+            [class.text-success]="countdownMinutes>=9"
+            [class.text-danger]="countdownMinutes<9">
+            <i class="bi bi-clock"></i>
+          </h3>
+        </div>
+        <div class="p-2">
+          <h3 class="mb-0 fs-6"
+            [class.text-success]="countdownMinutes>=9"
+            [class.text-danger]="countdownMinutes<9">{{ countdownMinutes
+            }}:{{ countdownSeconds < 10 ? '0' : ''}}{{
+            countdownSeconds }} Minutes <span class="text-muted">Left</span></h3>
+        </div>
+      </div>
+      </div> -->
+      <div class="row text-center" style="margin-left: 45%; width: 150px; font-size: 20px; padding: 0px;">
+        <div class="col-md-2" style="margin-right: -20px;"> <!-- Adjust the margin-right value as needed -->
+            <i class="bi bi-alarm text-light" style="margin: 0px; padding: 0px;"></i>
+        </div>
+        <div class="col-md-10" style="">
+            <h3 [ngStyle]="{'margin': '0px', 'padding': '0px', 'font-size': '18px'}"
+                [class.text-light]="countdownMinutes >= 1" [class.text-danger]="countdownMinutes < 1">
+                {{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' : '' }}{{ countdownSeconds }} </h3>
+        </div>
+    </div>
+    
+
+    </div>
+  </div>
   <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button
-    class="text-white mr20" aria-label="Example icon-button with heart icon">
+    class="text-white mr20"
+    aria-label="Example icon-button with heart icon">
     Login
   </a>
   <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button
-    class="text-white mr20" aria-label="Example icon-button with heart icon">
+    class="text-white mr20"
+    aria-label="Example icon-button with heart icon">
     Register
   </a>
   <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button
-    class="text-white mr20" aria-label="Example icon-button with heart icon">
+    class="text-white mr20"
+    aria-label="Example icon-button with heart icon">
     Logout
   </a>
-  <button
-    *ngIf="login.isloggedin && user"
-    routerLink="/admin/profile"
+  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile"
     mat-button class="text-white mr20"
     aria-label="Example icon-button with heart icon">
     {{user.username}}
