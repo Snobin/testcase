@@ -53,6 +53,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
+import { FinalComponent } from './pages/user/final/final.component';
 
 
 
@@ -88,6 +89,7 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
     UpdatecodeComponent,
     McqComponent,
     AnsDetailsComponent,
+    FinalComponent,
   ],
   imports: [
     BrowserModule,
