@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +12,8 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn=false;
   user=null;
-  countdownMinutes: number = 10;
-  countdownSeconds: number = 0;
 
-  constructor(public login:LoginService, private router: Router) { }
+  constructor(public login:LoginService, private router: Router, public service:UserService) { }
 
 
   ngOnInit(): void {
@@ -37,20 +36,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([`login`]);
   }
 
-  startCountdown(): void {
-    const countdownInterval = setInterval(() => {
-      if (this.countdownSeconds === 0) {
-        if (this.countdownMinutes === 0) {
-          clearInterval(countdownInterval);
-          // Handle what happens when the countdown reaches 0
-        } else {
-          this.countdownMinutes--;
-          this.countdownSeconds = 59;
-        }
-      } else {
-        this.countdownSeconds--;
-      }
-    }, 1000);
+  timeStatus(){
+    return this.service.timeShow();
   }
 
 }
