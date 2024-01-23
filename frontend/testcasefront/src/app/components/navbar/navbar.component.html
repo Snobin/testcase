@@ -1,6 +1,5 @@
 <mat-toolbar color="primary">
-  <a routerLink="/" mat-icon-button class="example-icon"
-    aria-label="Example icon-button with menu icon">
+  <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
   <span>interland</span>
@@ -27,36 +26,33 @@
         </div>
       </div>
       </div> -->
-      <div class="row text-center" style="margin-left: 45%;width: 150px;font-size: 20px;padding: 0px;">
-        <div class="col-md-2">
-          <i class="bi bi-alarm text-light" style="margin: 0px;padding: 0px;"></i>
+      <div class="row text-center" style="margin-left: 45%; width: 150px; font-size: 20px; padding: 0px;">
+        <div class="col-md-2" style="margin-right: -20px;"> <!-- Adjust the margin-right value as needed -->
+            <i class="bi bi-alarm text-light" style="margin: 0px; padding: 0px;"></i>
         </div>
-        <div class="col-md-10" >
-          <h3 style="margin: 0px;padding: 0px;"
-                [class.text-light]="countdownMinutes>=9"
-                [class.text-danger]="countdownMinutes<9">{{ countdownMinutes
-                }}:{{ countdownSeconds < 10 ? '0' : ''}}{{
-                countdownSeconds }}</h3>
+        <div class="col-md-10" style="">
+            <h3 [ngStyle]="{'margin': '0px', 'padding': '0px', 'font-size': '18px'}"
+                [class.text-light]="countdownMinutes >= 9" [class.text-danger]="countdownMinutes < 9">
+                {{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' : '' }}{{ countdownSeconds }} </h3>
         </div>
-      </div>
+    </div>
+    
+
     </div>
   </div>
-  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button
-    class="text-white mr20" aria-label="Example icon-button with heart icon">
+  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button class="text-white mr20"
+    aria-label="Example icon-button with heart icon">
     Login
   </a>
-  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button
-    class="text-white mr20" aria-label="Example icon-button with heart icon">
+  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button class="text-white mr20"
+    aria-label="Example icon-button with heart icon">
     Register
   </a>
-  <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button
-    class="text-white mr20" aria-label="Example icon-button with heart icon">
+  <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button class="text-white mr20"
+    aria-label="Example icon-button with heart icon">
     Logout
   </a>
-  <button
-    *ngIf="login.isloggedin && user"
-    routerLink="/admin/profile"
-    mat-button class="text-white mr20"
+  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile" mat-button class="text-white mr20"
     aria-label="Example icon-button with heart icon">
     {{user.username}}
   </button>
