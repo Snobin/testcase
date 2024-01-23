@@ -4,7 +4,7 @@
   </a>
   <span>interland</span>
   <div class="example-spacer">
-    <div class="text-center">
+    <div class="text-center"  *ngIf="status">
       <!-- <div class="card overflow-hidden"
       style="padding: 0px;width: 25%;margin-left: 40%;z-index: 2000;">
       <div class="d-flex flex-row">
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-10" style="">
             <h3 [ngStyle]="{'margin': '0px', 'padding': '0px', 'font-size': '18px'}"
-                [class.text-light]="countdownMinutes >= 9" [class.text-danger]="countdownMinutes < 9">
+                [class.text-light]="countdownMinutes >= 1" [class.text-danger]="countdownMinutes < 1">
                 {{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' : '' }}{{ countdownSeconds }} </h3>
         </div>
     </div>

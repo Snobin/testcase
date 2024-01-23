@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { CodeService } from 'src/app/services/code.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,10 +18,10 @@ export class InstructionsComponent implements OnInit {
   qid;
   quizdata;
   categories: any;
-  constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar) { }
+  constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService) { }
 
   ngOnInit(): void {
-
+this.updateStatus();
   }
 
   next() {
@@ -36,7 +37,10 @@ export class InstructionsComponent implements OnInit {
       }
     });
   }
-
+  updateStatus(): void {
+    // Set the status to true or false as needed
+    this.userservice.setStatus(true);
+  }
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
         this.categories = data;
