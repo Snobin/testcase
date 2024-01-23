@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-  <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <a routerLink="/" mat-icon-button class="example-icon"
+    aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
   <span>interland</span>
@@ -40,19 +41,23 @@
 
     </div>
   </div>
-  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button class="text-white mr20"
+  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button
+    class="text-white mr20"
     aria-label="Example icon-button with heart icon">
     Login
   </a>
-  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button class="text-white mr20"
+  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button
+    class="text-white mr20"
     aria-label="Example icon-button with heart icon">
     Register
   </a>
-  <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button class="text-white mr20"
+  <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button
+    class="text-white mr20"
     aria-label="Example icon-button with heart icon">
     Logout
   </a>
-  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile" mat-button class="text-white mr20"
+  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile"
+    mat-button class="text-white mr20"
     aria-label="Example icon-button with heart icon">
     {{user.username}}
   </button>

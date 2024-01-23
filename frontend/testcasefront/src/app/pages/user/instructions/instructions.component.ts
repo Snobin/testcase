@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CategoryService } from 'src/app/services/category.service';
 import { CodeService } from 'src/app/services/code.service';
 import { QuestionService } from 'src/app/services/question.service';
@@ -17,6 +18,7 @@ export class InstructionsComponent implements OnInit {
 
   qid;
   quizdata;
+  obj: NavbarComponent;
   categories: any;
   constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService) { }
 
@@ -45,6 +47,7 @@ this.updateStatus();
     this.cat.categories().subscribe((data: any) => {
         this.categories = data;
         console.log(this.categories);
+      
         this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
         (error) => {
