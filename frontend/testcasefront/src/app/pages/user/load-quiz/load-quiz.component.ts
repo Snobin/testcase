@@ -1,49 +1,79 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AddQuestion } from 'src/app/model/AddQuestion';
+import { CategoryService } from 'src/app/services/category.service';
+import { CodeService } from 'src/app/services/code.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-load-quiz',
-  templateUrl: './load-quiz.component.html',
-  styleUrls: ['./load-quiz.component.css']
+    selector: 'app-load-quiz',
+    templateUrl: './load-quiz.component.html',
+    styleUrls: ['./load-quiz.component.css']
 })
 export class LoadQuizComponent implements OnInit {
 
-  catId;
-  quizzes;
+    catId;
+    quizzes: any = [];
+    codeInput: AddQuestion = new AddQuestion();
+    codingQuestions: any = [];
+    selectedQuestionType: string;
+    title: any;
+    categories: any;
+    constructor(private cat: CategoryService, private route: ActivatedRoute,private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar) { }
+    ngOnInit(): void {
+        this.showList();
+    }
 
-  constructor(private route: ActivatedRoute,private quiz: QuizService) { }
+    showList(){
+        this.route.params.subscribe((params) => {
+            this.catId = params.catId;
+            this.title = params.title;
+            if (this.title === "CODING") {
+                this.getCodingQuestions();
+            } else {
+                this.getActiveQuizCategory(this.catId);
+            }
+        });
+    }
 
-  ngOnInit(): void {
-    this.catId = this.route.snapshot.params.catId;
-    this.route.params.subscribe((params)=>{
-      this.catId=params.catId;
-
-      if (this.catId  == 0) {
-        this.quiz.getActiveQuizzes().subscribe(
-          (data:any) => {
-            this.quizzes = data;
-            console.log(this.quizzes);
-            
-          },
-          (error) => {
-            console.log(error);
-            alert('Error in loading all quizzes')
-          }
+    getActiveQuizCategory(catid) {
+        this.quiz.getActiveQuizCategory(catid).subscribe(
+            (data: any) => {
+                this.quizzes = data;
+            },
+            (error) => {
+                console.log(error);
+                alert('Error in loading specific quiz');
+            }
         );
-      } else {
-        console.log('load specific quiz');
-        this.quiz.getActiveQuizCategory(this.catId).subscribe(
-          (data:any)=>{
-            this.quizzes=data;
-          },
-          (error)=>{
+    }
 
-          }
-        )
-      }
-    })
- 
-  }
+    getCodingQuestions() {
+       
+        let userObject = localStorage.getItem("user");
+        const user = JSON.parse(userObject);
+        const username = user.username;
 
+        this.code.activeCodingQuestions(username).subscribe(
+            (data: any) => {
+                this.codingQuestions = data;
+                console.log(data);
+                console.log(this.codingQuestions);
+            },
+            (error) => {
+                console.log(error);
+                Swal.fire('Error!', 'Error in loading coding questions!', 'error');
+            }
+        );
+    }
+
+    coding(qid: string){
+        this.router.navigate([`./coding/${qid}`])
+    }
+
+    question(qid: string){
+        this.router.navigate([`./start/${qid}`])
+    }
 }

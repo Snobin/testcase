@@ -26,6 +26,8 @@ import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.compo
 import { ConsoleComponent } from './pages/user/console/console.component';
 import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
+import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
+import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 
 
 const routes: Routes = [
@@ -44,6 +46,10 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'instructions',
+    component: InstructionsComponent
   },
   {
     path: 'admin',
@@ -87,10 +93,14 @@ const routes: Routes = [
       }, {
         path: 'view-answer',
         component: ViewAnswerComponent
-      },{
+      }, {
         path: 'view-code',
         component: ViewCodingComponent
-      }
+      }, {
+        path: 'code/:qid',
+        component: UpdatecodeComponent
+      },
+       { path: 'details/:userId', component: AnsDetailsComponent },
     ]
   },
   {
@@ -99,23 +109,18 @@ const routes: Routes = [
     canActivate: [UserGuard],
     children: [
       {
-        path: ':catId',
+        path: ':title/:catId',
         component: LoadQuizComponent
-      },
-      {
-        path: 'instructions/:qid',
-        component: InstructionsComponent
       }
-
     ],
-  }, {
+  },
+  {
     path: 'start/:qid',
     component: StartComponent,
     canActivate: [UserGuard]
-
   },
   {
-    path: 'coding',
+    path: 'coding/:qid',
     component: ConsoleComponent
   },
 ];
