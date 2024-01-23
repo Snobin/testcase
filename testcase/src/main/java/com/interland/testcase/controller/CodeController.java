@@ -29,6 +29,7 @@ public class CodeController {
     @PostMapping("/execute")
     public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
         try {
+        	System.out.println(codeRequest.toString());
             List<CodeResponse> codeResponses = codeExecutionService.executeCode(codeRequest);
             return ResponseEntity.ok(codeResponses);
         } catch (Exception e) {

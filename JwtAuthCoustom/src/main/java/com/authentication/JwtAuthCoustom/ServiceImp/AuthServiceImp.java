@@ -35,7 +35,9 @@ public class AuthServiceImp implements AuthService {
 		UserEntity entity = new UserEntity();
 		try {
 			entity.setEmail(dto.getEmail());
-			entity.setName(dto.getUsername());
+			entity.setUsername(dto.getUsername());
+			entity.setFirstName(dto.getFirstName());
+			entity.setLastName(dto.getLastName());
 			String encodedPassword = passwordEncoder.encode(dto.getPassword());
 			entity.setPassword(encodedPassword);
 			entity.setPhoneNumber(dto.getPhoneNumber());

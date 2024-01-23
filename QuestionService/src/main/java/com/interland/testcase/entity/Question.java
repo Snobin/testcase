@@ -33,6 +33,30 @@ public class Question {
 	
 	@Transient
 	private String givenAnswer;
+	
+	private String user;
+	
+	private String qId;
+
+    
+	public String getUser() {
+		return user;
+	}
+
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+
+	public String getqId() {
+		return qId;
+	}
+
+
+	public void setqId(String qId) {
+		this.qId = qId;
+	}
 
 
 	public String getGivenAnswer() {

@@ -45,13 +45,11 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         console.log('success');
         console.log(data);
-
         this.login.loginUser(data.token);
         this.login.getCurrentUser().subscribe(
           (user: any) => {
             this.login.setUser(user);
             console.log(user);
-
             if (this.login.getUserRole() == "ADMIN") {
               // window.location.href = "/admin";
               this.router.navigate(['admin']);
@@ -59,15 +57,12 @@ export class LoginComponent implements OnInit {
 
             } else if (this.login.getUserRole() == "USER") {
               // window.location.href = "/user-dashboard";
-              this.router.navigate(['user-dashboard/0']);
+              this.router.navigate(['instructions']);
               this.login.loginStatusSubject.next(true);
-
-
             }
             else {
               this.login.logout();
             }
-
           }
         );
 
