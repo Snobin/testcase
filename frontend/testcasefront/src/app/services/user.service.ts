@@ -41,12 +41,14 @@ export class UserService {
     }, 1000);
   }
 
-  resetTimer(): void {
-    this.countdownMinutes = 1;
-    this.countdownSeconds = 0;
-  }
+  // resetTimer(): void {
+  //   this.countdownMinutes = 1;
+  //   this.countdownSeconds = 0;
+  // }
 
   setStatus(status: boolean): void {
+    console.log(status);
+    
     this.statusSubject.next(status);
   }
   

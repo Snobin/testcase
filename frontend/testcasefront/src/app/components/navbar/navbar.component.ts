@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   user = null;
   countdownMinutes: number = 1;
   countdownSeconds: number = 0;
-  status: boolean;
+  status: boolean=false;
   private statusSubscription: Subscription;
   private routeSubscription: Subscription;
    showTimer: boolean = false;
@@ -41,30 +41,38 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private handleRouteChange(): void {
-    // Reset the timer and status when navigating to specific components
-    console.log(this.isTimerVisible(this.router.url));
+    // Unsubscribe before reinitializing
+    this.unsubscribeFromStatus();
     
+    // Reset the timer and status when navigating to specific components    
     if (this.isTimerVisible(this.router.url)) {
-      this.countdownMinutes = 1;
-      this.countdownSeconds = 0;
-      this.status = false;
+      // this.countdownMinutes = 1;
+      // this.countdownSeconds = 0;
       this.subscribeToStatus(); // Subscribe again since ngOnDestroy might have unsubscribed
   
       // Check if the timer should be visible based on the current route
-      console.log(this.router.url);
       this.showTimer = true; // Set to true when the route is eligible for the timer
-      console.log(this.showTimer);
     } else {
       this.showTimer = false; // Set to false when the route is not eligible for the timer
+    }
+  }
+  
+  private unsubscribeFromStatus(): void {
+    if (this.statusSubscription) {
+      this.statusSubscription.unsubscribe();
+      this.statusSubscription = null; // Reset the subscription variable
     }
   }
   
 
   private subscribeToStatus(): void {
     // Ensure that the subscription is set up only once
+    console.log(this.statusSubscription);
+    
     if (!this.statusSubscription) {
       this.statusSubscription = this.userService.status$.subscribe((status: boolean) => {
         this.status = status;
+        
       });
     }
     // Start the countdown timer when the status becomes true
