@@ -8,37 +8,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="JWTAuthentication_Registration")
-public class UserEntity 
-{
-	
+@Table(name = "JWTAuthentication_Registration")
+public class UserEntity {
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false, unique = true,name="EMAIL")
-    private String email;
+	@Column(nullable = false, unique = true, name = "EMAIL")
+	private String email;
 
-    @Column(nullable = false,name="PASSWORD")
-    private String password;
+	@Column(nullable = false, name = "PASSWORD")
+	private String password;
 
-    @Column(nullable = false,name="FIRSTNAME")
-    private String firstName;
+	@Column(nullable = false, name = "FIRSTNAME")
+	private String firstName;
 
-    @Column(nullable = false,name="LASTNAME")
-    private String lastName;
+	@Column(nullable = false, name = "LASTNAME")
+	private String lastName;
 
-  
-	@Column(nullable = false,name="PHONE-NUMBER")
-    private String phoneNumber;
-    
-    @Column(nullable = false,name="ROLE")
-    private String Roles;
-    
-    private String username;
-    
-    
-    
+	@Column(nullable = false, name = "PHONE-NUMBER")
+	private String phoneNumber;
+
+	@Column(nullable = false, name = "ROLE")
+	private String Roles;
+
+	private String username;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -109,8 +105,5 @@ public class UserEntity
 				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", Roles=" + Roles + ", username="
 				+ username + "]";
 	}
-	
-	
 
 }
-

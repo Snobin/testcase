@@ -30,7 +30,7 @@
                             <input [(ngModel)]="userdata.firstName" name="first" matInput placeholder="Enter here"
                                 required>
                         </mat-form-field>
-                        
+
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Last Name</mat-label>
@@ -47,10 +47,11 @@
                             <input type="number" matInput placeholder="Enter here" [(ngModel)]="userdata.phoneNumber"
                                 name="phone" required>
                         </mat-form-field>
-                        <mat-slide-toggle style="margin-left: 10px;" name="active" [(ngModel)]="userdata.role" (change)="toggleUserRole()"
-                            class="mt20" color="primary">
+                        <mat-slide-toggle style="margin-left: 10px;" name="active" [(ngModel)]="userdata.role"
+                             class="mt20" color="primary">
                             Role <mat-hint>(Turn on to set as ADMIN)</mat-hint>
                         </mat-slide-toggle>
+
                         <div class="container text-center">
                             <button mat-raised-button color="primary">Register</button>
                             <button style="margin-left: 20px;" mat-raised-button color="accent">Clear</button>
@@ -62,7 +63,8 @@
             <div id="signup" [class.open]="signupPage==true">
                 <input type="file" placeholder="Upload here" style="margin: 50px;">
                 <div class="container text-center">
-                    <button style="margin: 50px;margin-top:10px;" mat-raised-button color="primary">Upload</button>
+                    <button style="margin: 50px;margin-top:10px;" mat-raised-button color="primary"
+                        (change)="onFileChange($event)">Upload</button>
                 </div>
             </div>
         </div>

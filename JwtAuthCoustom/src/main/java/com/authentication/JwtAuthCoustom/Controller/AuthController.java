@@ -49,6 +49,7 @@ public class AuthController
     @PostMapping("/login")
     public ResponseEntity<?> LoginandGenerate(@RequestBody LoginDTO dto)
     {
+    	
     	if(service.checkemailpassword(dto))
     	{
     		Optional<UserEntity> username=authRepository.findByEmail(dto.getEmail());
