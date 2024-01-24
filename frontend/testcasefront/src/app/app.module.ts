@@ -54,6 +54,7 @@ import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { FullScreenService } from './services/full-screen.service';
 
 
 
@@ -103,7 +104,7 @@ import { UsersComponent } from './pages/admin/users/users.component';
     MatButtonModule,MatPaginatorModule,MatSortModule,MatTableModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,FullScreenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

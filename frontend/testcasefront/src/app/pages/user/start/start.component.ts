@@ -1,6 +1,7 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 import { LoginService } from 'src/app/services/login.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { UserService } from 'src/app/services/user.service';
@@ -31,10 +32,11 @@ export class StartComponent implements OnInit {
   timer: any;
   constructor(private el: ElementRef, private locationst: LocationStrategy,
     private route: ActivatedRoute,
-    private question: QuestionService, private loginservice: LoginService) { }
+    private question: QuestionService, private loginservice: LoginService,private fullScreenService: FullScreenService) { }
 
   ngOnInit(): void {
     // this.preventBackButton();
+    this.fullScreenService.requestFullScreen();
     this.qId = this.route.snapshot.params.qid;
     this.loadQuestions();
   }
