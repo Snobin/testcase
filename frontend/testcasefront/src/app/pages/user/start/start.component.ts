@@ -51,7 +51,7 @@ export class StartComponent implements OnInit {
           const userData = JSON.parse(localStorage.getItem('user'));
           q['user'] = userData.username;
         });
-        this.startTimer();
+        // this.startTimer();
         for (let index = 0; index < this.totalPages; index++) {
           const student: any = {};
           student.studentId = '1';
@@ -90,16 +90,16 @@ export class StartComponent implements OnInit {
     });
   }
 
-  startTimer() {
-    let t: any = window.setInterval(() => {
-      if (this.timer <= 0) {
-        this.eval();
-        clearInterval(t);
-      } else {
-        this.timer--;
-      }
-    }, 1000)
-  }
+  // startTimer() {
+  //   let t: any = window.setInterval(() => {
+  //     if (this.timer <= 0) {
+  //       this.eval();
+  //       clearInterval(t);
+  //     } else {
+  //       this.timer--;
+  //     }
+  //   }, 1000)
+  // }
 
   getFormattedTime() {
     let mm = Math.floor(this.timer / 60);

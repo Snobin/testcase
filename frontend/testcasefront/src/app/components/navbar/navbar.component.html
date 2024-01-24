@@ -10,7 +10,6 @@
   
   <div class="example-spacer">
     <div class="text-center" *ngIf="showTimer && status">
-      <!-- Timer Display -->
       <div class="row text-center" style="margin-left: 45%; width: 150px; font-size: 20px; padding: 0px;">
         <div class="col-md-2" style="margin-right: -20px;">
           <i class="bi bi-alarm text-light" style="margin: 0px; padding: 0px;"></i>
@@ -19,6 +18,7 @@
           <h3 [ngStyle]="{'margin': '0px', 'padding': '0px', 'font-size': '18px'}"
             [class.text-light]="countdownMinutes >= 1" [class.text-danger]="countdownMinutes < 1">
             {{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' : '' }}{{ countdownSeconds }} </h3>
+            
         </div>
       </div>
     </div>
@@ -30,7 +30,10 @@
   <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button class="text-white mr20" aria-label="Register">
     Register
   </a>
-  <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button class="text-white mr20" aria-label="Logout">
+  <a *ngIf="isLoggedIn && showTimer" (click)="submit()" mat-icon-button class="text-white mr20" aria-label="Logout" >
+    Submit
+  </a>
+  <a *ngIf="isLoggedIn && logoutdata" (click)="logout()" mat-icon-button class="text-white mr20" aria-label="Logout"  >
     Logout
   </a>
   <button *ngIf="login.isloggedin && user" routerLink="/admin/profile" mat-button class="text-white mr20"

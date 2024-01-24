@@ -1,0 +1,16 @@
+.full-width{
+    width: 100%;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    margin: 50px auto;
+  }
+  
+  button {
+    margin-bottom: 10px;
+    display: block;
+  }
+  

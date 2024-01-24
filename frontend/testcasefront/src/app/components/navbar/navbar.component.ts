@@ -25,7 +25,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   showTimer: boolean = false;
   categories: any;
   private countdownInterval: any;
-  showdata:boolean;
+  showdata: boolean;
+  logoutdata:boolean;
 
   constructor(
     public login: LoginService,
@@ -34,13 +35,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private cat: CategoryService,
     private snack: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.isLogged();
     this.subscribeToStatus();
-
-    
 
     // Subscribe to route changes to reinitialize the timer
     this.routeSubscription = this.router.events
@@ -51,33 +50,34 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
-        this.categories = data;
-        console.log(this.categories);
-      
-        this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
+      this.categories = data;
+      console.log(this.categories);
+
+      this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
-        (error) => {
-            this.snack.open('Error in loading categories from server', '', {
-                duration: 3000,
-            });
-        }
+      (error) => {
+        this.snack.open('Error in loading categories from server', '', {
+          duration: 3000,
+        });
+      }
     );
-}
+  }
   private handleRouteChange(): void {
     // Unsubscribe before reinitializing
     console.log(this.router.url);
 
     // Update the showdata based on the current URL
     this.showdata = this.show(this.router.url);
+    this.logoutdata=this.logouthere(this.router.url)
     console.log(this.showdata);
     this.unsubscribeFromStatus();
-    
+
     // Reset the timer and status when navigating to specific components    
     if (this.isTimerVisible(this.router.url)) {
       // this.countdownMinutes = 1;
       // this.countdownSeconds = 0;
       this.subscribeToStatus(); // Subscribe again since ngOnDestroy might have unsubscribed
-  
+
       // Check if the timer should be visible based on the current route
       this.showTimer = true; // Set to true when the route is eligible for the timer
     } else {
@@ -85,6 +85,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
   
+
   private unsubscribeFromStatus(): void {
     if (this.statusSubscription) {
       this.statusSubscription.unsubscribe();
@@ -113,7 +114,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       // Add more conditions as needed for other components
     );
   }
-  
 
   private clearCountdownInterval(): void {
     // Clear the existing interval if it's running
@@ -137,7 +137,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.login.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.login.isloggedin();
       this.user = this.login.getUser();
-  
+
       // Reset the timer when the user logs in
       if (this.isLoggedIn) {
         this.resetTimer();
@@ -148,8 +148,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.countdownMinutes = 10; // Set the initial minutes value
     this.countdownSeconds = 0; // Set the initial seconds value
   }
-  
-  
 
   logout() {
     this.login.logout();
@@ -161,7 +159,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   startCountdown(): void {
     // Clear any existing interval before starting a new one
     this.clearCountdownInterval();
-  
+
     this.countdownInterval = setInterval(() => {
       if (this.countdownSeconds > 0) {
         this.countdownSeconds--;
@@ -176,7 +174,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     }, 1000);
   }
-  
+
+  logouthere(url: string): boolean {
+    // Add logic to check if the timer should be visible for specific routes/components
+    return (
+     
+      url.includes('/final')||
+      url.includes('/login')
+      // Add more conditions as needed for other components
+    );
+  }
 
   ngOnDestroy(): void {
     // Unsubscribe to avoid memory leaks
@@ -186,5 +193,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+  }
+  submit(){
+    this.router.navigate(['./final']);
   }
 }
