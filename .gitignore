@@ -9,3 +9,11 @@ testcase/src/main/resources/application.properties
 *.properties
 mcqquestion/src/main/resources/application.properties
 *.log
+*.properties
+*.properties
+*.xml
+*.log
+QuestionService/src/main/resources/application.properties
+testcase/src/main/resources/application.properties
+testcase/src/main/resources/logback.xml
+testcase/src/main/resources/static/logfile.log
