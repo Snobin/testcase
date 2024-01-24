@@ -1,3 +1,4 @@
+import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,10 +21,11 @@ export class InstructionsComponent implements OnInit {
   quizdata;
   obj: NavbarComponent;
   categories: any;
-  constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService) { }
+  constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService,private locationst:LocationStrategy) { }
 
   ngOnInit(): void {
 this.updateStatus();
+this.preventBackButton();
   }
 
   next() {
@@ -56,5 +58,11 @@ this.updateStatus();
             });
         }
     );
+}
+preventBackButton() {
+  history.pushState(null, null, location.href);
+  this.locationst.onPopState(() => {
+      history.pushState(null, null, location.href)
+  });
 }
 }

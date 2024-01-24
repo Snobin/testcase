@@ -18,7 +18,17 @@
 .mat-green {
     stroke: #198754;
 }
-
+/* Style for Keypad Buttons */
+.keypad-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  /* Additional styling for buttons (adjust as needed) */
+ 
+  
 
 
 .pagination {
