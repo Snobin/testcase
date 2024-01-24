@@ -50,7 +50,7 @@ const routes: Routes = [
   },
   {
     path: 'instructions',
-    component: InstructionsComponent
+    component: InstructionsComponent,canActivate: [UserGuard]
   },
   {
     path: 'admin',
@@ -59,47 +59,47 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: WelcomeComponent
+        component: WelcomeComponent, canActivate: [AdminGuard]
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent, canActivate: [AdminGuard]
       },
       {
         path: 'categories',
-        component: ViewCategoriesComponent
+        component: ViewCategoriesComponent, canActivate: [AdminGuard]
       }, {
         path: 'add-categories',
-        component: AddCategoriesComponent
+        component: AddCategoriesComponent, canActivate: [AdminGuard]
       }
       , {
         path: 'quizzes',
-        component: ViewQuizzesComponent
+        component: ViewQuizzesComponent, canActivate: [AdminGuard]
       }
       , {
         path: 'add-quiz',
-        component: AddQuizComponent
+        component: AddQuizComponent, canActivate: [AdminGuard]
       }, {
         path: 'quiz/:qid',
-        component: UpdateQuizComponent
+        component: UpdateQuizComponent, canActivate: [AdminGuard]
       }, {
         path: 'view-questions/:qid/:title',
-        component: ViewQuizQuestionsComponent
+        component: ViewQuizQuestionsComponent, canActivate: [AdminGuard]
       }, {
         path: 'add-question/:qid/:title',
-        component: AddQuestionComponent
+        component: AddQuestionComponent, canActivate: [AdminGuard]
       }, {
         path: 'add-code',
-        component: AddCodeComponent
+        component: AddCodeComponent, canActivate: [AdminGuard]
       }, {
         path: 'view-answer',
-        component: ViewAnswerComponent
+        component: ViewAnswerComponent, canActivate: [AdminGuard]
       }, {
         path: 'view-code',
-        component: ViewCodingComponent
+        component: ViewCodingComponent, canActivate: [AdminGuard]
       }, {
         path: 'code/:qid',
-        component: UpdatecodeComponent
+        component: UpdatecodeComponent, canActivate: [AdminGuard]
       },
        { path: 'details/:userId', component: AnsDetailsComponent },
     ]
@@ -111,7 +111,7 @@ const routes: Routes = [
     children: [
       {
         path: ':title/:catId',
-        component: LoadQuizComponent
+        component: LoadQuizComponent, canActivate: [UserGuard]
       }
     ],
   },
@@ -122,10 +122,10 @@ const routes: Routes = [
   },
   {
     path: 'coding/:qid',
-    component: ConsoleComponent
+    component: ConsoleComponent, canActivate: [UserGuard]
   },{
     path:'final',
-    component:FinalComponent
+    component:FinalComponent,canActivate: [UserGuard]
   }
 ];
 
