@@ -10,13 +10,27 @@ import Swal from 'sweetalert2';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+quizdata: any;
+handleFileInput($event: any) {
+throw new Error('Method not implemented.');
+}
+formSubmit() {
+throw new Error('Method not implemented.');
+}
 
   loginPage: boolean = true;
   signupPage: boolean = false;
+  userdata: User=new User();
   constructor(private userservice:UserService,private snack:MatSnackBar,private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
   }
+
+  toggleUserRole() {
+    // If the toggle is turned on, set role to "admin"; otherwise, set it to "user"
+    this.userdata.role = this.userdata.role === 'admin' ? 'USER' : 'ADMIN';
+  }
+  
   
   openLogin() {
     this.loginPage = true;
