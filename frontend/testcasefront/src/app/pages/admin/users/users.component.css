@@ -16,7 +16,9 @@
 .center{
     transform: translateX(50%);
 }
-
+.full-width{
+width: 100%;
+}
 #signup {
     background-color: #fff;
     height: 100%;
