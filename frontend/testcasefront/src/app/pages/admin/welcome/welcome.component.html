@@ -1,0 +1,24 @@
+<div class="container h-full w-full p-10">
+    <div class="wrapper center">
+        <div class="row p-10 pb-0 bg-white m-0 brtrl-5 brbrl-0">
+            <button class="btn w-50 brtrl-5 brbrl-0" [class.btn-active]="loginPage==true" [class.btn-inactive]="loginPage==false" (click)="openLogin()">
+                Login
+            </button>
+            <button class="btn w-50 brtrl-5 brbrl-0" [class.btn-active]="signupPage==true" [class.btn-inactive]="loginPage==false" (click)="openSignup()">
+                Signup
+            </button>
+        </div>
+        <div class="row-wise form mt-10">
+            <div id="login" [class.open]="loginPage==true">
+                <div class="form">
+                    <input type="text" class="w-full" placeholder="Enter your Email">
+                </div>
+            </div>
+            <div id="signup" [class.open]="signupPage==true">
+                <div class="form">
+                    as
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

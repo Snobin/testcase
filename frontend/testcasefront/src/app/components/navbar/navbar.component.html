@@ -1,13 +1,15 @@
 <mat-toolbar color="primary">
-  <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <a routerLink="/" mat-icon-button class="example-icon"
+    aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
   <span>interland</span>
-  <a mat-button class="custom-button" aria-label="Coding Questions" (click)="getCategories()" *ngIf="showdata">
+  <a mat-button class="custom-button" aria-label="Coding Questions"
+    (click)="getCategories()" *ngIf="showdata">
     <span class="button-text">Questions</span>
     <i class="bi bi-arrow-right-circle"></i>
   </a>
-  
+
   <div class="example-spacer">
     <div class="text-center" *ngIf="showTimer && status">
       <div class="row text-center" style="margin-left: 45%; width: 150px; font-size: 20px; padding: 0px;">
@@ -24,10 +26,12 @@
     </div>
   </div>
   <!-- Navigation Links -->
-  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button class="text-white mr20" aria-label="Login">
+  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button
+    class="text-white mr20" aria-label="Login">
     Login
   </a>
-  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button class="text-white mr20" aria-label="Register">
+  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button
+    class="text-white mr20" aria-label="Register">
     Register
   </a>
   <a *ngIf="isLoggedIn && showTimer" (click)="submit()" mat-icon-button class="text-white mr20" aria-label="Logout" >
@@ -36,7 +40,8 @@
   <a *ngIf="isLoggedIn && logoutdata" (click)="logout()" mat-icon-button class="text-white mr20" aria-label="Logout"  >
     Logout
   </a>
-  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile" mat-button class="text-white mr20"
+  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile"
+    mat-button class="text-white mr20"
     aria-label="User Profile">
     {{ user.username }}
   </button>
