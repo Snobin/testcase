@@ -43,6 +43,17 @@ export class StartComponent implements OnInit {
     this.question.getQuestionsForQuiz(this.qId).subscribe(
       (data: any) => {
         this.questions = data;
+        console.log(this.questions);
+
+        for (let index = 0; index < this.questions.length; index++) {
+          const student: any = {};
+          student.studentId = '1';
+          student.questionId = '';
+          student.no = index + 1;
+          student.answer = '';
+          student.status = '';
+          this.students[index] = student;
+        }
         this.setPage(1);
         this.timer = this.questions.length * 2 * 60;
         this.questions.forEach((q) => {
@@ -52,15 +63,6 @@ export class StartComponent implements OnInit {
           q['user'] = userData.username;
         });
         // this.startTimer();
-        for (let index = 0; index < this.totalPages; index++) {
-          const student: any = {};
-          student.studentId = '1';
-          student.questionId = '';
-          student.no = index + 1;
-          student.answer = '';
-          student.status = '';
-          this.students[index] = student;
-        }
         this.notAttemptedNo = this.totalPages;
       },
       (error) => {
@@ -90,43 +92,7 @@ export class StartComponent implements OnInit {
     });
   }
 
-  // startTimer() {
-  //   let t: any = window.setInterval(() => {
-  //     if (this.timer <= 0) {
-  //       this.eval();
-  //       clearInterval(t);
-  //     } else {
-  //       this.timer--;
-  //     }
-  //   }, 1000)
-  // }
-
-  getFormattedTime() {
-    let mm = Math.floor(this.timer / 60);
-    let ss = this.timer - mm * 60;
-    // Formatting single-digit seconds
-    let formattedSS = ss < 10 ? `0${ss}` : ss;
-    return `${mm} : ${formattedSS} Minutes`;
-  }
-
   eval() {
-    // this.isSubmit = true;
-    // this.questions.forEach(q => {
-
-    //   if (q.givenAnswer == q.answer) {
-    //     this.correctAnswer++;
-    //     let marksSingle =
-    //       this.questions[0].quiz.maxMarks / this.questions.length;
-    //     this.marksGot += marksSingle;
-    //   }
-    //   if (q.givenAnswer.trim() != '') {
-    //     this.attempted++;
-    //   }
-    // });
-    // console.log(this.correctAnswer);
-    // console.log(this.marksGot);
-    // console.log(this.attempted);
-
     this.question.evalQuiz(this.questions).subscribe(
       (data: any) => {
         this.attemptedNo = data.attempted;
