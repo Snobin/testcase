@@ -8,48 +8,21 @@ import { Response } from '../model/response';
 })
 export class UserService {
 
-  baseUrl='http://localhost:8081/auth';
-  countdownSeconds: number=59;
-  countdownMinutes: any=10;
-
-  constructor(private http:HttpClient) { }
-
-  //add user
-  public addUser(user:any):Observable<Response>{
-    return this.http.post<Response>(`${this.baseUrl}/signup`,user);
-  }
-
-
+  private baseUrl = 'http://localhost:8081/auth';
   private statusSubject = new BehaviorSubject<boolean>(false);
 
   status$ = this.statusSubject.asObservable();
 
-  startCountdown(): void {
-    const countdownInterval = setInterval(() => {
-      this.countdownSeconds--;
+  constructor(private http: HttpClient) { }
 
-      if (this.countdownSeconds < 0) {
-        this.countdownMinutes--;
-
-        this.countdownSeconds = 59;
-      }
-
-      if (this.countdownMinutes === 0 && this.countdownSeconds === 0) {
-        clearInterval(countdownInterval);
-        this.statusSubject.next(false);
-      }
-    }, 1000);
+  // Add user
+  addUser(user: any): Observable<Response> {
+    return this.http.post<Response>(`${this.baseUrl}/signup`, user);
   }
 
-  // resetTimer(): void {
-  //   this.countdownMinutes = 1;
-  //   this.countdownSeconds = 0;
-  // }
-
+  // Set status
   setStatus(status: boolean): void {
     console.log(status);
-    
     this.statusSubject.next(status);
   }
-  
 }

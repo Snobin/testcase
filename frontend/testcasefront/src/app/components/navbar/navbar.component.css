@@ -1,3 +1,27 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.custom-button {
+  margin-left: 50px;
+  background-color: #3f51b5; /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+  padding: 1px 1px; /* Adjust padding as needed */
+  border-radius: 5px; /* Add rounded corners */
+  text-decoration: none; /* Remove underline */
+  display: inline-block;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+  
+}
+
+.button-text {
+  font-size: 18px; /* Set your desired font size */
+  margin-right: 10px; /* Adjust spacing between text and icon */
+}
+
+/* Optional: Style for the Bootstrap icon */
+.bi-arrow-right-circle {
+  font-size: 20px; /* Set your desired icon size */
+  vertical-align: middle; /* Align the icon vertically with the text */
+}

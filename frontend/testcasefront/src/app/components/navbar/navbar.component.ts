@@ -4,6 +4,9 @@ import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { CategoryService } from 'src/app/services/category.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-navbar',
@@ -14,24 +17,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false;
   user = null;
-  countdownMinutes: number = 1;
+  countdownMinutes: number = 10;
   countdownSeconds: number = 0;
   status: boolean = false;
   private statusSubscription: Subscription;
   private routeSubscription: Subscription;
   showTimer: boolean = false;
+  categories: any;
   private countdownInterval: any;
+  showdata:boolean;
 
   constructor(
     public login: LoginService,
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private cat: CategoryService,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.isLogged();
     this.subscribeToStatus();
+
+    
 
     // Subscribe to route changes to reinitialize the timer
     this.routeSubscription = this.router.events
@@ -40,9 +49,27 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.handleRouteChange();
       });
   }
-
+  getCategories() {
+    this.cat.categories().subscribe((data: any) => {
+        this.categories = data;
+        console.log(this.categories);
+      
+        this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
+    },
+        (error) => {
+            this.snack.open('Error in loading categories from server', '', {
+                duration: 3000,
+            });
+        }
+    );
+}
   private handleRouteChange(): void {
     // Unsubscribe before reinitializing
+    console.log(this.router.url);
+
+    // Update the showdata based on the current URL
+    this.showdata = this.show(this.router.url);
+    console.log(this.showdata);
     this.unsubscribeFromStatus();
     
     // Reset the timer and status when navigating to specific components    
@@ -79,6 +106,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
       });
     }
   }
+  show(url: string): boolean {
+    return (
+      url.includes('/coding') ||
+      url.includes('/start')
+      // Add more conditions as needed for other components
+    );
+  }
+  
 
   private clearCountdownInterval(): void {
     // Clear the existing interval if it's running
@@ -110,7 +145,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
   resetTimer(): void {
-    this.countdownMinutes = 1; // Set the initial minutes value
+    this.countdownMinutes = 10; // Set the initial minutes value
     this.countdownSeconds = 0; // Set the initial seconds value
   }
   
