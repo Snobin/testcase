@@ -41,7 +41,7 @@ public class AuthController
     private AuthRepository authRepository;
     
     
-	@PostMapping("/																													")
+    @PostMapping("/login")
 	ResponseEntity<?> registerUser(@RequestBody SignupDTO dto)
 	{
 		return new ResponseEntity<>(service.addUser(dto),HttpStatus.OK);
