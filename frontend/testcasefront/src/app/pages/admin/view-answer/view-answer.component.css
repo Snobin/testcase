@@ -13,4 +13,6 @@ table {
   .mat-paginator {
     margin-top: 20px;
   }
-  
+  .selected-row {
+    background-color: #d3d3d3; /* Change the background color as needed */
+  }

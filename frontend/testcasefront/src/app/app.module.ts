@@ -20,7 +20,6 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
-import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -53,6 +52,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
+import { FinalComponent } from './pages/user/final/final.component';
+import { UsersComponent } from './pages/admin/users/users.component';
 
 
 
@@ -68,7 +69,6 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
     UserDashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    WelcomeComponent,
     ViewCategoriesComponent,
     AddCategoriesComponent,
     ViewQuizzesComponent,
@@ -88,6 +88,8 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
     UpdatecodeComponent,
     McqComponent,
     AnsDetailsComponent,
+    FinalComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

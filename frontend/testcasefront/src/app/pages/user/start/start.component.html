@@ -23,32 +23,16 @@
 
 <div class="custom-card" *ngIf="!isSubmit">
     <div class="card-body">
-        <div class="custom-row"
-            *ngFor="let question of displayedQuestions; let n = index;"
+        <div class="custom-row" *ngFor="let question of displayedQuestions; let n = index;"
             style="height: -webkit-fill-available;min-width: 1050px;">
-            <div class="col-md-1 col-sm-1"
-                style="height: 91vh;width: 8.33333333%;min-width: 68px;border: 1px solid #c7c8c9;border-top-width: 0px;border-bottom-width: 0px;border-left-width: 0px;">
-                <div style="overflow-y: auto;height: 45vh;">
-                    <div class="custom-row btn-group" style="margin: 10px;"
-                        *ngFor="let page of pages; let i = index">
-                        <button id="button{{page}}" class="btn"
-                            [class.btn-success]="students[i].status=='attempted'"
-                            [class.btn-dark]="currentPage==page"
-                            [class.btn-outline-dark]="currentPage!=page&&students[i].status==''"
-                            [class.btn-danger]="currentPage!=page&&students[i].status=='not attempted'"
-                            (click)="setPage(page)">{{page}}</button>
-                    </div>
-                </div>
-                <hr>
-            </div>
 
-            <div class="col-md-8 col-sm-8"
-                style="padding-left: 10px;padding-top: 10px;padding-right: 10px;width: 66.66666666%;min-width: 310px;">
+
+            <div class="col-md-9 col-sm-9"
+                style="padding: 10px;padding-left: 50px;min-width: 310px;">
                 <div *ngIf="questions">
                     <h1 class="mt20">On Going <b>{{questions[0].quiz.title}}</b> quiz</h1>
                 </div>
-                <div class="card"
-                    style="overflow: hidden;height: min-content;">
+                <div class="card" style="overflow: hidden;height: min-content;">
                     <div class="card-body">
                         <div class="col-md-12 col-sm-12 card-title">
                             <strong>{{currentPage}}.</strong>
@@ -64,63 +48,47 @@
                             </span>
                         </div>
                         <hr>
-                        <div id="option"
-                            class="col-md-12 col-sm-12 options-margin">
+                        <div id="option" class="col-md-12 col-sm-12 options-margin" >
                             <form id="options{{question.quesId}}">
-                                <label class="col-md-6 col-sm-6 opt-margin"
-                                    *ngIf="(question.option1!='')">
-                                    <input id="1" type="radio" name="options"
-                                        [value]="question.option1"
+                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option1!='')">
+                                    <input id="1" type="radio" name="options" [value]="question.option1" [(ngModel)]="question.givenAnswer"
                                         [checked]="students[question.quesId-1].answer==question.option1">
                                     {{question.option1}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin"
-                                    *ngIf="(question.option2!='')">
-                                    <input id="2" type="radio" name="options"
-                                    [value]="question.option2"
+                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option2!='')">
+                                    <input id="2" type="radio" name="options" [value]="question.option2"[(ngModel)]="question.givenAnswer"
                                         [checked]="students[question.quesId-1].answer==question.option2">
                                     {{question.option2}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin"
-                                    *ngIf="(question.option3!='')">
-                                    <input id="3" type="radio" name="options"
-                                    [value]="question.option3"
+                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option3!='')">
+                                    <input id="3" type="radio" name="options" [value]="question.option3"[(ngModel)]="question.givenAnswer"
                                         [checked]="students[question.quesId-1].answer==question.option3">
                                     {{question.option3}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin"
-                                    *ngIf="(question.option4!='')">
-                                    <input id="4" type="radio" name="options"
-                                    [value]="question.option4"
+                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option4!='')">
+                                    <input id="4" type="radio" name="options" [value]="question.option4"[(ngModel)]="question.givenAnswer"
                                         [checked]="students[question.quesId-1].answer==question.option4">
                                     {{question.option4}}
                                 </label>
                             </form>
                         </div>
                         <hr>
-                        <button class="btn"
-                            [class.btn-dark]="currentPage <= pages.length && currentPage != 1"
-                            style="margin-right: 1px;"
-                            (click)="previous(currentPage,question.quesId)">
+                        <button class="btn" [class.btn-dark]="currentPage <= pages.length && currentPage != 1"
+                            style="margin-right: 1px;" (click)="previous(currentPage,question.quesId)">
                             <i class="bi bi-caret-left-fill"></i> Previous
                         </button>
-                        <button class="btn float-end"
-                            [class.btn-dark]="currentPage < pages.length"
-                            style="margin-left: 1px;"
-                            (click)="next(currentPage,question.quesId)">Next
+                        <button class="btn float-end" [class.btn-dark]="currentPage < pages.length"
+                            style="margin-left: 1px;" (click)="next(currentPage,question.quesId)">Next
                             <i class="bi bi-caret-right-fill"></i>
                         </button>
-                        <button class="btn btn-success float-end"
-                            style="margin-right: 1px;"
+                        <button class="btn btn-success float-end" style="margin-right: 1px;"
                             (click)="save(currentPage,question.quesId)">Save</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3"
                 style="height: 91vh;border: 1px solid #c7c8c9;border-top-width: 0px;border-bottom-width: 0px;border-right-width: 0px;padding: 15px;width: 25%;min-width: 259px;">
-                <div
-                    class="card btn-group custom-row item-center col-md-12 col-sm-12"
-                    style="padding: 5px;">
+                <div class="card btn-group custom-row item-center col-md-12 col-sm-12" style="padding: 5px;">
                     <button class="btn btn-success col-md-6 col-sm-6">Attempted
                         : {{attemptedNo}}
                     </button>
@@ -129,28 +97,27 @@
                     </button>
                 </div>
                 <hr>
-                <div class="text-center">
-                    Quiz will be automatically submitted in
+                <div>
+                    <div>
+                        <!-- Keypad Buttons -->
+                        <div class="row keypad-buttons " >
+                          <div class="custom-row btn-group" *ngFor="let page of pages; let i = index">
+                            <button id="button{{page}}" class="btn"
+                                    [class.btn-success]="students[i].status=='attempted'"
+                                    [class.btn-dark]="currentPage==page"
+                                    [class.btn-outline-dark]="currentPage!=page&&students[i].status==''"
+                                    [class.btn-danger]="currentPage!=page&&students[i].status=='not attempted'"
+                                    (click)="setPage(page)">
+                              {{page}}
+                            </button>
+                          </div>
+                        </div>
+                        
+                    </div>
+
                 </div>
-                <br>
-                <div class="timer-container">
-                    <h3 class="time-center text-success">
-                        <strong>{{ getFormattedTime() }}</strong></h3>
-                    <mat-spinner mode="determinate"
-                        [value]="(timer / ((questions.length * 2) * 60)) * 100"
-                        style="margin: auto;">
-                    </mat-spinner>
-                </div>
-                <br>
-                <div class="text-center">
-                    Or
-                </div>
-                <br>
-                <div class="text-center">
-                    <button class="btn btn-primary" (click)="submitQuiz()">
-                        Submit
-                    </button>
-                </div>
+                <button (click)="submitQuiz()">Submit</button>
+
             </div>
         </div>
     </div>

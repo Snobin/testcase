@@ -4,7 +4,6 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
-import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
@@ -28,6 +27,8 @@ import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.compo
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
+import { FinalComponent } from './pages/user/final/final.component';
+import { UsersComponent } from './pages/admin/users/users.component';
 
 
 const routes: Routes = [
@@ -58,11 +59,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: WelcomeComponent
+        component: ProfileComponent
       },
       {
-        path: 'profile',
-        component: ProfileComponent
+        path:'users',
+        component:UsersComponent
       },
       {
         path: 'categories',
@@ -122,7 +123,10 @@ const routes: Routes = [
   {
     path: 'coding/:qid',
     component: ConsoleComponent
-  },
+  },{
+    path:'final',
+    component:FinalComponent
+  }
 ];
 
 @NgModule({
