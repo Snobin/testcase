@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.interland.testcase.dto.SingleResultDto;
+
 import com.interland.testcase.entity.ResultEntity;
 import com.interland.testcase.entity.SingleResult;
 import com.interland.testcase.entity.SingleResultPk;

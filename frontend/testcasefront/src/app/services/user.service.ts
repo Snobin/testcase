@@ -8,21 +8,21 @@ import { Response } from '../model/response';
 })
 export class UserService {
 
-  baseUrl='http://localhost:8081/auth';
+  private baseUrl = 'http://localhost:8081/auth';
+  private statusSubject = new BehaviorSubject<boolean>(false);
 
-  constructor(private http:HttpClient) { }
-
-  //add user
-  public addUser(user:any):Observable<Response>{
-    return this.http.post<Response>(`${this.baseUrl}/signup`,user);
-  }
-
-  private statusSubject = new BehaviorSubject<boolean>(true);
   status$ = this.statusSubject.asObservable();
 
+  constructor(private http: HttpClient) { }
+
+  // Add user
+  addUser(user: any): Observable<Response> {
+    return this.http.post<Response>(`${this.baseUrl}/signup`, user);
+  }
+
+  // Set status
   setStatus(status: boolean): void {
-    console.log("hello");
+    console.log(status);
     this.statusSubject.next(status);
   }
-  
 }

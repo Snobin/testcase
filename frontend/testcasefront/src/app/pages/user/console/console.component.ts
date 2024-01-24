@@ -69,7 +69,7 @@ export class ConsoleComponent implements OnInit {
     //   window.location.reload();
     // }
     this.clearAll();
-    // this.preventBackButton();
+    this.preventBackButton();
 
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
