@@ -1,8 +1,13 @@
 package com.authentication.JwtAuthCoustom.ServiceImp;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import java.util.Iterator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +21,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import java.io.IOException;
+
+import java.text.SimpleDateFormat;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import com.authentication.JwtAuthCoustom.DTO.CustomUserDetails;
 import com.authentication.JwtAuthCoustom.DTO.LoginDTO;
 import com.authentication.JwtAuthCoustom.DTO.SignupDTO;
@@ -23,6 +41,9 @@ import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 import com.authentication.JwtAuthCoustom.Service.AuthService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+
+
 
 @Service
 public class AuthServiceImp implements AuthService {
@@ -106,5 +127,69 @@ public class AuthServiceImp implements AuthService {
 	public ObjectNode processExcelData(MultipartFile excelFile) {
 		return null;
 	}
+	
+	 public List<UserEntity> processExcelFile(MultipartFile file) throws IOException  {
+	        List<UserEntity> users = new ArrayList<>();
 
+	        try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+	            Sheet sheet = workbook.getSheetAt(0);
+	            Iterator<Row> rowIterator = sheet.iterator();
+
+	            // Skipping the header row
+	            if (rowIterator.hasNext()) {
+	                rowIterator.next();
+	            }
+
+	            while (rowIterator.hasNext()) {
+	                Row row = rowIterator.next();
+
+	                UserEntity user = new UserEntity();
+	                user.setEmail(getStringCellValue(row.getCell(2)));
+	                String encodedPassword = passwordEncoder.encode(getDateCellValue(row.getCell(4)));
+	                user.setPassword(encodedPassword);
+	                user.setFirstName(getStringCellValue(row.getCell(0)));
+	                user.setLastName(getStringCellValue(row.getCell(1)));
+	                user.setPhoneNumber(getStringCellValue(row.getCell(3)));
+	                user.setRoles("USER");
+	                user.setUsername(getStringCellValue(row.getCell(2)));
+
+	                repo.save(user);
+	            }
+	            return users;
+	        }catch (IOException  e) {
+		        e.printStackTrace();
+	        }
+			return users;
+	       
+	    }
+
+	    private String getStringCellValue(Cell cell) {
+	        if (cell == null) {
+	            return null;
+	        }
+	        cell.setCellType(CellType.STRING);
+	        return cell.getStringCellValue();
+	    }
+	    
+	    private static String getDateCellValue(Cell cell) {
+	        if (cell == null || cell.getCellType() == CellType.BLANK) {
+	            return null;
+	        }
+
+	        // Check if the cell contains a numeric value (Excel date representation)
+	        if (DateUtil.isCellDateFormatted(cell)) {
+	            Date date = cell.getDateCellValue();
+	            // Format the date as a string (adjust the format as needed)
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	            return dateFormat.format(date);
+	        } else if (cell.getCellType() == CellType.STRING) {
+	            // If the cell contains a string, assume it's already a formatted date
+	            return cell.getStringCellValue();
+	        } else {
+	            // If not a date or string, use DataFormatter to get the formatted date string
+	            DataFormatter dataFormatter = new DataFormatter();
+	            return dataFormatter.formatCellValue(cell);
+	        }
+	    }
+	    
 }

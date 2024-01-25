@@ -9,6 +9,7 @@ import { Response } from '../model/response';
 export class UserService {
 
   private baseUrl = 'http://localhost:8081/auth';
+  
   private statusSubject = new BehaviorSubject<boolean>(false);
 
   status$ = this.statusSubject.asObservable();
@@ -30,6 +31,12 @@ export class UserService {
   setStatus(status: boolean): void {
     console.log(status);
     this.statusSubject.next(status);
+  }
+
+  uploadExcelFile(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('excelFile', file);
+    return this.http.post<any>(`${this.baseUrl}/upload`, formData);
   }
 
 
