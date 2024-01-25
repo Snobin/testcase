@@ -59,9 +59,6 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path: '',
-        component: ProfileComponent
-      }, {
         path: 'profile',
         component: ProfileComponent
       },
