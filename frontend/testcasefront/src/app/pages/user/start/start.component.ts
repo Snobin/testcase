@@ -1,5 +1,5 @@
 import { LocationStrategy } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FullScreenService } from 'src/app/services/full-screen.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -252,5 +252,13 @@ export class StartComponent implements OnInit {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboardEvent(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
+  @HostListener('document:visibilitychange', ['$event'])
+  private handleVisibilityChange(event: Event): void {
+  this.fullScreenService.onVisibilityChange(document.hidden);
+}
 }
 

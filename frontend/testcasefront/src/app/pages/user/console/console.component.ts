@@ -378,5 +378,13 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
   }
+  @HostListener('document:visibilitychange', ['$event'])
+  private handleVisibilityChange(event: Event): void {
+  this.fullScreenService.onVisibilityChange(document.hidden);
+}
+ @HostListener('document:keydown', ['$event'])
+ private handleKeyboard(event: KeyboardEvent): void {
+  this.fullScreenService.onKeyDown(event);
+}
 
 }

@@ -89,23 +89,13 @@ export class LoadQuizComponent implements OnInit {
         this.router.navigate([`./start/${qid}`])
     }
 
-    handleKeyDown(event: KeyboardEvent): void {
-        this.fullScreenService.onKeyDown(event);
-      }
       @HostListener('document:visibilitychange', ['$event'])
-      onVisibilityChange(event: Event): void {
-        if (event) {
-            Swal.fire('Hello, this is a SweetAlert message!');
-        } else {
-          // Tab is visible again
-        }
-      }
-      @HostListener('document:keydown', ['$event'])
-      onKeyDown(event: KeyboardEvent): void {
-        if (event.ctrlKey && event.key === 'Tab') {
-          event.preventDefault(); // Prevent default tab-switching behavior
-          Swal.fire('Hello, this is a SweetAlert message!');
-        }
-      }
-    
+    private handleVisibilityChange(event: Event): void {
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboardEvent(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
 }
+    

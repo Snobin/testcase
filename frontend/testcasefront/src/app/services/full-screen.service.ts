@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 })
 export class FullScreenService {
 
+  variable:number=0;
+
   requestFullScreen(): void {
     const element = document.documentElement as any;
 
@@ -20,20 +22,26 @@ export class FullScreenService {
     }
   }
 
-  @HostListener('document:visibilitychange', ['$event'])
-  onVisibilityChange(event: Event): void {
-    if (event) {
-        Swal.fire('Hello, this is a SweetAlert message!');
+  onVisibilityChange(hidden: boolean): void {
+    if (hidden) {
+      this.variable++;
+      Swal.fire('oo you are smart, dont repeat it again' );
+      if(this.variable==3){
+        Swal.fire('you are disqualified' );
+       }
     } else {
       // Tab is visible again
     }
   }
 
-  @HostListener('document:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
     if (event.ctrlKey && event.key === 'Tab') {
+      this.variable++;
       event.preventDefault(); // Prevent default tab-switching behavior
-      alert('Do not use keyboard shortcuts during the exam!');
+      Swal.fire('oo you are smart, dont repeat it again' );
+     if(this.variable==3){
+      Swal.fire('you are disqualified' );
+     }
     }
   }
 }
