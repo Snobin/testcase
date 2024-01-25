@@ -6,6 +6,7 @@ import { LocationStrategy } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Case } from '../model/case';
 import { Subject } from 'rxjs';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 
 
 declare var CodeMirror: any;
@@ -61,13 +62,14 @@ export class ConsoleComponent implements OnInit {
   runText: string = "Run<i class='bi bi-play-fill'></i>";
   toast: boolean = false;
 
-  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
+  constructor(private fullScreenService: FullScreenService,private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
 
   ngOnInit(): void {
     // if (localStorage.getItem('hasReloaded') == 'true') {
     //   localStorage.setItem('hasReloaded','false')
     //   window.location.reload();
     // }
+    this.fullScreenService.requestFullScreen();
     this.clearAll();
     this.preventBackButton();
 
@@ -376,5 +378,13 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
   }
+  @HostListener('document:visibilitychange', ['$event'])
+  private handleVisibilityChange(event: Event): void {
+  this.fullScreenService.onVisibilityChange(document.hidden);
+}
+ @HostListener('document:keydown', ['$event'])
+ private handleKeyboard(event: KeyboardEvent): void {
+  this.fullScreenService.onKeyDown(event);
+}
 
 }

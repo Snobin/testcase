@@ -1,10 +1,11 @@
 import { LocationStrategy } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddQuestion } from 'src/app/model/AddQuestion';
 import { CategoryService } from 'src/app/services/category.service';
 import { CodeService } from 'src/app/services/code.service';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
 
@@ -15,6 +16,8 @@ import Swal from 'sweetalert2';
 })
 export class LoadQuizComponent implements OnInit {
 
+    
+
     catId;
     quizzes: any = [];
     codeInput: AddQuestion = new AddQuestion();
@@ -22,8 +25,9 @@ export class LoadQuizComponent implements OnInit {
     selectedQuestionType: string;
     title: any;
     categories: any;
-    constructor(private cat: CategoryService, private route: ActivatedRoute, private locationst: LocationStrategy, private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar) { }
+    constructor(private cat: CategoryService, private route: ActivatedRoute, private locationst: LocationStrategy, private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar,private fullScreenService: FullScreenService) { }
     ngOnInit(): void {
+        this.fullScreenService.requestFullScreen();
         this.showList();
     }
 
@@ -84,4 +88,14 @@ export class LoadQuizComponent implements OnInit {
     question(qid: string) {
         this.router.navigate([`./start/${qid}`])
     }
+
+      @HostListener('document:visibilitychange', ['$event'])
+    private handleVisibilityChange(event: Event): void {
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboardEvent(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
 }
+    

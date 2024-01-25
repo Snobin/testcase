@@ -56,6 +56,7 @@ import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { ServerErrorPageComponent } from './pages/server-error-page/server-error-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { FullScreenService } from './services/full-screen.service';
 
 
 
@@ -107,7 +108,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     MatButtonModule,MatPaginatorModule,MatSortModule,MatTableModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,FullScreenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

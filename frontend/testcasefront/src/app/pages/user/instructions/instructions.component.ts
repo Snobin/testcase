@@ -1,10 +1,11 @@
 import { LocationStrategy } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CategoryService } from 'src/app/services/category.service';
 import { CodeService } from 'src/app/services/code.service';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,9 +22,10 @@ export class InstructionsComponent implements OnInit {
   quizdata;
   obj: NavbarComponent;
   categories: any;
-  constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService,private locationst:LocationStrategy) { }
+  constructor(private fullScreenService: FullScreenService,private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService,private locationst:LocationStrategy) { }
 
   ngOnInit(): void {
+    this.fullScreenService.requestFullScreen();
 this.updateStatus();
 this.preventBackButton();
   }
@@ -64,5 +66,13 @@ preventBackButton() {
   this.locationst.onPopState(() => {
       history.pushState(null, null, location.href)
   });
+}
+@HostListener('document:visibilitychange', ['$event'])
+private handleVisibilityChange(event: Event): void {
+this.fullScreenService.onVisibilityChange(document.hidden);
+}
+@HostListener('document:keydown', ['$event'])
+private handleKeyboardEvent(event: KeyboardEvent): void {
+  this.fullScreenService.onKeyDown(event);
 }
 }
