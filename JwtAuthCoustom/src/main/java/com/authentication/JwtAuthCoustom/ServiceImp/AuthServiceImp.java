@@ -32,6 +32,7 @@ public class AuthServiceImp implements AuthService {
 	private AuthRepository repo;
 
 	public ResponseEntity<?> addUser(SignupDTO dto) {
+		String role=dto.getRole()=="false"?"USER":"ADMIN";
 		UserEntity entity = new UserEntity();
 		try {
 			entity.setEmail(dto.getEmail());
@@ -40,7 +41,7 @@ public class AuthServiceImp implements AuthService {
 			String encodedPassword = passwordEncoder.encode(dto.getPassword());
 			entity.setPassword(encodedPassword);
 			entity.setPhoneNumber(dto.getPhoneNumber());
-			entity.setRoles("ADMIN");
+			entity.setRoles(role);
 			entity.setUsername(dto.getUsername());
 			repo.save(entity);
 			return new ResponseEntity<>("Successfully Inserted", HttpStatus.OK);

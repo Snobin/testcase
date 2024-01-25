@@ -23,14 +23,15 @@
 
 <div class="custom-card" *ngIf="!isSubmit">
     <div class="card-body">
-        <div class="custom-row" *ngFor="let question of displayedQuestions; let n = index;"
+        <div class="custom-row"
+            *ngFor="let question of displayedQuestions; let n = index;"
             style="height: -webkit-fill-available;min-width: 1050px;">
-
 
             <div class="col-md-9 col-sm-9"
                 style="padding: 10px;padding-left: 50px;min-width: 310px;">
                 <div *ngIf="questions">
-                    <h1 class="mt20">On Going <b>{{questions[0].quiz.title}}</b> quiz</h1>
+                    <h1 class="mt20">On Going <b>{{question.quiz.title}}</b>
+                        quiz</h1>
                 </div>
                 <div class="card" style="overflow: hidden;height: min-content;">
                     <div class="card-body">
@@ -40,55 +41,71 @@
                         </div>
                         <div>
                             <span class="badge bg-success float-end"
-                                *ngIf="students[question.quesId-1].status=='attempted'">
+                                *ngIf="question.status=='attempted'">
                                 Attempted</span>
                             <span class="badge bg-danger float-end"
-                                *ngIf="students[question.quesId-1].status=='not attempted'||students[question.quesId-1].status==''">Not
+                                *ngIf="question.status=='not attempted'||question.status==''">Not
                                 Attempted
                             </span>
                         </div>
                         <hr>
-                        <div id="option" class="col-md-12 col-sm-12 options-margin">
+                        <div id="option"
+                            class="col-md-12 col-sm-12 options-margin">
                             <form id="options{{question.quesId}}">
-                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option1!='')">
-                                    <input id="1" type="radio" name="options" [value]="question.option1" [(ngModel)]="question.givenAnswer"
-                                        [checked]="students[question.quesId-1].answer==question.option1">
+                                <label class="col-md-6 col-sm-6 opt-margin"
+                                    *ngIf="(question.option1!='')">
+                                    <input id="1" type="radio" name="options"
+                                        [value]="question.option1"
+                                        [(ngModel)]="question.givenAnswer">
                                     {{question.option1}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option2!='')">
-                                    <input id="2" type="radio" name="options" [value]="question.option2"[(ngModel)]="question.givenAnswer"
-                                        [checked]="students[question.quesId-1].answer==question.option2">
+                                <label class="col-md-6 col-sm-6 opt-margin"
+                                    *ngIf="(question.option2!='')">
+                                    <input id="2" type="radio" name="options"
+                                        [value]="question.option2"
+                                        [(ngModel)]="question.givenAnswer">
                                     {{question.option2}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option3!='')">
-                                    <input id="3" type="radio" name="options" [value]="question.option3"[(ngModel)]="question.givenAnswer"
-                                        [checked]="students[question.quesId-1].answer==question.option3">
+                                <label class="col-md-6 col-sm-6 opt-margin"
+                                    *ngIf="(question.option3!='')">
+                                    <input id="3" type="radio" name="options"
+                                        [value]="question.option3"
+                                        [(ngModel)]="question.givenAnswer">
                                     {{question.option3}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin" *ngIf="(question.option4!='')">
-                                    <input id="4" type="radio" name="options" [value]="question.option4"[(ngModel)]="question.givenAnswer"
-                                        [checked]="students[question.quesId-1].answer==question.option4">
+                                <label class="col-md-6 col-sm-6 opt-margin"
+                                    *ngIf="(question.option4!='')">
+                                    <input id="4" type="radio" name="options"
+                                        [value]="question.option4"
+                                        [(ngModel)]="question.givenAnswer">
                                     {{question.option4}}
                                 </label>
                             </form>
                         </div>
                         <hr>
-                        <button class="btn" [class.btn-dark]="currentPage <= pages.length && currentPage != 1"
-                            style="margin-right: 1px;" (click)="previous(currentPage,question.quesId)">
+                        <button class="btn"
+                            [class.btn-dark]="currentPage <= pages.length && currentPage != 1"
+                            style="margin-right: 1px;"
+                            (click)="previous(question.givenAnswer, question.quesId)">
                             <i class="bi bi-caret-left-fill"></i> Previous
                         </button>
-                        <button class="btn float-end" [class.btn-dark]="currentPage < pages.length"
-                            style="margin-left: 1px;" (click)="next(currentPage,question.quesId)">Next
+                        <button class="btn float-end"
+                            [class.btn-dark]="currentPage < pages.length"
+                            style="margin-left: 1px;"
+                            (click)="next(question.givenAnswer, question.quesId)">Next
                             <i class="bi bi-caret-right-fill"></i>
                         </button>
-                        <button class="btn btn-success float-end" style="margin-right: 1px;"
-                            (click)="save(currentPage,question.quesId)">Save</button>
+                        <button class="btn btn-success float-end"
+                            style="margin-right: 1px;"
+                            (click)="save(question.givenAnswer, question.quesId)">Save</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3"
                 style="height: 91vh;border: 1px solid #c7c8c9;border-top-width: 0px;border-bottom-width: 0px;border-right-width: 0px;padding: 15px;width: 25%;min-width: 259px;">
-                <div class="card btn-group custom-row item-center col-md-12 col-sm-12" style="padding: 5px;">
+                <div
+                    class="card btn-group custom-row item-center col-md-12 col-sm-12"
+                    style="padding: 5px;">
                     <button class="btn btn-success col-md-6 col-sm-6">Attempted
                         : {{attemptedNo}}
                     </button>
@@ -100,24 +117,22 @@
                 <div>
                     <div>
                         <!-- Keypad Buttons -->
-                        <div class="row keypad-buttons " >
-                          <div class="custom-row btn-group" *ngFor="let page of pages; let i = index">
-                            <button id="button{{page}}" class="btn"
-                                    [class.btn-success]="students[i].status=='attempted'"
+                        <div class="row keypad-buttons ">
+                            <div class="custom-row btn-group"
+                                *ngFor="let page of pages; let i = index">
+                                <button id="button{{page}}" class="btn"
+                                    [class.btn-success]="questions[i].status=='attempted'"
                                     [class.btn-dark]="currentPage==page"
-                                    [class.btn-outline-dark]="currentPage!=page&&students[i].status==''"
-                                    [class.btn-danger]="currentPage!=page&&students[i].status=='not attempted'"
+                                    [class.btn-outline-dark]="currentPage!=page&&questions[i].status==''"
+                                    [class.btn-danger]="currentPage!=page&&questions[i].status=='not attempted'"
                                     (click)="setPage(page)">
-                              {{page}}
-                            </button>
-                          </div>
+                                    {{page}}
+                                </button>
+                            </div>
                         </div>
-                        
                     </div>
-
                 </div>
                 <button (click)="submitQuiz()">Submit</button>
-
             </div>
         </div>
     </div>

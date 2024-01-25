@@ -13,37 +13,35 @@ import Swal from 'sweetalert2';
 })
 export class SignupComponent implements OnInit {
 
-  userdata: User=new User();
+  userdata: User = new User();
 
-  constructor(private userservice:UserService,private snack:MatSnackBar, private router:Router) { }
+  constructor(private userservice: UserService, private snack: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   formSubmit() {
     console.log(this.userdata);
-    if(this.userdata.username==null||this.userdata.username==""){
-      this.snack.open("username is required ...",'',{
-        duration:3000,
-        verticalPosition:'top'
+    if (this.userdata.username == null || this.userdata.username == "") {
+      this.snack.open("username is required ...", '', {
+        duration: 3000,
+        verticalPosition: 'top'
       });
       return;
     }
     this.userservice.addUser(this.userdata).subscribe(
-      (data)=>{
+      (data) => {
         if (data.body == 'Successfully Inserted') {
           this.router.navigate([`./login`]);
-          Swal.fire("Success",'User is Registered','success')
+          Swal.fire("Success", 'User is Registered', 'success')
         } else {
-          Swal.fire('Error!', data.body,'error');
+          Swal.fire('Error!', data.body, 'error');
         }
       },
-      (error)=>{
+      (error) => {
         console.log(error);
         alert("error");
       }
     )
-  
-
   }
 }

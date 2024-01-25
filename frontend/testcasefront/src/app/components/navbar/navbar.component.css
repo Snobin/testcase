@@ -11,8 +11,6 @@
   text-decoration: none; /* Remove underline */
   display: inline-block;
   transition: background-color 0.3s ease; /* Add a smooth transition effect */
-
-  
 }
 
 .button-text {
@@ -24,4 +22,25 @@
 .bi-arrow-right-circle {
   font-size: 20px; /* Set your desired icon size */
   vertical-align: middle; /* Align the icon vertically with the text */
+}
+
+.timer{
+  margin: 0px;
+  padding: 0px;
+  padding-right: 50px;
+  font-size: 18px;
+}
+
+.p-0{
+  padding: 0px;
+}
+
+.timer-div{
+  position: fixed; 
+  top: 2%; 
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 150px;
+  font-size: 20px;
 }

@@ -26,7 +26,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   categories: any;
   private countdownInterval: any;
   showdata: boolean;
-  logoutdata:boolean;
+  logoutdata: boolean;
+  private storageKey = 'timerState'; // Key for storing timer state in sessionStorage
 
   constructor(
     public login: LoginService,
@@ -47,7 +48,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.handleRouteChange();
       });
+
+    // Initialize the timer based on stored state
+    const storedState = sessionStorage.getItem(this.storageKey);
+    if (storedState) {
+      const { countdownMinutes, countdownSeconds, status } = JSON.parse(storedState);
+      this.countdownMinutes = countdownMinutes;
+      this.countdownSeconds = countdownSeconds;
+      this.status = status;
+
+      // Resume the countdown if the status is true
+      if (status) {
+        this.startCountdown();
+      }
+    }
   }
+
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
@@ -62,13 +78,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   private handleRouteChange(): void {
     // Unsubscribe before reinitializing
     console.log(this.router.url);
 
     // Update the showdata based on the current URL
     this.showdata = this.show(this.router.url);
-    this.logoutdata=this.logouthere(this.router.url)
+    this.logoutdata = this.logouthere(this.router.url)
     console.log(this.showdata);
     this.unsubscribeFromStatus();
 
@@ -84,7 +101,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.showTimer = false; // Set to false when the route is not eligible for the timer
     }
   }
-  
 
   private unsubscribeFromStatus(): void {
     if (this.statusSubscription) {
@@ -107,6 +123,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   show(url: string): boolean {
     return (
       url.includes('/coding') ||
@@ -119,6 +136,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Clear the existing interval if it's running
     // This prevents multiple intervals from running simultaneously
     clearInterval(this.countdownInterval);
+    sessionStorage.removeItem(this.storageKey); // Clear stored state when stopping the interval
   }
 
   isTimerVisible(url: string): boolean {
@@ -144,6 +162,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   resetTimer(): void {
     this.countdownMinutes = 10; // Set the initial minutes value
     this.countdownSeconds = 0; // Set the initial seconds value
@@ -172,14 +191,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.router.navigate(['/final']);
         this.status = false;
       }
+
+      // Save the timer state on each tick
+      this.saveTimerState();
     }, 1000);
   }
 
   logouthere(url: string): boolean {
     // Add logic to check if the timer should be visible for specific routes/components
     return (
-     
-      url.includes('/final')||
+      url.includes('/final') ||
       url.includes('/login')
       // Add more conditions as needed for other components
     );
@@ -193,8 +214,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+
+    // Clear the interval and stored state when the component is destroyed
+    this.clearCountdownInterval();
   }
-  submit(){
+
+  submit() {
     this.router.navigate(['./final']);
+  }
+
+  private saveTimerState(): void {
+    const timerState = {
+      countdownMinutes: this.countdownMinutes,
+      countdownSeconds: this.countdownSeconds,
+      status: this.status,
+    };
+    sessionStorage.setItem(this.storageKey, JSON.stringify(timerState));
   }
 }

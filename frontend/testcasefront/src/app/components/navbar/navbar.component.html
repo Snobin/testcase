@@ -1,42 +1,54 @@
 <mat-toolbar color="primary">
-  <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <a routerLink="/" mat-icon-button class="example-icon"
+    aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
   <span>interland</span>
-  <a mat-button class="custom-button" aria-label="Coding Questions" (click)="getCategories()" *ngIf="showdata">
+  <a mat-button class="custom-button" aria-label="Coding Questions"
+    (click)="getCategories()" *ngIf="showdata">
     <span class="button-text">Questions</span>
     <i class="bi bi-arrow-right-circle"></i>
   </a>
-  
+
   <div class="example-spacer">
-    <div class="text-center" *ngIf="showTimer && status">
-      <div class="row text-center" style="margin-left: 45%; width: 150px; font-size: 20px; padding: 0px;">
-        <div class="col-md-2" style="margin-right: -20px;">
-          <i class="bi bi-alarm text-light" style="margin: 0px; padding: 0px;"></i>
-        </div>
-        <div class="col-md-10">
-          <h3 [ngStyle]="{'margin': '0px', 'padding': '0px', 'font-size': '18px'}"
-            [class.text-light]="countdownMinutes >= 1" [class.text-danger]="countdownMinutes < 1">
-            {{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' : '' }}{{ countdownSeconds }} </h3>
-            
+    <div class="text-center">
+      <!-- Timer Display -->
+      <div class="container-fluid">
+        <div class="row text-center p-0 timer-div" *ngIf="showTimer && status">
+          <div class="col-md-2 p-0">
+            <i class="bi bi-alarm text-light p-0"></i>
+          </div>
+          <div class="col-md-10 p-0">
+            <h3 class="timer"
+              [class.text-light]="countdownMinutes >= 1"
+              [class.text-danger]="countdownMinutes < 1">
+              {{ countdownMinutes }}:{{ countdownSeconds < 10 ? '0' : '' }}{{
+              countdownSeconds }}
+            </h3>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <!-- Navigation Links -->
-  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button class="text-white mr20" aria-label="Login">
+  <a *ngIf="!isLoggedIn" routerLink="/login" mat-icon-button
+    class="text-white mr20" aria-label="Login">
     Login
   </a>
-  <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button class="text-white mr20" aria-label="Register">
+  <!-- <a *ngIf="!isLoggedIn" routerLink="/signup" mat-icon-button
+    class="text-white mr20" aria-label="Register">
     Register
-  </a>
-  <a *ngIf="isLoggedIn && showTimer" (click)="submit()" mat-icon-button class="text-white mr20" aria-label="Logout" >
-    Submit
-  </a>
-  <a *ngIf="isLoggedIn && logoutdata" (click)="logout()" mat-icon-button class="text-white mr20" aria-label="Logout"  >
+  </a> -->
+  <a *ngIf="showTimer" (click)="submit()" mat-icon-button
+  class="text-white mr20" >
+  Submit
+</a>
+  <a *ngIf="isLoggedIn && !showTimer && !status" (click)="logout()" mat-icon-button
+    class="text-white mr20" aria-label="Logout">
     Logout
   </a>
-  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile" mat-button class="text-white mr20"
+  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile"
+    mat-button class="text-white mr20"
     aria-label="User Profile">
     {{ user.username }}
   </button>
