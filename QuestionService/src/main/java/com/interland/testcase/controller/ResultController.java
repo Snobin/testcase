@@ -6,9 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +29,7 @@ public class ResultController {
 
 	@PostMapping("/eval")
 	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
-		System.out.println("working "+questions);
+		System.out.println("working " + questions);
 		int marksGot = 0;
 		Integer correctAnswers = 0;
 		Integer attempted = 0;
@@ -53,19 +51,20 @@ public class ResultController {
 	}
 
 	@GetMapping("/singleResult")
-	 public ResponseEntity<List<CombinedResultDTO>> getAllCombinedResults() {
-        List<CombinedResultDTO> combinedResults = resultService.getAllCombinedResults();
-        return new ResponseEntity<>(combinedResults, HttpStatus.OK);
-    }
+	public ResponseEntity<List<CombinedResultDTO>> getAllCombinedResults() {
+		List<CombinedResultDTO> combinedResults = resultService.getAllCombinedResults();
+		return new ResponseEntity<>(combinedResults, HttpStatus.OK);
+	}
 
 	@PostMapping("getByUser")
 	public ResponseEntity<?> getByUser(@RequestBody String user) {
 		return ResponseEntity.ok(this.resultService.getAllResultsByUser(user));
 	}
+
 	@PostMapping("/delete")
 	public ResponseEntity<String> deleteUsers(@RequestBody List<String> usernames) {
-	    String result = resultService.deleteUsers(usernames);
-	    return ResponseEntity.ok(result);
+		String result = resultService.deleteUsers(usernames);
+		return ResponseEntity.ok(result);
 	}
 
 }

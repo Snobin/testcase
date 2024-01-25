@@ -39,11 +39,11 @@
     class="text-white mr20" aria-label="Register">
     Register
   </a> -->
-  <a *ngIf="showdata" (click)="submit()" mat-icon-button
+  <a *ngIf="showTimer" (click)="submit()" mat-icon-button
   class="text-white mr20" >
   Submit
 </a>
-  <a *ngIf="isLoggedIn" (click)="logout()" mat-icon-button
+  <a *ngIf="isLoggedIn && !showTimer && !status" (click)="logout()" mat-icon-button
     class="text-white mr20" aria-label="Logout">
     Logout
   </a>

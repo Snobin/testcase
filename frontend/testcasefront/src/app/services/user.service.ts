@@ -13,7 +13,13 @@ export class UserService {
 
   status$ = this.statusSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.countdownMinutesSubject = new BehaviorSubject<number>(10);
+    this.countdownSecondsSubject = new BehaviorSubject<number>(0);
+
+    this.countdownMinutes$ = this.countdownMinutesSubject.asObservable();
+    this.countdownSeconds$ = this.countdownSecondsSubject.asObservable();
+   }
 
   // Add user
   addUser(user: any): Observable<Response> {
@@ -25,4 +31,31 @@ export class UserService {
     console.log(status);
     this.statusSubject.next(status);
   }
+
+
+  private countdownMinutesSubject: BehaviorSubject<number>;
+  private countdownSecondsSubject: BehaviorSubject<number>;
+
+  public countdownMinutes$: Observable<number>;
+  public countdownSeconds$: Observable<number>;
+
+ 
+
+  get countdownMinutes(): number {
+    return this.countdownMinutesSubject.value;
+  }
+
+  set countdownMinutes(value: number) {
+    this.countdownMinutesSubject.next(value);
+  }
+
+  get countdownSeconds(): number {
+    return this.countdownSecondsSubject.value;
+  }
+
+  set countdownSeconds(value: number) {
+    this.countdownSecondsSubject.next(value);
+  }
+
+
 }
