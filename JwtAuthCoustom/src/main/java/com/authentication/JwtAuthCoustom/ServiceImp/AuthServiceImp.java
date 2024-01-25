@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.authentication.JwtAuthCoustom.DTO.CustomUserDetails;
 import com.authentication.JwtAuthCoustom.DTO.LoginDTO;
@@ -21,6 +22,7 @@ import com.authentication.JwtAuthCoustom.DTO.SignupDTO;
 import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 import com.authentication.JwtAuthCoustom.Service.AuthService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Service
 public class AuthServiceImp implements AuthService {
@@ -98,6 +100,11 @@ public class AuthServiceImp implements AuthService {
 			return false;
 		}
 
+	}
+
+	@Override
+	public ObjectNode processExcelData(MultipartFile excelFile) {
+		return null;
 	}
 
 }

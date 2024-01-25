@@ -60,6 +60,9 @@ const routes: Routes = [
       {
         path: '',
         component: ProfileComponent
+      }, {
+        path: 'profile',
+        component: ProfileComponent
       },
       {
         path:'users',
