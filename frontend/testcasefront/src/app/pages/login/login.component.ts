@@ -81,5 +81,10 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
+  clear(){
+    this.loginData.email = '';
+    this.loginData.password = '';
+  }
+
 
 }

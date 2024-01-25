@@ -29,6 +29,7 @@ import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.compone
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -126,6 +127,12 @@ const routes: Routes = [
   },{
     path:'final',
     component:FinalComponent
+  },
+  {
+    path: '404', component: NotFoundComponent
+  },
+  {
+    path: '**', redirectTo: '/404'
   }
 ];
 
