@@ -61,10 +61,10 @@
                 </div>
             </div>
             <div id="signup" [class.open]="signupPage==true">
-                <input type="file" placeholder="Upload here" style="margin: 50px;">
+                <input type="file" placeholder="Upload here" style="margin: 50px;"(change)="onFileChange($event)">
                 <div class="container text-center">
                     <button style="margin: 50px;margin-top:10px;" mat-raised-button color="primary"
-                        (change)="onFileChange($event)">Upload</button>
+                         (click)="uploadFile()">Upload</button>
                 </div>
             </div>
         </div>
