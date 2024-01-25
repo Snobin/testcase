@@ -1,6 +1,6 @@
 <div class="container h-full w-full p-10">
     <div class="wrapper center">
-        <div class="row p-10 pb-0 bg-white m-0 brtrl-5 brbrl-0">
+        <div class="row bg-white m-0 brtrl-5 brbrl-0">
             <button class="btn w-50 brtrl-5 brbrl-0" [class.btn-active]="loginPage==true"
                 [class.btn-inactive]="loginPage==false" (click)="openLogin()">
                 Register
@@ -10,9 +10,9 @@
                 Register Via Excel
             </button>
         </div>
-        <div class="row-wise form mt-10">
-            <div id="login" [class.open]="loginPage==true">
-                <div class="form">
+        <div class="row-wise form p-10 h-93">
+            <div id="login" class="h-full" [class.open]="loginPage==true">
+                <div class="form h-full px-10 bg-white">
                     <form (ngSubmit)="formSubmit()" class="mat-form">
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>User Name</mat-label>

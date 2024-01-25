@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
             console.log(user);
             if (this.login.getUserRole() == "ADMIN") {
               // window.location.href = "/admin";
-              this.router.navigate(['admin']);
+              this.router.navigate(['admin/profile']);
               this.login.loginStatusSubject.next(true);
 
             } else if (this.login.getUserRole() == "USER") {
@@ -79,6 +79,11 @@ export class LoginComponent implements OnInit {
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
+  }
+
+  clear(){
+    this.loginData.email = '';
+    this.loginData.password = '';
   }
 
 
