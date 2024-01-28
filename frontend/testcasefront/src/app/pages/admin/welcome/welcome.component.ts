@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
+  loginPage: boolean = true;
+  signupPage: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openLogin() {
+    this.loginPage = true;
+    this.signupPage = false;
+  }
+
+  openSignup() {
+    this.loginPage = false;
+    this.signupPage = true;
+  }
 }

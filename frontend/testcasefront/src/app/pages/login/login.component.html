@@ -12,7 +12,7 @@
                     <form (ngSubmit)="formSubmit()">
                         <!-- email field -->
                         <mat-form-field class="full-width" appearance="outline">
-                            <mat-label>Email</mat-label>
+                            <mat-label>Username</mat-label>
                             <input
                                 [(ngModel)]="loginData.email"
                                 name="email"
@@ -35,14 +35,13 @@
                                 {{hidePassword?'visibility_off':'visibility'}}
                             </mat-icon>
                         </mat-form-field>
-
                         <div class="container text-center">
                             <button mat-raised-button color="primary"
                                 type="submit">
                                 Login
                             </button>
                             <button class="ml10" mat-raised-button
-                                color="accent">
+                                color="accent" (click)="clear()">
                                 Reset
                             </button>
                         </div>

@@ -17,3 +17,9 @@ li {
 p {
     color: #555;
 }
+
+.btn-position {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+}

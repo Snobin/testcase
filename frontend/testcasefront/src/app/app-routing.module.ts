@@ -4,7 +4,6 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
-import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
@@ -28,6 +27,9 @@ import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.compo
 import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
+import { FinalComponent } from './pages/user/final/final.component';
+import { UsersComponent } from './pages/admin/users/users.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -35,7 +37,7 @@ const routes: Routes = [
     path: 'signup', component: SignupComponent
   },
   {
-    path: '', redirectTo: "signup", pathMatch: 'full'
+    path: '', redirectTo: "login", pathMatch: 'full'
   },
   {
     path: 'login',
@@ -49,7 +51,7 @@ const routes: Routes = [
   },
   {
     path: 'instructions',
-    component: InstructionsComponent
+    component: InstructionsComponent,canActivate: [UserGuard]
   },
   {
     path: 'admin',
@@ -57,48 +59,48 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path: '',
-        component: WelcomeComponent
-      },
-      {
         path: 'profile',
         component: ProfileComponent
       },
       {
+        path:'users',
+        component:UsersComponent
+      },
+      {
         path: 'categories',
-        component: ViewCategoriesComponent
+        component: ViewCategoriesComponent, canActivate: [AdminGuard]
       }, {
         path: 'add-categories',
-        component: AddCategoriesComponent
+        component: AddCategoriesComponent, canActivate: [AdminGuard]
       }
       , {
         path: 'quizzes',
-        component: ViewQuizzesComponent
+        component: ViewQuizzesComponent, canActivate: [AdminGuard]
       }
       , {
         path: 'add-quiz',
-        component: AddQuizComponent
+        component: AddQuizComponent, canActivate: [AdminGuard]
       }, {
         path: 'quiz/:qid',
-        component: UpdateQuizComponent
+        component: UpdateQuizComponent, canActivate: [AdminGuard]
       }, {
         path: 'view-questions/:qid/:title',
-        component: ViewQuizQuestionsComponent
+        component: ViewQuizQuestionsComponent, canActivate: [AdminGuard]
       }, {
         path: 'add-question/:qid/:title',
-        component: AddQuestionComponent
+        component: AddQuestionComponent, canActivate: [AdminGuard]
       }, {
         path: 'add-code',
-        component: AddCodeComponent
+        component: AddCodeComponent, canActivate: [AdminGuard]
       }, {
         path: 'view-answer',
-        component: ViewAnswerComponent
+        component: ViewAnswerComponent, canActivate: [AdminGuard]
       }, {
         path: 'view-code',
-        component: ViewCodingComponent
+        component: ViewCodingComponent, canActivate: [AdminGuard]
       }, {
         path: 'code/:qid',
-        component: UpdatecodeComponent
+        component: UpdatecodeComponent, canActivate: [AdminGuard]
       },
        { path: 'details/:userId', component: AnsDetailsComponent },
     ]
@@ -110,7 +112,7 @@ const routes: Routes = [
     children: [
       {
         path: ':title/:catId',
-        component: LoadQuizComponent
+        component: LoadQuizComponent, canActivate: [UserGuard]
       }
     ],
   },
@@ -121,8 +123,18 @@ const routes: Routes = [
   },
   {
     path: 'coding/:qid',
-    component: ConsoleComponent
+    component: ConsoleComponent, canActivate: [UserGuard]
   },
+  {
+    path:'final',
+    component:FinalComponent
+  },
+  {
+    path: '404', component: NotFoundComponent
+  },
+  {
+    path: '**', redirectTo: '/404'
+  }
 ];
 
 @NgModule({

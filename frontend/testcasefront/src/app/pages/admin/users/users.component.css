@@ -1,0 +1,136 @@
+*,
+:after,
+:before {
+    border: 0 solid;
+    box-sizing: border-box;
+}
+
+.h-full{
+    height: 100%;
+}
+
+.w-full{
+    width: 100%;
+}
+
+.center{
+    transform: translateX(50%);
+}
+.full-width{
+width: 100%;
+}
+#signup {
+    background-color: #fff;
+    height: 100%;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.5s ease;
+}
+
+#signup.open {
+    width: 100%;
+}
+
+#login {
+    background-color: #fff;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: width 0.5s ease;
+}
+
+#login.open {
+    width: 100%;
+}
+
+.p-10{
+    padding: 10px;
+}
+
+.row-wise{
+    display: flex;
+    flex-direction: row;
+}
+
+.form{
+    width: 100%;
+    background-color: #f0f0f0;
+}
+
+.pb-0{
+    padding-bottom: 0px;
+}
+
+.m-0{
+    margin: 0px;
+}
+
+.brtrl-5{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.brbrl-0{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.wrapper{
+    width: 50%;
+    height:100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+
+.btn-active {
+    background-color: #f0f0f0;
+    border-color: transparent;
+}
+
+.btn {
+    padding: 10px;
+}
+
+btn:focus-visible {
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+}
+
+.btn-inactive {
+    border-color: #f0f0f0;
+    box-shadow: none;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0px transparent;
+}
+
+.h-full{
+    height: 100%;
+}
+
+.h-93{
+    height: 93%;
+}
+
+.p-10{
+    padding: 10px;
+}
+
+.pt-10{
+    padding-top: 10px;
+}
+
+.px-10{
+    padding: 0px 10px;
+}

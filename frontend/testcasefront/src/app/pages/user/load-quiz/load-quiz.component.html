@@ -29,12 +29,10 @@
         </div>
 
         <div class="row mt20" *ngIf="title === 'CODING'">
-            <div class="col-md-4"
-                *ngFor="let codingQuestion of codingQuestions">
+            <div class="col-md-4" *ngFor="let codingQuestion of codingQuestions">
                 <mat-card class="mb20">
                     <mat-card-header>
-                        <div mat-card-avatar
-                            class="example-header-image"></div>
+                        <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
                             {{codingQuestion.title}}
                         </mat-card-title>
@@ -43,8 +41,7 @@
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
-                        <p
-                            class="truncate">{{codingQuestion.description}}</p>
+                        <p class="truncate">{{codingQuestion.description}}</p>
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-button color="primary" (click)="coding(codingQuestion.questionId)">Start</button>
@@ -52,10 +49,8 @@
                 </mat-card>
             </div>
         </div>
-
         <!-- Handle the case when no quizzes or coding questions are available -->
-        <div class="col-md-12"
-            *ngIf="!(quizzes?.length || codingQuestions?.length)">
+        <div class="col-md-12" *ngIf="!(quizzes?.length || codingQuestions?.length)">
             <mat-card>
                 <mat-card-content>
                     <h1>No Data Available</h1>

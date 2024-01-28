@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CategoryService } from 'src/app/services/category.service';
 import { CodeService } from 'src/app/services/code.service';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,11 +20,14 @@ export class InstructionsComponent implements OnInit {
 
   qid;
   quizdata;
+  obj: NavbarComponent;
   categories: any;
-  constructor(private cat: CategoryService, private router: Router, private snack: MatSnackBar) { }
+  constructor(private fullScreenService: FullScreenService,private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService,private locationst:LocationStrategy) { }
 
   ngOnInit(): void {
-
+    this.fullScreenService.requestFullScreen();
+this.updateStatus();
+this.preventBackButton();
   }
 
   next() {
@@ -36,11 +43,15 @@ export class InstructionsComponent implements OnInit {
       }
     });
   }
-
+  updateStatus(): void {
+    // Set the status to true or false as needed
+    this.userservice.setStatus(true);
+  }
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
         this.categories = data;
         console.log(this.categories);
+      
         this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
         (error) => {
@@ -49,5 +60,19 @@ export class InstructionsComponent implements OnInit {
             });
         }
     );
+}
+preventBackButton() {
+  history.pushState(null, null, location.href);
+  this.locationst.onPopState(() => {
+      history.pushState(null, null, location.href)
+  });
+}
+@HostListener('document:visibilitychange', ['$event'])
+private handleVisibilityChange(event: Event): void {
+this.fullScreenService.onVisibilityChange(document.hidden);
+}
+@HostListener('document:keydown', ['$event'])
+private handleKeyboardEvent(event: KeyboardEvent): void {
+  this.fullScreenService.onKeyDown(event);
 }
 }

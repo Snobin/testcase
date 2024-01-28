@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Case } from '../model/case';
+import { Subject } from 'rxjs';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 
 
 declare var CodeMirror: any;
@@ -48,9 +50,7 @@ export class ConsoleComponent implements OnInit {
   case_1: Case = new Case();
   case_2: Case = new Case();
   case_3: Case = new Case();
-  cases: Case[] = [
-
-  ];
+  cases: Case[] = [];
 
   questiondata;
   isOpen = false;
@@ -59,17 +59,19 @@ export class ConsoleComponent implements OnInit {
   loading: boolean = true;
   submit: string = 'Submit';
   saveText: string = "<i class='bi bi-floppy2-fill'></i>";
+  runText: string = "Run<i class='bi bi-play-fill'></i>";
   toast: boolean = false;
 
-  constructor(private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
+  constructor(private fullScreenService: FullScreenService,private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
 
   ngOnInit(): void {
     // if (localStorage.getItem('hasReloaded') == 'true') {
     //   localStorage.setItem('hasReloaded','false')
     //   window.location.reload();
     // }
+    this.fullScreenService.requestFullScreen();
     this.clearAll();
-    // this.preventBackButton();
+    this.preventBackButton();
 
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
@@ -78,6 +80,8 @@ export class ConsoleComponent implements OnInit {
   ngAfterViewInit() {
     this.initializeCodeMirror();
   }
+
+  private cancelExecutionSubject = new Subject<void>();
 
   preventBackButton() {
     history.pushState(null, null, location.href);
@@ -114,6 +118,7 @@ export class ConsoleComponent implements OnInit {
   //   this.case_2 = this.cases[1];
   //   this.case_3 = this.cases[2];
   // }
+
   qnData(qid) {
     this.service.questionReq(qid).subscribe(
       (data: any) => {
@@ -137,7 +142,6 @@ export class ConsoleComponent implements OnInit {
       caseItem.active = i === index;
     });
   }
-
 
   get constraints(): string {
     // Replace all occurrences of '•' with '<br>•', except the first one
@@ -272,12 +276,34 @@ export class ConsoleComponent implements OnInit {
 
   async executeCode(status: string) {
     this.cases = [];
-    this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
-    this.loading = true;
-    this.save();
-    this.openOutput();
+    if (status == 'run' && this.runText == "Stop<i class='bi bi-stop-fill'></i>") {
+      this.cancelExecution();
+      for (let i = 0; i < 3; i++) {
+        const c: any = {
+          input: '',
+          output: '',
+          expectedOutput: '',
+          processingTime: 0,
+          message: '',
+        };
+        this.cases[i] = c;
+        this.activateCase(0);
+      }
+      return;
+    }
+    if (status == 'Submit') {
+      this.submit = "<div class='spinner-border spinner-border-sm text-light' role='status'></div>";
+      this.loading = true;
+      this.save();
+      this.openOutput();
+    }
+    if (status == 'run') {
+      this.runText = "Stop<i class='bi bi-stop-fill'></i>";
+      this.loading = true;
+      this.save();
+      this.openOutput();
+    }
     this.code = this.editor.getValue();
-
     try {
       if (this.selectedLanguage && this.code) {
         this.codereq.langId = this.selectedLanguage;
@@ -285,31 +311,27 @@ export class ConsoleComponent implements OnInit {
         this.codereq.qnId = this.questiondata.questionId;
         this.codereq.user = this.userData.username;
         this.codereq.status = status;
-
-        const response = await this.service.compileAndTest(this.codereq).toPromise();
-
+        const response = await this.service.compileAndTest(this.codereq, this.cancelExecutionSubject).toPromise();
         this.loading = false;
-        this.submit = 'Submit';
-        console.log(response);
-
-        if (response && response.length >= 3) {
-
+        if (status == 'Submit') {
+          this.submit = "Submit";
+        }
+        if (status == 'run') {
+          this.runText = "Run<i class='bi bi-play-fill'></i>";
+        }
+        if (response && response.length) {
           for (let i = 0; i < response.length; i++) {
             this.cases[i] = response[i];
+
           }
-
-          this.activateCase(0);
-
         }
-
+        this.activateCase(0);
         this.initializeCodeMirror();
-
       } else {
         this.handleError('Please select a programming language and enter code.');
       }
     } catch (error) {
       console.error('Error:', error);
-
       if (error.status === 400) {
         this.handleError('Bad Request');
       } else if (error.status === 500) {
@@ -319,6 +341,11 @@ export class ConsoleComponent implements OnInit {
       }
     }
   }
+
+  cancelExecution() {
+    this.cancelExecutionSubject.next();
+  }
+
   handleError(errorMessage: string) {
     this.loading = false;
     this.submit = 'Submit';
@@ -334,7 +361,6 @@ export class ConsoleComponent implements OnInit {
   //     caseItem.active = i === index;
   //   });
   // }
-
 
   clear() {
     // Remove the stored code in local storage
@@ -352,5 +378,13 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
   }
+  @HostListener('document:visibilitychange', ['$event'])
+  private handleVisibilityChange(event: Event): void {
+  this.fullScreenService.onVisibilityChange(document.hidden);
+}
+ @HostListener('document:keydown', ['$event'])
+ private handleKeyboard(event: KeyboardEvent): void {
+  this.fullScreenService.onKeyDown(event);
+}
 
 }

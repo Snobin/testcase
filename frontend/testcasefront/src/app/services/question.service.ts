@@ -73,6 +73,8 @@ export class QuestionService {
     return this.http.delete(`${this.baseUrl}/${questionId}`);
   }
   public evalQuiz(questions) {
+    console.log(questions);
+    
     
     return this.http.post(`${this.baseUrl}/eval`, questions)
   }

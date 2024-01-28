@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.authentication.JwtAuthCoustom.DTO.CustomUserDetails;
 import com.authentication.JwtAuthCoustom.DTO.JwtResponseDTO;
@@ -46,9 +48,17 @@ public class AuthController
 		return new ResponseEntity<>(service.addUser(dto),HttpStatus.OK);
 	}
 	
+	@PostMapping("/signupbyexcel")
+	ResponseEntity<?> registerUserByExcel(@RequestParam("excelFile") MultipartFile excelFile)
+	{
+		return new ResponseEntity<>(service.processExcelData(excelFile),HttpStatus.OK);
+	}
+	
+	
     @PostMapping("/login")
     public ResponseEntity<?> LoginandGenerate(@RequestBody LoginDTO dto)
     {
+    	
     	if(service.checkemailpassword(dto))
     	{
     		Optional<UserEntity> username=authRepository.findByEmail(dto.getEmail());
@@ -119,6 +129,18 @@ public class AuthController
         } else {
             // Handle the case when there's no authentication information
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+    
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
+        try {
+        	service.processExcelFile(file);
+            // Save users to the database or perform other operations as neede
+            return ResponseEntity.ok("Users uploaded successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error uploading users");
         }
     }
 

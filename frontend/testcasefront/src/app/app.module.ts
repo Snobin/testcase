@@ -20,7 +20,6 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
-import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -53,6 +52,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
+import { FinalComponent } from './pages/user/final/final.component';
+import { UsersComponent } from './pages/admin/users/users.component';
+import { ServerErrorPageComponent } from './pages/server-error-page/server-error-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { FullScreenService } from './services/full-screen.service';
 
 
 
@@ -68,7 +72,6 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
     UserDashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    WelcomeComponent,
     ViewCategoriesComponent,
     AddCategoriesComponent,
     ViewQuizzesComponent,
@@ -88,6 +91,10 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
     UpdatecodeComponent,
     McqComponent,
     AnsDetailsComponent,
+    FinalComponent,
+    UsersComponent,
+    ServerErrorPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +108,7 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
     MatButtonModule,MatPaginatorModule,MatSortModule,MatTableModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
 
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,FullScreenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
