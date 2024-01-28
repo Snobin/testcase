@@ -87,10 +87,10 @@ ngOnInit(): void {
   uploadFile(){
     this.userservice.uploadExcelFile(this.fileContent).subscribe(
       (response) => {
-        console.log('File uploaded successfully:', response);
+        Swal.fire('File uploaded successfully:', response);
       },
       (error) => {
-        console.error('Error uploading file:', error);
+        Swal.fire('Error uploading file:', error);
       }
     );
   }
