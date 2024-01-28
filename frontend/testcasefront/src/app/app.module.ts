@@ -57,6 +57,7 @@ import { UsersComponent } from './pages/admin/users/users.component';
 import { ServerErrorPageComponent } from './pages/server-error-page/server-error-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FullScreenService } from './services/full-screen.service';
+import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
 
 
 
@@ -94,7 +95,8 @@ import { FullScreenService } from './services/full-screen.service';
     FinalComponent,
     UsersComponent,
     ServerErrorPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UserdetailComponent
   ],
   imports: [
     BrowserModule,

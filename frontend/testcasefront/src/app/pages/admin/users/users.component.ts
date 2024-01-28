@@ -5,6 +5,8 @@ import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
+
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -87,11 +89,13 @@ ngOnInit(): void {
   uploadFile(){
     this.userservice.uploadExcelFile(this.fileContent).subscribe(
       (response) => {
-        Swal.fire('File uploaded successfully:', response);
+        if (response.body == 'Users uploaded successfully') {
+          this.router.navigate([`./userlist`]);
+          Swal.fire("Success", 'Users uploaded successfully', 'success')
+        } else {
+          Swal.fire('Error!',response.body, 'error');
+        }
       },
-      (error) => {
-        Swal.fire('Error uploading file:', error);
-      }
     );
   }
 }

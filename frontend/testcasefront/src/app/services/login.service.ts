@@ -17,6 +17,10 @@ export class LoginService {
     return this.http.get(`${this.baseUrl}/current-user`);
   }
 
+  getData(){
+    return this.http.get(`${this.baseUrl}/userlist`);
+   }
+
   //generate token
   public generateToken(loginData: any) {
     return this.http.post(`${this.baseUrl}/login`, loginData);
