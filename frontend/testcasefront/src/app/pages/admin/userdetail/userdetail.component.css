@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  .mat-paginator {
+    margin-top: 20px;
+  }
+  .selected-row {
+    background-color: #d3d3d3; /* Change the background color as needed */
+  }
