@@ -14,7 +14,7 @@ import com.authentication.JwtAuthCoustom.JWT.JwtRequestFilter;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig
+public class SecurityConfig 
 {
 	@Autowired
 	private  JwtRequestFilter JwtAuthFilter;

@@ -1,6 +1,8 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
 import { FullScreenService } from 'src/app/services/full-screen.service';
 import { LoginService } from 'src/app/services/login.service';
 import { QuestionService } from 'src/app/services/question.service';
@@ -29,9 +31,10 @@ export class StartComponent implements OnInit {
   correctAnswer = 0;
   isSubmit = false;
   timer: any;
+  categories: any;
   constructor(private el: ElementRef, private locationst: LocationStrategy,
-    private route: ActivatedRoute,
-    private question: QuestionService, private loginservice: LoginService,private fullScreenService: FullScreenService) { }
+    private route: ActivatedRoute, private router: Router, private cat: CategoryService, private snack: MatSnackBar,
+    private question: QuestionService, private loginservice: LoginService, private fullScreenService: FullScreenService) { }
 
   ngOnInit(): void {
     // this.preventBackButton();
@@ -90,11 +93,26 @@ export class StartComponent implements OnInit {
         this.correctAnswer = data.correctAnswers;
         this.marksGot = data.marksGot;
         this.isSubmit = true;
+        this.getCategories();
       },
       (error) => {
 
       }
     )
+  }
+
+  getCategories() {
+    this.cat.categories().subscribe((data: any) => {
+      this.categories = data;
+      console.log(this.categories);
+      this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
+    },
+      (error) => {
+        this.snack.open('Error in loading categories from server', '', {
+          duration: 3000,
+        });
+      }
+    );
   }
 
   setPage(page: number) {
@@ -200,13 +218,16 @@ export class StartComponent implements OnInit {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
   @HostListener('document:keydown', ['$event'])
   private handleKeyboardEvent(event: KeyboardEvent): void {
     this.fullScreenService.onKeyDown(event);
   }
+
   @HostListener('document:visibilitychange', ['$event'])
   private handleVisibilityChange(event: Event): void {
-  this.fullScreenService.onVisibilityChange(document.hidden);
-}
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+
 }
 
