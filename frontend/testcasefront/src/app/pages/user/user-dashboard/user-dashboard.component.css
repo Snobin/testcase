@@ -1,13 +1,15 @@
-.container {
-    margin-right: 0px;
-    margin-left: 0px;
-    padding-right: var(--bs-gutter-x,.75rem);
-    padding-left: var(--bs-gutter-x,.75rem);
-    width: 100%;
-    max-width: 100%;
+.h-92{
+    height: 92%;
 }
 
-.custom {
-    height: 92%;
-    padding: 20px;
+.h-full{
+    height: 100%;
+}
+
+.pl-0{
+    padding-left: 0px !important;
+}
+
+.scroll{
+    overflow-y: scroll;
 }
