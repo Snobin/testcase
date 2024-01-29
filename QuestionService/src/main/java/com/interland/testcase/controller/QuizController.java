@@ -1,6 +1,7 @@
 package com.interland.testcase.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.interland.testcase.dto.QuizDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuizService;
@@ -26,25 +28,31 @@ public class QuizController {
 	private QuizService quizService;
 	
 	@PostMapping("/")
-	public ResponseEntity<Quiz> add(@RequestBody Quiz quiz){
-		return ResponseEntity.ok(this.quizService.addQuiz(quiz));
+	public ResponseEntity<Quiz> add(@RequestBody QuizDto quizDto){
+		return ResponseEntity.ok(this.quizService.addQuiz(quizDto));
 	}
 	@PutMapping("/")
-	public ResponseEntity<Quiz> update(@RequestBody  Quiz quiz){
-		return ResponseEntity.ok(this.quizService.updateQuiz(quiz));
+	public ResponseEntity<Quiz> update(@RequestBody  QuizDto quizDto){
+		return ResponseEntity.ok(this.quizService.updateQuiz(quizDto));
 	}
-	@GetMapping("/")
-	public ResponseEntity<?> quizzes(){
-		return ResponseEntity.ok(this.quizService.getQuizzes());
-	}
-	@GetMapping("/{qid}")
-	public Quiz quiz(@PathVariable("qid") Long qid) {
-		return this.quizService.getQuiz(qid);
-	}
-	@DeleteMapping("/{qid}")
-	public void delete(@PathVariable("qid") Long qid) {
-		this.quizService.deleteQuiz(qid);
-	}
+
+    @GetMapping("/")
+    public ResponseEntity<Set<QuizDto>> quizzes() {
+        Set<QuizDto> quizDTOs = this.quizService.getQuizzes();
+        return ResponseEntity.ok(quizDTOs);
+    }
+
+    @GetMapping("/{qid}")
+    public ResponseEntity<QuizDto> quiz(@PathVariable("qid") Long qid) {
+        QuizDto quizDTO = this.quizService.getQuiz(qid);
+        return  ResponseEntity.ok(quizDTO);
+    }
+
+    @DeleteMapping("/{qid}")
+    public ResponseEntity<Void> delete(@PathVariable("qid") Long qid) {
+        this.quizService.deleteQuiz(qid);
+        return ResponseEntity.noContent().build();
+    }
 	
 	@GetMapping("/category/{cid}")
 	public List<Quiz> getQuizzesCategory(@PathVariable("cid") Long cid){
