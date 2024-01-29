@@ -5,8 +5,8 @@ export class User {
     role: boolean;
     email: string;
     phoneNumber: number;
-lastName: any;
-firstName: any;
+    lastName: any;
+    firstName: any;
   
   }
   
