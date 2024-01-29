@@ -1,4 +1,4 @@
-package com.authentication.AuthService;
+package com.authentication.JwtAuthCoustom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
