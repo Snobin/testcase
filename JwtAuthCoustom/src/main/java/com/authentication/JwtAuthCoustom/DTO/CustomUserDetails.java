@@ -18,8 +18,26 @@ public class CustomUserDetails implements UserDetails
 
 	private String email;
     private String password;
-    private String phone;
+    private String phoneNumber;
     private String role;
+    private String firstName;
+    public String getFirtName() {
+		return firstName;
+	}
+
+	public void setFirtName(String firtName) {
+		this.firstName = firtName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	private String lastName;
 	private Set<? extends GrantedAuthority> authorities;
 	
     
@@ -28,13 +46,15 @@ public class CustomUserDetails implements UserDetails
 		this.authorities = authorities;
 	}
 
-	public CustomUserDetails(String username,String email, String password, Set<? extends GrantedAuthority> authorities, String phone,String role) {
+	public CustomUserDetails(String username,String email, String password, Set<? extends GrantedAuthority> authorities, String phoneNumber,String role,String firstName,String lastName) {
         this.username=username;
 		this.email = email;
         this.password = password;
         this.authorities = authorities;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.role=role;
+        this.firstName=firstName;
+        this.lastName=lastName;
     }
 
 	public CustomUserDetails(UserEntity details) {
@@ -48,12 +68,12 @@ public class CustomUserDetails implements UserDetails
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getRole() {
