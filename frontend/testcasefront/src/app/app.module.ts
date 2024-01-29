@@ -99,7 +99,7 @@ import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.comp
 
     ServerErrorPageComponent,
     NotFoundComponent,
-    UserdetailComponent
+    UserdetailComponent,
 
     AdminupdateComponent,
 
