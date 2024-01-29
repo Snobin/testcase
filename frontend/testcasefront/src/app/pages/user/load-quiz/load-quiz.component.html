@@ -1,10 +1,10 @@
 <div class="bootstrap-wrapper">
     <div class="container-fluid">
         <h1 class="mt20"> Available Content</h1>
-        <div class="row mt20" *ngFor="let quiz of quizzes">
+        <div class="row mt20">
             <!-- Display Quizzes -->
-            <div class="col-md-4" *ngIf="title == quiz.category.title && catId == quiz.category.cid">
-                <mat-card class="mb20">
+            <div class="col-md-4" *ngFor="let quiz of quizzes">
+                <mat-card class="mb20" *ngIf="title == quiz.category.title && catId == quiz.category.cid">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
