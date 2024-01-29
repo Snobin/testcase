@@ -27,12 +27,6 @@ export class UserService {
     return this.http.post<Response>(`${this.baseUrl}/signup`, user);
   }
 
-//update
-
-update(user: any): Observable<Response> {
-  return this.http.post<Response>(`${this.baseUrl}/update`, user);
-}
-
   // Set status
   setStatus(status: boolean): void {
     console.log(status);

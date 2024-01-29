@@ -18,7 +18,6 @@ public interface AuthService {
 	public ResponseEntity<?> addUser(SignupDTO dto);
 
 	public boolean checkemailpassword(LoginDTO ldto);
-	public ResponseEntity updateAdmin(SignupDTO dto);
 
 	public ObjectNode processExcelData(MultipartFile excelFile);
 	public List<UserEntity> processExcelFile(MultipartFile file) throws IOException;

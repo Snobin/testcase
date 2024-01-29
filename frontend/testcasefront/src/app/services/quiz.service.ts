@@ -32,6 +32,6 @@ export class QuizService {
   }
   public getActiveQuizCategory(cid){
      return this.http.get(`${this.baseUrl}/category/active/${cid}`);
-  }
 
+  }
 }

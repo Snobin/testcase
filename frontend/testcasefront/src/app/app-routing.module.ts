@@ -29,12 +29,8 @@ import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.compone
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
-
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
-=======
-import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.component';
-
 
 
 const routes: Routes = [
@@ -111,11 +107,6 @@ const routes: Routes = [
         path: 'code/:qid',
         component: UpdatecodeComponent, canActivate: [AdminGuard]
       },
-      {
-        path: 'update',
-        component: AdminupdateComponent
-      },
-
        { path: 'details/:userId', component: AnsDetailsComponent },
     ]
   },
