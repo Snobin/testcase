@@ -131,6 +131,18 @@ public class AuthController
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+    
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
+        try {
+        	service.processExcelFile(file);
+            // Save users to the database or perform other operations as neede
+            return ResponseEntity.ok("Users uploaded successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error uploading users");
+        }
+    }
 
 
     

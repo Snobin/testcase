@@ -29,6 +29,7 @@ import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.compone
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -58,9 +59,6 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
-        path: '',
-        component: ProfileComponent
-      }, {
         path: 'profile',
         component: ProfileComponent
       },
@@ -126,9 +124,16 @@ const routes: Routes = [
   {
     path: 'coding/:qid',
     component: ConsoleComponent, canActivate: [UserGuard]
-  },{
+  },
+  {
     path:'final',
-    component:FinalComponent,canActivate: [UserGuard]
+    component:FinalComponent
+  },
+  {
+    path: '404', component: NotFoundComponent
+  },
+  {
+    path: '**', redirectTo: '/404'
   }
 ];
 

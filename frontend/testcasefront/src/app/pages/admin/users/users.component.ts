@@ -76,11 +76,22 @@ ngOnInit(): void {
     if (fileList.length > 0) {
       const file: File = fileList[0];
       this.fileContent = file;
-      this.fileName = file.name; // Set the file name for display if needed
+      this.fileName = file.name;
+       // Set the file name for display if needed
       console.log(file);
       console.log(file);
-
-      // Log the file to see if it's properly captured
+// Log the file to see if it's properly captured
     }
+  }
+
+  uploadFile(){
+    this.userservice.uploadExcelFile(this.fileContent).subscribe(
+      (response) => {
+        console.log('File uploaded successfully:', response);
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+      }
+    );
   }
 }

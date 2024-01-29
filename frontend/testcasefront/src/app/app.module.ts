@@ -54,6 +54,8 @@ import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { ServerErrorPageComponent } from './pages/server-error-page/server-error-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FullScreenService } from './services/full-screen.service';
 
 
@@ -91,6 +93,8 @@ import { FullScreenService } from './services/full-screen.service';
     AnsDetailsComponent,
     FinalComponent,
     UsersComponent,
+    ServerErrorPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
