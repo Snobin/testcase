@@ -54,6 +54,7 @@ import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.component';
 
 
 
@@ -90,6 +91,7 @@ import { UsersComponent } from './pages/admin/users/users.component';
     AnsDetailsComponent,
     FinalComponent,
     UsersComponent,
+    AdminupdateComponent,
   ],
   imports: [
     BrowserModule,

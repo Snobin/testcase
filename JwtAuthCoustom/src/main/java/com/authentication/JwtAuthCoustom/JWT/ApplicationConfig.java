@@ -33,10 +33,10 @@ public class ApplicationConfig {
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				if (usernameExistsInYourSystem(username)) {
-//
+
 					return buildUserDetails(username);
 				} else {
-//		            
+		            
 					throw new UsernameNotFoundException("Username not found: " + username);
 				}
 			}

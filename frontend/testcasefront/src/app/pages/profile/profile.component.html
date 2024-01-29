@@ -24,7 +24,7 @@
                             </tr>
                             <tr>
                                 <td>Phone</td>
-                                <td>{{user.phone}}</td>
+                                <td>{{user.phoneNumber}}</td>
                             </tr>
                             <!-- <tr>
                                 <td>Role</td>
@@ -41,7 +41,6 @@
         </div>
     </mat-card-content>
     <mat-card-actions class="text-center">
-        <button mat-raised-button color="primary">Update</button>
-        <button mat-raised-button color="accent">Share</button>
+        <button mat-raised-button color="primary"(click)="update()">Update</button>
     </mat-card-actions>
 </mat-card>

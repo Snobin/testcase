@@ -9,6 +9,7 @@ public interface AuthService
 {
 	public ResponseEntity<?> addUser(SignupDTO dto);
 	public boolean checkemailpassword(LoginDTO ldto);
+	public ResponseEntity updateAdmin(SignupDTO dto);
 
 }
 

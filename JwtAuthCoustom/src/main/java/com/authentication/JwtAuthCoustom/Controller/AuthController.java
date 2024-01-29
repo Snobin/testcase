@@ -4,11 +4,13 @@ import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +43,7 @@ public class AuthController
     private AuthRepository authRepository;
     
     
-    @PostMapping("/login")
+    @PostMapping("/signup")
 	ResponseEntity<?> registerUser(@RequestBody SignupDTO dto)
 	{
 		return new ResponseEntity<>(service.addUser(dto),HttpStatus.OK);
@@ -76,9 +78,16 @@ public class AuthController
         CustomUserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
         boolean result=jwtUtil.validateToken(dtoo.getToken(), userDetails);
         return result;
-
-    	
-    }
+        }
+    
+    
+	
+	@PutMapping("/update")
+	public ResponseEntity<?> update(@RequestBody SignupDTO dto)
+	{
+		return new ResponseEntity<>(userDetailsService.updateAdmin(dto), new HttpHeaders(), HttpStatus.OK);
+	}
+	
     
     
     @PostMapping("/allclaims")
@@ -104,6 +113,8 @@ public class AuthController
     	System.out.println(num);
     	return new ResponseEntity(num,HttpStatus.OK);
     }
+    
+    
     
     
     @GetMapping("/current-user")

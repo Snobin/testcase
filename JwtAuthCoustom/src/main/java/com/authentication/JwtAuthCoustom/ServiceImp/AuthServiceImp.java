@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,42 @@ public class AuthServiceImp implements AuthService {
 		}
 
 	}
+	
+
+	@Override
+	public ResponseEntity updateAdmin(SignupDTO dto) {
+		UserEntity ent = new UserEntity();
+		try {
+		     String email=dto.getEmail();
+			Optional<UserEntity> opt1 = repo.findByEmail(email);
+
+			if (opt1.isPresent()) {
+				UserEntity userentity = opt1.get();
+				System.out.println(dto.getFirstName());
+				userentity.setFirstName(dto.getFirstName());
+				userentity.setLastName(dto.getLastName());
+				userentity.setPassword(dto.getPassword());
+				userentity.setPhoneNumber(dto.getPhoneNumber());
+				userentity.setRoles(dto.getRole());
+				userentity.setUsername(dto.getUsername());
+				repo.save(userentity);
+				return new ResponseEntity<>("Successfully Inserted", HttpStatus.OK);
+			} else {
+				throw new UsernameNotFoundException("User with username: " + email + " not found!");
+		}
+		}
+			catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return new ResponseEntity<>("Exception Occured", HttpStatus.OK);
+		}
+		}
+		
+    
+	
+    
+	
+	
+	
 
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -66,17 +103,20 @@ public class AuthServiceImp implements AuthService {
 				Set<SimpleGrantedAuthority> authorities = Collections
 						.singleton(new SimpleGrantedAuthority(user.getRoles()));
 				return new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), authorities,
-						user.getPhoneNumber(), user.getRoles()
+						user.getPhoneNumber(), user.getRoles(),user.getFirstName(),user.getLastName()
 
 				);
 			}
 
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
-			return new CustomUserDetails(null, null, null, null, null, null);
+			return new CustomUserDetails(null, null, null, null, null, null,null,null);
 		}
 
 	}
+	
+	
+	
 
 	public boolean checkemailpassword(LoginDTO ldto) {
 		try {
