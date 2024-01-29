@@ -17,7 +17,6 @@ import com.interland.testcase.service.CategoryService;
 
 @RestController
 @RequestMapping("/category")
-
 public class CategoryController {
 
 	@Autowired

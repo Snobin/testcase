@@ -20,7 +20,6 @@ import com.interland.testcase.service.QuizService;
 
 @RequestMapping("/quiz")
 @RestController
-
 public class QuizController {
 
 	@Autowired
