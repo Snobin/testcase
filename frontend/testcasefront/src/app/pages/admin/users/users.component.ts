@@ -96,6 +96,7 @@ ngOnInit(): void {
       },(error)=>{
         Swal.fire('Error !!', 'error while adding New User', 'error');
       }
+
     );
   }
 }
