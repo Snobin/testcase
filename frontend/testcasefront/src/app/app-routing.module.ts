@@ -32,7 +32,7 @@ import { UsersComponent } from './pages/admin/users/users.component';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
-=======
+
 import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.component';
 
 
