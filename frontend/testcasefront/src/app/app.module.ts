@@ -60,6 +60,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FullScreenService } from './services/full-screen.service';
 import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
 import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.component';
+import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 
 
 
@@ -102,6 +103,8 @@ import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.comp
     UserdetailComponent,
 
     AdminupdateComponent,
+
+    UpdateQuestionComponent,
 
   ],
   imports: [

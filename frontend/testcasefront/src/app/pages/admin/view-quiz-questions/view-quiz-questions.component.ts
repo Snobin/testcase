@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
@@ -14,7 +14,8 @@ export class ViewQuizQuestionsComponent implements OnInit {
   questions=[]
   constructor(
     private route:ActivatedRoute,
-    private quest:QuestionService
+    private quest:QuestionService,
+    private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -68,5 +69,5 @@ export class ViewQuizQuestionsComponent implements OnInit {
       }
     });
   }
-
+ 
 }

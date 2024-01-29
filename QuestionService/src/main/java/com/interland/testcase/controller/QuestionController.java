@@ -43,7 +43,7 @@ public class QuestionController {
 		return ResponseEntity.ok(this.questionService.addQuestion(questionDto));
 	}
 
-	@PutMapping("/")
+	@PostMapping("/update")
 	public ResponseEntity<Question> update(@RequestBody QuestionDto questionDto) {
 		return ResponseEntity.ok(this.questionService.updateQuestion(questionDto));
 	}
