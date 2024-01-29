@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.interland.testcase.dto.CodingQuestionInputDto;
+import com.interland.testcase.dto.QuestionDto;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuestionService;
@@ -38,13 +39,13 @@ public class QuestionController {
 	private QuizService quizService;
 
 	@PostMapping("/")
-	public ResponseEntity<Question> add(@RequestBody Question question) {
-		return ResponseEntity.ok(this.questionService.addQuestion(question));
+	public ResponseEntity<Question> add(@RequestBody QuestionDto questionDto) {
+		return ResponseEntity.ok(this.questionService.addQuestion(questionDto));
 	}
 
 	@PutMapping("/")
-	public ResponseEntity<Question> update(@RequestBody Question question) {
-		return ResponseEntity.ok(this.questionService.updateQuestion(question));
+	public ResponseEntity<Question> update(@RequestBody QuestionDto questionDto) {
+		return ResponseEntity.ok(this.questionService.updateQuestion(questionDto));
 	}
 
 	@GetMapping("/quiz/{qid}")

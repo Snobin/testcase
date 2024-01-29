@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.interland.testcase.dto.QuizDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.repository.QuizRepository;
@@ -18,13 +20,31 @@ public class QuizServiceImpl implements QuizService {
 	private QuizRepository quizRepository;
 	
 	@Override
-	public Quiz addQuiz(Quiz quiz) {
-		return this.quizRepository.save(quiz);
+	public Quiz addQuiz(QuizDto quizdto) {
+		Quiz quiz = new Quiz();
+		try {
+			if (quizdto != null) {
+		        BeanUtils.copyProperties(quiz, quizdto);
+			}
+			return quizRepository.save(quiz);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	@Override
-	public Quiz updateQuiz(Quiz quiz) {
-		return this.quizRepository.save(quiz);
+	public Quiz updateQuiz(QuizDto quizdto) {
+		Quiz quiz = new Quiz();
+		try {
+			if (quizdto != null) {
+		        BeanUtils.copyProperties(quiz, quizdto);
+			}
+			return quizRepository.save(quiz);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	@Override

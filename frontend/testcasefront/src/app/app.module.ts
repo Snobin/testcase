@@ -37,8 +37,8 @@ import { SidebaruserComponent } from './pages/user/sidebaruser/sidebaruser.compo
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AddCodingComponent } from './pages/admin/add-coding/add-coding.component';
 import { ViewAnswerComponent } from './pages/admin/view-answer/view-answer.component';
 import { ConsoleComponent } from './pages/user/console/console.component';
@@ -47,10 +47,9 @@ import { AddCodeComponent } from './pages/admin/add-code/add-code.component';
 import { ViewCodingComponent } from './pages/admin/view-coding/view-coding.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { McqComponent } from './pages/user/mcq/mcq.component';
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
@@ -92,17 +91,13 @@ import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.comp
     AddCodeComponent,
     ViewCodingComponent,
     UpdatecodeComponent,
-    McqComponent,
     AnsDetailsComponent,
     FinalComponent,
     UsersComponent,
-
     ServerErrorPageComponent,
     NotFoundComponent,
     UserdetailComponent,
-
     AdminupdateComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -113,10 +108,9 @@ import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.comp
     SplitterModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,MatPaginatorModule,MatSortModule,MatTableModule,MatProgressSpinnerModule,MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
-
+    MatButtonModule, MatPaginatorModule, MatSortModule, MatTableModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatCardModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatFormFieldModule, MatSnackBarModule, MatSlideToggleModule,
   ],
-  providers: [authInterceptorProviders,FullScreenService],
+  providers: [authInterceptorProviders, FullScreenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@
         <h1 class="mt20"> Available Content</h1>
         <div class="row mt20">
             <!-- Display Quizzes -->
-            <div class="col-md-4" *ngFor="let quiz of quizzes">
+            <div class="col-sm-4 col-md-4 col-lg-4" *ngFor="let quiz of quizzes">
                 <mat-card class="mb20" *ngIf="title == quiz.category.title && catId == quiz.category.cid">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="row mt20" *ngIf="title === 'CODING'">
-            <div class="col-md-4" *ngFor="let codingQuestion of codingQuestions">
+            <div class="col-sm-4 col-md-4 col-lg-4" *ngFor="let codingQuestion of codingQuestions">
                 <mat-card class="mb20">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>

@@ -1,33 +1,10 @@
-<div class="bootstrap-wrapper" *ngIf="isSubmit">
-    <div class="row mt20">
-        <div class="col-md-6 offset-md-3">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title>
-                        Quiz Result
-                    </mat-card-title>
-
-                </mat-card-header>
-                <mat-card-content class="text-center">
-                    <h1>Marks Got : {{marksGot}}</h1>
-                    <h1>Correct Answers : {{ correctAnswer}}</h1>
-                    <h1>Questions Attempted :{{attemptedNo}}</h1>
-                </mat-card-content>
-                <mat-card-actions class="text-center">
-                    <button mat-raised-button color="primary">Print</button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </div>
-</div>
-
-<div class="custom-card" *ngIf="!isSubmit">
+<div class="custom-card">
     <div class="card-body">
         <div class="custom-row"
             *ngFor="let question of displayedQuestions; let n = index;"
             style="height: -webkit-fill-available;min-width: 1050px;">
 
-            <div class="col-md-9 col-sm-9"
+            <div class="col-sm-9 col-md-9 col-lg-9"
                 style="padding: 10px;padding-left: 50px;min-width: 310px;">
                 <div *ngIf="questions">
                     <h1 class="mt20">On Going <b>{{question.quiz.title}}</b>
@@ -35,7 +12,7 @@
                 </div>
                 <div class="card" style="overflow: hidden;height: min-content;">
                     <div class="card-body">
-                        <div class="col-md-12 col-sm-12 card-title">
+                        <div class="col-sm-12 col-md-12 col-lg-12 card-title">
                             <strong>{{currentPage}}.</strong>
                             {{question.content}}
                         </div>
@@ -50,30 +27,30 @@
                         </div>
                         <hr>
                         <div id="option"
-                            class="col-md-12 col-sm-12 options-margin">
+                            class="col-sm-12 col-md-12 col-lg-12 options-margin">
                             <form id="options{{question.quesId}}">
-                                <label class="col-md-6 col-sm-6 opt-margin"
+                                <label class="col-sm-6 col-md-6 col-lg-6 opt-margin"
                                     *ngIf="(question.option1!='')">
                                     <input id="1" type="radio" name="options"
                                         [value]="question.option1"
                                         [(ngModel)]="question.givenAnswer">
                                     {{question.option1}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin"
+                                <label class="col-lg-6 col-md-6 col-lg-6 opt-margin"
                                     *ngIf="(question.option2!='')">
                                     <input id="2" type="radio" name="options"
                                         [value]="question.option2"
                                         [(ngModel)]="question.givenAnswer">
                                     {{question.option2}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin"
+                                <label class="col-sm-6 col-md-6 col-lg-6 opt-margin"
                                     *ngIf="(question.option3!='')">
                                     <input id="3" type="radio" name="options"
                                         [value]="question.option3"
                                         [(ngModel)]="question.givenAnswer">
                                     {{question.option3}}
                                 </label>
-                                <label class="col-md-6 col-sm-6 opt-margin"
+                                <label class="col-sm-6 col-md-6 col-lg-6 opt-margin"
                                     *ngIf="(question.option4!='')">
                                     <input id="4" type="radio" name="options"
                                         [value]="question.option4"
@@ -104,12 +81,12 @@
             <div class="col-md-3 col-sm-3"
                 style="height: 91vh;border: 1px solid #c7c8c9;border-top-width: 0px;border-bottom-width: 0px;border-right-width: 0px;padding: 15px;width: 25%;min-width: 259px;">
                 <div
-                    class="card btn-group custom-row item-center col-md-12 col-sm-12"
+                    class="card btn-group custom-row item-center col-sm-12 col-md-12 col-lg-12"
                     style="padding: 5px;">
-                    <button class="btn btn-success col-md-6 col-sm-6">Attempted
+                    <button class="btn btn-success col-sm-6 col-md-6 col-lg-6">Attempted
                         : {{attemptedNo}}
                     </button>
-                    <button class="btn btn-danger col-md-6 col-sm-6">Not
+                    <button class="btn btn-danger col-sm-6 col-md-6 col-lg-6">Not
                         Attempted : {{notAttemptedNo}}
                     </button>
                 </div>

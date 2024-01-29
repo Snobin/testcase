@@ -5,8 +5,6 @@ import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
-
-
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -95,6 +93,7 @@ ngOnInit(): void {
       },(error)=>{
         Swal.fire('Error !!', 'error while adding New User', 'error');
       }
+
     );
   }
 }
