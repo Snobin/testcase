@@ -28,7 +28,7 @@ export class InstructionsComponent implements OnInit {
     this.fullScreenService.requestFullScreen();
     this.updateStatus();
     this.preventBackButton();
-    // this.preventDeveloper();
+    this.preventDeveloper();
   }
 
   next() {
