@@ -22,8 +22,9 @@ public class CategoryServiceImpl implements CategoryService{
 	public Category addCategory(CategoryDto categoryDto) {
 		Category category = new Category();
 		try {
-			if (categoryDto != null) {
-		        BeanUtils.copyProperties(category, categoryDto);
+			Optional<Category> obj = categoryRepository.findById(categoryDto.getCid());
+			if (obj.isEmpty()) {
+				BeanUtils.copyProperties(category, categoryDto);
 			}
 			return categoryRepository.save(category);
 		} catch (Exception e) {
@@ -50,7 +51,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public Set<Category> getCategories() {
-		return new LinkedHashSet<>(this.categoryRepository.findAll());
+		return new LinkedHashSet<>(categoryRepository.findAll());
 	}
 
 	@Override
