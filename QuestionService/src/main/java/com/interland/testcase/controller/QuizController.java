@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.interland.testcase.dto.QuizDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuizService;
@@ -26,12 +27,12 @@ public class QuizController {
 	private QuizService quizService;
 	
 	@PostMapping("/")
-	public ResponseEntity<Quiz> add(@RequestBody Quiz quiz){
-		return ResponseEntity.ok(this.quizService.addQuiz(quiz));
+	public ResponseEntity<Quiz> add(@RequestBody QuizDto quizDto){
+		return ResponseEntity.ok(this.quizService.addQuiz(quizDto));
 	}
 	@PutMapping("/")
-	public ResponseEntity<Quiz> update(@RequestBody  Quiz quiz){
-		return ResponseEntity.ok(this.quizService.updateQuiz(quiz));
+	public ResponseEntity<Quiz> update(@RequestBody  QuizDto quizDto){
+		return ResponseEntity.ok(this.quizService.updateQuiz(quizDto));
 	}
 	@GetMapping("/")
 	public ResponseEntity<?> quizzes(){
