@@ -24,43 +24,48 @@ public class QuizController {
 
 	@Autowired
 	private QuizService quizService;
-	
+
 	@PostMapping("/")
-	public ResponseEntity<Quiz> add(@RequestBody Quiz quiz){
+	public ResponseEntity<Quiz> add(@RequestBody Quiz quiz) {
 		return ResponseEntity.ok(this.quizService.addQuiz(quiz));
 	}
+
 	@PutMapping("/")
-	public ResponseEntity<Quiz> update(@RequestBody  Quiz quiz){
+	public ResponseEntity<Quiz> update(@RequestBody Quiz quiz) {
 		return ResponseEntity.ok(this.quizService.updateQuiz(quiz));
 	}
+
 	@GetMapping("/")
-	public ResponseEntity<?> quizzes(){
+	public ResponseEntity<?> quizzes() {
 		return ResponseEntity.ok(this.quizService.getQuizzes());
 	}
+
 	@GetMapping("/{qid}")
 	public Quiz quiz(@PathVariable("qid") Long qid) {
 		return this.quizService.getQuiz(qid);
 	}
+
 	@DeleteMapping("/{qid}")
 	public void delete(@PathVariable("qid") Long qid) {
 		this.quizService.deleteQuiz(qid);
 	}
-	
+
 	@GetMapping("/category/{cid}")
-	public List<Quiz> getQuizzesCategory(@PathVariable("cid") Long cid){
-		Category category=new Category();
+	public List<Quiz> getQuizzesCategory(@PathVariable("cid") Long cid) {
+		Category category = new Category();
 		category.setCid(cid);
 		return this.quizService.getQuizzesCategory(category);
 	}
+
 	@GetMapping("/active")
-	public List<Quiz> getActive(){
+	public List<Quiz> getActive() {
 		return this.quizService.getActiveQuizes();
 	}
-	
+
 	@GetMapping("/category/active/{cid}")
-	public List<Quiz> getActiveQuiz(@PathVariable("cid") Long cid){
+	public List<Quiz> getActiveQuiz(@PathVariable("cid") Long cid) {
 		System.out.println(cid);
-		Category category=new Category();
+		Category category = new Category();
 		category.setCid(cid);
 		return this.quizService.getAtiveQuizzesCategory(category);
 	}
