@@ -17,6 +17,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.python.antlr.PythonParser.return_stmt_return;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.interland.testcase.dto.CodingQuestionInputDto;
+import com.interland.testcase.dto.QuestionDto;
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
 import com.interland.testcase.entity.Question;
@@ -231,45 +234,66 @@ public class QuestionServiceImple implements QuestionService {
 //	}
 
 	@Override
-	public Question addQuestion(Question question) {
-		return this.questionRepository.save(question);
+	public Question addQuestion(QuestionDto questionDto) {
+		Question question = new Question();
+		try {
+			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
+			if (obj.isEmpty()) {
+				BeanUtils.copyProperties(question, questionDto);
+			}
+			return questionRepository.save(question);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	@Override
-	public Question updateQuestion(Question question) {
-		return this.questionRepository.save(question);
+	public Question updateQuestion(QuestionDto questionDto) {
+		Question question = new Question();
+		try {
+			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
+			if (obj.isPresent()) {
+				question = obj.get();
+				BeanUtils.copyProperties(question, questionDto);
+			}
+			return questionRepository.save(question);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	@Override
 	public Set<Question> getQuestions() {
-		return new HashSet<>(this.questionRepository.findAll());
+		return new HashSet<>(questionRepository.findAll());
 	}
 
 	@Override
 	public Question getQuestion(Long questionId) {
-		return this.questionRepository.findById(questionId).get();
+		return questionRepository.findById(questionId).get();
 	}
 
 	@Override
 	public Set<Question> getQuestionsOfQuiz(Quiz quiz) {
-		return this.questionRepository.findByQuiz(quiz);
+		return questionRepository.findByQuiz(quiz);
 	}
 
 	@Override
 	public void deleteQuestion(Long quesId) {
 		Question question = new Question();
 		question.setQuesId(quesId);
-		this.questionRepository.delete(question);
+		questionRepository.delete(question);
 	}
 
 	@Override
 	public Question get(Long questionId) {
-		return this.questionRepository.getOne(questionId);
+		return questionRepository.getOne(questionId);
 	}
 
 	@Override
 	public ResponseEntity<?> getQnData(String qnId) {
-		Optional<?> data = this.competitiveQuestionRepository.findByQuestionId(qnId);
+		Optional<?> data = competitiveQuestionRepository.findByQuestionId(qnId);
 		return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
 	}
 

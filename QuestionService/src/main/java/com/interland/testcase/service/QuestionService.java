@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.interland.testcase.dto.CodingQuestionInputDto;
+import com.interland.testcase.dto.QuestionDto;
 import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.McqQuestion;
 import com.interland.testcase.entity.Question;
@@ -15,9 +16,9 @@ import com.interland.testcase.entity.Quiz;
 
 public interface QuestionService {
 	
-	public Question addQuestion(Question question);
+	public Question addQuestion(QuestionDto questionDto);
 	
-	public Question updateQuestion(Question question);
+	public Question updateQuestion(QuestionDto questionDto);
 	
 	public Set<Question> getQuestions();
 	
