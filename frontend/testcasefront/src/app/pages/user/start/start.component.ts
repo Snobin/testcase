@@ -1,6 +1,7 @@
 import { LocationStrategy } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FullScreenService } from 'src/app/services/full-screen.service';
 import { LoginService } from 'src/app/services/login.service';
 import { QuestionService } from 'src/app/services/question.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +19,6 @@ export class StartComponent implements OnInit {
   currentPage: any = 1;
   displayedQuestions: any[] = [];
   pages: number[] = [];
-  students: any = [];
   totalPages: number;
   attemptedNo: any = 0;
   notAttemptedNo: any;
@@ -31,10 +31,11 @@ export class StartComponent implements OnInit {
   timer: any;
   constructor(private el: ElementRef, private locationst: LocationStrategy,
     private route: ActivatedRoute,
-    private question: QuestionService, private loginservice: LoginService) { }
+    private question: QuestionService, private loginservice: LoginService,private fullScreenService: FullScreenService) { }
 
   ngOnInit(): void {
     // this.preventBackButton();
+    this.fullScreenService.requestFullScreen();
     this.qId = this.route.snapshot.params.qid;
     this.loadQuestions();
   }
@@ -44,25 +45,15 @@ export class StartComponent implements OnInit {
       (data: any) => {
         this.questions = data;
         console.log(this.questions);
-
-        for (let index = 0; index < this.questions.length; index++) {
-          const student: any = {};
-          student.studentId = '1';
-          student.questionId = '';
-          student.no = index + 1;
-          student.answer = '';
-          student.status = '';
-          this.students[index] = student;
-        }
         this.setPage(1);
         this.timer = this.questions.length * 2 * 60;
         this.questions.forEach((q) => {
-          q['givenAnswer'] = '';
+          q['givenAnswer'] = null;
+          q['status'] = '';
           q['qId'] = this.qId;
           const userData = JSON.parse(localStorage.getItem('user'));
           q['user'] = userData.username;
         });
-        // this.startTimer();
         this.notAttemptedNo = this.totalPages;
       },
       (error) => {
@@ -113,22 +104,20 @@ export class StartComponent implements OnInit {
     this.totalPages = Math.ceil(this.questions.length / this.pageSize);
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     for (let index = 0; index < page; index++) {
-      const existingStudentIndex = this.students.findIndex(student => student.questionId === (index + 1).toString());
-      if (existingStudentIndex !== -1) {
-        if (this.students[existingStudentIndex].status != 'attempted') {
-          this.students[existingStudentIndex].status = 'not attempted';
+      if (index !== -1) {
+        if (this.questions[index].status != 'attempted') {
+          this.questions[index].status = 'not attempted';
         }
       }
     }
   }
 
-  next(no: number, questionId: string) {
-    const existingStudentIndex = this.students.findIndex(student => student.no === no);
-    if (existingStudentIndex !== -1) {
-      this.students[existingStudentIndex].status = 'not attempted';
+  next(value: string, quesId: string) {
+    const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
+    if (existingQuestionIndex !== -1) {
+      this.questions[existingQuestionIndex].status = 'not attempted';
     }
-    const value = $('input[name="options"]:checked').val();
-    this.onRadioChange(value, no, questionId);
+    this.onRadioChange(value, quesId);
     if (this.currentPage < this.pages.length) {
       this.setPage(this.currentPage + 1);
     } else {
@@ -141,12 +130,7 @@ export class StartComponent implements OnInit {
     }
   }
 
-  save(no: number, questionId: string) {
-    const existingStudentIndex = this.students.findIndex(student => student.no === no);
-    if (existingStudentIndex !== -1) {
-      this.students[existingStudentIndex].status = 'not attempted';
-    }
-    const value = $('input[name="options"]:checked').val();
+  save(value: string, quesId: string) {
     if (value == undefined || value == null) {
       Swal.fire({
         text: 'Please select an option to save',
@@ -154,17 +138,21 @@ export class StartComponent implements OnInit {
         timer: 600,
         position: 'top'
       })
+    } else {
+      const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
+      if (existingQuestionIndex !== -1) {
+        this.questions[existingQuestionIndex].status = 'not attempted';
+      }
+      this.onRadioChange(value, quesId);
     }
-    this.onRadioChange(value, no, questionId);
   }
 
-  previous(no: number, questionId: string) {
-    const existingStudentIndex = this.students.findIndex(student => student.no === no);
-    if (existingStudentIndex !== -1) {
-      this.students[existingStudentIndex].status = 'not attempted';
+  previous(value: string, quesId: string) {
+    const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
+    if (existingQuestionIndex !== -1) {
+      this.questions[existingQuestionIndex].status = 'not attempted';
     }
-    const value = $('input[name="options"]:checked').val();
-    this.onRadioChange(value, no, questionId);
+    this.onRadioChange(value, quesId);
     if (this.currentPage <= this.pages.length && this.currentPage != 1) {
       this.setPage(this.currentPage - 1);
     } else {
@@ -177,29 +165,25 @@ export class StartComponent implements OnInit {
     }
   }
 
-  onRadioChange(value: string, no: number, questionId: string) {
+  onRadioChange(value: string, quesId: string) {
     if (value != undefined || value != null) {
-      const existingStudentIndex = this.students.findIndex(student => student.no === no);
-      if (existingStudentIndex !== -1) {
-        if (this.students[existingStudentIndex].answer == '') {
-          this.students[existingStudentIndex].answer = value;
-          this.students[existingStudentIndex].questionId = questionId;
-          this.students[existingStudentIndex].status = 'attempted';
-          this.attemptedNo++;
-          this.notAttemptedNo--;
-        } else if (this.students[existingStudentIndex].answer != '') {
-          this.students[existingStudentIndex].answer = value;
-          this.students[existingStudentIndex].questionId = questionId;
-          this.students[existingStudentIndex].status = 'attempted';
+      const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
+      if (existingQuestionIndex !== -1) {
+        if (this.questions[existingQuestionIndex].status == '' && this.questions[existingQuestionIndex].givenAnswer != '') {
+          this.questions[existingQuestionIndex].status = 'attempted';
+        } else if (this.questions[existingQuestionIndex].givenAnswer != '') {
+          this.questions[existingQuestionIndex].status = 'attempted';
         }
       }
     }
-    console.log(this.students);
+    this.status();
   }
 
   status() {
+    this.attemptedNo = 0;
+    this.notAttemptedNo = this.questions.length;
     for (let index = 0; index < this.totalPages; index++) {
-      if (this.students[index].status == 'attempted') {
+      if (this.questions[index].status == 'attempted') {
         this.attemptedNo++;
         this.notAttemptedNo--;
       }
@@ -216,5 +200,13 @@ export class StartComponent implements OnInit {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboardEvent(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
+  @HostListener('document:visibilitychange', ['$event'])
+  private handleVisibilityChange(event: Event): void {
+  this.fullScreenService.onVisibilityChange(document.hidden);
+}
 }
 

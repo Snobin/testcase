@@ -14,15 +14,13 @@ public class ResultEntity {
 	private ResultPk resultPk;
 
 	private String question;
+	
 	private String answer;
 
 	private String satus;
 
 	private String title;
  
-	
-	
-	
 	@Column(name = "response")
 	private String givenAnswer;
 

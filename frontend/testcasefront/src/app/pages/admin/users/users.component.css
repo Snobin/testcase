@@ -16,7 +16,9 @@
 .center{
     transform: translateX(50%);
 }
-
+.full-width{
+width: 100%;
+}
 #signup {
     background-color: #fff;
     height: 100%;
@@ -73,8 +75,8 @@
 }
 
 .brbrl-0{
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .wrapper{
@@ -82,7 +84,7 @@
     height:100%;
     padding: 10px;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: #fff;
     border: 1px solid #000;
 }
 
@@ -111,4 +113,24 @@ btn:focus-visible {
 .btn:focus {
     outline: 0;
     box-shadow: 0 0 0 0px transparent;
+}
+
+.h-full{
+    height: 100%;
+}
+
+.h-93{
+    height: 93%;
+}
+
+.p-10{
+    padding: 10px;
+}
+
+.pt-10{
+    padding-top: 10px;
+}
+
+.px-10{
+    padding: 0px 10px;
 }
