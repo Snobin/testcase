@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false;
   user = null;
-  countdownMinutes: number = 10;
+  countdownMinutes: number = 1;
   countdownSeconds: number = 0;
   status: boolean = false;
   private statusSubscription: Subscription;
