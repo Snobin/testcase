@@ -24,7 +24,6 @@ import com.authentication.JwtAuthCoustom.JWT.JWTServices;
 import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 import com.authentication.JwtAuthCoustom.ServiceImp.AuthServiceImp;
 
-
 import io.jsonwebtoken.Claims;
 
 @RestController
