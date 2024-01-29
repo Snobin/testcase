@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService{
 		try {
 			Optional<Category> obj = categoryRepository.findById(categoryDto.getCid());
 			if (obj.isEmpty()) {
-				BeanUtils.copyProperties(category, categoryDto);
+				BeanUtils.copyProperties(categoryDto, category);
 			}
 			return categoryRepository.save(category);
 		} catch (Exception e) {
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService{
 			Optional<Category> obj = categoryRepository.findById(categoryDto.getCid());
 			if (obj.isPresent()) {
 				category = obj.get();
-		        BeanUtils.copyProperties(category, categoryDto);
+		        BeanUtils.copyProperties(categoryDto, category);
 			}
 			return categoryRepository.save(category);
 		} catch (Exception e) {

@@ -239,7 +239,7 @@ public class QuestionServiceImple implements QuestionService {
 		try {
 			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
 			if (obj.isEmpty()) {
-				BeanUtils.copyProperties(question, questionDto);
+				BeanUtils.copyProperties(questionDto, question);
 			}
 			return questionRepository.save(question);
 		} catch (Exception e) {
@@ -255,7 +255,7 @@ public class QuestionServiceImple implements QuestionService {
 			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
 			if (obj.isPresent()) {
 				question = obj.get();
-				BeanUtils.copyProperties(question, questionDto);
+				BeanUtils.copyProperties(questionDto, question);
 			}
 			return questionRepository.save(question);
 		} catch (Exception e) {
