@@ -1,6 +1,7 @@
 package com.authentication.JwtAuthCoustom.Controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +144,12 @@ public class AuthController
             return ResponseEntity.status(500).body("Error uploading users");
         }
     }
+    
+    @GetMapping("/userlist")
+	public ResponseEntity<List<SignupDTO>> getAll() {
+		List<SignupDTO> userList = service.getAllUsers();
+		return new ResponseEntity<>(userList, HttpStatus.OK);
+	}
 
 
     

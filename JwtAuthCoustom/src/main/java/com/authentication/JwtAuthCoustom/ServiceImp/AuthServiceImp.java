@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import java.util.Iterator;
 
 import org.apache.logging.log4j.LogManager;
@@ -192,4 +192,20 @@ public class AuthServiceImp implements AuthService {
 	        }
 	    }
 	    
+	    public List<SignupDTO> getAllUsers() {
+	        List<UserEntity> users = repo.findAll();
+	        return users.stream()
+	                .map(this::convertToDto)
+	                .collect(Collectors.toList());
+	    }
+	    private SignupDTO convertToDto(UserEntity user) {
+	        SignupDTO userDto = new SignupDTO();
+	        userDto.setEmail(user.getEmail());
+	        userDto.setFirstName(user.getFirstName());
+	        userDto.setLastName(user.getLastName());
+	        userDto.setPhoneNumber(user.getPhoneNumber());
+	        userDto.setRole(user.getRoles());
+	        userDto.setUsername(user.getUsername());
+	        return userDto;
+	    }
 }
