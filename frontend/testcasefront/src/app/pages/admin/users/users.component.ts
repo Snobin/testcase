@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { error } from 'console';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -88,14 +89,14 @@ ngOnInit(): void {
 
   uploadFile(){
     this.userservice.uploadExcelFile(this.fileContent).subscribe(
-      (response) => {
-        if (response== 'Users uploaded successfully') {
+      () => {
           this.router.navigate([`./userlist`]);
           Swal.fire("Success", 'Users uploaded successfully', 'success')
-        } else {
-          Swal.fire('Error!',response, 'error');
-        }
-      },
+        
+      },(error)=>{
+        Swal.fire('Error !!', 'error while adding New User', 'error');
+      }
+
     );
   }
 }

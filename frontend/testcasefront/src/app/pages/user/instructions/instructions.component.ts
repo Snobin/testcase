@@ -22,12 +22,13 @@ export class InstructionsComponent implements OnInit {
   quizdata;
   obj: NavbarComponent;
   categories: any;
-  constructor(private fullScreenService: FullScreenService,private cat: CategoryService, private router: Router, private snack: MatSnackBar,private userservice:UserService,private locationst:LocationStrategy) { }
+  constructor(private fullScreenService: FullScreenService, private cat: CategoryService, private router: Router, private snack: MatSnackBar, private userservice: UserService, private locationst: LocationStrategy) { }
 
   ngOnInit(): void {
     this.fullScreenService.requestFullScreen();
-this.updateStatus();
-this.preventBackButton();
+    this.updateStatus();
+    this.preventBackButton();
+    this.preventDeveloper();
   }
 
   next() {
@@ -43,36 +44,61 @@ this.preventBackButton();
       }
     });
   }
+
   updateStatus(): void {
     // Set the status to true or false as needed
     this.userservice.setStatus(true);
   }
+
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
-        this.categories = data;
-        console.log(this.categories);
-      
-        this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
+      this.categories = data;
+      console.log(this.categories);
+
+      this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
-        (error) => {
-            this.snack.open('Error in loading categories from server', '', {
-                duration: 3000,
-            });
-        }
+      (error) => {
+        this.snack.open('Error in loading categories from server', '', {
+          duration: 3000,
+        });
+      }
     );
-}
-preventBackButton() {
-  history.pushState(null, null, location.href);
-  this.locationst.onPopState(() => {
+  }
+
+  preventBackButton() {
+    history.pushState(null, null, location.href);
+    this.locationst.onPopState(() => {
       history.pushState(null, null, location.href)
-  });
-}
-@HostListener('document:visibilitychange', ['$event'])
-private handleVisibilityChange(event: Event): void {
-this.fullScreenService.onVisibilityChange(document.hidden);
-}
-@HostListener('document:keydown', ['$event'])
-private handleKeyboardEvent(event: KeyboardEvent): void {
-  this.fullScreenService.onKeyDown(event);
-}
+    });
+  }
+
+  @HostListener('document:visibilitychange', ['$event'])
+  private handleVisibilityChange(event: Event): void {
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboardEvent(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
+  
+  preventDeveloper(){
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+        e.preventDefault(); // Prevent opening developer tools
+      }
+    });
+    
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault(); // Prevent right-click context menu
+    });
+    
+    // You can also check for other developer tools events and attempt to prevent them
+    window.addEventListener("resize", function () {
+      if (window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100) {
+        // Developer tools might be open
+        alert("Please close the developer tools.");
+      }
+    });
+  }
 }

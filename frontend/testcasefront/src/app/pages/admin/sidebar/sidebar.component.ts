@@ -8,21 +8,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  isLoggedIn: any;
-  user: any;
-
-  constructor(  
-      public login: LoginService,
-      private router:Router
-    ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  logout() {
-    this.login.logout();
-    this.isLoggedIn = this.login.isloggedin();
-    this.user = this.login.getUser();
-    this.router.navigate([`login`]);
-  }
-
 }
