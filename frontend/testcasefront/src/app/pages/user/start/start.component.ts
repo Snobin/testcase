@@ -34,7 +34,7 @@ export class StartComponent implements OnInit {
   categories: any;
   constructor(private el: ElementRef, private locationst: LocationStrategy,
     private route: ActivatedRoute, private router: Router, private cat: CategoryService, private snack: MatSnackBar,
-    private question: QuestionService, private loginservice: LoginService,private fullScreenService: FullScreenService) { }
+    private question: QuestionService, private loginservice: LoginService, private fullScreenService: FullScreenService) { }
 
   ngOnInit(): void {
     // this.preventBackButton();
@@ -101,7 +101,6 @@ export class StartComponent implements OnInit {
     )
   }
 
-  
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
@@ -219,13 +218,16 @@ export class StartComponent implements OnInit {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
   @HostListener('document:keydown', ['$event'])
   private handleKeyboardEvent(event: KeyboardEvent): void {
     this.fullScreenService.onKeyDown(event);
   }
+
   @HostListener('document:visibilitychange', ['$event'])
   private handleVisibilityChange(event: Event): void {
-  this.fullScreenService.onVisibilityChange(document.hidden);
-}
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+
 }
 
