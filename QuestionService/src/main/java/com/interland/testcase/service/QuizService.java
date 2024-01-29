@@ -13,9 +13,9 @@ public interface QuizService {
 
 	public Quiz updateQuiz(QuizDto quiz);
 
-	public Set<QuizDto> getQuizzes();
+	public Set<Quiz> getQuizzes();
 
-	public QuizDto getQuiz(Long quizId);
+	public Quiz getQuiz(Long quizId);
 
 	public void deleteQuiz(Long quizId);
 
@@ -24,5 +24,6 @@ public interface QuizService {
 	public List<Quiz> getActiveQuizes();
 
 	public List<Quiz> getAtiveQuizzesCategory(Category category);
+
 
 }

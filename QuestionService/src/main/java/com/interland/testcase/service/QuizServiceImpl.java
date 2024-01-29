@@ -3,7 +3,6 @@ package com.interland.testcase.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,35 +48,19 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	public Set<QuizDto> getQuizzes() {
-	    Set<Quiz> quizzes = new HashSet<>(this.quizRepository.findAll());
-	    return quizzes.stream().map(this::convertToDTO).collect(Collectors.toSet());
+	public Set<Quiz> getQuizzes() {
+		return new HashSet<>(this.quizRepository.findAll());
 	}
 
 	@Override
-	public QuizDto getQuiz(Long quizId) {
-	    Quiz quiz = this.quizRepository.findById(quizId).orElse(null);
-	    return (quiz != null) ? convertToDTO(quiz) : null;
+	public Quiz getQuiz(Long quizId) {
+		return this.quizRepository.findById(quizId).get();
 	}
 
 	@Override
 	public void deleteQuiz(Long quizId) {
-	    this.quizRepository.deleteById(quizId);
+		this.quizRepository.deleteById(quizId);
 	}
-
-	private QuizDto convertToDTO(Quiz quiz) {
-	    QuizDto quizDTO = new QuizDto();
-	    quizDTO.setQid(quiz.getQid());
-	    quizDTO.setTitle(quiz.getTitle());
-	    quizDTO.setDescription(quiz.getDescription());
-	    quizDTO.setMaxMarks(quiz.getMaxMarks());
-	    quizDTO.setNumberOfQuestions(quiz.getNumberOfQuestions());
-	    quizDTO.setActive(quiz.isActive());
-	    quizDTO.setCategoryId(quiz.getCategory().getCid()); // Assuming you have getId() method in Category
-
-	    return quizDTO;
-	}
-
 
 	@Override
 	public List<Quiz> getQuizzesCategory(Category category) {

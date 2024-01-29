@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.interland.testcase.dto.CodingQuestionInputDto;
-import com.interland.testcase.dto.QuizDto;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuestionService;
@@ -54,7 +53,7 @@ public class QuestionController {
 //		quiz.setQid(qid);
 //		Set<Question> questionsofQuiz = this.questionService.getQuestionsOfQuiz(quiz);
 //		return ResponseEntity.ok(questionsofQuiz);
-		QuizDto quiz = this.quizService.getQuiz(qid);
+		Quiz quiz = this.quizService.getQuiz(qid);
 		Set<Question> questions = quiz.getQuestions();
 		List list = new ArrayList(questions);
 		if (list.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
