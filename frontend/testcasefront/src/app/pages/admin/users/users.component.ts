@@ -89,11 +89,11 @@ ngOnInit(): void {
   uploadFile(){
     this.userservice.uploadExcelFile(this.fileContent).subscribe(
       (response) => {
-        if (response.body == 'Users uploaded successfully') {
+        if (response== 'Users uploaded successfully') {
           this.router.navigate([`./userlist`]);
           Swal.fire("Success", 'Users uploaded successfully', 'success')
         } else {
-          Swal.fire('Error!',response.body, 'error');
+          Swal.fire('Error!',response, 'error');
         }
       },
     );
