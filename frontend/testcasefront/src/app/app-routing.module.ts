@@ -34,6 +34,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
 
 import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.component';
+import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 
 
 
@@ -98,7 +99,11 @@ const routes: Routes = [
       }, {
         path: 'add-question/:qid/:title',
         component: AddQuestionComponent, canActivate: [AdminGuard]
-      }, {
+      },  {
+        path: 'question/:title/:qid/:questId',
+        component: UpdateQuestionComponent, canActivate: [AdminGuard]
+      }, 
+      {
         path: 'add-code',
         component: AddCodeComponent, canActivate: [AdminGuard]
       }, {
