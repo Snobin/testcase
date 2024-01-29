@@ -2,6 +2,7 @@ package com.interland.testcase.service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
@@ -37,8 +38,10 @@ public class QuizServiceImpl implements QuizService {
 	public Quiz updateQuiz(QuizDto quizdto) {
 		Quiz quiz = new Quiz();
 		try {
-			if (quizdto != null) {
-		        BeanUtils.copyProperties(quiz, quizdto);
+			Optional<Quiz> obj = quizRepository.findById(quizdto.getQid());
+			if (obj.isPresent()) {
+				quiz = obj.get();
+		        BeanUtils.copyProperties(quizdto,quiz);
 			}
 			return quizRepository.save(quiz);
 		} catch (Exception e) {
