@@ -2,15 +2,16 @@ package com.interland.testcase.service;
 
 import java.util.Set;
 
+import com.interland.testcase.dto.CategoryDto;
 import com.interland.testcase.entity.Category;
 
 public interface CategoryService {
 
-	public Category addCategory(Category category);
+	public Category addCategory(CategoryDto categoryDto);
 	
-	public Category updateCategory(Category category);
+	public Category updateCategory(CategoryDto categoryDto);
 	
-	public Set<Category> getCatories();
+	public Set<Category> getCategories();
 	
 	public Category getCategory(Long categoryId);
 
