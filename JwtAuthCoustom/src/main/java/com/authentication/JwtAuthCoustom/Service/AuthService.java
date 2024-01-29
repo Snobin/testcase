@@ -21,5 +21,6 @@ public interface AuthService {
 
 	public ObjectNode processExcelData(MultipartFile excelFile);
 	public List<UserEntity> processExcelFile(MultipartFile file) throws IOException;
+	public List<SignupDTO> getAllUsers();
 
 }

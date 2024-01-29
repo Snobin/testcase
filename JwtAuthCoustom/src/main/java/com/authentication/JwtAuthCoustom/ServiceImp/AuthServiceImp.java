@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import java.util.Iterator;
 
 import org.apache.logging.log4j.LogManager;
@@ -151,7 +151,7 @@ public class AuthServiceImp implements AuthService {
 	                user.setLastName(getStringCellValue(row.getCell(1)));
 	                user.setPhoneNumber(getStringCellValue(row.getCell(3)));
 	                user.setRoles("USER");
-	                user.setUsername(getStringCellValue(row.getCell(2)));
+	                user.setUsername(getStringBeforeAtSymbol(row.getCell(2)));
 
 	                repo.save(user);
 	            }
@@ -190,6 +190,42 @@ public class AuthServiceImp implements AuthService {
 	            DataFormatter dataFormatter = new DataFormatter();
 	            return dataFormatter.formatCellValue(cell);
 	        }
+	    }
+	    
+	    private String getStringBeforeAtSymbol(Cell cell) {
+	    	cell.setCellType(CellType.STRING);
+	        String name = cell.getStringCellValue();
+
+	        // Find the position of '@' in the email address
+	        int atIndex = name.indexOf('@');
+
+	        // Extract the substring before '@'
+	        if (atIndex != -1) {
+	            return name.substring(0, atIndex);
+	        } else {
+	            // Handle the case where '@' is not present in the email
+	            return name;
+	        }
+	    }
+
+	    
+	    
+	    public List<SignupDTO> getAllUsers() {
+	        List<UserEntity> users = repo.findAll();
+	        return users.stream()
+	                .map(this::convertToDto)
+	                .collect(Collectors.toList());
+	    }
+
+	    private SignupDTO convertToDto(UserEntity user) {
+	        SignupDTO userDto = new SignupDTO();
+	        userDto.setEmail(user.getEmail());
+	        userDto.setFirstName(user.getFirstName());
+	        userDto.setLastName(user.getLastName());
+	        userDto.setPhoneNumber(user.getPhoneNumber());
+	        userDto.setRole(user.getRoles());
+	        userDto.setUsername(user.getUsername());
+	        return userDto;
 	    }
 	    
 }

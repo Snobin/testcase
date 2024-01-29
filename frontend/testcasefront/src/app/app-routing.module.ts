@@ -30,6 +30,7 @@ import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.compo
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
 
 
 const routes: Routes = [
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'userlist',
+        component: UserdetailComponent
       },
       {
         path:'users',
