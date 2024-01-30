@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false;
   user = null;
-  countdownMinutes: number = 10;
+  countdownMinutes: number = 1;
   countdownSeconds: number = 0;
   status: boolean = false;
   private statusSubscription: Subscription;
@@ -80,9 +80,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private handleRouteChange(): void {
-    // Unsubscribe before reinitializing
-    console.log(this.router.url);
-
     // Update the showdata based on the current URL
     this.showdata = this.show(this.router.url);
     this.logoutdata = this.logouthere(this.router.url)

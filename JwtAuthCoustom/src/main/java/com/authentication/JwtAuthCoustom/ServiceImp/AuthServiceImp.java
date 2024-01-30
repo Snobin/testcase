@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import java.util.Iterator;
 
 import org.apache.logging.log4j.LogManager;
@@ -42,9 +42,6 @@ import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 import com.authentication.JwtAuthCoustom.Service.AuthService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-
-
-
 @Service
 public class AuthServiceImp implements AuthService {
 	private static Logger logger = LogManager.getLogger(AuthServiceImp.class);
@@ -55,7 +52,7 @@ public class AuthServiceImp implements AuthService {
 	private AuthRepository repo;
 
 	public ResponseEntity<?> addUser(SignupDTO dto) {
-		String role=dto.getRole()=="false"?"USER":"ADMIN";
+		String role = dto.getRole() == "false" ? "USER" : "ADMIN";
 		UserEntity entity = new UserEntity();
 		try {
 			entity.setEmail(dto.getEmail());
@@ -127,69 +124,84 @@ public class AuthServiceImp implements AuthService {
 	public ObjectNode processExcelData(MultipartFile excelFile) {
 		return null;
 	}
-	
-	 public List<UserEntity> processExcelFile(MultipartFile file) throws IOException  {
-	        List<UserEntity> users = new ArrayList<>();
 
-	        try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
-	            Sheet sheet = workbook.getSheetAt(0);
-	            Iterator<Row> rowIterator = sheet.iterator();
+	public List<UserEntity> processExcelFile(MultipartFile file) throws IOException {
+		List<UserEntity> users = new ArrayList<>();
 
-	            // Skipping the header row
-	            if (rowIterator.hasNext()) {
-	                rowIterator.next();
-	            }
+		try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+			Sheet sheet = workbook.getSheetAt(0);
+			Iterator<Row> rowIterator = sheet.iterator();
 
-	            while (rowIterator.hasNext()) {
-	                Row row = rowIterator.next();
+			// Skipping the header row
+			if (rowIterator.hasNext()) {
+				rowIterator.next();
+			}
 
-	                UserEntity user = new UserEntity();
-	                user.setEmail(getStringCellValue(row.getCell(2)));
-	                String encodedPassword = passwordEncoder.encode(getDateCellValue(row.getCell(4)));
-	                user.setPassword(encodedPassword);
-	                user.setFirstName(getStringCellValue(row.getCell(0)));
-	                user.setLastName(getStringCellValue(row.getCell(1)));
-	                user.setPhoneNumber(getStringCellValue(row.getCell(3)));
-	                user.setRoles("USER");
-	                user.setUsername(getStringCellValue(row.getCell(2)));
+			while (rowIterator.hasNext()) {
+				Row row = rowIterator.next();
 
-	                repo.save(user);
-	            }
-	            return users;
-	        }catch (IOException  e) {
-		        e.printStackTrace();
-	        }
+				UserEntity user = new UserEntity();
+				user.setEmail(getStringCellValue(row.getCell(2)));
+				String encodedPassword = passwordEncoder.encode(getDateCellValue(row.getCell(4)));
+				user.setPassword(encodedPassword);
+				user.setFirstName(getStringCellValue(row.getCell(0)));
+				user.setLastName(getStringCellValue(row.getCell(1)));
+				user.setPhoneNumber(getStringCellValue(row.getCell(3)));
+				user.setRoles("USER");
+				user.setUsername(getStringCellValue(row.getCell(2)));
+
+				repo.save(user);
+			}
 			return users;
-	       
-	    }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return users;
 
-	    private String getStringCellValue(Cell cell) {
-	        if (cell == null) {
-	            return null;
-	        }
-	        cell.setCellType(CellType.STRING);
-	        return cell.getStringCellValue();
-	    }
-	    
-	    private static String getDateCellValue(Cell cell) {
-	        if (cell == null || cell.getCellType() == CellType.BLANK) {
-	            return null;
-	        }
+	}
 
-	        // Check if the cell contains a numeric value (Excel date representation)
-	        if (DateUtil.isCellDateFormatted(cell)) {
-	            Date date = cell.getDateCellValue();
-	            // Format the date as a string (adjust the format as needed)
-	            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-	            return dateFormat.format(date);
-	        } else if (cell.getCellType() == CellType.STRING) {
-	            // If the cell contains a string, assume it's already a formatted date
-	            return cell.getStringCellValue();
-	        } else {
-	            // If not a date or string, use DataFormatter to get the formatted date string
-	            DataFormatter dataFormatter = new DataFormatter();
-	            return dataFormatter.formatCellValue(cell);
-	        }
-	    }
-	    
+	private String getStringCellValue(Cell cell) {
+		if (cell == null) {
+			return null;
+		}
+		cell.setCellType(CellType.STRING);
+		return cell.getStringCellValue();
+	}
+
+	private static String getDateCellValue(Cell cell) {
+		if (cell == null || cell.getCellType() == CellType.BLANK) {
+			return null;
+		}
+
+		// Check if the cell contains a numeric value (Excel date representation)
+		if (DateUtil.isCellDateFormatted(cell)) {
+			Date date = cell.getDateCellValue();
+			// Format the date as a string (adjust the format as needed)
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+			return dateFormat.format(date);
+		} else if (cell.getCellType() == CellType.STRING) {
+			// If the cell contains a string, assume it's already a formatted date
+			return cell.getStringCellValue();
+		} else {
+			// If not a date or string, use DataFormatter to get the formatted date string
+			DataFormatter dataFormatter = new DataFormatter();
+			return dataFormatter.formatCellValue(cell);
+		}
+	}
+
+	public List<SignupDTO> getAllUsers() {
+		List<UserEntity> users = repo.findAll();
+		return users.stream().map(this::convertToDto).collect(Collectors.toList());
+	}
+
+	private SignupDTO convertToDto(UserEntity user) {
+		SignupDTO userDto = new SignupDTO();
+		userDto.setEmail(user.getEmail());
+		userDto.setFirstName(user.getFirstName());
+		userDto.setLastName(user.getLastName());
+		userDto.setPhoneNumber(user.getPhoneNumber());
+		userDto.setRole(user.getRoles());
+		userDto.setUsername(user.getUsername());
+		return userDto;
+	}
 }

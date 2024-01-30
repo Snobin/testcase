@@ -32,8 +32,7 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 
-	@Autowired
-	private ResultService resultService;
+
 
 	@Autowired
 	private QuizService quizService;

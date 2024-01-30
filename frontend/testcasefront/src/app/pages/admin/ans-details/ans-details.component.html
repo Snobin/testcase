@@ -4,20 +4,24 @@
       <!-- Coding Questions Card -->
       <mat-card [style.height]="(MCQ == false && Code == true) ? '100%' : (MCQ == true ? '50%' : '100%')" style="overflow-y: scroll;">
         <mat-card-header>
-          <mat-card-title>Coding Questions</mat-card-title>
+            <mat-card-title>Coding Questions</mat-card-title>
         </mat-card-header>
         <mat-card-content style="overflow-y: auto;">
-          <!-- Add your content related to coding questions here -->
-          <ul>
-            <li *ngFor="let data of dataa">
-              <strong>Question:</strong> {{ data.question }},
-              <strong>Answer:</strong> {{ data.answer }},
-              <strong>Attempted Answer:</strong> {{ data.givenAnswer }}
-              <hr>
-            </li>
-          </ul>
+            <!-- Add your content related to coding questions here -->
+            <ul>
+                <li *ngFor="let data of codingQuestions" style="margin-bottom: 15px;">
+                    <strong>Question:</strong> {{ data.title }}<br>
+                    <strong>Total Testcases:</strong> {{ data.totalTescase }}<br>
+                    <strong>Testcase Passed:</strong> {{ data.passedTestcase }}<br>
+                    <strong>Language used:</strong> {{ data.language }}<br>
+                    <strong>Code:</strong><br>
+                    <code>{{ data.code }}</code>
+                    <hr>
+                </li>
+            </ul>
         </mat-card-content>
-      </mat-card>
+    </mat-card>
+    
   
       <hr>
   
@@ -29,7 +33,7 @@
         <mat-card-content style="overflow-y: auto;">
           <!-- Add your content related to MCQ questions here -->
           <ul>
-            <li *ngFor="let data of dataa">
+            <li *ngFor="let data of mcqQuestions">
               <strong>Question:</strong> {{ data.question }},
               <strong>Correct Answer:</strong> {{ data.answer }},
               <strong>Answer:</strong> {{ data.givenAnswer }}

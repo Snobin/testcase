@@ -14,5 +14,7 @@ public interface CodingResultRepository extends JpaRepository<CodeResult,CodeRes
 	
 	 @Query("SELECT e.codeResultpk.user,(SUM(e.passedTestcase) * 100.0 / SUM(e.totalTescase)) AS passPercentage FROM CodeResult e GROUP BY e.codeResultpk.user")
 	 List<Object[]> codeResult();
+	 
+	    List<CodeResult> findByCodeResultpkUser(String user);
 
 }

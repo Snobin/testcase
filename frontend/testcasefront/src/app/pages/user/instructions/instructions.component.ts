@@ -28,7 +28,7 @@ export class InstructionsComponent implements OnInit {
     this.fullScreenService.requestFullScreen();
     this.updateStatus();
     this.preventBackButton();
-    // this.preventDeveloper();
+    this.preventDeveloper();
   }
 
   next() {
@@ -93,10 +93,10 @@ export class InstructionsComponent implements OnInit {
       e.preventDefault(); // Prevent right-click context menu
     });
     
-    // You can also check for other developer tools events and attempt to prevent them
+    // // You can also check for other developer tools events and attempt to prevent them
     // window.addEventListener("resize", function () {
     //   if (window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100) {
-    //     Developer tools might be open
+    //     // Developer tools might be open
     //     alert("Please close the developer tools.");
     //   }
     // });

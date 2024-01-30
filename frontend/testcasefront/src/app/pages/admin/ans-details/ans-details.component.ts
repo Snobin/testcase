@@ -9,10 +9,13 @@ import { ResultService } from 'src/app/services/result.service';
 })
 export class AnsDetailsComponent implements OnInit {
   user: any;
-  dataa;
+  dataa: any; // Assuming dataa is of type any
   MCQ: boolean = true;
   Code: boolean = true;
-  constructor(private ans: ResultService, private route: ActivatedRoute) { }
+  mcqQuestions: any[] = [];
+  codingQuestions: any[] = [];
+
+  constructor(private ans: ResultService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -20,15 +23,23 @@ export class AnsDetailsComponent implements OnInit {
       this.ans.getDataByUser(this.user).subscribe(
         (data: any) => {
           this.dataa = data;
-          console.log(this.dataa);
 
+          // Categorize questions based on their category
+          this.dataa.mcqQuestions.forEach((mcqQuestion) => {
+            this.mcqQuestions.push(mcqQuestion);
+          });
+
+          this.dataa.codingQuestions.forEach((codingQuestion) => {
+            this.codingQuestions.push(codingQuestion);
+          });
+         
+          console.log(this.mcqQuestions);
+          console.log(this.codingQuestions);
         },
         (error) => {
-
+          console.error(error);
         }
-      )
-
+      );
     });
-
   }
 }
