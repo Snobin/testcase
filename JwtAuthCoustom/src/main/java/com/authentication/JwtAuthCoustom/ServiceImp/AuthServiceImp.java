@@ -77,7 +77,6 @@ public class AuthServiceImp implements AuthService {
 
 		try {
 			Optional<UserEntity> opt = repo.findByUsername(username);
-			System.out.println(opt.toString());
 
 			if (opt.isEmpty()) {
 				throw new UsernameNotFoundException("User with username: " + username + " not found!");
@@ -86,11 +85,8 @@ public class AuthServiceImp implements AuthService {
 				Set<SimpleGrantedAuthority> authorities = Collections
 						.singleton(new SimpleGrantedAuthority(user.getRoles()));
 				return new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), authorities,
-						user.getPhoneNumber(), user.getRoles()
-
-				);
+						user.getPhoneNumber(), user.getRoles());
 			}
-
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
 			return new CustomUserDetails(null, null, null, null, null, null);
@@ -100,7 +96,6 @@ public class AuthServiceImp implements AuthService {
 
 	public boolean checkemailpassword(LoginDTO ldto) {
 		try {
-			System.out.println("hii");
 			Optional<UserEntity> opt = repo.findByEmail(ldto.getEmail());
 			if (opt.isEmpty()) {
 				return false;

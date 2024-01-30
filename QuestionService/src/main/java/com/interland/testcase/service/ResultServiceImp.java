@@ -87,9 +87,9 @@ public class ResultServiceImp implements ResultService {
 			    
 			     resultEntity.setAnswer(question.getAnswer());
 			if (question.getAnswer().equals(q.getGivenAnswer())) {
-				resultEntity.setSatus("TRUE");
+				resultEntity.setStatus("TRUE");
 			} else {
-				resultEntity.setSatus("FALSE");
+				resultEntity.setStatus("FALSE");
 			}
 			resultRepository.save(resultEntity);
 			if (question.getAnswer().equals(q.getGivenAnswer())) {

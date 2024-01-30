@@ -22,24 +22,21 @@ public class CategoryServiceImpl implements CategoryService{
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+  
+  private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
-	 private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
-
-	    @Override
-	    public Category addCategory(CategoryDto categoryDto) {
-	        Category category = new Category();
-	        try {
-	            Optional<Category> obj = categoryRepository.findById(categoryDto.getCid());
-	            if (obj.isEmpty()) {
-	                BeanUtils.copyProperties(categoryDto, category);
-	            }
-	            return categoryRepository.save(category);
-	        } catch (Exception e) {
-	        	logger.error("Error:" + e.getMessage(), e);
-	            return null;
-	        }
-	    }
-
+	@Override
+	public Category addCategory(CategoryDto categoryDto) {
+		Category category = new Category();
+		try {
+			category.setDescription(categoryDto.getDescription());
+			category.setTitle(categoryDto.getTitle());				
+			return categoryRepository.save(category);
+		} catch (Exception e) {
+      logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
+	}
 	    @Override
 	    public Category updateCategory(CategoryDto categoryDto) {
 	        Category category = new Category();
@@ -52,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService{
 	            return categoryRepository.save(category);
 	        } catch (Exception e) {
 	        	logger.error("Error:" + e.getMessage(), e);
-	            return null;
+	           return null;
 	        }
 	    }
 

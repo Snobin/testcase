@@ -1,13 +1,33 @@
 package com.authentication.JwtAuthCoustom.DTO;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class SignupDTO 
 {
-	private String firstName;
-	private String lastName;
+	@NotEmpty(message = "{validation.signup.firstName}")
+    @Size(min = 3, max = 100, message = "{validation.signup.firstName.size}")
+    private String firstName;
+
+    @NotEmpty(message = "{validation.signup.lastName}")
+    @Size(min = 3, max = 100, message = "{validation.signup.lastName.size}")
+    private String lastName;
+
+    @NotEmpty(message = "{validation.signup.email}")
     private String email;
+
+    @NotEmpty(message = "{validation.signup.phoneNumber}")
+    @Pattern(regexp = "[0-9]+", message = "{validation.signup.phoneNumber.pattern}")
+    @Size(min = 10, max = 15, message = "{validation.signup.phoneNumber.size}")
     private String phoneNumber;
+
+    @NotEmpty(message = "{validation.signup.password}")
     private String password;
+
+    @NotEmpty(message = "{validation.signup.role}")
     private String role;
+
     private String username;
     
     

@@ -17,7 +17,7 @@ public class ResultEntity {
 	
 	private String answer;
 
-	private String satus;
+	private String status;
 
 	private String title;
  
@@ -69,12 +69,12 @@ public class ResultEntity {
 		this.answer = answer;
 	}
 
-	public String getSatus() {
-		return satus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setSatus(String satus) {
-		this.satus = satus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getGivenAnswer() {
@@ -88,13 +88,13 @@ public class ResultEntity {
 
 
 
-	public ResultEntity(ResultPk resultPk, String question, String answer, String satus, String title,
+	public ResultEntity(ResultPk resultPk, String question, String answer, String status, String title,
 			String givenAnswer) {
 		super();
 		this.resultPk = resultPk;
 		this.question = question;
 		this.answer = answer;
-		this.satus = satus;
+		this.status = status;
 		this.title = title;
 		this.givenAnswer = givenAnswer;
 	}

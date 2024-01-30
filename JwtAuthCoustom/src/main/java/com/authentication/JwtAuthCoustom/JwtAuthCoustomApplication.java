@@ -12,14 +12,16 @@ import io.swagger.v3.oas.models.info.Info;
 @SpringBootApplication
 public class JwtAuthCoustomApplication {
 	
+	
+
+	public static void main(String[] args) {
+		SpringApplication.run(JwtAuthCoustomApplication.class, args);
+	}
+	
 	@Bean
 	public OpenAPI openApi() {
 		Info info=new Info().description("Full stack").title("abcd").version("V1");
 		return new OpenAPI().info(info);
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(JwtAuthCoustomApplication.class, args);
 	}
 
 }
