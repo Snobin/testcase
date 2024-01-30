@@ -98,27 +98,6 @@ export class ConsoleComponent implements OnInit {
     this.isOpen = true;
   }
 
-
-
-  // qnData(qid) {
-  //   this.service.questionReq(qid).subscribe(
-  //     (data: any) => {
-  //       if (data) {
-  //         this.questiondata = data;
-  //         console.log(data);
-  //       } else {
-  //         console.error('No data received from the service.');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  //   this.case_1 = this.cases[0];
-  //   this.case_2 = this.cases[1];
-  //   this.case_3 = this.cases[2];
-  // }
-
   qnData(qid) {
     this.service.questionReq(qid).subscribe(
       (data: any) => {
