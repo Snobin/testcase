@@ -253,20 +253,8 @@ public class QuestionServiceImple implements QuestionService {
 //	}
 
 	@Override
-	public Question addQuestion(QuestionDto questionDto) {
-	    Question question = new Question();
-	    try {
-	        Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
-	        if (obj.isEmpty()) {
-	            BeanUtils.copyProperties(questionDto, question);
-	        }
-	        return questionRepository.save(question);
-	    } catch (Exception e) {
-	        // Log the exception with details or handle as needed
-	    	logger.error("Error:" + e.getMessage(), e);
-	        // You may want to return a meaningful response or rethrow the exception
-	        return null;
-	    }
+	public Question addQuestion(Question question) {
+		return this.questionRepository.save(question);
 	}
 
 	@Override

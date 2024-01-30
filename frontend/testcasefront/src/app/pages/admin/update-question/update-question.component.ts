@@ -20,9 +20,7 @@ export class UpdateQuestionComponent implements OnInit {
     option3: '',
     option4: '',
     answer: '',
-    quiz: {
-      qid: '',
-    },
+      qId: '',
   };
 
   constructor(private route:ActivatedRoute, private service:QuestionService, private router: Router) { }
@@ -33,7 +31,7 @@ export class UpdateQuestionComponent implements OnInit {
     
     this.questId= this.route.snapshot.params.questId;
     console.log(this.questId);
-    this.question.quiz.qid = this.qId;
+    this.question.qId = this.qId;
     this.getdata();
   }
 
