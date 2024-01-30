@@ -87,10 +87,12 @@ export class UsersComponent implements OnInit {
   uploadFile() {
     this.userservice.uploadExcelFile(this.fileContent).subscribe(
       () => {
-        this.router.navigate([`./userlist`]);
+        this.router.navigate([`./admin/userlist`]);
         Swal.fire("Success", 'Users uploaded successfully', 'success')
 
       }, (error) => {
+        console.log(error);
+        
         Swal.fire('Error !!', 'error while adding New User', 'error');
       }
 
