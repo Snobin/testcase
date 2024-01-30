@@ -2,6 +2,7 @@ package com.interland.testcase.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -51,8 +55,12 @@ public class ResultServiceImp implements ResultService {
 	@Autowired
 	private CompetitiveQuestionRepository competitiveQuestionRepository;
 	
+	 private static final Logger logger = LoggerFactory.getLogger(ResultServiceImp.class);
+
+	
 	
 	public ResponseEntity<?> result(@RequestBody List<Question> questions) {
+	try {	
 		System.out.println(questions);
 		ResultPk resultPk = new ResultPk();
 		ResultEntity resultEntity = new ResultEntity();
@@ -106,10 +114,15 @@ public class ResultServiceImp implements ResultService {
 		getResult();
 
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	   } catch (Exception e) {
+		   logger.error("Error:" + e.getMessage(), e);
+        return new ResponseEntity<>("Error processing results", HttpStatus.INTERNAL_SERVER_ERROR);
+       }
 	}
 
 	@Override
 	public ObjectNode getAllResultsByUser(String user) {
+	try {	
 	    System.out.println(user);
 
 	    // Fetch results from ResultEntity
@@ -165,10 +178,15 @@ public class ResultServiceImp implements ResultService {
 	    }
 
 	    return mainObject;
+	  } catch (Exception e) {
+		  logger.error("Error:" + e.getMessage(), e);
+         return null;
+      }
 	}
 
 
 	 public void getResult() {
+		 try { 
 		        List<Object[]> singleResultList = singleResultRepository.singleResult();
 		        
 
@@ -199,10 +217,14 @@ public class ResultServiceImp implements ResultService {
 		             combinedResult.setStatus("PROCESSED");
 
 		             combinedResultRepo.save(combinedResult);
-		         }
+		        }
+		         }catch (Exception e) {
+		        	 logger.error("Error:" + e.getMessage(), e);
+		        }
     }
 	 
 	 public List<CombinedResultDTO> getAllCombinedResults() {
+		 try {
 	        List<CombinedResult> combinedResults = combinedResultRepo.findAll();
 	        List<CombinedResultDTO> combinedResultDTOs = new ArrayList<>();
 
@@ -221,9 +243,14 @@ public class ResultServiceImp implements ResultService {
 	        }
 
 	        return combinedResultDTOs;
-	    }
+	    }catch (Exception e) {
+	    	logger.error("Error:" + e.getMessage(), e);
+            return Collections.emptyList();
+        }
+	 }	 
 	 
 	 public String deleteUsers(Collection<String> usernames) {
+		 try {
 		    for (String username : usernames) {
 		        Optional<CombinedResult> existingResult = combinedResultRepo.findByUser(username);
 
@@ -234,5 +261,9 @@ public class ResultServiceImp implements ResultService {
 		        }
 		    }
 		    return "ok";
-		}
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+            return "error";
+        }
+	 }		 
 }
