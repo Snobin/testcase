@@ -83,6 +83,7 @@ public class AuthServiceImp implements AuthService {
 				entity = obj.get();
 				entity.setEmail(dto.getEmail());
 				entity.setFirstName(dto.getFirstName());
+				entity.setLastName(dto.getLastName());
 				entity.setPhoneNumber(dto.getPhoneNumber());
 				entity.setRoles(role);
 				entity.setUsername(dto.getUsername());

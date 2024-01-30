@@ -45,7 +45,7 @@ export class AdminupdateComponent implements OnInit {
     this.userservice.update(this.userdata).subscribe(
       (data)=>{
         if (data.body == 'Successfully Updated') {
-          this.router.navigate([`./login`]);
+          this.router.navigate([`./admin/profile`]);
           Swal.fire("Success",'Profile updated successfully','success')
         } else {
           Swal.fire('Error!', data.body,'error');
