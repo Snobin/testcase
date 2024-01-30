@@ -72,6 +72,30 @@ public class AuthServiceImp implements AuthService {
 		}
 
 	}
+	
+
+	public ResponseEntity<?> updateAdmin(SignupDTO dto) {
+		String role = dto.getRole() == "false" ? "USER" : "ADMIN";
+		UserEntity entity = new UserEntity();
+		try {
+			Optional<UserEntity> obj = repo.findByEmail(dto.getEmail());
+			if (obj.isPresent()) {
+				entity = obj.get();
+				entity.setEmail(dto.getEmail());
+				entity.setFirstName(dto.getFirstName());
+				entity.setPhoneNumber(dto.getPhoneNumber());
+				entity.setRoles(role);
+				entity.setUsername(dto.getUsername());
+				repo.save(entity);
+			}
+			return new ResponseEntity<>("Successfully Updated", HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return new ResponseEntity<>("Exception Occured", HttpStatus.OK);
+
+		}
+
+	}
 
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

@@ -42,11 +42,11 @@ export class AdminupdateComponent implements OnInit {
       });
       return;
     }
-    this.userservice.addUser(this.userdata).subscribe(
+    this.userservice.update(this.userdata).subscribe(
       (data)=>{
-        if (data.body == 'Successfully Inserted') {
+        if (data.body == 'Successfully Updated') {
           this.router.navigate([`./login`]);
-          Swal.fire("Success",'User is Registered','success')
+          Swal.fire("Success",'Profile updated successfully','success')
         } else {
           Swal.fire('Error!', data.body,'error');
         }

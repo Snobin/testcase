@@ -48,6 +48,11 @@ public class AuthController {
 	ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO dto) {
 		return new ResponseEntity<>(service.addUser(dto), HttpStatus.OK);
 	}
+	
+	@PostMapping("/update")
+	ResponseEntity<?> adminUpdate(@Valid @RequestBody SignupDTO dto) {
+		return new ResponseEntity<>(service.updateAdmin(dto), HttpStatus.OK);
+	}
 
 	@PostMapping("/signupbyexcel")
 	ResponseEntity<?> registerUserByExcel(@RequestParam("excelFile") MultipartFile excelFile) {
