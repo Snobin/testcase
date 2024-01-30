@@ -16,8 +16,8 @@ import Swal from 'sweetalert2';
 })
 export class LoadQuizComponent implements OnInit {
 
-    
 
+    status: any = "Start";
     catId;
     quizzes: any = [];
     codeInput: AddQuestion = new AddQuestion();
@@ -25,7 +25,9 @@ export class LoadQuizComponent implements OnInit {
     selectedQuestionType: string;
     title: any;
     categories: any;
-    constructor(private cat: CategoryService, private route: ActivatedRoute, private locationst: LocationStrategy, private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar,private fullScreenService: FullScreenService) { }
+
+    constructor(private cat: CategoryService, private route: ActivatedRoute, private locationst: LocationStrategy, private router: Router, private quiz: QuizService, private code: CodeService, private snack: MatSnackBar, private fullScreenService: FullScreenService) { }
+
     ngOnInit(): void {
         this.fullScreenService.requestFullScreen();
         this.showList();
@@ -54,6 +56,14 @@ export class LoadQuizComponent implements OnInit {
         this.quiz.getActiveQuizCategory(catid).subscribe(
             (data: any) => {
                 this.quizzes = data;
+                for (let index = 0; index < data.length; index++) {
+                    if (data[index].status != 'Review') {
+                        data[index].status = 'Start';
+                    }
+                }
+                if (!localStorage.getItem("quizzes")) {
+                    localStorage.setItem("quizzes", JSON.stringify(data));
+                }
             },
             (error) => {
                 console.log(error);
@@ -73,6 +83,14 @@ export class LoadQuizComponent implements OnInit {
                 this.codingQuestions = data;
                 console.log(data);
                 console.log(this.codingQuestions);
+                for (let index = 0; index < data.length; index++) {
+                    if (data[index].status != 'Review') {
+                        data[index].status = 'Start';
+                    }
+                }
+                if (!localStorage.getItem("codingQuestions")) {
+                    localStorage.setItem("codingQuestions", JSON.stringify(data));
+                }
             },
             (error) => {
                 console.log(error);
@@ -82,20 +100,62 @@ export class LoadQuizComponent implements OnInit {
     }
 
     coding(qid: string) {
-        this.router.navigate([`./coding/${qid}`])
+        this.router.navigate([`./coding/${qid}`]);
     }
 
     question(qid: string) {
-        this.router.navigate([`./start/${qid}`])
+        this.router.navigate([`./start/${qid}`]);
     }
 
-      @HostListener('document:visibilitychange', ['$event'])
+    buttonStatusCoding(qid: string) {
+        if (localStorage.getItem("codingQuestions")) {
+            let codingQuestions = JSON.parse(localStorage.getItem("codingQuestions"));
+            const index = codingQuestions.findIndex(c => c.questionId == qid);
+            if (index != -1) {
+                return codingQuestions[index].status;
+            }
+        }
+    }
+
+    buttonStatusQuestion(qid: string) {
+        if (localStorage.getItem("quizzes")) {
+            let quizzes = JSON.parse(localStorage.getItem("quizzes"));
+            const index = quizzes.findIndex(q => q.qid == qid);
+            if (index != -1) {
+                return quizzes[index].status;
+            }
+        }
+    }
+
+    buttonColor(qid: string,type: string){
+        let color = '';
+        let status = '';
+        if (type == "CODING") {
+            status = this.buttonStatusCoding(qid);
+            if (status == 'Review') {
+                color = "success";
+            } else {
+                color = "primary"
+            }
+        } else if (type == "QUIZ") {
+            status = this.buttonStatusQuestion(qid);
+            if (status == 'Review') {
+                color = "success";
+            } else {
+                color = "primary"
+            }
+        }
+        return color;
+    }
+
+    @HostListener('document:visibilitychange', ['$event'])
     private handleVisibilityChange(event: Event): void {
-    this.fullScreenService.onVisibilityChange(document.hidden);
-  }
-  @HostListener('document:keydown', ['$event'])
-  private handleKeyboardEvent(event: KeyboardEvent): void {
-    this.fullScreenService.onKeyDown(event);
-  }
+        this.fullScreenService.onVisibilityChange(document.hidden);
+    }
+
+    @HostListener('document:keydown', ['$event'])
+    private handleKeyboardEvent(event: KeyboardEvent): void {
+        this.fullScreenService.onKeyDown(event);
+    }
 }
-    
+

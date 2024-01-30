@@ -46,6 +46,8 @@ export class LoginService {
   public logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("quizzes");
+    localStorage.removeItem("codingQuestions")
     return true;
   }
 

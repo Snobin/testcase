@@ -294,6 +294,14 @@ export class ConsoleComponent implements OnInit {
         this.loading = false;
         if (status == 'Submit') {
           this.submit = "Submit";
+          if (localStorage.getItem("codingQuestions")) {
+            let codingQuestions = JSON.parse(localStorage.getItem("codingQuestions"));
+            const index = codingQuestions.findIndex(q => q.questionId == this.qId);
+            if (index != -1) {
+              codingQuestions[index].status = 'Review';
+            }
+            localStorage.setItem('codingQuestions', JSON.stringify(codingQuestions));
+          }
         }
         if (status == 'run') {
           this.runText = "Run<i class='bi bi-play-fill'></i>";

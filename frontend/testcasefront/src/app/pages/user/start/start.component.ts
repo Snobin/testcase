@@ -93,6 +93,14 @@ export class StartComponent implements OnInit {
         this.correctAnswer = data.correctAnswers;
         this.marksGot = data.marksGot;
         this.isSubmit = true;
+        if (localStorage.getItem("quizzes")) {
+          let quizzes = JSON.parse(localStorage.getItem("quizzes"));
+          const index = quizzes.findIndex(q => q.qid == this.qId);
+          if (index != -1) {
+            quizzes[index].status = 'Review';
+          }
+          localStorage.setItem('quizzes', JSON.stringify(quizzes));
+        }
         this.getCategories();
       },
       (error) => {
