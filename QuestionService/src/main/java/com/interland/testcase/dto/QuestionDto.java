@@ -115,9 +115,8 @@ public class QuestionDto {
     public void setqId(String qId) {
         this.qId = qId;
     }
-
+    
     // Constructors, getters, and setters
-
     public QuestionDto() {
     }
 
