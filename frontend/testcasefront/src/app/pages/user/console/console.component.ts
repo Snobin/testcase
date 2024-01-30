@@ -161,28 +161,28 @@ export class ConsoleComponent implements OnInit {
       return "text/x-java";
     } else if (this.selectedLanguage == 'cpp') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << 'Hello World!';\n\treturn 0;\n}"
+        this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << \"Hello World!\";\n\treturn 0;\n}"
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-c++src";
     } else if (this.selectedLanguage == 'python') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "# This program prints Hello, world!\n\nprint('Hello, world!')";
+        this.code = "# This program prints Hello, world!\n\nprint(\"Hello, world!\")";
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-python";
     } else if (this.selectedLanguage == 'c') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf('Hello, World!');\n\treturn 0;\n}";
+        this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf(\"Hello, World!\");\n\treturn 0;\n}";
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-csrc";
     } else {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World!\"); \n\t}\n}";
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
