@@ -21,34 +21,15 @@ public class QuizServiceImpl implements QuizService {
 	private QuizRepository quizRepository;
 	
 	@Override
-	public Quiz addQuiz(QuizDto quizdto) {
-		Quiz quiz = new Quiz();
-		try {
-			if (quizdto != null) {
-		        BeanUtils.copyProperties(quizdto, quiz);
-			}
-			return quizRepository.save(quiz);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
+	public Quiz addQuiz(Quiz quiz) {
+		return this.quizRepository.save(quiz);
 	}
 
 	@Override
-	public Quiz updateQuiz(QuizDto quizdto) {
-		Quiz quiz = new Quiz();
-		try {
-			Optional<Quiz> obj = quizRepository.findById(quizdto.getQid());
-			if (obj.isPresent()) {
-				quiz = obj.get();
-		        BeanUtils.copyProperties(quizdto,quiz);
-			}
-			return quizRepository.save(quiz);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
+	public Quiz updateQuiz(Quiz quiz) {
+		return this.quizRepository.save(quiz);
 	}
+
 
 	@Override
 	public Set<Quiz> getQuizzes() {

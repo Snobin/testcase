@@ -9,9 +9,9 @@ import com.interland.testcase.entity.Quiz;
 
 public interface QuizService {
 
-	public Quiz addQuiz(QuizDto quiz);
+	public Quiz addQuiz(Quiz quiz);
 
-	public Quiz updateQuiz(QuizDto quiz);
+	public Quiz updateQuiz(Quiz quiz);
 
 	public Set<Quiz> getQuizzes();
 
