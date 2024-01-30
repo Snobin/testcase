@@ -1,6 +1,5 @@
 package com.interland.testcase.service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -13,8 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.interland.testcase.dto.CombinedResultDTO;
+import com.interland.testcase.entity.CodeResult;
 import com.interland.testcase.entity.CombinedResult;
+import com.interland.testcase.entity.CompetitiveQuestion;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.ResultEntity;
 import com.interland.testcase.entity.ResultPk;
@@ -22,6 +26,7 @@ import com.interland.testcase.entity.SingleResult;
 import com.interland.testcase.entity.SingleResultPk;
 import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.Combinedresult;
+import com.interland.testcase.repository.CompetitiveQuestionRepository;
 import com.interland.testcase.repository.ResultRepository;
 import com.interland.testcase.repository.SingleResultRepository;
 
@@ -42,7 +47,11 @@ public class ResultServiceImp implements ResultService {
 	
 	@Autowired
 	private Combinedresult combinedResultRepo;
-
+	
+	@Autowired
+	private CompetitiveQuestionRepository competitiveQuestionRepository;
+	
+	
 	public ResponseEntity<?> result(@RequestBody List<Question> questions) {
 		System.out.println(questions);
 		ResultPk resultPk = new ResultPk();
@@ -99,18 +108,66 @@ public class ResultServiceImp implements ResultService {
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
-
 	@Override
-	public List<ResultEntity> getAllResultsByUser(String user) {
+	public ObjectNode getAllResultsByUser(String user) {
 	    System.out.println(user);
+
+	    // Fetch results from ResultEntity
 	    List<ResultEntity> resultList = resultRepository.findAllByResultPkUser(user);
 
-	    if (resultList.isEmpty()) {
+	    // Fetch results from CodeResult
+	    List<CodeResult> codeResultList = codingResultRepository.findByCodeResultpkUser(user);
+
+	    // Extract questionIds from CodeResultList
+	    List<String> questionIds = codeResultList.stream()
+	            .map(codeResult -> codeResult.getCodeResultpk().getQuestionId())
+	            .collect(Collectors.toList());
+
+	    // Fetch CompetitiveQuestion entities based on questionIds
+	    List<CompetitiveQuestion> competitiveQuestions = competitiveQuestionRepository.findByQuestionIdIn(questionIds);
+
+	    // Create an ObjectMapper
+	    ObjectMapper objectMapper = new ObjectMapper();
+
+	    // Create the main JSON object
+	    ObjectNode mainObject = objectMapper.createObjectNode();
+
+	    // Create an array for MCQ questions
+	    ArrayNode mcqArray = objectMapper.createArrayNode();
+	    for (ResultEntity resultEntity : resultList) {
+	        mcqArray.add(objectMapper.valueToTree(resultEntity));
+	    }
+	    mainObject.putArray("mcqQuestions").addAll(mcqArray);
+
+	    // Create an array for Coding questions with title from CompetitiveQuestion
+	    ArrayNode codingArray = objectMapper.createArrayNode();
+	    for (CodeResult codeResult : codeResultList) {
+	        ObjectNode codeObject = objectMapper.valueToTree(codeResult);
+	        
+	        // Fetch the title from CompetitiveQuestion based on questionId
+	        String questionId = codeResult.getCodeResultpk().getQuestionId();
+	        Optional<CompetitiveQuestion> matchingQuestion = competitiveQuestions.stream()
+	                .filter(competitiveQuestion -> questionId.equals(competitiveQuestion.getQuestionId()))
+	                .findFirst();
+	        
+	        matchingQuestion.ifPresent(competitiveQuestion -> {
+	            // Add the title to the codeObject
+	            codeObject.put("title", competitiveQuestion.getTitle());
+	        });
+
+	        codingArray.add(codeObject);
+	    }
+	    mainObject.putArray("codingQuestions").addAll(codingArray);
+
+	    // Omit competitiveQuestions array to include only MCQ and Coding questions
+	    if (mainObject.isEmpty()) {
 	        System.out.println("No Entities found for this user");
 	    }
 
-	    return resultList;
+	    return mainObject;
 	}
+
+
 	 public void getResult() {
 		        List<Object[]> singleResultList = singleResultRepository.singleResult();
 		        
