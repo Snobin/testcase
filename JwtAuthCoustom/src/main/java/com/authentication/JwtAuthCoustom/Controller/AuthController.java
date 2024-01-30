@@ -32,7 +32,6 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@Validated
 public class AuthController {
 	@Autowired
 	private JWTServices jwtUtil;
@@ -61,7 +60,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<?> LoginandGenerate(@Valid @RequestBody LoginDTO dto) {
+	public ResponseEntity<?> LoginandGenerate(@RequestBody LoginDTO dto) {
 
 		if (service.checkemailpassword(dto)) {
 			Optional<UserEntity> username = authRepository.findByEmail(dto.getEmail());
