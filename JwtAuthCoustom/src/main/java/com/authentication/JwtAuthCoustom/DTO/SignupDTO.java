@@ -27,7 +27,9 @@ public class SignupDTO
 
     @NotEmpty(message = "{validation.signup.role}")
     private String role;
-
+    
+    @NotEmpty(message = "{validation.signup.username}")
+    @Size(min = 3, max = 15, message = "{validation.signup.username.size}")
     private String username;
     
     
