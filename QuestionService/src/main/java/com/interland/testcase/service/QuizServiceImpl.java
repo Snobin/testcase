@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.interland.testcase.dto.QuizDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
+import com.interland.testcase.repository.CategoryRepository;
 import com.interland.testcase.repository.QuizRepository;
 
 @Service
@@ -20,12 +21,24 @@ public class QuizServiceImpl implements QuizService {
 	@Autowired
 	private QuizRepository quizRepository;
 	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
 	@Override
 	public Quiz addQuiz(QuizDto quizdto) {
 		Quiz quiz = new Quiz();
+		Category category = new Category();
 		try {
-			if (quizdto != null) {
-		        BeanUtils.copyProperties(quizdto, quiz);
+			Optional<Category> obj = categoryRepository.findById(quizdto.getCategory().getCid());
+			if (obj.isPresent()) {
+				category = obj.get();
+				quiz.setCategory(category);
+				quiz.setActive(quizdto.isActive());
+				quiz.setTitle(quizdto.getTitle());
+				quiz.setDescription(quizdto.getDescription());
+				quiz.setNumberOfQuestions(quizdto.getNumberOfQuestions());
+				quiz.setMaxMarks(quizdto.getMaxMarks());
+				quiz.setQuestions(quizdto.getQuestions());
 			}
 			return quizRepository.save(quiz);
 		} catch (Exception e) {
@@ -37,11 +50,22 @@ public class QuizServiceImpl implements QuizService {
 	@Override
 	public Quiz updateQuiz(QuizDto quizdto) {
 		Quiz quiz = new Quiz();
+		Category category = new Category();
 		try {
 			Optional<Quiz> obj = quizRepository.findById(quizdto.getQid());
 			if (obj.isPresent()) {
 				quiz = obj.get();
-		        BeanUtils.copyProperties(quizdto,quiz);
+				Optional<Category> obj1 = categoryRepository.findById(quizdto.getCategory().getCid());
+				if (obj.isPresent()) {
+					category = obj1.get();
+					quiz.setCategory(category);
+					quiz.setActive(quizdto.isActive());
+					quiz.setTitle(quizdto.getTitle());
+					quiz.setDescription(quizdto.getDescription());
+					quiz.setNumberOfQuestions(quizdto.getNumberOfQuestions());
+					quiz.setMaxMarks(quizdto.getMaxMarks());
+					quiz.setQuestions(quizdto.getQuestions());
+				}
 			}
 			return quizRepository.save(quiz);
 		} catch (Exception e) {

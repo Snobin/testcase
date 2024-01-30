@@ -3,13 +3,8 @@ package com.interland.testcase.dto;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Question;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotNull;
 
 public class QuizDto {
 
@@ -20,7 +15,7 @@ public class QuizDto {
 	private String maxMarks;
 	private String numberOfQuestions;
 	private boolean active;
-	private Long categoryId; // Assuming you want to include the category ID in the DTO
+	private Category category; // Assuming you want to include the category ID in the DTO
 
 	private Set<Question> questions = new HashSet<>();
 
@@ -86,12 +81,12 @@ public class QuizDto {
 		this.active = active;
 	}
 
-	public Long getCategoryId() {
-		return categoryId;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryId(Category category) {
+		this.category = category;
 	}
 
 }
