@@ -10,34 +10,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 
 public class CustomUserDetails implements UserDetails
-{   private String username;
-
-	public void setUsername(String username) {
-	this.username = username;
-}
-
+{   
+	private String username;
 	private String email;
+	private String firstName;
+	private String lastName;
     private String password;
-    private String phone;
+    private String phoneNumber;
     private String role;
 	private Set<? extends GrantedAuthority> authorities;
+    
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	
-    
-    
     public void setAuthorities(Set<? extends GrantedAuthority> authorities) {
 		this.authorities = authorities;
-	}
-
-	public CustomUserDetails(String username,String email, String password, Set<? extends GrantedAuthority> authorities, String phone,String role) {
-        this.username=username;
-		this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-        this.phone = phone;
-        this.role=role;
-    }
-
-	public CustomUserDetails(UserEntity details) {
 	}
 
 	public String getEmail() {
@@ -48,12 +37,12 @@ public class CustomUserDetails implements UserDetails
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getRole() {
@@ -66,6 +55,22 @@ public class CustomUserDetails implements UserDetails
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	@Override
@@ -108,6 +113,20 @@ public class CustomUserDetails implements UserDetails
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public CustomUserDetails(String username,String email, String password, Set<? extends GrantedAuthority> authorities, String phoneNumber,String role, String firstName,String lastName) {
+        this.username=username;
+		this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+        this.phoneNumber = phoneNumber;
+        this.role=role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+	public CustomUserDetails(UserEntity details) {
 	}
 
 }

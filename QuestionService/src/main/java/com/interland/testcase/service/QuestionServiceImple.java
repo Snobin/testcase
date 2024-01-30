@@ -253,8 +253,28 @@ public class QuestionServiceImple implements QuestionService {
 //	}
 
 	@Override
-	public Question addQuestion(Question question) {
-		return this.questionRepository.save(question);
+	public Question addQuestion(QuestionDto questionDto) {
+	    Question question = new Question();
+	    Quiz quiz = new Quiz();
+	    try {
+	        Optional<Quiz> quizObj = quizRepository.findById(questionDto.getQuiz().getQid());
+	       	if (quizObj.isPresent()) {
+				quiz = quizObj.get();
+				question.setAnswer(questionDto.getAnswer());
+				question.setContent(questionDto.getContent());
+				question.setOption1(questionDto.getOption1());
+				question.setOption2(questionDto.getOption2());
+				question.setOption3(questionDto.getOption3());
+				question.setOption4(questionDto.getOption4());
+				question.setQuiz(quiz);
+			}
+	        return questionRepository.save(question);
+	    } catch (Exception e) {
+	        // Log the exception with details or handle as needed
+	    	logger.error("Error:" + e.getMessage(), e);
+	        // You may want to return a meaningful response or rethrow the exception
+	        return null;
+	    }
 	}
 
 	@Override

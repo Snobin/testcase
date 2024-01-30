@@ -1,6 +1,7 @@
 package com.authentication.JwtAuthCoustom.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,11 @@ public class AuthController {
 	@PostMapping("/signup")
 	ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO dto) {
 		return new ResponseEntity<>(service.addUser(dto), HttpStatus.OK);
+	}
+	
+	@PostMapping("/update")
+	ResponseEntity<?> adminUpdate(@Valid @RequestBody SignupDTO dto) {
+		return new ResponseEntity<>(service.updateAdmin(dto), HttpStatus.OK);
 	}
 
 	@PostMapping("/signupbyexcel")
@@ -123,11 +129,12 @@ public class AuthController {
 	}
 
 	@PostMapping("/upload")
-	public ResponseEntity<String> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
+	public ResponseEntity<?> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
+        List<UserEntity> users = new ArrayList<>();
 		try {
-			service.processExcelFile(file);
-			// Save users to the database or perform other operations as neede
-			return ResponseEntity.ok("Users uploaded successfully");
+			users = service.processExcelFile(file);
+			// Save users to the database or perform other operations as needed
+			return new ResponseEntity<>(users, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(500).body("Error uploading users");
