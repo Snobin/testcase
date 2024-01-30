@@ -25,9 +25,6 @@ export class AdminupdateComponent implements OnInit {
     this.login.getCurrentUser().subscribe(
       (user:any) => {
         console.log(user);
-        $('#phoneNumber').val(user.phoneNumber);
-        $('#firstName').val(user.firtName);
-
         this.userdata=user;
       },
       (error) => {

@@ -85,11 +85,11 @@ public class AuthServiceImp implements AuthService {
 				Set<SimpleGrantedAuthority> authorities = Collections
 						.singleton(new SimpleGrantedAuthority(user.getRoles()));
 				return new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), authorities,
-						user.getPhoneNumber(), user.getRoles());
+						user.getPhoneNumber(), user.getRoles(), user.getFirstName(), user.getLastName());
 			}
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
-			return new CustomUserDetails(null, null, null, null, null, null);
+			return new CustomUserDetails(null, null, null, null, null, null, null, null);
 		}
 
 	}
