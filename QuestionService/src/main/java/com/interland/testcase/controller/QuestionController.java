@@ -82,37 +82,14 @@ public class QuestionController {
 		this.questionService.deleteQuestion(quesId);
 	}
 
-//	@PostMapping("/eval")
-//	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
-//		int marksGot = 0;
-//		Integer correctAnswers = 0;
-//		Integer attempted = 0;
-//		resultService.result(questions);
-//		for (Question q : questions) {
-//			Question question = this.questionService.get(q.getQuesId());
-//			if (question.getAnswer().equals(q.getGivenAnswer())) {
-//				correctAnswers++;
-//				double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
-//				marksGot += marksSingle;
-//			}
-//			if (q.getGivenAnswer() != null) {
-//				attempted++;
-//			}
-//		}
-//		Map<Object, Object> map = Map.of("marksGot", marksGot, "correctAnswers", correctAnswers, "attempted",
-//				attempted);
-//		return ResponseEntity.ok(map);
-//	}
 
 	@PostMapping("/addCodingQuestion")
 	public ResponseEntity<?> addCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
-		System.out.println(codingQuestionInputDto.toString());
 		return questionService.addCodingQuestion(codingQuestionInputDto);
 	}
 
 	@PutMapping("/updateCodingQuestion")
 	public ResponseEntity<?> updateCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
-		System.out.println(codingQuestionInputDto.toString());
 		return questionService.updateCodingQuestion(codingQuestionInputDto);
 	}
 

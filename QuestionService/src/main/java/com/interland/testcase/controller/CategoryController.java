@@ -16,6 +16,8 @@ import com.interland.testcase.dto.CategoryDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.service.CategoryService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {

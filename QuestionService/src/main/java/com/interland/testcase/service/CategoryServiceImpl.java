@@ -22,13 +22,10 @@ public class CategoryServiceImpl implements CategoryService{
 	public Category addCategory(CategoryDto categoryDto) {
 		Category category = new Category();
 		try {
-			Optional<Category> obj = categoryRepository.findById(categoryDto.getCid());
-			if (obj.isEmpty()) {
-				BeanUtils.copyProperties(categoryDto, category);
-			}
+			category.setDescription(categoryDto.getDescription());
+			category.setTitle(categoryDto.getTitle());				
 			return categoryRepository.save(category);
 		} catch (Exception e) {
-			// TODO: handle exception
 			return null;
 		}
 	}

@@ -11,85 +11,85 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 
 public class QuizDto {
-	
-	 private Long qid;
-	    private String title;
-	    private String description;
-	    private String maxMarks;
-	    private String numberOfQuestions;
-	    private boolean active;
-	    private Long categoryId; // Assuming you want to include the category ID in the DTO
-	   
-		private Set<Question> questions=new HashSet<>();
-		
-		public Set<Question> getQuestions() {
-			return questions;
-		}
 
-		public void setQuestions(Set<Question> questions) {
-			this.questions = questions;
-		}
+	private Long qid;
+	private String title;
+	private String description;
+	private String maxMarks;
+	private String numberOfQuestions;
+	private boolean active;
+	private Long categoryId; // Assuming you want to include the category ID in the DTO
 
-	    public QuizDto() {
-	        // Default constructor
-	    }
+	private Set<Question> questions = new HashSet<>();
 
-	    // Getters and setters
+	public Set<Question> getQuestions() {
+		return questions;
+	}
 
-	    public Long getQid() {
-	        return qid;
-	    }
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+	}
 
-	    public void setQid(Long qid) {
-	        this.qid = qid;
-	    }
+	public QuizDto() {
+		// Default constructor
+	}
 
-	    public String getTitle() {
-	        return title;
-	    }
+	// Getters and setters
 
-	    public void setTitle(String title) {
-	        this.title = title;
-	    }
+	public Long getQid() {
+		return qid;
+	}
 
-	    public String getDescription() {
-	        return description;
-	    }
+	public void setQid(Long qid) {
+		this.qid = qid;
+	}
 
-	    public void setDescription(String description) {
-	        this.description = description;
-	    }
+	public String getTitle() {
+		return title;
+	}
 
-	    public String getMaxMarks() {
-	        return maxMarks;
-	    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-	    public void setMaxMarks(String maxMarks) {
-	        this.maxMarks = maxMarks;
-	    }
+	public String getDescription() {
+		return description;
+	}
 
-	    public String getNumberOfQuestions() {
-	        return numberOfQuestions;
-	    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-	    public void setNumberOfQuestions(String numberOfQuestions) {
-	        this.numberOfQuestions = numberOfQuestions;
-	    }
+	public String getMaxMarks() {
+		return maxMarks;
+	}
 
-	    public boolean isActive() {
-	        return active;
-	    }
+	public void setMaxMarks(String maxMarks) {
+		this.maxMarks = maxMarks;
+	}
 
-	    public void setActive(boolean active) {
-	        this.active = active;
-	    }
+	public String getNumberOfQuestions() {
+		return numberOfQuestions;
+	}
 
-	    public Long getCategoryId() {
-	        return categoryId;
-	    }
+	public void setNumberOfQuestions(String numberOfQuestions) {
+		this.numberOfQuestions = numberOfQuestions;
+	}
 
-	    public void setCategoryId(Long categoryId) {
-	        this.categoryId = categoryId;
-	    }
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
 
 }
