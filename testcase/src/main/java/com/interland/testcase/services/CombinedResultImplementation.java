@@ -11,6 +11,9 @@ import com.interland.testcase.entity.CombinedResult;
 import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.Combinedresult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Service
 public class CombinedResultImplementation implements CombinedResultService{
@@ -22,35 +25,39 @@ public class CombinedResultImplementation implements CombinedResultService{
 	@Autowired
 	private Combinedresult combinedresultRepo;
 	
+	private static final Logger logger = LoggerFactory.getLogger(CombinedResultImplementation.class);
+
 	public void getResult() {
-		
-		List<Object[]> codeResultList = codingResultRepository.codeResult();
-		
+	    try {
+	        List<Object[]> codeResultList = codingResultRepository.codeResult();
 
 	        for (Object[] singleResult : codeResultList) {
-	        	 String user = (String) singleResult[0];
-	        	 Double codingPercentage = (Double) singleResult[1];
+	            String user = (String) singleResult[0];
+	            Double codingPercentage = (Double) singleResult[1];
 
-	        	    // Check if user is present in the database
-	        	    Optional<CombinedResult> existingResult = combinedresultRepo.findById(user);
+	            // Check if user is present in the database
+	            Optional<CombinedResult> existingResult = combinedresultRepo.findById(user);
 
-	        	    CombinedResult combinedResult;
-	        	    if (existingResult.isPresent()) {
-	        	        // If user is present, update the existing record
-	        	        combinedResult = existingResult.get();
-	        	    } else {
-	        	        // If user is not present, create a new record
-	        	        combinedResult = new CombinedResult();
-	        	        combinedResult.setUser(user);
-	        	    }
+	            CombinedResult combinedResult;
+	            if (existingResult.isPresent()) {
+	                // If user is present, update the existing record
+	                combinedResult = existingResult.get();
+	            } else {
+	                // If user is not present, create a new record
+	                combinedResult = new CombinedResult();
+	                combinedResult.setUser(user);
+	            }
 
-	        	    combinedResult.setCodingPercentage(codingPercentage);
-	        	    combinedResult.setStatus("PROCESSED");
+	            combinedResult.setCodingPercentage(codingPercentage);
+	            combinedResult.setStatus("PROCESSED");
 
-	        	    combinedresultRepo.save(combinedResult);
+	            combinedresultRepo.save(combinedResult);
 	        }
-	        
-	        
+	    } catch (Exception e) {
+	        // Log the exception
+	        logger.error("Error occurred while processing results", e);
+	        // Optionally, you may throw a custom exception or take appropriate action based on your use case.
+	    }
 	}
 
 }
