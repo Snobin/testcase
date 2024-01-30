@@ -2,14 +2,14 @@ package com.interland.testcase.dto;
 
 import java.util.Set;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 
 public class CategoryDto {
 
 	private Long cid;
-	@NotNull
+	@NotEmpty(message = "{NotEmpty.categoryDto.title}")
 	private String title;
-	@NotNull
+	@NotEmpty(message = "{NotEmpty.categoryDto.description}")
 	private String description;
 	private Set<Long> quizIds;
 

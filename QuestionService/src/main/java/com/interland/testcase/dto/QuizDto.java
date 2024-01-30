@@ -9,6 +9,7 @@ import com.interland.testcase.entity.Question;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 public class QuizDto {
 	
@@ -17,6 +18,7 @@ public class QuizDto {
 	    private String description;
 	    private String maxMarks;
 	    private String numberOfQuestions;
+		@NotNull(message = "{NotNull.quizDto.active}")
 	    private boolean active;
 	    private Long categoryId; // Assuming you want to include the category ID in the DTO
 	   
