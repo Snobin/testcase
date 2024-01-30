@@ -1,39 +1,57 @@
 <mat-card class="h-full">
     <mat-action-list>
         <!-- <div class="mat-subheader">Menu</div> -->
-        <button mat-list-item routerLink="/admin/profile">
+        <button mat-list-item routerLink="/admin/profile"
+        [class.focus]="sidebar[0]==true"
+        (click)="setFocus(0)">
             <mat-icon mat-list-icon>account_circle</mat-icon>
             Profile
         </button>
-        <button mat-list-item routerLink="/admin/userlist">
+        <button mat-list-item routerLink="/admin/userlist"
+        [class.focus]="sidebar[1]==true"
+        (click)="setFocus(1)">
             <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
             Users
         </button>
-        <button mat-list-item routerLink="/admin/categories">
+        <button mat-list-item routerLink="/admin/categories"
+        [class.focus]="sidebar[2]==true"
+        (click)="setFocus(2)">
             <mat-icon mat-list-icon>list</mat-icon>
             Categories
         </button>
-        <button mat-list-item routerLink="/admin/add-categories">
+        <button mat-list-item routerLink="/admin/add-categories"
+        [class.focus]="sidebar[3]==true"
+        (click)="setFocus(3)">
             <mat-icon mat-list-icon>add_circle_outline</mat-icon>
             Add Categories
         </button>
-        <button mat-list-item routerLink="/admin/quizzes">
+        <button mat-list-item routerLink="/admin/quizzes"
+        [class.focus]="sidebar[4]==true"
+        (click)="setFocus(4)">
             <mat-icon mat-list-icon>quiz</mat-icon>
             Quizzes
         </button>
-        <button mat-list-item routerLink="/admin/add-quiz">
+        <button mat-list-item routerLink="/admin/add-quiz"
+        [class.focus]="sidebar[5]==true"
+        (click)="setFocus(5)">
             <mat-icon mat-list-icon>add</mat-icon>
             Add Quiz
         </button>
-        <button mat-list-item routerLink="/admin/add-code">
+        <button mat-list-item routerLink="/admin/add-code"
+        [class.focus]="sidebar[6]==true"
+        (click)="setFocus(6)">
             <mat-icon mat-list-icon>code</mat-icon>
             Add Coding 
         </button>
-        <button mat-list-item routerLink="/admin/view-code">
+        <button mat-list-item routerLink="/admin/view-code"
+        [class.focus]="sidebar[7]==true"
+        (click)="setFocus(7)">
             <mat-icon mat-list-icon>assessment</mat-icon>
             View Coding Q
         </button>
-        <button mat-list-item routerLink="/admin/view-answer">
+        <button mat-list-item routerLink="/admin/view-answer"
+        [class.focus]="sidebar[8]==true"
+        (click)="setFocus(8)">
             <mat-icon mat-list-icon>assessment</mat-icon>
             View Result
         </button>
