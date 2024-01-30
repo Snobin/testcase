@@ -255,11 +255,19 @@ public class QuestionServiceImple implements QuestionService {
 	@Override
 	public Question addQuestion(QuestionDto questionDto) {
 	    Question question = new Question();
+	    Quiz quiz = new Quiz();
 	    try {
-	        Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
-	        if (obj.isEmpty()) {
-	            BeanUtils.copyProperties(questionDto, question);
-	        }
+	        Optional<Quiz> quizObj = quizRepository.findById(questionDto.getQuiz().getQid());
+	       	if (quizObj.isPresent()) {
+				quiz = quizObj.get();
+				question.setAnswer(questionDto.getAnswer());
+				question.setContent(questionDto.getContent());
+				question.setOption1(questionDto.getOption1());
+				question.setOption2(questionDto.getOption2());
+				question.setOption3(questionDto.getOption3());
+				question.setOption4(questionDto.getOption4());
+				question.setQuiz(quiz);
+			}
 	        return questionRepository.save(question);
 	    } catch (Exception e) {
 	        // Log the exception with details or handle as needed
