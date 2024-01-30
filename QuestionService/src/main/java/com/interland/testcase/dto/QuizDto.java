@@ -9,8 +9,10 @@ import com.interland.testcase.entity.Question;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 public class QuizDto {
+
 
 	private Long qid;
 	private String title;

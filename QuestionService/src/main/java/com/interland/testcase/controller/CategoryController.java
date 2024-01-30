@@ -2,7 +2,7 @@ package com.interland.testcase.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,8 @@ import com.interland.testcase.dto.CategoryDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.service.CategoryService;
 
-import io.swagger.v3.oas.annotations.Operation;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/category")
@@ -26,7 +27,7 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 	@PostMapping("/")
-	public ResponseEntity<?> addCategory(@RequestBody CategoryDto categoryDto) {
+	public ResponseEntity<?> addCategory(@Valid @RequestBody CategoryDto categoryDto) {
 		Category category = categoryService.addCategory(categoryDto);
 		return ResponseEntity.ok(category);
 	}
@@ -42,7 +43,7 @@ public class CategoryController {
 	}
 
 	@PutMapping("/")
-	public Category updateCategory(@RequestBody CategoryDto categoryDto) {
+	public Category updateCategory(@Valid @RequestBody CategoryDto categoryDto) {
 		return categoryService.updateCategory(categoryDto);
 	}
 

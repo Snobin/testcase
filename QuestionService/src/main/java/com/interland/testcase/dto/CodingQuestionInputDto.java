@@ -2,16 +2,22 @@ package com.interland.testcase.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class CodingQuestionInputDto {
 
 	private MultipartFile fileContent;
 
+	@NotEmpty(message = "{NotEmpty.codingQuestionInputDto.title}")
 	private String title;
 
+	@NotEmpty(message = "{NotEmpty.codingQuestionInputDto.description}")
 	private String desc;
 
 	private String ex1input;
 
+	@NotNull(message = "{NotNull.codingQuestionInputDto.active}")
 	private boolean active = false;
 
 	private String ex2input;

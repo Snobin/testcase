@@ -25,7 +25,7 @@ public class QuizServiceImpl implements QuizService {
 		Quiz quiz = new Quiz();
 		try {
 			if (quizdto != null) {
-		        BeanUtils.copyProperties(quiz, quizdto);
+		        BeanUtils.copyProperties(quizdto, quiz);
 			}
 			return quizRepository.save(quiz);
 		} catch (Exception e) {
