@@ -67,6 +67,7 @@ export class UpdatecodeComponent implements OnInit {
         this.codeInput.ex1output = data.example1Output;
         this.codeInput.ex2output = data.example2Output;
         this.codeInput.qid=data.questionId;
+        this.codeInput.time=data.time;
       },
       (error) => {
         console.log(error);
@@ -96,7 +97,7 @@ export class UpdatecodeComponent implements OnInit {
       fileContent: this.codeInput.fileContent,
       active: this.codeInput.active,
       qid: this.codeInput.qid,
-      Time:this.codeInput.Time
+      time:this.codeInput.time
     };
 
     this.CODE.updateCode(questionData, this.codeInput.fileContent).subscribe(
@@ -114,7 +115,7 @@ export class UpdatecodeComponent implements OnInit {
           fileContent: null,
           active: null,
           qid: '',
-          Time:''
+          time:''
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
