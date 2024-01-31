@@ -50,7 +50,7 @@ export class CodeService {
     formData.append('constraints', question.constraints);
     formData.append('qid', question.qid);
     formData.append('active', (question.active || false).toString());
-    formData.append('time', question.Time);
+    formData.append('time', question.time);
 
     console.log(50, file);
 
