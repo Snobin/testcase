@@ -44,7 +44,7 @@
                         <p class="truncate">{{codingQuestion.description}}</p>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-button [class.text-success]="buttonColor(codingQuestion.questionId, 'QUIZ') == 'success'" [class.mat-primary]="buttonColor(codingQuestion.questionId, 'QUIZ') == 'primary'" (click)="coding(codingQuestion.questionId)" [innerText]="buttonStatusCoding(codingQuestion.questionId)"></button>
+                        <button mat-button [class.text-success]="buttonColor(codingQuestion.questionId, 'CODING') == 'success'" [class.mat-primary]="buttonColor(codingQuestion.questionId, 'CODING') == 'primary'" (click)="coding(codingQuestion.questionId)" [innerText]="buttonStatusCoding(codingQuestion.questionId)"></button>
                     </mat-card-actions>
                 </mat-card>
             </div>
