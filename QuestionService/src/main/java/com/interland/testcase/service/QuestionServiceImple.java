@@ -217,6 +217,7 @@ public class QuestionServiceImple implements QuestionService {
 	}
 
 	public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto obj) {
+
 	    try {
 	        CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
 	        codingQuestion.setTitle(obj.getTitle());
@@ -253,6 +254,16 @@ public class QuestionServiceImple implements QuestionService {
 //	}
 
 	
+	
+//<<<<<<< HEAD
+//	public Question addQuestion(Question question) {
+//		return this.questionRepository.save(question);
+//	}
+//
+//	@Override
+//	public Question updateQuestion(Question question) {
+//		return this.questionRepository.save(question);
+//=======
 	@Override
 	public Question addQuestion(QuestionDto questionDto) {
 	    Question question = new Question();
@@ -490,23 +501,23 @@ public class QuestionServiceImple implements QuestionService {
 	            // Update active field
 	            existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
 
-	            // Update fields only if they are present in the dto
-	            updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
-	            updateField(existingQuestion::setExample2Input, codingQuestionInputDto.getEx2input());
-	            updateField(existingQuestion::setExample1Output, codingQuestionInputDto.getEx1output());
-	            updateField(existingQuestion::setExample2Output, codingQuestionInputDto.getEx2output());
-	            updateField(existingQuestion::setExample1Exp, codingQuestionInputDto.getEx1explanation());
-	            updateField(existingQuestion::setExample2Exp, codingQuestionInputDto.getEx2explanation());
-	            updateField(existingQuestion::setConstraints, codingQuestionInputDto.getConstraints());
-	            updateField(existingQuestion::setTitle, codingQuestionInputDto.getTitle());
-	            updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
-	            System.out.println(codingQuestionInputDto.getDesc());
-	            if (codingQuestionInputDto.getFileContent() != null) {
-	                // Process the file content here if needed
-	                System.out.println("File content processing...");
-	                processExcelData(codingQuestionInputDto.getFileContent());
-	            }
-
+				// Update fields only if they are present in the dto
+				updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
+				updateField(existingQuestion::setExample2Input, codingQuestionInputDto.getEx2input());
+				updateField(existingQuestion::setExample1Output, codingQuestionInputDto.getEx1output());
+				updateField(existingQuestion::setExample2Output, codingQuestionInputDto.getEx2output());
+				updateField(existingQuestion::setExample1Exp, codingQuestionInputDto.getEx1explanation());
+				updateField(existingQuestion::setExample2Exp, codingQuestionInputDto.getEx2explanation());
+				updateField(existingQuestion::setConstraints, codingQuestionInputDto.getConstraints());
+				updateField(existingQuestion::setTitle, codingQuestionInputDto.getTitle());
+				updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
+				updateField(existingQuestion::setTime, codingQuestionInputDto.getTime());
+				if (codingQuestionInputDto.getFileContent() != null) {
+					// Process the file content here if needed
+					System.out.println("File content processing...");
+					processExcelData(codingQuestionInputDto.getFileContent());
+	
+				}
 	            // Save the updated question back to the database
 	            competitiveQuestionRepository.save(existingQuestion);
 

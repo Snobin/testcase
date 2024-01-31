@@ -8,12 +8,21 @@ import com.interland.testcase.entity.Question;
 
 public class QuizDto {
 
-
 	private Long qid;
 	private String title;
 	private String description;
 	private String maxMarks;
 	private String numberOfQuestions;
+	private String time;
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	private boolean active;
 	private Category category; // Assuming you want to include the category ID in the DTO
 

@@ -11,8 +11,11 @@ export class UserService {
   private baseUrl = 'http://localhost:8081/auth';
   
   private statusSubject = new BehaviorSubject<boolean>(false);
+  private timeSubject = new BehaviorSubject<number>(10);
+
 
   status$ = this.statusSubject.asObservable();
+  time=this.timeSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.countdownMinutesSubject = new BehaviorSubject<number>(10);
@@ -34,9 +37,11 @@ update(user: any): Observable<Response> {
 }
 
   // Set status
-  setStatus(status: boolean): void {
-    console.log(status);
+  setStatus(status: boolean,time:any): void {
+    console.log(time);
+    
     this.statusSubject.next(status);
+    this.timeSubject.next(time);
   }
 
   uploadExcelFile(file: File): Observable<any> {

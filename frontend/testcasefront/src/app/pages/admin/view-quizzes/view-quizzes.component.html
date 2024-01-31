@@ -14,6 +14,7 @@
     <mat-card-actions>
         <button [routerLink]="'/admin/view-questions/'+q.qid+'/'+q.title" mat-flat-button color="primary">Questions</button>
         <button mat-stroked-button color="primary" class="ml20">Max Marks: {{q.maxMarks}}</button>
+        <button mat-stroked-button color="primary" class="ml20">Time: {{q.time}}</button>
         <button  mat-stroked-button color="primary" class="ml20">Questions: {{q.numberOfQuestions}}</button>
         <button [routerLink]="'/admin/quiz/'+ q.qid" mat-flat-button color="primary" class="ml20">Update</button>
         <button mat-flat-button color="warn" class="ml20" (click)="deleteQuiz(q.qid)">Delete</button>

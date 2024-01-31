@@ -29,6 +29,15 @@ public class QuizServiceImpl implements QuizService {
 	private CategoryRepository categoryRepository;
 	
 	@Override
+//<<<<<<< HEAD
+//	public Quiz addQuiz(Quiz quiz) {
+//		return this.quizRepository.save(quiz);
+//	}
+//
+//	@Override
+//	public Quiz updateQuiz(Quiz quiz) {
+//		return this.quizRepository.save(quiz);
+//=======
 	public Quiz addQuiz(QuizDto quizdto) {
 		Quiz quiz = new Quiz();
 		Category category = new Category();
@@ -43,6 +52,7 @@ public class QuizServiceImpl implements QuizService {
 				quiz.setNumberOfQuestions(quizdto.getNumberOfQuestions());
 				quiz.setMaxMarks(quizdto.getMaxMarks());
 				quiz.setQuestions(quizdto.getQuestions());
+				quiz.setTime(quizdto.getTime());
 			}
 			return quizRepository.save(quiz);
 		} catch (Exception e) {
@@ -69,6 +79,7 @@ public class QuizServiceImpl implements QuizService {
 					quiz.setNumberOfQuestions(quizdto.getNumberOfQuestions());
 					quiz.setMaxMarks(quizdto.getMaxMarks());
 					quiz.setQuestions(quizdto.getQuestions());
+					quiz.setTime(quizdto.getTime());
 				}
 			}
 			return quizRepository.save(quiz);
@@ -78,6 +89,13 @@ public class QuizServiceImpl implements QuizService {
 		}
 	}
 
+//<<<<<<< HEAD
+//
+//	@Override
+//	public Set<Quiz> getQuizzes() {
+//		return new HashSet<>(this.quizRepository.findAll());
+//	}
+//=======
     @Override
     public Set<Quiz> getQuizzes() {
         try {

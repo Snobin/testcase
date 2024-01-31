@@ -46,18 +46,24 @@ export class StartComponent implements OnInit {
   loadQuestions() {
     this.question.getQuestionsForQuiz(this.qId).subscribe(
       (data: any) => {
-        this.questions = data;
+        if (!localStorage.getItem(`questions${this.qId}`)) {
+          this.questions = data;
+          this.questions.forEach((q) => {
+            q['givenAnswer'] = null;
+            q['status'] = '';
+            q['qId'] = this.qId;
+            const userData = JSON.parse(localStorage.getItem('user'));
+            q['user'] = userData.username;
+          });
+          localStorage.setItem(`questions${this.qId}`, JSON.stringify(this.questions));
+        } else if (localStorage.getItem(`questions${this.qId}`)) {
+          this.questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
+          this.status();
+          console.log(this.questions);
+        }
         console.log(this.questions);
         this.setPage(1);
         this.timer = this.questions.length * 2 * 60;
-        this.questions.forEach((q) => {
-          q['givenAnswer'] = null;
-          q['status'] = '';
-          q['qId'] = this.qId;
-          const userData = JSON.parse(localStorage.getItem('user'));
-          q['user'] = userData.username;
-        });
-        this.notAttemptedNo = this.totalPages;
       },
       (error) => {
         Swal.fire("Error", "Error in loading questions");
@@ -93,14 +99,6 @@ export class StartComponent implements OnInit {
         this.correctAnswer = data.correctAnswers;
         this.marksGot = data.marksGot;
         this.isSubmit = true;
-        if (localStorage.getItem("quizzes")) {
-          let quizzes = JSON.parse(localStorage.getItem("quizzes"));
-          const index = quizzes.findIndex(q => q.qid == this.qId);
-          if (index != -1) {
-            quizzes[index].status = 'Review';
-          }
-          localStorage.setItem('quizzes', JSON.stringify(quizzes));
-        }
         this.getCategories();
       },
       (error) => {
@@ -136,14 +134,20 @@ export class StartComponent implements OnInit {
         }
       }
     }
+    this.status();
   }
 
-  next(value: string, quesId: string) {
-    const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
-    if (existingQuestionIndex !== -1) {
-      this.questions[existingQuestionIndex].status = 'not attempted';
+  next(value: string, quesId: string, page: number) {
+    if (localStorage.getItem(`questions${this.qId}`)) {
+      let questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
+      const index = questions.findIndex(q => q.quesId == quesId);
+      if (index != -1) {
+        questions[index].status = 'not attempted';
+      }
+      localStorage.setItem(`questions${this.qId}`, JSON.stringify(questions));
+      this.questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
     }
-    this.onRadioChange(value, quesId);
+    this.onRadioChange(value, quesId, page);
     if (this.currentPage < this.pages.length) {
       this.setPage(this.currentPage + 1);
     } else {
@@ -156,7 +160,7 @@ export class StartComponent implements OnInit {
     }
   }
 
-  save(value: string, quesId: string) {
+  save(value: string, quesId: string, page: number) {
     if (value == undefined || value == null) {
       Swal.fire({
         text: 'Please select an option to save',
@@ -165,20 +169,30 @@ export class StartComponent implements OnInit {
         position: 'top'
       })
     } else {
-      const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
-      if (existingQuestionIndex !== -1) {
-        this.questions[existingQuestionIndex].status = 'not attempted';
+      if (localStorage.getItem(`questions${this.qId}`)) {
+        let questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
+        const index = questions.findIndex(q => q.quesId == quesId);
+        if (index != -1) {
+          questions[index].status = 'not attempted';
+        }
+        localStorage.setItem(`questions${this.qId}`, JSON.stringify(questions));
+        this.questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
       }
-      this.onRadioChange(value, quesId);
+      this.onRadioChange(value, quesId, page);
     }
   }
 
-  previous(value: string, quesId: string) {
-    const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
-    if (existingQuestionIndex !== -1) {
-      this.questions[existingQuestionIndex].status = 'not attempted';
+  previous(value: string, quesId: string, page: number) {
+    if (localStorage.getItem(`questions${this.qId}`)) {
+      let questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
+      const index = questions.findIndex(q => q.quesId == quesId);
+      if (index != -1) {
+        questions[index].status = 'not attempted';
+      }
+      localStorage.setItem(`questions${this.qId}`, JSON.stringify(questions));
+      this.questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
     }
-    this.onRadioChange(value, quesId);
+    this.onRadioChange(value, quesId, page);
     if (this.currentPage <= this.pages.length && this.currentPage != 1) {
       this.setPage(this.currentPage - 1);
     } else {
@@ -191,18 +205,29 @@ export class StartComponent implements OnInit {
     }
   }
 
-  onRadioChange(value: string, quesId: string) {
+  onRadioChange(value: string, quesId: string, page: number) {
     if (value != undefined || value != null) {
-      const existingQuestionIndex = this.questions.findIndex(q => q.quesId === quesId);
-      if (existingQuestionIndex !== -1) {
-        if (this.questions[existingQuestionIndex].status == '' && this.questions[existingQuestionIndex].givenAnswer != '') {
-          this.questions[existingQuestionIndex].status = 'attempted';
-        } else if (this.questions[existingQuestionIndex].givenAnswer != '') {
-          this.questions[existingQuestionIndex].status = 'attempted';
+      if (localStorage.getItem(`questions${this.qId}`)) {
+        let questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
+        const index = questions.findIndex(q => q.quesId == quesId);
+        if (index != -1) {
+          questions[index].givenAnswer = value;
+          questions[index].status = 'attempted';
+        }
+        localStorage.setItem(`questions${this.qId}`, JSON.stringify(questions));
+        this.questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
+        
+        if (localStorage.getItem("quizzes")) {
+          let quizzes = JSON.parse(localStorage.getItem("quizzes"));
+          const index = quizzes.findIndex(q => q.qid == this.qId);
+          if (index != -1) {
+            quizzes[index].status = 'Review';
+          }
+          localStorage.setItem('quizzes', JSON.stringify(quizzes));
         }
       }
     }
-    this.status();
+    this.setPage(page);
   }
 
   status() {

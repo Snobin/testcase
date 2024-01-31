@@ -66,7 +66,13 @@
               <mat-label>Question ID</mat-label>
               <input style="width: 40%;" [(ngModel)]="codeInput.qid" type="text" name="QID" placeholder="Enter here" matInput/>
             </mat-form-field>
-          </div>
+         
+
+          <mat-form-field appearance="fill" style="margin-left: 10%; width: 40%;">
+            <mat-label>Time:</mat-label>
+            <input style="" [(ngModel)]="codeInput.Time" type="text" name="time" placeholder="Enter Time in minutes" matInput/>
+          </mat-form-field>
+        </div>
   
           <br>
           <mat-form-field class="w-100" appearance="fill">
@@ -98,7 +104,7 @@
              
             </form>
         </div> -->
-        <mat-label class="form-label">Testcases</mat-label><br><br>
+        <mat-label class="form-label">Add Testcases</mat-label><br><br>
         <input type="file" (change)="onFileChange($event)" #fileInput  />
         
         
