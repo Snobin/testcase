@@ -16,9 +16,9 @@ import com.interland.testcase.entity.Quiz;
 
 public interface QuestionService {
 	
-	public Question addQuestion(QuestionDto questionDto);
+	public Question addQuestion(Question questionDto);
 	
-	public Question updateQuestion(QuestionDto questionDto);
+	public Question updateQuestion(Question questionDto);
 	
 	public Set<Question> getQuestions();
 	

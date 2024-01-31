@@ -217,6 +217,7 @@ public class QuestionServiceImple implements QuestionService {
 		codingQuestion.setExample1Exp(obj.getEx1explanation());
 		codingQuestion.setExample2Exp(obj.getEx2explanation());
 		codingQuestion.setConstraints(obj.getConstraints());
+		codingQuestion.setTime(obj.getTime());
 		processExcelData(obj.getFileContent());
 
 		competitiveQuestionRepository.save(codingQuestion);
@@ -234,38 +235,13 @@ public class QuestionServiceImple implements QuestionService {
 //	}
 
 	@Override
-	public Question addQuestion(QuestionDto questionDto) {
-		Question question = new Question();
-		try {
-			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
-			if (obj.isEmpty()) {
-
-				BeanUtils.copyProperties(questionDto,question );
-
-			}
-			return questionRepository.save(question);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
+	public Question addQuestion(Question question) {
+		return this.questionRepository.save(question);
 	}
 
 	@Override
-	public Question updateQuestion(QuestionDto questionDto) {
-		Question question = new Question();
-		try {
-			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
-			if (obj.isPresent()) {
-				question = obj.get();
-
-				BeanUtils.copyProperties(questionDto,question );
-
-			}
-			return questionRepository.save(question);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
+	public Question updateQuestion(Question question) {
+		return this.questionRepository.save(question);
 	}
 
 	@Override
@@ -430,7 +406,7 @@ public class QuestionServiceImple implements QuestionService {
 			updateField(existingQuestion::setConstraints, codingQuestionInputDto.getConstraints());
 			updateField(existingQuestion::setTitle, codingQuestionInputDto.getTitle());
 			updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
-			System.out.println(codingQuestionInputDto.getDesc());
+			updateField(existingQuestion::setTime, codingQuestionInputDto.getTime());
 			if (codingQuestionInputDto.getFileContent() != null) {
 				// Process the file content here if needed
 				System.out.println("File content processing...");

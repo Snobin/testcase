@@ -35,7 +35,7 @@ constructor(
       
       if(this.variable%3==0){
         Swal.fire('you are disqualified' );
-        this.router.navigate(['./final']);
+        // this.router.navigate(['./final']);
        }
     } else {
       // Tab is visible again

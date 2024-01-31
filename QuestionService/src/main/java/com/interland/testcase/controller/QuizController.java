@@ -31,12 +31,12 @@ public class QuizController {
 
 
 	@PutMapping("/")
-	public ResponseEntity<Quiz> update(@RequestBody Quiz quizDto){
+	public ResponseEntity<Quiz> update(@Valid @RequestBody QuizDto quizDto){
 		return ResponseEntity.ok(this.quizService.updateQuiz(quizDto));
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Quiz> add(@Valid @RequestBody Quiz quizDto){
+	public ResponseEntity<Quiz> add(@Valid @RequestBody QuizDto quizDto){
 		return ResponseEntity.ok(this.quizService.addQuiz(quizDto));
 	}
 

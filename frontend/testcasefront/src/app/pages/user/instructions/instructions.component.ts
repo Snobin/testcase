@@ -47,7 +47,7 @@ export class InstructionsComponent implements OnInit {
 
   updateStatus(): void {
     // Set the status to true or false as needed
-    this.userservice.setStatus(true);
+    // this.userservice.setStatus(true);
   }
 
   getCategories() {

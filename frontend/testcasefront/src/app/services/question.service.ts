@@ -49,9 +49,8 @@ export class QuestionService {
     formData.append('constraints', question.constraints);
     formData.append('qid', question.qid);
     formData.append('active', (question.active || false).toString());
-  
-    console.log(50, file);
-  
+    formData.append('time',question.Time);
+    
     if (file) {
       formData.append('fileContent', file, file.name);
     }

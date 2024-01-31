@@ -22,6 +22,8 @@ export class QuizService {
     return this.http.get(`${this.baseUrl}/${qId}`);
   }
   public updateQuiz(quiz){
+    console.log(quiz);
+    
     return this.http.put(`${this.baseUrl}/`,quiz);
   }
   public getQuizCategory(cid){

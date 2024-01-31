@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="min-w-1024">
-  <a routerLink="/" mat-icon-button class="example-icon"
+  <a mat-icon-button class="example-icon"
     aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
@@ -47,7 +47,7 @@
     class="text-white mr20" aria-label="Logout">
     Logout
   </a>
-  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile"
+  <button *ngIf="login.isloggedin && user" 
     mat-button class="text-white mr20"
     aria-label="User Profile">
     {{ user.username }}

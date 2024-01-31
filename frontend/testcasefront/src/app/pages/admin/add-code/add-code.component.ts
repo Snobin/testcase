@@ -26,7 +26,7 @@ export class AddCodeComponent implements OnInit {
     private service: QuestionService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
@@ -72,9 +72,10 @@ export class AddCodeComponent implements OnInit {
       fileContent: this.codeInput.fileContent,
       active: this.codeInput.active,
       qid: this.codeInput.qid,
+      Time: this.codeInput.Time
     };
 
-    this.service.addCodingQuestion(questionData,this.codeInput.fileContent).subscribe(
+    this.service.addCodingQuestion(questionData, this.codeInput.fileContent).subscribe(
       (data: any) => {
         this.codeInput = {
           title: '',
@@ -89,6 +90,7 @@ export class AddCodeComponent implements OnInit {
           fileContent: null,
           active: null,
           qid: '',
+          Time: ''
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
@@ -106,12 +108,12 @@ export class AddCodeComponent implements OnInit {
       const file: File = fileList[0];
       this.codeInput.fileContent = file;
       this.fileName = file.name; // Set the file name for display if needed
-      console.log(file); 
+      console.log(file);
       console.log(this.codeInput);
-      
+
       // Log the file to see if it's properly captured
     }
   }
-  
-  
+
+
 }

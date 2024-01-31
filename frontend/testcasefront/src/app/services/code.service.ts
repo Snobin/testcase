@@ -17,9 +17,9 @@ export class CodeService {
 
   compileAndTest(codeRequest: any, cancelSubject: Subject<void>): Observable<any> {
     return this.http.post<any>(this.apiUrl, codeRequest)
-    .pipe(
-      takeUntil(cancelSubject),
-    );
+      .pipe(
+        takeUntil(cancelSubject),
+      );
   }
 
   questionReq(qid) {
@@ -33,35 +33,34 @@ export class CodeService {
   public codingQuestions() {
     return this.http.get(`${this.url}`);
   }
-  public activeCodingQuestions(userStr:string) {
-    return this.http.post(`${this.url}/active`,userStr);
+  public activeCodingQuestions(userStr: string) {
+    return this.http.post(`${this.url}/active`, userStr);
   }
 
   public updateCode(question: AddQuestion, file: any) {
-    console.log(question.desc);
-    
     const formData: FormData = new FormData();
-    formData.append('title', question.title );
-    formData.append('desc', question.desc) ;
-    formData.append('ex1input', question.ex1input );
+    formData.append('title', question.title);
+    formData.append('desc', question.desc);
+    formData.append('ex1input', question.ex1input);
     formData.append('ex1output', question.ex1output);
     formData.append('ex1explanation', question.ex1explanation);
-    formData.append('ex2input', question.ex2input );
-    formData.append('ex2output', question.ex2output );
-    formData.append('ex2explanation', question.ex2explanation );
+    formData.append('ex2input', question.ex2input);
+    formData.append('ex2output', question.ex2output);
+    formData.append('ex2explanation', question.ex2explanation);
     formData.append('constraints', question.constraints);
-    formData.append('qid', question.qid );
+    formData.append('qid', question.qid);
     formData.append('active', (question.active || false).toString());
-  
+    formData.append('time', question.Time);
+
     console.log(50, file);
-  
+
     if (file) {
       formData.append('fileContent', file, file.name);
     }
-  
+
     return this.http.put(`${this.baseUrl}/updateCodingQuestion`, formData);
   }
-  
+
 
 
 }

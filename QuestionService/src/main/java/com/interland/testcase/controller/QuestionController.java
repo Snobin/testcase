@@ -38,12 +38,12 @@ public class QuestionController {
 	private QuizService quizService;
 
 	@PostMapping("/")
-	public ResponseEntity<Question> add(@RequestBody QuestionDto questionDto) {
+	public ResponseEntity<Question> add(@RequestBody Question questionDto) {
 		return ResponseEntity.ok(this.questionService.addQuestion(questionDto));
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity<Question> update(@RequestBody QuestionDto questionDto) {
+	public ResponseEntity<Question> update(@RequestBody Question questionDto) {
 		return ResponseEntity.ok(this.questionService.updateQuestion(questionDto));
 	}
 

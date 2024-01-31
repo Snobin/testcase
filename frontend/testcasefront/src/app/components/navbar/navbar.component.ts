@@ -7,7 +7,6 @@ import { filter } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,7 +16,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false;
   user = null;
-  countdownMinutes: number = 1;
+  countdownMinutes: number = 10;
   countdownSeconds: number = 0;
   status: boolean = false;
   private statusSubscription: Subscription;
@@ -27,7 +26,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private countdownInterval: any;
   showdata: boolean;
   logoutdata: boolean;
-  private storageKey = 'timerState'; // Key for storing timer state in sessionStorage
+  private storageKey = 'timerState';
+  storedState;
 
   constructor(
     public login: LoginService,
@@ -40,35 +40,41 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLogged();
+    // if(sessionStorage.getItem(this.storageKey)){
+    //   console.log("hii");
+
+    //   this.initializeTimer();
+    // }
     this.subscribeToStatus();
 
     // Subscribe to route changes to reinitialize the timer
+
     this.routeSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         this.handleRouteChange();
       });
 
-    // Initialize the timer based on stored state
-    const storedState = sessionStorage.getItem(this.storageKey);
-    if (storedState) {
-      const { countdownMinutes, countdownSeconds, status } = JSON.parse(storedState);
-      this.countdownMinutes = countdownMinutes;
-      this.countdownSeconds = countdownSeconds;
-      this.status = status;
 
-      // Resume the countdown if the status is true
-      if (status) {
-        this.startCountdown();
-      }
-    }
+
+  }
+
+  // New method to fetch initial data
+  private initializeTimer(): void {
+    console.log("it works");
+    // if (!localStorage.getItem(this.storageKey)) {
+    //   this.userService.time.subscribe((data: any) => {
+    //     this.countdownMinutes = data;
+    //     console.log("it again works");
+    //     console.log(this.countdownMinutes);
+    //   });
+    // }
+
   }
 
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
-      console.log(this.categories);
-
       this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
       (error) => {
@@ -82,18 +88,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private handleRouteChange(): void {
     // Update the showdata based on the current URL
     this.showdata = this.show(this.router.url);
-    this.logoutdata = this.logouthere(this.router.url)
-    console.log(this.showdata);
+    this.logoutdata = this.logouthere(this.router.url);
     this.unsubscribeFromStatus();
 
     // Reset the timer and status when navigating to specific components    
     if (this.isTimerVisible(this.router.url)) {
-      // this.countdownMinutes = 1;
-      // this.countdownSeconds = 0;
       this.subscribeToStatus(); // Subscribe again since ngOnDestroy might have unsubscribed
 
       // Check if the timer should be visible based on the current route
       this.showTimer = true; // Set to true when the route is eligible for the timer
+
+      // Call the initializeTimer method when needed
+      console.log("data at", localStorage.getItem(this.storageKey));
+      if (localStorage.getItem(this.storageKey)) {
+        // Data is not empty
+        console.log("Data is not empty:", localStorage.getItem(this.storageKey));
+      } else if (!localStorage.getItem(this.storageKey)) {
+        console.log("why");
+        this.initializeTimer();
+      }
+
     } else {
       this.showTimer = false; // Set to false when the route is not eligible for the timer
     }
@@ -133,7 +147,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Clear the existing interval if it's running
     // This prevents multiple intervals from running simultaneously
     clearInterval(this.countdownInterval);
-    sessionStorage.removeItem(this.storageKey); // Clear stored state when stopping the interval
+    // sessionStorage.removeItem(this.storageKey); // Clear stored state when stopping the interval
   }
 
   isTimerVisible(url: string): boolean {
@@ -175,16 +189,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   startCountdown(): void {
     // Clear any existing interval before starting a new one
     this.clearCountdownInterval();
-
+    this.countdownMinutes =Number(localStorage.getItem("minutes"));
     this.countdownInterval = setInterval(() => {
       if (this.countdownSeconds > 0) {
         this.countdownSeconds--;
       } else if (this.countdownMinutes > 0) {
         this.countdownMinutes--;
+        localStorage.setItem("minutes",this.countdownMinutes.toString());
         this.countdownSeconds = 59;
       } else {
         // When both minutes and seconds are zero, navigate and stop the interval
         clearInterval(this.countdownInterval);
+        localStorage.removeItem(this.storageKey);
+        localStorage.removeItem("minutes");
         this.router.navigate(['/final']);
         this.status = false;
       }
@@ -217,6 +234,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    localStorage.removeItem(this.storageKey);
+    localStorage.removeItem("minutes");
     this.router.navigate(['./final']);
   }
 
@@ -226,6 +245,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       countdownSeconds: this.countdownSeconds,
       status: this.status,
     };
-    sessionStorage.setItem(this.storageKey, JSON.stringify(timerState));
+    localStorage.setItem(this.storageKey, JSON.stringify(timerState));
   }
 }
