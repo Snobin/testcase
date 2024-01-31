@@ -17,54 +17,61 @@
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>User Name</mat-label>
                             <input matInput placeholder="Enter here" [(ngModel)]="userdata.username" name="user"
-                                required>
+                               required >
                             <mat-hint>Username must be unique</mat-hint>
+                            <mat-error>{{validationMessage.username}}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>User Password</mat-label>
                             <input type="password" [(ngModel)]="userdata.password" name="password" matInput
                                 placeholder="Enter here" required>
+                            <mat-error>{{validationMessage.password}}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>First Name</mat-label>
                             <input [(ngModel)]="userdata.firstName" name="first" matInput placeholder="Enter here"
                                 required>
+                                <mat-error>{{validationMessage.firstName}}</mat-error>
                         </mat-form-field>
-
-
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Last Name</mat-label>
                             <input matInput placeholder="Enter here" [(ngModel)]="userdata.lastName" name="last"
                                 required>
+                                <mat-error>{{validationMessage.lastName}}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
+
                             <mat-label>Email Address</mat-label>
                             <input type="email" matInput placeholder="Enter here" [(ngModel)]="userdata.email"
                                 name="email" required>
+                                <mat-error>{{validationMessage.phoneNumber}}</mat-error>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
+
                             <mat-label>Phone Number</mat-label>
                             <input type="number" matInput placeholder="Enter here" [(ngModel)]="userdata.phoneNumber"
                                 name="phone" required>
+                                <mat-error>{{validationMessage.phoneNumber}}</mat-error>
                         </mat-form-field>
                         <mat-slide-toggle style="margin-left: 10px;" name="active" [(ngModel)]="userdata.role"
-                             class="mt20" color="primary">
+                            class="mt20" color="primary">
                             Role <mat-hint>(Turn on to set as ADMIN)</mat-hint>
                         </mat-slide-toggle>
 
                         <div class="container text-center">
                             <button type="submit" mat-raised-button color="primary">Register</button>
-                            <button type="button" style="margin-left: 20px;" mat-raised-button color="accent" (click)="clear()">Clear</button>
+                            <button type="button" style="margin-left: 20px;" mat-raised-button color="accent"
+                                (click)="clear()">Clear</button>
                         </div>
 
                     </form>
                 </div>
             </div>
             <div id="signup" [class.open]="signupPage==true">
-                <input type="file" placeholder="Upload here" style="margin: 50px;"(change)="onFileChange($event)">
+                <input type="file" placeholder="Upload here" style="margin: 50px;" (change)="onFileChange($event)">
                 <div class="container text-center">
                     <button style="margin: 50px;margin-top:10px;" mat-raised-button color="primary"
-                         (click)="uploadFile()">Upload</button>
+                        (click)="uploadFile()">Upload</button>
                 </div>
             </div>
         </div>
