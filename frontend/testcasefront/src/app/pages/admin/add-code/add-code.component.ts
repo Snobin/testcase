@@ -72,7 +72,7 @@ export class AddCodeComponent implements OnInit {
       fileContent: this.codeInput.fileContent,
       active: this.codeInput.active,
       qid: this.codeInput.qid,
-      Time: this.codeInput.Time
+      time: this.codeInput.time
     };
 
     this.service.addCodingQuestion(questionData, this.codeInput.fileContent).subscribe(
@@ -90,7 +90,7 @@ export class AddCodeComponent implements OnInit {
           fileContent: null,
           active: null,
           qid: '',
-          Time: ''
+          time: ''
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
