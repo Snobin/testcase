@@ -62,7 +62,7 @@ export class ConsoleComponent implements OnInit {
   runText: string = "Run<i class='bi bi-play-fill'></i>";
   toast: boolean = false;
 
-  constructor(private fullScreenService: FullScreenService,private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
+  constructor(private fullScreenService: FullScreenService, private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
 
   ngOnInit(): void {
     // if (localStorage.getItem('hasReloaded') == 'true') {
@@ -71,7 +71,7 @@ export class ConsoleComponent implements OnInit {
     // }
     this.fullScreenService.requestFullScreen();
     this.clearAll();
-    this.preventBackButton();
+    // this.preventBackButton();
 
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
@@ -365,13 +365,15 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
   }
+
   @HostListener('document:visibilitychange', ['$event'])
   private handleVisibilityChange(event: Event): void {
-  this.fullScreenService.onVisibilityChange(document.hidden);
-}
- @HostListener('document:keydown', ['$event'])
- private handleKeyboard(event: KeyboardEvent): void {
-  this.fullScreenService.onKeyDown(event);
-}
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+  
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboard(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
 
 }

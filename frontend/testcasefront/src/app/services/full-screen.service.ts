@@ -1,13 +1,14 @@
 import { Injectable, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FullScreenService {
 constructor(
-  private router:Router
+  private router:Router, private login: LoginService
 ){
 
 }
@@ -35,6 +36,8 @@ constructor(
       
       if(this.variable%3==0){
         Swal.fire('you are disqualified' );
+
+        this.login.removeStorage();
         this.router.navigate(['./final']);
        }
     } else {

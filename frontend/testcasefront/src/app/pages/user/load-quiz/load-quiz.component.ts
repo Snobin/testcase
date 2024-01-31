@@ -57,7 +57,10 @@ export class LoadQuizComponent implements OnInit {
             }, 0);
         }
     }
-
+timefn(){
+    console.log(this.time);
+    
+}
     updateStatus(time: any): void {
         console.log(time);
         if (!localStorage.getItem("minutes")) {
@@ -80,12 +83,23 @@ export class LoadQuizComponent implements OnInit {
             if (this.variable == 0) {
                 this.variable++;
 
-                this.quiz.getActiveQuizCategory(5).subscribe(
+                this.quiz.getActiveQuizCategory(2).subscribe(
                     (data: any) => {
                         this.quizzes = data;
+                        console.log(data);
+                        
                         data.forEach((quiz: any) => {
-                            const quizTime = quiz.time ? parseInt(quiz.time) : 0;
-                            this.time += quizTime;
+                            const quizTime = quiz.time ? parseInt(quiz.time, 10) : 0;
+                            console.log(quizTime);
+                            
+                            // Check if the parsed value is a valid integer
+                            if (!isNaN(quizTime)) {
+                                this.time += quizTime;
+                            } else {
+                                console.error(`Invalid quiz time: ${quiz.time}`);
+                            }
+                
+                            console.log(this.time);
                         });
                         console.log(this.time);
                     },
@@ -93,6 +107,7 @@ export class LoadQuizComponent implements OnInit {
                         console.log(error);
                     }
                 );
+                
 
                 let userObject = localStorage.getItem("user");
                 const user = JSON.parse(userObject);
