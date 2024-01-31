@@ -14,14 +14,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+
 import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.python.core.CompileMode;
 import org.python.core.CompilerFlags;
 import org.python.core.Py;
 import org.python.core.PyCode;
 import org.python.util.PythonInterpreter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -42,7 +46,7 @@ import com.interland.testcase.repository.codeExecutionResultRepository;
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
 
-	private static final Logger LOGGER = Logger.getLogger(CodeExecutionServiceImple.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(CodeExecutionServiceImple.class);
 	@Autowired
 	private codQuestionRepository questionRepository;
 	@Autowired
@@ -58,83 +62,88 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	@Override
 	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
 
-		CodeResult codeResult = new CodeResult();
-		CodeResultPk codeResultPk = new CodeResultPk();
-		String code = codeRequest.getCode();
-		String language = codeRequest.getLangId();
-		String user = codeRequest.getUser();
-		String questionId = codeRequest.getQnId();
+	    CodeResult codeResult = new CodeResult();
+	    CodeResultPk codeResultPk = new CodeResultPk();
+	    
+	    try {
+	        String code = codeRequest.getCode();
+	        String language = codeRequest.getLangId();
+	        String user = codeRequest.getUser();
+	        String questionId = codeRequest.getQnId();
 
-		Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionId(questionId);
+	        Optional<QuestionEntity> optionalQuestionEntity = questionRepository.findByQuestionId(questionId);
 
-		if (optionalQuestionEntity.isPresent()) {
-			List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
+	        if (optionalQuestionEntity.isPresent()) {
+	            List<TestCaseEntity> testCases = optionalQuestionEntity.get().getTestCases();
 
-			codeResultPk.setQuestionId(questionId);
-			codeResultPk.setUser(user);
-			codeResult.setCodeResultpk(codeResultPk);
-			codeResult.setCode(code);
-			codeResult.setLanguage(language);
-			codeResult.setTotalTescase(testCases.size());
+	            codeResultPk.setQuestionId(questionId);
+	            codeResultPk.setUser(user);
+	            codeResult.setCodeResultpk(codeResultPk);
+	            codeResult.setCode(code);
+	            codeResult.setLanguage(language);
+	            codeResult.setTotalTescase(testCases.size());
 
-			List<String> inputs = testCases.stream().map(TestCaseEntity::getInputs).collect(Collectors.toList());
-			List<String> expectedOutputs = testCases.stream().map(TestCaseEntity::getExpectedOutputs)
-					.collect(Collectors.toList());
+	            List<String> inputs = testCases.stream().map(TestCaseEntity::getInputs).collect(Collectors.toList());
+	            List<String> expectedOutputs = testCases.stream().map(TestCaseEntity::getExpectedOutputs)
+	                    .collect(Collectors.toList());
 
-			List<CodeResponse> codeResponses;
-			int numberOfTestCasesToExecute = "run".equals(codeRequest.getStatus()) ? 3 : testCases.size();
-//			System.out.println(numberOfTestCasesToExecute);
-			switch (language) {
-			case "java":
-				codeResponses = executeJavaCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-						numberOfTestCasesToExecute);
-				codeResult.setPassedTestcase(passedtestcases);
-				passedtestcases = 0;
-				codingResultRepository.save(codeResult);
-                combinedResultImplementation.getResult();
-				return codeResponses;
+	            List<CodeResponse> codeResponses;
+	            int numberOfTestCasesToExecute = "run".equals(codeRequest.getStatus()) ? 3 : testCases.size();
 
-			case "c":
-				codeResponses = executeCCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-						numberOfTestCasesToExecute);
-				codeResult.setPassedTestcase(passedtestcases);
-				passedtestcases = 0;
-				codingResultRepository.save(codeResult);
-				combinedResultImplementation.getResult();
-				return codeResponses;
+	            switch (language) {
+	                case "java":
+	                    codeResponses = executeJavaCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
+	                    saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
+	                            numberOfTestCasesToExecute);
+	                    codeResult.setPassedTestcase(passedtestcases);
+	                    passedtestcases = 0;
+	                    codingResultRepository.save(codeResult);
+	                    combinedResultImplementation.getResult();
+	                    return codeResponses;
 
-			case "cpp":
-				codeResponses = executeCppCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-						numberOfTestCasesToExecute);
-				codeResult.setPassedTestcase(passedtestcases);
-				passedtestcases = 0;
-				codingResultRepository.save(codeResult);
-				combinedResultImplementation.getResult();
-				return codeResponses;
+	                case "c":
+	                    codeResponses = executeCCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
+	                    saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
+	                            numberOfTestCasesToExecute);
+	                    codeResult.setPassedTestcase(passedtestcases);
+	                    passedtestcases = 0;
+	                    codingResultRepository.save(codeResult);
+	                    combinedResultImplementation.getResult();
+	                    return codeResponses;
 
-			case "python":
-				codeResponses = executePythonCode(code, inputs);
-				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-						numberOfTestCasesToExecute);
-				return codeResponses;
+	                case "cpp":
+	                    codeResponses = executeCppCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
+	                    saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
+	                            numberOfTestCasesToExecute);
+	                    codeResult.setPassedTestcase(passedtestcases);
+	                    passedtestcases = 0;
+	                    codingResultRepository.save(codeResult);
+	                    combinedResultImplementation.getResult();
+	                    return codeResponses;
 
-			default:
-				LOGGER.warning("Unsupported language: " + language);
-				CodeResponse codeResponse = new CodeResponse();
-				codeResponse.setOutput("Unsupported language: " + language);
-				codeResponses = executeCppCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-						numberOfTestCasesToExecute);
-				return codeResponses;
-			}
+	                case "python":
+	                    codeResponses = executePythonCode(code, inputs);
+	                    saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
+	                            numberOfTestCasesToExecute);
+	                    return codeResponses;
 
-		} else {
-			LOGGER.warning("Question not found for id: " + questionId);
-			return Collections.emptyList();
-		}
+	                default:
+	                    CodeResponse codeResponse = new CodeResponse();
+	                    codeResponse.setOutput("Unsupported language: " + language);
+	                    codeResponses = executeCppCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
+	                    saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
+	                            numberOfTestCasesToExecute);
+	                    return codeResponses;
+	            }
+	        } else {
+	            return Collections.emptyList();
+	        }
+	    } catch (Exception e) {
+	        // Log the exception
+	    	logger.error("Error:" + e.getMessage(), e);
+	        // Optionally, you may throw a custom exception or take appropriate action based on your use case.
+	        return Collections.emptyList();
+	    }
 	}
 
 	private List<CodeResponse> executeJavaCode(String code, List<String> inputElements, List<String> expectedOutputs,
@@ -183,8 +192,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 					break;
 				}
 			} catch (Exception e) {
-				LOGGER.severe("Error executing Java code: " + e.getMessage());
-
+				logger.error("Error:" + e.getMessage(), e);
 				CodeResponse codeResponse = new CodeResponse();
 				codeResponse.setOutput("Error: " + e.getMessage());
 				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
@@ -238,8 +246,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 					break;
 				}
 			} catch (Exception e) {
-				LOGGER.severe("Error executing C code: " + e.getMessage());
-
+				logger.error("Error:" + e.getMessage(), e);
 				CodeResponse codeResponse = new CodeResponse();
 				codeResponse.setOutput("Error: " + e.getMessage());
 				codeResponse.setSuccess("false");
@@ -285,8 +292,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 					break;
 				}
 			} catch (Exception e) {
-				LOGGER.severe("Error executing C++ code: " + e.getMessage());
-
+				logger.error("Error:" + e.getMessage(), e);
 				CodeResponse codeResponse = new CodeResponse();
 				codeResponse.setOutput("Error: " + e.getMessage());
 				codeResponse.setSuccess("false");
@@ -327,6 +333,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResponses.add(codeResponse);
 			}
 		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
 			CodeResponse errorResponse = new CodeResponse();
 			errorResponse.setOutput("Error: " + e.getMessage());
 			codeResponses.add(errorResponse);
@@ -352,6 +359,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 			future.get(10, TimeUnit.SECONDS);
 		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
 			handleExecutionError(codeResponse);
 		} finally {
 			long endTime = System.currentTimeMillis();
@@ -364,30 +372,35 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		return codeResponse;
 	}
 
-	private void executeAndCaptureOutput(ProcessBuilder processBuilder, CodeResponse codeResponse, File tempFile)
-			throws IOException, InterruptedException {
-		processBuilder.redirectErrorStream(true);
-		Process process = processBuilder.start();
+	private void executeAndCaptureOutput(ProcessBuilder processBuilder, CodeResponse codeResponse, File tempFile) {
+	    try {
+	        processBuilder.redirectErrorStream(true);
+	        Process process = processBuilder.start();
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		StringBuilder output = new StringBuilder();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			output.append(line);
-		}
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	        StringBuilder output = new StringBuilder();
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            output.append(line);
+	        }
 
-		tempFile.delete();
+	        tempFile.delete();
 
-		codeResponse.setOutput(output.toString());
+	        codeResponse.setOutput(output.toString());
+	    } catch (IOException e) {
+	        // Log the exception
+	    	logger.error("Error:" + e.getMessage(), e);
+	        // Optionally, you may throw a custom exception or take appropriate action based on your use case.
+	    }
 	}
 
 	private void handleTimeoutError(CodeResponse codeResponse) {
-		LOGGER.warning("Execution timed out after 10 seconds");
+		logger.warn("Execution timed out after 10 seconds");
 		codeResponse.setOutput("Error: Execution timed out after 10 seconds");
 	}
 
 	private void handleExecutionError(CodeResponse codeResponse) {
-		LOGGER.severe("Error executing process");
+		logger.warn("Error executing process");
 		codeResponse.setOutput("Error: Execution timed out after 10 seconds");
 		codeResponse.setSuccess("false");
 		codeResponse.setMessage("Test case failed. Error: Execution timed out after 10 seconds");
@@ -431,6 +444,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			try {
 //				codeExecutionResultRepository.save(result);
 			} catch (DataIntegrityViolationException e) {
+				logger.error("Error:" + e.getMessage(), e);
 				handleSaveResultError(e);
 			}
 
@@ -438,22 +452,29 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	}
 
 	private CodeExecutionResult createCodeExecutionResult(CodeRequest codeRequest, CodeResponse codeResponse,
-			String input, String expectedOutput) {
-		CodeExecutionResult result = new CodeExecutionResult();
-		result.setStudentId(codeRequest.getStudentId());
-		result.setOutput(codeResponse.getOutput());
-		result.setExpectedOutput(expectedOutput);
-		result.setTestcase(input);
-		result.setQuestionId(codeRequest.getQnId());
-		result.setCode(codeRequest.getCode());
-		result.setProcessingTime(codeResponse.getProcessingTime());
-		result.setLanguageId(codeRequest.getLangId());
-		result.setSuccess(codeResponse.getSuccess());
-		return result;
+	        String input, String expectedOutput) {
+	    try {
+	        CodeExecutionResult result = new CodeExecutionResult();
+	        result.setStudentId(codeRequest.getStudentId());
+	        result.setOutput(codeResponse.getOutput());
+	        result.setExpectedOutput(expectedOutput);
+	        result.setTestcase(input);
+	        result.setQuestionId(codeRequest.getQnId());
+	        result.setCode(codeRequest.getCode());
+	        result.setProcessingTime(codeResponse.getProcessingTime());
+	        result.setLanguageId(codeRequest.getLangId());
+	        result.setSuccess(codeResponse.getSuccess());
+	        return result;
+	    } catch (Exception e) {
+	        // Log the exception
+	    	logger.error("Error:" + e.getMessage(), e);
+	        // Optionally, you may throw a custom exception or take appropriate action based on your use case.
+	        return null; // or handle accordingly based on your application logic
+	    }
 	}
 
 	private void handleSaveResultError(DataIntegrityViolationException e) {
-		System.out.println("Error saving result: " + e.getMessage());
+		logger.error("Error:" + e.getMessage(), e);
 	}
 
 }

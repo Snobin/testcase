@@ -25,9 +25,6 @@ export class AdminupdateComponent implements OnInit {
     this.login.getCurrentUser().subscribe(
       (user:any) => {
         console.log(user);
-        $('#phoneNumber').val(user.phoneNumber);
-        $('#firstName').val(user.firtName);
-
         this.userdata=user;
       },
       (error) => {
@@ -45,11 +42,11 @@ export class AdminupdateComponent implements OnInit {
       });
       return;
     }
-    this.userservice.addUser(this.userdata).subscribe(
+    this.userservice.update(this.userdata).subscribe(
       (data)=>{
-        if (data.body == 'Successfully Inserted') {
-          this.router.navigate([`./login`]);
-          Swal.fire("Success",'User is Registered','success')
+        if (data.body == 'Successfully Updated') {
+          this.router.navigate([`./admin/profile`]);
+          Swal.fire("Success",'Profile updated successfully','success')
         } else {
           Swal.fire('Error!', data.body,'error');
         }

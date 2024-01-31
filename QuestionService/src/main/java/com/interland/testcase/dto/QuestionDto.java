@@ -1,5 +1,7 @@
 package com.interland.testcase.dto;
 
+import com.interland.testcase.entity.Quiz;
+
 public class QuestionDto {
 
     private Long quesId;
@@ -13,17 +15,17 @@ public class QuestionDto {
     private String givenAnswer;
     private String user;
     private String qId;
-    private Long quizId;  // assuming you want to include the quiz ID in the DTO
+    private Quiz quiz;  // assuming you want to include the quiz ID in the DTO
 
     // Getters and Setters
 
     // Assuming you want to include the quiz ID in the DTO
-    public Long getQuizId() {
-        return quizId;
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void setQuizId(Long quizId) {
-        this.quizId = quizId;
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
     public Long getQuesId() {
@@ -113,15 +115,14 @@ public class QuestionDto {
     public void setqId(String qId) {
         this.qId = qId;
     }
-
+    
     // Constructors, getters, and setters
-
     public QuestionDto() {
     }
 
     public QuestionDto(Long quesId, String content, String image, String option1, String option2, 
                        String option3, String option4, String answer, String givenAnswer,
-                       String user, String qId, Long quizId) {
+                       String user, String qId, Quiz quiz) {
         this.quesId = quesId;
         this.content = content;
         this.image = image;
@@ -133,6 +134,6 @@ public class QuestionDto {
         this.givenAnswer = givenAnswer;
         this.user = user;
         this.qId = qId;
-        this.quizId = quizId;
+        this.quiz = quiz;
     }
 }

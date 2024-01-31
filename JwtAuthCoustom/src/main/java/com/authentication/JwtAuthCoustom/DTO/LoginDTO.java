@@ -2,29 +2,21 @@ package com.authentication.JwtAuthCoustom.DTO;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class LoginDTO {
-	@NotNull(message = "{validation.login.name}")
-	@Size(min = 1, max = 50, message = "{validation.login.name.size}")
-	private String name;
-
+	
 	@NotEmpty(message = "{validation.login.email}")
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$",message = "{validation.login.email.pattern}")
 	@Size(min = 1, max = 100, message = "{validation.login.email.size}")
 	private String email;
 
 	@NotEmpty(message = "{validation.login.password}")
-	@Size(min = 1, max = 255, message = "{validation.login.password.size}")
+	@Size(min = 3, max = 255, message = "{validation.login.password.size}")
 	private String password;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -40,4 +32,6 @@ public class LoginDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	
 }

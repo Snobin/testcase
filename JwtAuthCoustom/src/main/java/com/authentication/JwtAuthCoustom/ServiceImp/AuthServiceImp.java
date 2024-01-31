@@ -72,6 +72,31 @@ public class AuthServiceImp implements AuthService {
 		}
 
 	}
+	
+
+	public ResponseEntity<?> updateAdmin(SignupDTO dto) {
+		String role = dto.getRole() == "false" ? "USER" : "ADMIN";
+		UserEntity entity = new UserEntity();
+		try {
+			Optional<UserEntity> obj = repo.findByEmail(dto.getEmail());
+			if (obj.isPresent()) {
+				entity = obj.get();
+				entity.setEmail(dto.getEmail());
+				entity.setFirstName(dto.getFirstName());
+				entity.setLastName(dto.getLastName());
+				entity.setPhoneNumber(dto.getPhoneNumber());
+				entity.setRoles(role);
+				entity.setUsername(dto.getUsername());
+				repo.save(entity);
+			}
+			return new ResponseEntity<>("Successfully Updated", HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return new ResponseEntity<>("Exception Occured", HttpStatus.OK);
+
+		}
+
+	}
 
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -85,11 +110,11 @@ public class AuthServiceImp implements AuthService {
 				Set<SimpleGrantedAuthority> authorities = Collections
 						.singleton(new SimpleGrantedAuthority(user.getRoles()));
 				return new CustomUserDetails(user.getUsername(), user.getEmail(), user.getPassword(), authorities,
-						user.getPhoneNumber(), user.getRoles());
+						user.getPhoneNumber(), user.getRoles(), user.getFirstName(), user.getLastName());
 			}
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
-			return new CustomUserDetails(null, null, null, null, null, null);
+			return new CustomUserDetails(null, null, null, null, null, null, null, null);
 		}
 
 	}
@@ -120,83 +145,111 @@ public class AuthServiceImp implements AuthService {
 		return null;
 	}
 
-	public List<UserEntity> processExcelFile(MultipartFile file) throws IOException {
-		List<UserEntity> users = new ArrayList<>();
+	public List<UserEntity> processExcelFile(MultipartFile file) {
+        List<UserEntity> users = new ArrayList<>();
 
-		try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
-			Sheet sheet = workbook.getSheetAt(0);
-			Iterator<Row> rowIterator = sheet.iterator();
+        try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
 
-			// Skipping the header row
-			if (rowIterator.hasNext()) {
-				rowIterator.next();
-			}
+            // Skipping the header row
+            if (rowIterator.hasNext()) {
+                rowIterator.next();
+            }
 
-			while (rowIterator.hasNext()) {
-				Row row = rowIterator.next();
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
 
-				UserEntity user = new UserEntity();
-				user.setEmail(getStringCellValue(row.getCell(2)));
-				String encodedPassword = passwordEncoder.encode(getDateCellValue(row.getCell(4)));
-				user.setPassword(encodedPassword);
-				user.setFirstName(getStringCellValue(row.getCell(0)));
-				user.setLastName(getStringCellValue(row.getCell(1)));
-				user.setPhoneNumber(getStringCellValue(row.getCell(3)));
-				user.setRoles("USER");
-				user.setUsername(getStringCellValue(row.getCell(2)));
+                UserEntity user = new UserEntity();
+                try {
+                    user.setEmail(getStringCellValue(row.getCell(2)));
+                    String encodedPassword = passwordEncoder.encode(getDateCellValue(row.getCell(4)));
+                    user.setPassword(encodedPassword);
+                    user.setFirstName(getStringCellValue(row.getCell(0)));
+                    user.setLastName(getStringCellValue(row.getCell(1)));
+                    user.setPhoneNumber(getStringCellValue(row.getCell(3)));
+                    user.setRoles("USER");
+                    user.setUsername(getStringCellValue(row.getCell(2)));
 
-				repo.save(user);
-			}
-			return users;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return users;
+                    repo.save(user);
+                    users.add(user);
+                } catch (Exception e) {
+                	logger.error("Error:" + e.getMessage(), e);
+                }
+            }
+        } catch (IOException e) {
+        	logger.error("Error:" + e.getMessage(), e);
+        }
 
-	}
+        return users;
+    }
 
 	private String getStringCellValue(Cell cell) {
+	try {	
 		if (cell == null) {
 			return null;
 		}
 		cell.setCellType(CellType.STRING);
 		return cell.getStringCellValue();
+	} catch (Exception e) {
+		logger.error("Error:" + e.getMessage(), e);
+        return null;
+    }
 	}
 
 	private static String getDateCellValue(Cell cell) {
-		if (cell == null || cell.getCellType() == CellType.BLANK) {
-			return null;
-		}
+	    try {
+	        if (cell == null || cell.getCellType() == CellType.BLANK) {
+	            return null;
+	        }
 
-		// Check if the cell contains a numeric value (Excel date representation)
-		if (DateUtil.isCellDateFormatted(cell)) {
-			Date date = cell.getDateCellValue();
-			// Format the date as a string (adjust the format as needed)
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-			return dateFormat.format(date);
-		} else if (cell.getCellType() == CellType.STRING) {
-			// If the cell contains a string, assume it's already a formatted date
-			return cell.getStringCellValue();
-		} else {
-			// If not a date or string, use DataFormatter to get the formatted date string
-			DataFormatter dataFormatter = new DataFormatter();
-			return dataFormatter.formatCellValue(cell);
-		}
+	        // Check if the cell contains a numeric value (Excel date representation)
+	        if (DateUtil.isCellDateFormatted(cell)) {
+	            Date date = cell.getDateCellValue();
+	            // Format the date as a string (adjust the format as needed)
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	            return dateFormat.format(date);
+	        } else if (cell.getCellType() == CellType.STRING) {
+	            // If the cell contains a string, assume it's already a formatted date
+	            return cell.getStringCellValue();
+	        } else {
+	            // If not a date or string, use DataFormatter to get the formatted date string
+	            DataFormatter dataFormatter = new DataFormatter();
+	            return dataFormatter.formatCellValue(cell);
+	        }
+	    } catch (Exception e) {
+	        // Log the error or handle it as per your application's requirements
+	    	logger.error("Error:" + e.getMessage(), e);
+	        return null;
+	    }
 	}
 
 	public List<SignupDTO> getAllUsers() {
-		List<UserEntity> users = repo.findAll();
-		return users.stream().map(this::convertToDto).collect(Collectors.toList());
+	    try {
+	        List<UserEntity> users = repo.findAll();
+	        return users.stream().map(this::convertToDto).collect(Collectors.toList());
+	    } catch (Exception e) {
+	        // Log the error or handle it as per your application's requirements
+	    	logger.error("Error:" + e.getMessage(), e); // You can replace this with appropriate logging
+	        return Collections.emptyList();
+	    }
 	}
 
 	private SignupDTO convertToDto(UserEntity user) {
-		SignupDTO userDto = new SignupDTO();
-		userDto.setEmail(user.getEmail());
-		userDto.setFirstName(user.getFirstName());
-		userDto.setLastName(user.getLastName());
-		userDto.setPhoneNumber(user.getPhoneNumber());
-		userDto.setRole(user.getRoles());
-		userDto.setUsername(user.getUsername());
-		return userDto;
+	    try {
+	        SignupDTO userDto = new SignupDTO();
+	        userDto.setEmail(user.getEmail());
+	        userDto.setFirstName(user.getFirstName());
+	        userDto.setLastName(user.getLastName());
+	        userDto.setPhoneNumber(user.getPhoneNumber());
+	        userDto.setRole(user.getRoles());
+	        userDto.setUsername(user.getUsername());
+	        return userDto;
+	    } catch (Exception e) {
+	        // Log the error or handle it as per your application's requirements
+	    	logger.error("Error:" + e.getMessage(), e);// You can replace this with appropriate logging
+	        return null;
+	    }
 	}
+
 }

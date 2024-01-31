@@ -32,18 +32,16 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 
-
-
 	@Autowired
 	private QuizService quizService;
 
 	@PostMapping("/")
-	public ResponseEntity<Question> add(@RequestBody Question questionDto) {
+	public ResponseEntity<Question> add(@RequestBody QuestionDto questionDto) {
 		return ResponseEntity.ok(this.questionService.addQuestion(questionDto));
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity<Question> update(@RequestBody Question questionDto) {
+	public ResponseEntity<Question> update(@RequestBody QuestionDto questionDto) {
 		return ResponseEntity.ok(this.questionService.updateQuestion(questionDto));
 	}
 
