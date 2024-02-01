@@ -29,7 +29,6 @@ public class ResultController {
 
 	@PostMapping("/eval")
 	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
-		System.out.println("working " + questions);
 		int marksGot = 0;
 		Integer correctAnswers = 0;
 		Integer attempted = 0;

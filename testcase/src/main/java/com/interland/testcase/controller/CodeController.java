@@ -18,31 +18,30 @@ import java.util.List;
 @RestController
 public class CodeController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);
 
-    @Autowired
-    private CodeExecutionServiceImple codeExecutionService;
+	@Autowired
+	private CodeExecutionServiceImple codeExecutionService;
 
-    @Autowired
-    private QuestionService questionService;
+	@Autowired
+	private QuestionService questionService;
 
-    @PostMapping("/execute")
-    public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
-        try {
-        	System.out.println(codeRequest.toString());
-            List<CodeResponse> codeResponses = codeExecutionService.executeCode(codeRequest);
-            return ResponseEntity.ok(codeResponses);
-        } catch (Exception e) {
-            LOGGER.error("Error at controller: " + e.getMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	@PostMapping("/execute")
+	public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
+		try {
+			List<CodeResponse> codeResponses = codeExecutionService.executeCode(codeRequest);
+			return ResponseEntity.ok(codeResponses);
+		} catch (Exception e) {
+			LOGGER.error("Error at controller: " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    @PostMapping("/excel")
-    public ResponseEntity<?> createExcel(@RequestParam("excelFile") MultipartFile excelFile) {
-        if (excelFile == null) {
-            return ResponseEntity.badRequest().body("Excel file is null");
-        }
-        return new ResponseEntity<>(questionService.processExcelData(excelFile), HttpStatus.ACCEPTED);
-    }
+	@PostMapping("/excel")
+	public ResponseEntity<?> createExcel(@RequestParam("excelFile") MultipartFile excelFile) {
+		if (excelFile == null) {
+			return ResponseEntity.badRequest().body("Excel file is null");
+		}
+		return new ResponseEntity<>(questionService.processExcelData(excelFile), HttpStatus.ACCEPTED);
+	}
 }

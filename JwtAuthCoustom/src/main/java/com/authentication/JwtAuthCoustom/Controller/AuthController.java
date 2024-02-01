@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +47,7 @@ public class AuthController {
 	ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO dto) {
 		return new ResponseEntity<>(service.addUser(dto), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/update")
 	ResponseEntity<?> adminUpdate(@Valid @RequestBody SignupDTO dto) {
 		return new ResponseEntity<>(service.updateAdmin(dto), HttpStatus.OK);
@@ -90,36 +89,26 @@ public class AuthController {
 	@PostMapping("/allclaims")
 	ResponseEntity<?> getAllClaims(@RequestBody JwtResponseDTO dtoo) {
 		Claims num = jwtUtil.extractAllClaims(dtoo.getToken());
-		System.out.println(num);
 		return new ResponseEntity(num, HttpStatus.OK);
 	}
 
 	@PostMapping("/extractclaims")
 	ResponseEntity<?> extractClaims(@RequestBody JwtResponseDTO dtoo) {
 		String num = jwtUtil.extractClaim(dtoo.getToken(), Claims::getSubject);
-		System.out.println(num);
 		return new ResponseEntity(num, HttpStatus.OK);
 	}
 
 	@PostMapping("/extractusername")
 	ResponseEntity<?> extractusername(@RequestBody JwtResponseDTO dtoo) {
 		String num = jwtUtil.extractUsername(dtoo.getToken());
-		System.out.println(num);
 		return new ResponseEntity(num, HttpStatus.OK);
 	}
 
 	@GetMapping("/current-user")
 	public ResponseEntity<?> getCurrentUser(Principal principal) {
 		if (principal != null && principal instanceof UsernamePasswordAuthenticationToken) {
-			UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-
-			// Assuming sub is the username in your case, modify this line accordingly
-			CustomUserDetails usernameObj = (CustomUserDetails) authenticationToken.getPrincipal();
-
-			System.err.println(usernameObj.toString());
-
 			String username = principal.getName();
-
+			System.out.println("Username : " + username);
 			return new ResponseEntity<>(this.userDetailsService.loadUserByUsername(username), HttpStatus.OK);
 		} else {
 			// Handle the case when there's no authentication information
@@ -129,7 +118,7 @@ public class AuthController {
 
 	@PostMapping("/upload")
 	public ResponseEntity<?> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
-        List<UserEntity> users = new ArrayList<>();
+		List<UserEntity> users = new ArrayList<>();
 		try {
 			users = service.processExcelFile(file);
 			// Save users to the database or perform other operations as needed
