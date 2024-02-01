@@ -31,7 +31,7 @@ public class CodeController {
 	}
 	@PostMapping("/active")
 	public ResponseEntity<?> getActiveCodeData(@RequestBody String userId) {
-		System.out.println(userId);
+		System.out.println("Username : " + userId);
 		return ResponseEntity.ok(questionService.getActiveRandomQuestionsForUser(userId));
 	}
 
