@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -108,15 +107,8 @@ public class AuthController {
 	@GetMapping("/current-user")
 	public ResponseEntity<?> getCurrentUser(Principal principal) {
 		if (principal != null && principal instanceof UsernamePasswordAuthenticationToken) {
-			UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-
-			// Assuming sub is the username in your case, modify this line accordingly
-			CustomUserDetails usernameObj = (CustomUserDetails) authenticationToken.getPrincipal();
-
-			System.err.println(usernameObj.toString());
-
 			String username = principal.getName();
-
+			System.out.println("Username : " + username);
 			return new ResponseEntity<>(this.userDetailsService.loadUserByUsername(username), HttpStatus.OK);
 		} else {
 			// Handle the case when there's no authentication information
