@@ -179,10 +179,14 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
 					codeResponse.setSuccess("true");
+					codeResponse.setInput(input);
+					codeResponse.setExpectedOutput(expectedOutput);
 					passedtestcases++;
 					codeResponse.setMessage("Test case passed!");
 				} else {
 					codeResponse.setSuccess("false");
+					codeResponse.setInput(input);
+					codeResponse.setExpectedOutput(expectedOutput);
 					codeResponse.setMessage(
 							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
 				}

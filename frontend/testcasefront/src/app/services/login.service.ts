@@ -63,6 +63,10 @@ export class LoginService {
     if (localStorage.getItem("codingQuestions")) {
       localStorage.removeItem("codingQuestions");
     }
+    localStorage.removeItem('javaEditorCode');
+    localStorage.removeItem('cppEditorCode');
+    localStorage.removeItem('cEditorCode');
+    localStorage.removeItem('pythonEditorCode');
   }
 
   //get token

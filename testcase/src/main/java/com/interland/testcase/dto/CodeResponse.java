@@ -3,6 +3,7 @@ package com.interland.testcase.dto;
 public class CodeResponse {
 	 String output;
 	 String Success;
+	 String expectedOutput;
 	 String Message;
 	 String input;
 
@@ -13,7 +14,14 @@ public class CodeResponse {
 	public void setInput(String input) {
 		this.input = input;
 	}
+	
+	public String getExpectedOutput() {
+		return expectedOutput;
+	}
 
+	public void setExpectedOutput(String expectedOutput) {
+		this.expectedOutput = expectedOutput;
+	}
 
 	public String getSuccess() {
 		return Success;
