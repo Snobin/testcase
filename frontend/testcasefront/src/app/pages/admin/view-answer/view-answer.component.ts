@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ExcelExportService } from 'src/app/services/excel-export.service';
 import { ResultService } from 'src/app/services/result.service';
 
 export interface UserData {
@@ -35,7 +36,8 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
   constructor(
     private ans: ResultService, 
     private router: Router,
-    private renderer: Renderer2 
+    private renderer: Renderer2 ,
+    private excelExportService: ExcelExportService
     ) {
     this.dataSource = new MatTableDataSource<UserData>([]);
   }
@@ -57,6 +59,8 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
     this.ans.getData().subscribe(
       (data: any) => {
         this.dataSource.data = data;
+        console.log(this.dataSource.data);
+        
       },
       (error) => {
         // Handle error
@@ -144,6 +148,11 @@ printTable() {
         }
       );
     }
+  }
+
+  async generateExcel() {
+    // Generate Excel
+    this.excelExportService.exportToExcel(this.dataSource.data, 'user_data');
   }
 
 } 

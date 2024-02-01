@@ -49,8 +49,29 @@ public class CombinedResultImplementation implements CombinedResultService{
 	            }
 
 	            combinedResult.setCodingPercentage(codingPercentage);
-	            combinedResult.setStatus("PROCESSED");
 
+	            double percentage = 0;
+	            if ((combinedResult.getObtainedScore() == null && combinedResult.getMaxScore() == null) || (combinedResult.getObtainedScore() == null && combinedResult.getMaxScore() == null)) {
+	            	combinedResult.setObtainedScore(Long.parseLong("0"));
+	            	combinedResult.setMaxScore("1");
+	            	String maxScoreStr = combinedResult.getMaxScore();
+	            	double maxScore = Double.parseDouble(maxScoreStr);
+	            	double obtainedScore = combinedResult.getObtainedScore();
+	            	percentage = (obtainedScore / maxScore) * 100;
+				} else {
+					String maxScoreStr = combinedResult.getMaxScore();
+					double maxScore = Double.parseDouble(maxScoreStr);
+					double obtainedScore = combinedResult.getObtainedScore();
+					percentage = (obtainedScore / maxScore) * 100;
+				}
+	            if (combinedResult.getCodingPercentage() != null) {
+			        if (percentage >= 30.0 && combinedResult.getCodingPercentage() >= 30.0) {
+			           combinedResult.setStatus("PASSED");
+			        } 
+	            } else {
+	           	 	combinedResult.setCodingPercentage(0.0);
+	           	 	combinedResult.setStatus("FAILED");
+	            }
 	            combinedresultRepo.save(combinedResult);
 	        }
 	    } catch (Exception e) {
