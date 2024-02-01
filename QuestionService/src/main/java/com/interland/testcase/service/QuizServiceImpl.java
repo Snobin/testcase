@@ -109,6 +109,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Quiz getQuiz(Long quizId) {
         try {
+        	System.out.println("hello");
             return this.quizRepository.findById(quizId).orElse(null);
         } catch (Exception e) {
         	logger.error("Error:" + e.getMessage(), e);

@@ -118,4 +118,11 @@ public class Quiz {
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return "Quiz [qid=" + qid + ", title=" + title + ", description=" + description + ", maxMarks=" + maxMarks
+				+ ", time=" + time + ", numberOfQuestions=" + numberOfQuestions + ", active=" + active + ", category="
+				+ category + ", questions=" + questions + "]";
+	}
+
 }

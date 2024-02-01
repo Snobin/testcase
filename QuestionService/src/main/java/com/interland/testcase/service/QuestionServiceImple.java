@@ -231,6 +231,7 @@ public class QuestionServiceImple implements QuestionService {
 	        codingQuestion.setExample1Exp(obj.getEx1explanation());
 	        codingQuestion.setExample2Exp(obj.getEx2explanation());
 	        codingQuestion.setConstraints(obj.getConstraints());
+	        codingQuestion.setTime(obj.getTime());
 	        processExcelData(obj.getFileContent());
 
 	        competitiveQuestionRepository.save(codingQuestion);

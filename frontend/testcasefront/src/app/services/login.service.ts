@@ -44,6 +44,11 @@ export class LoginService {
 
   //logout: remove token from localStorage
   public logout() {
+    this.removeStorage();
+    return true;
+  }
+
+  public removeStorage(){
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     if (localStorage.getItem("quizzes")) {
@@ -58,7 +63,10 @@ export class LoginService {
     if (localStorage.getItem("codingQuestions")) {
       localStorage.removeItem("codingQuestions");
     }
-    return true;
+    localStorage.removeItem('javaEditorCode');
+    localStorage.removeItem('cppEditorCode');
+    localStorage.removeItem('cEditorCode');
+    localStorage.removeItem('pythonEditorCode');
   }
 
   //get token
