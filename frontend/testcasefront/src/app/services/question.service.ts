@@ -49,7 +49,7 @@ export class QuestionService {
     formData.append('constraints', question.constraints);
     formData.append('qid', question.qid);
     formData.append('active', (question.active || false).toString());
-    formData.append('time',question.Time);
+    formData.append('time',question.time);
     
     if (file) {
       formData.append('fileContent', file, file.name);

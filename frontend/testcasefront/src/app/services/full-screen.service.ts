@@ -36,6 +36,7 @@ constructor(
       
       if(this.variable%3==0){
         Swal.fire('you are disqualified' );
+
         this.login.removeStorage();
         this.router.navigate(['./final']);
        }
