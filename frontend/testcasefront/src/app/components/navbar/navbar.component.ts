@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -158,6 +159,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
       url.includes('/start')
       // Add more conditions as needed for other components
     );
+  }
+
+  submitExam() {
+    Swal.fire({
+      title: 'Do you want to submit the exam?',
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      denyButtonText: 'Cancel',
+      icon: 'info'
+    }).then((e) => {
+      if (e.isConfirmed) {
+        this.submit()
+      }
+    });
   }
 
   isLogged() {
