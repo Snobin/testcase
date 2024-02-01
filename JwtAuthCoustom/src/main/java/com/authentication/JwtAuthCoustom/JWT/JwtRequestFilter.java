@@ -45,13 +45,11 @@ public class JwtRequestFilter extends OncePerRequestFilter
 //        	System.out.println("Not validated token");
             if (jwtUtil.validateToken(jwt, userDetails))
             {
-            	System.out.println("Validated token");
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities()
                 );
-            	System.out.println("Validated token");
                 authToken.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );

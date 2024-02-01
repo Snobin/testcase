@@ -1,10 +1,10 @@
 <div class="bootstrap-wrapper">
     <div class="container-fluid">
         <h1 class="mt20"> Available Content</h1>
-        <div class="row mt20" *ngFor="let quiz of quizzes">
+        <div class="row mt20">
             <!-- Display Quizzes -->
-            <div class="col-md-4" *ngIf="title == quiz.category.title && catId == quiz.category.cid">
-                <mat-card class="mb20">
+            <div class="col-sm-4 col-md-4 col-lg-4" *ngFor="let quiz of quizzes">
+                <mat-card class="mb20" *ngIf="title == quiz.category.title && catId == quiz.category.cid">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>
@@ -18,7 +18,7 @@
                         <p class="truncate">{{quiz.description}}</p>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-button color="primary" (click)="question(quiz.qid)">Start</button>
+                        <button mat-button [class.text-success]="buttonColor(quiz.qid, 'QUIZ') == 'success'" [class.mat-primary]="buttonColor(quiz.qid, 'QUIZ') == 'primary'" (click)="question(quiz.qid)" [innerText]="buttonStatusQuestion(quiz.qid)"></button>
                         <button mat-button color="warn">Questions:
                             {{quiz.numberOfQuestions}}</button>
                         <button mat-button color="warn">Marks:
@@ -29,7 +29,7 @@
         </div>
 
         <div class="row mt20" *ngIf="title === 'CODING'">
-            <div class="col-md-4" *ngFor="let codingQuestion of codingQuestions">
+            <div class="col-sm-4 col-md-4 col-lg-4" *ngFor="let codingQuestion of codingQuestions">
                 <mat-card class="mb20">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
@@ -44,7 +44,7 @@
                         <p class="truncate">{{codingQuestion.description}}</p>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-button color="primary" (click)="coding(codingQuestion.questionId)">Start</button>
+                        <button mat-button [class.text-success]="buttonColor(codingQuestion.questionId, 'CODING') == 'success'" [class.mat-primary]="buttonColor(codingQuestion.questionId, 'CODING') == 'primary'" (click)="coding(codingQuestion.questionId)" [innerText]="buttonStatusCoding(codingQuestion.questionId)"></button>
                     </mat-card-actions>
                 </mat-card>
             </div>

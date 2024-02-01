@@ -8,21 +8,32 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  isLoggedIn: any;
-  user: any;
 
-  constructor(  
-      public login: LoginService,
-      private router:Router
-    ) { }
+  sidebar: any = {
+    "0": true,
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": false,
+    "5": false,
+    "6": false,
+    "7": false,
+    "8": false,
+  }
+
+  constructor() { }
 
   ngOnInit(): void {
   }
-  logout() {
-    this.login.logout();
-    this.isLoggedIn = this.login.isloggedin();
-    this.user = this.login.getUser();
-    this.router.navigate([`login`]);
+
+  
+  setFocus(selectedCategory: any) {
+    for (let index = 0; index < 9; index++) {
+      this.sidebar[index] = false;
+      if (selectedCategory == index) {
+        this.sidebar[selectedCategory] = true;
+      }
+    }
   }
 
 }

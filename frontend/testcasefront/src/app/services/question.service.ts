@@ -13,6 +13,9 @@ export class QuestionService {
   public getQuestions(qid) {
     return this.http.get(`${this.baseUrl}/quiz/all/${qid}`);
   }
+  public getQuestion(questId) {
+    return this.http.get(`${this.baseUrl}/${questId}`);
+  }
 
   public getQuestionsForQuiz(qid) {
     return this.http.get(`${this.baseUrl}/quiz/${qid}`);
@@ -46,9 +49,8 @@ export class QuestionService {
     formData.append('constraints', question.constraints);
     formData.append('qid', question.qid);
     formData.append('active', (question.active || false).toString());
-  
-    console.log(50, file);
-  
+    formData.append('time',question.Time);
+    
     if (file) {
       formData.append('fileContent', file, file.name);
     }
@@ -66,6 +68,9 @@ export class QuestionService {
   // Add Question
   public addQuestion(question) {
     return this.http.post(`${this.baseUrl}/`, question);
+  }
+  public updateQuestion(question) {
+    return this.http.post(`${this.baseUrl}/update`, question);
   }
 
   // delete question

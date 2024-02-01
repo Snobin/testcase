@@ -1,0 +1,40 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 bg-white p-30 mt-10">
+                <div class="container">
+                    <img src="../../../assets/" alt="">
+                </div>
+                <h1 class="text-center">Admin Update</h1>
+                <form (ngSubmit)="formSubmit()">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>User Name</mat-label>
+                            <input matInput placeholder="Enter here" [(ngModel)]="userdata.username" name="user" required>
+                            <mat-hint>Username must be unique</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>First Name</mat-label>
+                            <input [(ngModel)]="userdata.firstName" name="first" matInput placeholder="Enter here" id="firstName" required >
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Enter here"  [(ngModel)]="userdata.lastName" name="last">
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Email Address</mat-label>
+                            <input type="email" readonly matInput placeholder="Enter here"  [(ngModel)]="userdata.email" name="email" required>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                            <input type="text" matInput placeholder="Enter here"  [(ngModel)]="userdata.phoneNumber" name="phoneNumber" id="phoneNumber" required  >
+                        
+                    </mat-form-field>
+                  
+                    <div class="container text-center">
+                        <button type="submit" mat-raised-button color="primary" >Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

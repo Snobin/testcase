@@ -98,27 +98,6 @@ export class ConsoleComponent implements OnInit {
     this.isOpen = true;
   }
 
-
-
-  // qnData(qid) {
-  //   this.service.questionReq(qid).subscribe(
-  //     (data: any) => {
-  //       if (data) {
-  //         this.questiondata = data;
-  //         console.log(data);
-  //       } else {
-  //         console.error('No data received from the service.');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  //   this.case_1 = this.cases[0];
-  //   this.case_2 = this.cases[1];
-  //   this.case_3 = this.cases[2];
-  // }
-
   qnData(qid) {
     this.service.questionReq(qid).subscribe(
       (data: any) => {
@@ -182,28 +161,28 @@ export class ConsoleComponent implements OnInit {
       return "text/x-java";
     } else if (this.selectedLanguage == 'cpp') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << 'Hello World!';\n\treturn 0;\n}"
+        this.code = "// This program prints Hello, world!\n\n#include <iostream>\n\nint main() {\n\tstd::cout << \"Hello World!\";\n\treturn 0;\n}"
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-c++src";
     } else if (this.selectedLanguage == 'python') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "# This program prints Hello, world!\n\nprint('Hello, world!')";
+        this.code = "# This program prints Hello, world!\n\nprint(\"Hello, world!\")";
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-python";
     } else if (this.selectedLanguage == 'c') {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf('Hello, World!');\n\treturn 0;\n}";
+        this.code = "// This program prints Hello, world! \n\n#include <stdio.h>\n\nint main() {\n\tprintf(\"Hello, World!\");\n\treturn 0;\n}";
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
       return "text/x-csrc";
     } else {
       if (!localStorage.getItem(`${this.selectedLanguage}EditorCode`)) {
-        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println('Hello, World!'); \n\t}\n}";
+        this.code = "// This program prints Hello, world! \n \n class HelloWorld { \n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World!\"); \n\t}\n}";
       } else {
         this.code = localStorage.getItem(`${this.selectedLanguage}EditorCode`)
       }
@@ -315,6 +294,14 @@ export class ConsoleComponent implements OnInit {
         this.loading = false;
         if (status == 'Submit') {
           this.submit = "Submit";
+          if (localStorage.getItem("codingQuestions")) {
+            let codingQuestions = JSON.parse(localStorage.getItem("codingQuestions"));
+            const index = codingQuestions.findIndex(q => q.questionId == this.qId);
+            if (index != -1) {
+              codingQuestions[index].status = 'Review';
+            }
+            localStorage.setItem('codingQuestions', JSON.stringify(codingQuestions));
+          }
         }
         if (status == 'run') {
           this.runText = "Run<i class='bi bi-play-fill'></i>";

@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
 
   userdata: User = new User();
+  validationMessage: any;
 
   constructor(private userservice: UserService, private snack: MatSnackBar, private router: Router) { }
 
@@ -30,18 +31,29 @@ export class SignupComponent implements OnInit {
       return;
     }
     this.userservice.addUser(this.userdata).subscribe(
-      (data) => {
+      (data:any) => {
         if (data.body == 'Successfully Inserted') {
           this.router.navigate([`./login`]);
           Swal.fire("Success", 'User is Registered', 'success')
         } else {
-          Swal.fire('Error!', data.body, 'error');
+          if (data.details) {
+            data.details.forEach((element) => {
+              var key = Object.keys(element)[0];
+              this.validationMessage[key] = element[key];
+            });
+          // console.log(this.validationMessage);
+          
+          }
+          // Swal.fire('Error!', data["message"], 'error');
         }
+        
+        console.log(data);
       },
-      (error) => {
+      error => {
+
         console.log(error);
-        alert("error");
-      }
-    )
+        // alert("error");
+      }, () => {
+      })
   }
 }

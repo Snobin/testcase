@@ -17,28 +17,30 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Quiz {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long qid;
 
 	private String title;
-	
+
 	@Column(length = 5000)
 	private String description;
-	
+
 	private String maxMarks;
-	
+
+	private String time;
+
 	private String numberOfQuestions;
-	
+
 	private boolean active = false;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
-	
-	@OneToMany(mappedBy = "quiz",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<Question> questions=new HashSet<>();
+	private Set<Question> questions = new HashSet<>();
 
 	public Long getQid() {
 		return qid;
@@ -52,11 +54,17 @@ public class Quiz {
 		return title;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
 
 	public String getDescription() {
 		return description;
@@ -97,8 +105,6 @@ public class Quiz {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
 
 	public Category getCategory() {
 		return category;
@@ -111,8 +117,5 @@ public class Quiz {
 	public Quiz() {
 		super();
 	}
-	
-	
-	
-	
+
 }

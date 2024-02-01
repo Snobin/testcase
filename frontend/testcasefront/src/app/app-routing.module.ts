@@ -29,7 +29,13 @@ import { UpdatecodeComponent } from './pages/admin/updatecode/updatecode.compone
 import { AnsDetailsComponent } from './pages/admin/ans-details/ans-details.component';
 import { FinalComponent } from './pages/user/final/final.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { UserdetailComponent } from './pages/admin/userdetail/userdetail.component';
+
+import { AdminupdateComponent } from './pages/admin/adminupdate/adminupdate.component';
+import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
+
 
 
 const routes: Routes = [
@@ -63,6 +69,10 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
+        path: 'userlist',
+        component: UserdetailComponent
+      },
+      {
         path:'users',
         component:UsersComponent
       },
@@ -89,7 +99,11 @@ const routes: Routes = [
       }, {
         path: 'add-question/:qid/:title',
         component: AddQuestionComponent, canActivate: [AdminGuard]
-      }, {
+      },  {
+        path: 'question/:title/:qid/:questId',
+        component: UpdateQuestionComponent, canActivate: [AdminGuard]
+      }, 
+      {
         path: 'add-code',
         component: AddCodeComponent, canActivate: [AdminGuard]
       }, {
@@ -102,6 +116,11 @@ const routes: Routes = [
         path: 'code/:qid',
         component: UpdatecodeComponent, canActivate: [AdminGuard]
       },
+      {
+        path: 'update',
+        component: AdminupdateComponent
+      },
+
        { path: 'details/:userId', component: AnsDetailsComponent },
     ]
   },

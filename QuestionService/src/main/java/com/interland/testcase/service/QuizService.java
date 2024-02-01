@@ -3,14 +3,15 @@ package com.interland.testcase.service;
 import java.util.List;
 import java.util.Set;
 
+import com.interland.testcase.dto.QuizDto;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Quiz;
 
 public interface QuizService {
 
-	public Quiz addQuiz(Quiz quiz);
+	public Quiz addQuiz(QuizDto quiz);
 
-	public Quiz updateQuiz(Quiz quiz);
+	public Quiz updateQuiz(QuizDto quiz);
 
 	public Set<Quiz> getQuizzes();
 
@@ -23,5 +24,6 @@ public interface QuizService {
 	public List<Quiz> getActiveQuizes();
 
 	public List<Quiz> getAtiveQuizzesCategory(Category category);
+
 
 }

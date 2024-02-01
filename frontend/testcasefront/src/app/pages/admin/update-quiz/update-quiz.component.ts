@@ -41,6 +41,8 @@ export class UpdateQuizComponent implements OnInit {
     );
   }
   update(){
+    console.log(this.quizdata);
+    
     this.quiz.updateQuiz(this.quizdata).subscribe(
       (data)=>{
         Swal.fire('Success','quiz updated','success').then((e)=>{

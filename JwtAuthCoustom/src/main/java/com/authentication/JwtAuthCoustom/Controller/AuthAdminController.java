@@ -14,20 +14,14 @@ import com.authentication.JwtAuthCoustom.ServiceImp.AuthServiceImp;
 
 @RestController
 @RequestMapping("/api")
-public class AuthAdminController 
-{
+public class AuthAdminController {
 
-    @Autowired
-    private AuthServiceImp userDetailsService;
-	
+	@Autowired
+	private AuthServiceImp userDetailsService;
+
 	@GetMapping("/admin")
-	ResponseEntity<?> adminAcees()
-	{
-		return new ResponseEntity<>("Admin Aceess",HttpStatus.OK);
+	ResponseEntity<?> adminAcees() {
+		return new ResponseEntity<>("Admin Aceess", HttpStatus.OK);
 	}
-	
-
-
-	
 
 }

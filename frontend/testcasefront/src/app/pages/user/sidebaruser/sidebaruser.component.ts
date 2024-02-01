@@ -14,6 +14,10 @@ export class SidebaruserComponent implements OnInit {
   ngOnInit(): void {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
+      this.categories.forEach((c) => {
+        c['focus'] = false;
+      });
+      this.categories[0].focus = true;
     },
       (error) => {
         this.snack.open('Error in loading categories from server', '', {
@@ -21,6 +25,12 @@ export class SidebaruserComponent implements OnInit {
         });
       }
     );
+  }
+
+  setFocus(selectedCategory: any) {
+    // Set focus to the selected category
+    this.categories.forEach(category => (category.focus = false)); // Reset focus for all categories
+    selectedCategory.focus = true;
   }
 
 }

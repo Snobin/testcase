@@ -66,6 +66,11 @@
                 <mat-label>Question ID</mat-label>
                 <input style="width: 40%;" [(ngModel)]="codeInput.qid" type="text" name="QID" placeholder="Enter here" matInput/>
               </mat-form-field>
+
+              <mat-form-field appearance="fill" style="margin-left: 10%; width: 40%;">
+                <mat-label>Time:</mat-label>
+                <input  [(ngModel)]="codeInput.Time" type="text" name="time" placeholder="Enter Time in minutes" matInput/>
+              </mat-form-field>
             </div>
     
             <br>
@@ -80,7 +85,7 @@
           
   
             <div class="container text-center">
-              <button mat-raised-button color="primary">Add</button>
+              <button mat-raised-button color="primary">Update</button>
             </div>
           </form>
         </div>

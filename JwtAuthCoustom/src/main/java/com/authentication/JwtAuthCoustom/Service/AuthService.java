@@ -11,15 +11,16 @@ import com.authentication.JwtAuthCoustom.DTO.SignupDTO;
 import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-
-
 public interface AuthService {
-	
+
 	public ResponseEntity<?> addUser(SignupDTO dto);
 
 	public boolean checkemailpassword(LoginDTO ldto);
 
 	public ObjectNode processExcelData(MultipartFile excelFile);
+
 	public List<UserEntity> processExcelFile(MultipartFile file) throws IOException;
+
+	public List<SignupDTO> getAllUsers();
 
 }

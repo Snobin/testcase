@@ -1,5 +1,5 @@
-<mat-toolbar color="primary">
-  <a routerLink="/" mat-icon-button class="example-icon"
+<mat-toolbar color="primary" class="min-w-1024">
+  <a mat-icon-button class="example-icon"
     aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </a>
@@ -15,10 +15,10 @@
       <!-- Timer Display -->
       <div class="container-fluid">
         <div class="row text-center p-0 timer-div" *ngIf="showTimer && status">
-          <div class="col-md-2 p-0">
+          <div class="col-sm-2 col-md-2 col-lg-2 p-0">
             <i class="bi bi-alarm text-light p-0"></i>
           </div>
-          <div class="col-md-10 p-0">
+          <div class="col-sm-10 col-md-10 col-lg-10 p-0">
             <h3 class="timer"
               [class.text-light]="countdownMinutes >= 1"
               [class.text-danger]="countdownMinutes < 1">
@@ -43,13 +43,8 @@
   class="text-white mr20" >
   Submit
 </a>
-  <a *ngIf="isLoggedIn && !showTimer && !status" (click)="logout()" mat-icon-button
+  <a *ngIf="isLoggedIn && !showTimer" (click)="logout()" mat-icon-button
     class="text-white mr20" aria-label="Logout">
     Logout
   </a>
-  <button *ngIf="login.isloggedin && user" routerLink="/admin/profile"
-    mat-button class="text-white mr20"
-    aria-label="User Profile">
-    {{ user.username }}
-  </button>
 </mat-toolbar>

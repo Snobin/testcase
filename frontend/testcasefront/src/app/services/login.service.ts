@@ -7,14 +7,18 @@ import { Subject } from 'rxjs';
 })
 export class LoginService {
 
-  public loginStatusSubject=new Subject<boolean>();
+  public loginStatusSubject = new Subject<boolean>();
 
   baseUrl = 'http://localhost:8081/auth';
 
   constructor(private http: HttpClient) { }
 
-  public getCurrentUser(){
+  public getCurrentUser() {
     return this.http.get(`${this.baseUrl}/current-user`);
+  }
+
+  getData() {
+    return this.http.get(`${this.baseUrl}/userlist`);
   }
 
   //generate token
@@ -42,6 +46,18 @@ export class LoginService {
   public logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    if (localStorage.getItem("quizzes")) {
+      let quizzes = JSON.parse(localStorage.getItem("quizzes"));
+      for (let index = 0; index < quizzes.length; index++) {
+        if (localStorage.getItem(`questions${quizzes[index].qid}`)) {
+          localStorage.removeItem(`questions${quizzes[index].qid}`);
+        }
+      }
+      localStorage.removeItem("quizzes");
+    }
+    if (localStorage.getItem("codingQuestions")) {
+      localStorage.removeItem("codingQuestions");
+    }
     return true;
   }
 
@@ -71,6 +87,6 @@ export class LoginService {
     let user = this.getUser();
     return user.authorities[0].authority;
   }
-  
+
 
 }

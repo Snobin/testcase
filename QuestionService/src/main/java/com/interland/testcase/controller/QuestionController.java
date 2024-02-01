@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.interland.testcase.dto.CodingQuestionInputDto;
+import com.interland.testcase.dto.QuestionDto;
 import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
 import com.interland.testcase.service.QuestionService;
@@ -26,26 +27,22 @@ import com.interland.testcase.service.ResultService;
 
 @RestController
 @RequestMapping("/question")
-
 public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
 
 	@Autowired
-	private ResultService resultService;
-
-	@Autowired
 	private QuizService quizService;
 
 	@PostMapping("/")
-	public ResponseEntity<Question> add(@RequestBody Question question) {
-		return ResponseEntity.ok(this.questionService.addQuestion(question));
+	public ResponseEntity<Question> add(@RequestBody QuestionDto questionDto) {
+		return ResponseEntity.ok(this.questionService.addQuestion(questionDto));
 	}
 
-	@PutMapping("/")
-	public ResponseEntity<Question> update(@RequestBody Question question) {
-		return ResponseEntity.ok(this.questionService.updateQuestion(question));
+	@PostMapping("/update")
+	public ResponseEntity<Question> update(@RequestBody QuestionDto questionDto) {
+		return ResponseEntity.ok(this.questionService.updateQuestion(questionDto));
 	}
 
 	@GetMapping("/quiz/{qid}")
@@ -83,37 +80,14 @@ public class QuestionController {
 		this.questionService.deleteQuestion(quesId);
 	}
 
-//	@PostMapping("/eval")
-//	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
-//		int marksGot = 0;
-//		Integer correctAnswers = 0;
-//		Integer attempted = 0;
-//		resultService.result(questions);
-//		for (Question q : questions) {
-//			Question question = this.questionService.get(q.getQuesId());
-//			if (question.getAnswer().equals(q.getGivenAnswer())) {
-//				correctAnswers++;
-//				double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
-//				marksGot += marksSingle;
-//			}
-//			if (q.getGivenAnswer() != null) {
-//				attempted++;
-//			}
-//		}
-//		Map<Object, Object> map = Map.of("marksGot", marksGot, "correctAnswers", correctAnswers, "attempted",
-//				attempted);
-//		return ResponseEntity.ok(map);
-//	}
 
 	@PostMapping("/addCodingQuestion")
 	public ResponseEntity<?> addCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
-		System.out.println(codingQuestionInputDto.toString());
 		return questionService.addCodingQuestion(codingQuestionInputDto);
 	}
 
 	@PutMapping("/updateCodingQuestion")
 	public ResponseEntity<?> updateCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
-		System.out.println(codingQuestionInputDto.toString());
 		return questionService.updateCodingQuestion(codingQuestionInputDto);
 	}
 

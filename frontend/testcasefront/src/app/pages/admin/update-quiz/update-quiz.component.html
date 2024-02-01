@@ -6,49 +6,38 @@
                 <form *ngIf="quizdata" (ngSubmit)="update()">
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Enter Title</mat-label>
-                        <input [(ngModel)]="quizdata.title" type="text" name="title" placeholder="Enter here" matInput/>
+                        <input [(ngModel)]="quizdata.title" type="text" name="title" placeholder="Enter here"
+                            matInput />
                     </mat-form-field>
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Enter Description</mat-label>
-                        <textarea 
-                        [(ngModel)]="quizdata.description"
-                         name="description" 
-                         placeholder="Enter here" 
-                         matInput
-                         rows="5"
-                         ></textarea>
+                        <textarea [(ngModel)]="quizdata.description" name="description" placeholder="Enter here"
+                            matInput rows="5"></textarea>
                     </mat-form-field>
                     <div class="row">
                         <div class="col-md-6">
-                           <mat-form-field class="w100" appearance="fill">
-                            <mat-label>Maximum Marks</mat-label>
-                            <input 
-                            [(ngModel)]="quizdata.maxMarks"
-                            type="text"
-                             name="maxMarks"
-                              placeholder="Enter here"
-                               matInput/>
-                        </mat-form-field>
+                            <mat-form-field class="w100" appearance="fill">
+                                <mat-label>Maximum Marks</mat-label>
+                                <input [(ngModel)]="quizdata.maxMarks" type="text" name="maxMarks"
+                                    placeholder="Enter here" matInput />
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6">
                             <mat-form-field class="w100" appearance="fill">
                                 <mat-label>Number of Question</mat-label>
-                                <input 
-                                [(ngModel)]="quizdata.numberOfQuestions"
-                                type="text"
-                                 name="numberOfQuestions"
-                                  placeholder="Enter here"
-                                   matInput/>
+                                <input [(ngModel)]="quizdata.numberOfQuestions" type="text" name="numberOfQuestions"
+                                    placeholder="Enter here" matInput />
                             </mat-form-field>
                         </div>
                     </div>
-                    <mat-slide-toggle
-                    name="active"
-                    [(ngModel)]="quizdata.active"
-                    class="mt20"
-                    color="primary">
-                    Publish Status
+                    <mat-slide-toggle name="active" [(ngModel)]="quizdata.active" class="mt20" color="primary">
+                        Publish Status
                     </mat-slide-toggle>
+                    <mat-form-field appearance="fill" style="margin-left: 35%; width: 20%;">
+                        <mat-label>Time:</mat-label>
+                        <input [(ngModel)]="quizdata.time"  name="time" placeholder="Enter Time in minutes"
+                            matInput />
+                    </mat-form-field>
                     <br>
                     <mat-form-field appearance="fill" class="mt20 w100">
                         <mat-label>Categories</mat-label>
@@ -58,7 +47,6 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-
                     <div class="container text-center">
                         <button mat-raised-button color="primary">Update</button>
                     </div>
@@ -66,5 +54,4 @@
             </div>
         </div>
     </div>
-   
 </mat-card>

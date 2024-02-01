@@ -49,6 +49,10 @@
                     color="primary">
                     Publish Status
                     </mat-slide-toggle>
+                    <mat-form-field appearance="fill" style="margin-left: 35%; width: 20%;">
+                        <mat-label>Time:</mat-label>
+                        <input  [(ngModel)]="Data.time" type="text" name="time" placeholder="Enter Time in minutes" matInput/>
+                      </mat-form-field>
                     <br>
                     <mat-form-field appearance="fill" class="mt20 w100">
                         <mat-label>Categories</mat-label>

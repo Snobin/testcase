@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,8 +12,8 @@ export interface UserData {
   correctAnswers: number;
   maxScore: string;
   totalQuestion: number;
-  codingPercentage:number;
-  status:String;
+  codingPercentage: number;
+  status: String;
 }
 
 @Component({
@@ -22,16 +22,21 @@ export interface UserData {
   styleUrls: ['./view-answer.component.css']
 })
 export class ViewAnswerComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['user', 'attempted', 'obtainedScore', 'correctAnswers', 'maxScore', 'totalQuestion','codingPercentage','status'];
+  displayedColumns: string[] = ['user', 'attempted', 'obtainedScore', 'correctAnswers', 'maxScore', 'totalQuestion', 'codingPercentage', 'status'];
   dataSource: MatTableDataSource<UserData>;
 
+  @ViewChild('table') table: ElementRef;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   // selectedRow: any;
   selectedRows: any[] = [];
 
-  constructor(private ans: ResultService,private router:Router) {
+  constructor(
+    private ans: ResultService, 
+    private router: Router,
+    private renderer: Renderer2 
+    ) {
     this.dataSource = new MatTableDataSource<UserData>([]);
   }
 
@@ -42,6 +47,10 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    if (this.table && this.table.nativeElement) {
+      const printContents = this.table.nativeElement.outerHTML;
+      // ... rest of the code ...
+    }
   }
 
   getData() {
@@ -54,6 +63,27 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
       }
     );
   }
+
+printTable() {
+  const printContents = this.table.nativeElement.cloneNode(true);
+  const popupWin = window.open('', '_blank', 'width=600,height=600');
+
+  popupWin.document.open();
+  popupWin.document.write(`
+    <html>
+      <head>
+        <style>
+          /* Optional styling for print */
+          // ... add any additional styling ...
+        </style>
+      </head>
+      <body onload="window.print();window.onafterprint = function(){window.close();}">
+        ${printContents.outerHTML}
+      </body>
+    </html>`
+  );
+  popupWin.document.close();
+}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -96,12 +126,12 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
       this.selectedRows.splice(index, 1);
     }
   }
-  
+
   deleteSelectedRows(): void {
     if (this.selectedRows.length > 0) {
       const selectedUsers = this.selectedRows.map((row) => row.user);
       console.log(selectedUsers);
-  
+
       this.ans.deleteUsers(selectedUsers).subscribe(
         (data: any) => {
           console.log(data);
@@ -115,5 +145,5 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
       );
     }
   }
-  
+
 } 
