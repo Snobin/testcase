@@ -48,7 +48,7 @@ public class AuthController {
 	ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO dto) {
 		return new ResponseEntity<>(service.addUser(dto), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/update")
 	ResponseEntity<?> adminUpdate(@Valid @RequestBody SignupDTO dto) {
 		return new ResponseEntity<>(service.updateAdmin(dto), HttpStatus.OK);
@@ -90,21 +90,18 @@ public class AuthController {
 	@PostMapping("/allclaims")
 	ResponseEntity<?> getAllClaims(@RequestBody JwtResponseDTO dtoo) {
 		Claims num = jwtUtil.extractAllClaims(dtoo.getToken());
-		System.out.println(num);
 		return new ResponseEntity(num, HttpStatus.OK);
 	}
 
 	@PostMapping("/extractclaims")
 	ResponseEntity<?> extractClaims(@RequestBody JwtResponseDTO dtoo) {
 		String num = jwtUtil.extractClaim(dtoo.getToken(), Claims::getSubject);
-		System.out.println(num);
 		return new ResponseEntity(num, HttpStatus.OK);
 	}
 
 	@PostMapping("/extractusername")
 	ResponseEntity<?> extractusername(@RequestBody JwtResponseDTO dtoo) {
 		String num = jwtUtil.extractUsername(dtoo.getToken());
-		System.out.println(num);
 		return new ResponseEntity(num, HttpStatus.OK);
 	}
 
@@ -129,7 +126,7 @@ public class AuthController {
 
 	@PostMapping("/upload")
 	public ResponseEntity<?> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
-        List<UserEntity> users = new ArrayList<>();
+		List<UserEntity> users = new ArrayList<>();
 		try {
 			users = service.processExcelFile(file);
 			// Save users to the database or perform other operations as needed

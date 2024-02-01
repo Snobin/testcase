@@ -75,61 +75,61 @@ public class QuestionServiceImple implements QuestionService {
 
 	@Autowired
 	private CompetitiveQuestionRepository competitiveQuestionRepository;
-	
+
 	@Autowired
 	private UserQuestionAssociationRepo userQuestionAssociationRepository;
 
 	private static final Logger logger = LoggerFactory.getLogger(QuestionServiceImple.class);
 
 	public List<McqQuestion> createMcqQuestions(MultipartFile questionFile) {
-	    List<McqQuestion> mcqQuestions = new ArrayList<>();
+		List<McqQuestion> mcqQuestions = new ArrayList<>();
 
-	    try {
-	        Workbook workbook = new XSSFWorkbook(questionFile.getInputStream());
-	        Sheet sheet = workbook.getSheetAt(0);
+		try {
+			Workbook workbook = new XSSFWorkbook(questionFile.getInputStream());
+			Sheet sheet = workbook.getSheetAt(0);
 
-	        Iterator<Row> rowIterator = sheet.iterator();
-	        if (rowIterator.hasNext()) {
-	            rowIterator.next(); // Skip header row
-	        }
+			Iterator<Row> rowIterator = sheet.iterator();
+			if (rowIterator.hasNext()) {
+				rowIterator.next(); // Skip header row
+			}
 
-	        while (rowIterator.hasNext()) {
-	            Row questionRow = rowIterator.next();
+			while (rowIterator.hasNext()) {
+				Row questionRow = rowIterator.next();
 
-	            // Assuming questionId is in the first column
-	            long questionId = (long) questionRow.getCell(0).getNumericCellValue();
-	            String questionText = questionRow.getCell(1).getStringCellValue();
-	            String optionA = questionRow.getCell(2).getStringCellValue();
-	            String optionB = questionRow.getCell(3).getStringCellValue();
-	            String optionC = questionRow.getCell(4).getStringCellValue();
-	            String optionD = questionRow.getCell(5).getStringCellValue();
-	            String correctAnswer = questionRow.getCell(6).getStringCellValue();
-	            String additionalInfo = questionRow.getCell(7).getStringCellValue();
+				// Assuming questionId is in the first column
+				long questionId = (long) questionRow.getCell(0).getNumericCellValue();
+				String questionText = questionRow.getCell(1).getStringCellValue();
+				String optionA = questionRow.getCell(2).getStringCellValue();
+				String optionB = questionRow.getCell(3).getStringCellValue();
+				String optionC = questionRow.getCell(4).getStringCellValue();
+				String optionD = questionRow.getCell(5).getStringCellValue();
+				String correctAnswer = questionRow.getCell(6).getStringCellValue();
+				String additionalInfo = questionRow.getCell(7).getStringCellValue();
 
-	            // Create McqQuestion entity
-	            McqQuestion mcqQuestion = new McqQuestion();
-	            mcqQuestion.setQuestionId(questionId); // Set questionId
-	            mcqQuestion.setAdditionalInfo(additionalInfo);
-	            mcqQuestion.setCorrectAnswer(correctAnswer);
-	            mcqQuestion.setQuestionText(questionText);
-	            mcqQuestion.setOptionA(optionA);
-	            mcqQuestion.setOptionB(optionB);
-	            mcqQuestion.setOptionC(optionC);
-	            mcqQuestion.setOptionD(optionD);
+				// Create McqQuestion entity
+				McqQuestion mcqQuestion = new McqQuestion();
+				mcqQuestion.setQuestionId(questionId); // Set questionId
+				mcqQuestion.setAdditionalInfo(additionalInfo);
+				mcqQuestion.setCorrectAnswer(correctAnswer);
+				mcqQuestion.setQuestionText(questionText);
+				mcqQuestion.setOptionA(optionA);
+				mcqQuestion.setOptionB(optionB);
+				mcqQuestion.setOptionC(optionC);
+				mcqQuestion.setOptionD(optionD);
 
-	            // Save the McqQuestion entity to the database
-	            mcqQuestion = mcqQuestionRepository.save(mcqQuestion);
+				// Save the McqQuestion entity to the database
+				mcqQuestion = mcqQuestionRepository.save(mcqQuestion);
 
-	            mcqQuestions.add(mcqQuestion);
-	        }
+				mcqQuestions.add(mcqQuestion);
+			}
 
-	    } catch (IOException e) {
-	        // Log the exception with details
-	    	logger.error("Error:" + e.getMessage(), e);
-	        // You can handle or rethrow the exception here based on your requirements
-	    }
+		} catch (IOException e) {
+			// Log the exception with details
+			logger.error("Error:" + e.getMessage(), e);
+			// You can handle or rethrow the exception here based on your requirements
+		}
 
-	    return mcqQuestions;
+		return mcqQuestions;
 	}
 
 	// Method to create competitive questions from Excel
@@ -190,59 +190,59 @@ public class QuestionServiceImple implements QuestionService {
 	// Helper method to get cell value as a string without decimal for numeric
 	// values
 	private String getCellValueAsString(Cell cell) {
-	    try {
-	        if (cell == null) {
-	            return null;
-	        }
+		try {
+			if (cell == null) {
+				return null;
+			}
 
-	        switch (cell.getCellType()) {
-	            case STRING:
-	                return cell.getStringCellValue();
-	            case NUMERIC:
-	                if (DateUtil.isCellDateFormatted(cell)) {
-	                    // Handle date formatted cells if needed
-	                    return cell.getDateCellValue().toString();
-	                } else {
-	                    // Format numeric values without the decimal part
-	                    return String.format("%.0f", cell.getNumericCellValue());
-	                }
-	            default:
-	                return null;
-	        }
-	    } catch (Exception e) {
-	        // Log the exception with details or handle as needed
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return null;
-	    }
+			switch (cell.getCellType()) {
+			case STRING:
+				return cell.getStringCellValue();
+			case NUMERIC:
+				if (DateUtil.isCellDateFormatted(cell)) {
+					// Handle date formatted cells if needed
+					return cell.getDateCellValue().toString();
+				} else {
+					// Format numeric values without the decimal part
+					return String.format("%.0f", cell.getNumericCellValue());
+				}
+			default:
+				return null;
+			}
+		} catch (Exception e) {
+			// Log the exception with details or handle as needed
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto obj) {
 
-	    try {
-	        CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
-	        codingQuestion.setTitle(obj.getTitle());
-	        codingQuestion.setCategory("CODING");
-	        codingQuestion.setQuestionId(obj.getQid());
-	        codingQuestion.setDescription(obj.getDesc());
-	        codingQuestion.setExample1Input(obj.getEx1input());
-	        codingQuestion.setExample2Input(obj.getEx2input());
-	        codingQuestion.setExample1Output(obj.getEx1output());
-	        codingQuestion.setExample2Output(obj.getEx2output());
-	        codingQuestion.setExample1Exp(obj.getEx1explanation());
-	        codingQuestion.setExample2Exp(obj.getEx2explanation());
-	        codingQuestion.setConstraints(obj.getConstraints());
-	        codingQuestion.setTime(obj.getTime());
-	        processExcelData(obj.getFileContent());
+		try {
+			CompetitiveQuestion codingQuestion = new CompetitiveQuestion();
+			codingQuestion.setTitle(obj.getTitle());
+			codingQuestion.setCategory("CODING");
+			codingQuestion.setQuestionId(obj.getQid());
+			codingQuestion.setDescription(obj.getDesc());
+			codingQuestion.setExample1Input(obj.getEx1input());
+			codingQuestion.setExample2Input(obj.getEx2input());
+			codingQuestion.setExample1Output(obj.getEx1output());
+			codingQuestion.setExample2Output(obj.getEx2output());
+			codingQuestion.setExample1Exp(obj.getEx1explanation());
+			codingQuestion.setExample2Exp(obj.getEx2explanation());
+			codingQuestion.setConstraints(obj.getConstraints());
+			codingQuestion.setTime(obj.getTime());
+			processExcelData(obj.getFileContent());
 
-	        competitiveQuestionRepository.save(codingQuestion);
-	        return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
-	    } catch (Exception e) {
-	        // Log the exception with details or handle as needed
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return new ResponseEntity<>("An error occurred while adding coding question.", HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+			competitiveQuestionRepository.save(codingQuestion);
+			return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
+		} catch (Exception e) {
+			// Log the exception with details or handle as needed
+			logger.error("Error:" + e.getMessage(), e);
+			return new ResponseEntity<>("An error occurred while adding coding question.",
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-
 
 //	private Blob createBlob(byte[] bytes) throws SQLException {
 //		try {
@@ -254,24 +254,13 @@ public class QuestionServiceImple implements QuestionService {
 //		}
 //	}
 
-	
-	
-//<<<<<<< HEAD
-//	public Question addQuestion(Question question) {
-//		return this.questionRepository.save(question);
-//	}
-//
-//	@Override
-//	public Question updateQuestion(Question question) {
-//		return this.questionRepository.save(question);
-//=======
 	@Override
 	public Question addQuestion(QuestionDto questionDto) {
-	    Question question = new Question();
-	    Quiz quiz = new Quiz();
-	    try {
-	        Optional<Quiz> quizObj = quizRepository.findById(questionDto.getQuiz().getQid());
-	       	if (quizObj.isPresent()) {
+		Question question = new Question();
+		Quiz quiz = new Quiz();
+		try {
+			Optional<Quiz> quizObj = quizRepository.findById(questionDto.getQuiz().getQid());
+			if (quizObj.isPresent()) {
 				quiz = quizObj.get();
 				question.setAnswer(questionDto.getAnswer());
 				question.setContent(questionDto.getContent());
@@ -281,226 +270,227 @@ public class QuestionServiceImple implements QuestionService {
 				question.setOption4(questionDto.getOption4());
 				question.setQuiz(quiz);
 			}
-	        return questionRepository.save(question);
-	    } catch (Exception e) {
-	        // Log the exception with details or handle as needed
-	    	logger.error("Error:" + e.getMessage(), e);
-	        // You may want to return a meaningful response or rethrow the exception
-	        return null;
-	    }
+			return questionRepository.save(question);
+		} catch (Exception e) {
+			// Log the exception with details or handle as needed
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	@Override
 	public Question updateQuestion(QuestionDto questionDto) {
-	    try {
-	        Question question = new Question();
-	        Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
-	        if (obj.isPresent()) {
-	            question = obj.get();
-	            BeanUtils.copyProperties(questionDto, question);
-	        }
-	        return questionRepository.save(question);
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return null;
-	    }
+		try {
+			Question question = new Question();
+			Optional<Question> obj = questionRepository.findById(questionDto.getQuesId());
+			if (obj.isPresent()) {
+				question = obj.get();
+				BeanUtils.copyProperties(questionDto, question);
+			}
+			return questionRepository.save(question);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	@Override
 	public Set<Question> getQuestions() {
-	    try {
-	        return new HashSet<>(questionRepository.findAll());
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return Collections.emptySet();
-	    }
+		try {
+			return new HashSet<>(questionRepository.findAll());
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptySet();
+		}
 	}
 
 	@Override
 	public Question getQuestion(Long questionId) {
-	    try {
-	        return questionRepository.findById(questionId).orElse(null);
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return null;
-	    }
+		try {
+			return questionRepository.findById(questionId).orElse(null);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	@Override
 	public Set<Question> getQuestionsOfQuiz(Quiz quiz) {
-	    try {
-	        return questionRepository.findByQuiz(quiz);
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return Collections.emptySet();
-	    }
+		try {
+			return questionRepository.findByQuiz(quiz);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptySet();
+		}
 	}
 
 	@Override
 	public void deleteQuestion(Long quesId) {
-	    try {
-	        Question question = new Question();
-	        question.setQuesId(quesId);
-	        questionRepository.delete(question);
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	    }
+		try {
+			Question question = new Question();
+			question.setQuesId(quesId);
+			questionRepository.delete(question);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+		}
 	}
 
 	@Override
 	public Question get(Long questionId) {
-	    try {
-	        return questionRepository.getOne(questionId);
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return null;
-	    }
+		try {
+			return questionRepository.getOne(questionId);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	@Override
 	public ResponseEntity<?> getQnData(String qnId) {
-	    try {
-	        Optional<?> data = competitiveQuestionRepository.findByQuestionId(qnId);
-	        return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return new ResponseEntity<>("An error occurred while retrieving competitive question data.", HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+		try {
+			Optional<?> data = competitiveQuestionRepository.findByQuestionId(qnId);
+			return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return new ResponseEntity<>("An error occurred while retrieving competitive question data.",
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@Override
 	public ObjectNode processExcelData(MultipartFile excelFile) {
-	    ObjectNode response = objectMapper.createObjectNode();
-	    ArrayNode results = objectMapper.createArrayNode();
+		ObjectNode response = objectMapper.createObjectNode();
+		ArrayNode results = objectMapper.createArrayNode();
 
-	    try (InputStream inputStream = excelFile.getInputStream(); Workbook workbook = new XSSFWorkbook(inputStream)) {
-	        Sheet sheet = workbook.getSheetAt(0);
-	        Iterator<Row> rowIterator = sheet.iterator();
+		try (InputStream inputStream = excelFile.getInputStream(); Workbook workbook = new XSSFWorkbook(inputStream)) {
+			Sheet sheet = workbook.getSheetAt(0);
+			Iterator<Row> rowIterator = sheet.iterator();
 
-	        if (rowIterator.hasNext()) {
-	            rowIterator.next();
-	        }
+			if (rowIterator.hasNext()) {
+				rowIterator.next();
+			}
 
-	        while (rowIterator.hasNext()) {
-	            Row currentRow = rowIterator.next();
-	            String questionId = getCellStringValue(currentRow.getCell(0));
-	            List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
-	            saveQuestion(questionId, testCases);
-	            results.add(createSuccessResult(questionId));
-	        }
+			while (rowIterator.hasNext()) {
+				Row currentRow = rowIterator.next();
+				String questionId = getCellStringValue(currentRow.getCell(0));
+				List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
+				saveQuestion(questionId, testCases);
+				results.add(createSuccessResult(questionId));
+			}
 
-	        response.set("results", results);
-	        response.put("status", "success");
-	    } catch (IOException e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        response.put("status", "error");
-	        response.put("message", "Error processing Excel data");
-	    }
+			response.set("results", results);
+			response.put("status", "success");
+		} catch (IOException e) {
+			logger.error("Error:" + e.getMessage(), e);
+			response.put("status", "error");
+			response.put("message", "Error processing Excel data");
+		}
 
-	    return response;
+		return response;
 	}
 
 	private List<TestCaseEntity> extractTestCasesFromRow(Row currentRow, String questionId) {
-	    List<TestCaseEntity> testCases = new ArrayList<>();
+		List<TestCaseEntity> testCases = new ArrayList<>();
 
-	    for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
-	        try {
-	            String inputs = getCellStringValue(currentRow.getCell(i));
-	            String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
+		for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
+			try {
+				String inputs = getCellStringValue(currentRow.getCell(i));
+				String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
 
-	            inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
+				inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
 
-	            // Add a null check for expectedOutputs
-	            if (expectedOutputs != null) {
-	                expectedOutputs = expectedOutputs.endsWith(".0")
-	                        ? expectedOutputs.substring(0, expectedOutputs.length() - 2)
-	                        : expectedOutputs;
-	            } else {
-	                // Handle the case when expectedOutputs is null (e.g., provide a default value
-	                // or skip the test case)
-	                // For example, you can set it to an empty string:
-	                expectedOutputs = "";
-	            }
+				// Add a null check for expectedOutputs
+				if (expectedOutputs != null) {
+					expectedOutputs = expectedOutputs.endsWith(".0")
+							? expectedOutputs.substring(0, expectedOutputs.length() - 2)
+							: expectedOutputs;
+				} else {
+					// Handle the case when expectedOutputs is null (e.g., provide a default value
+					// or skip the test case)
+					// For example, you can set it to an empty string:
+					expectedOutputs = "";
+				}
 
-	            testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
-	        } catch (Exception e) {
-	        	logger.error("Error:" + e.getMessage(), e);
-	            // Handle the exception as needed, e.g., skip the current test case
-	        }
-	    }
-	    return testCases;
+				testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
+			} catch (Exception e) {
+				logger.error("Error:" + e.getMessage(), e);
+				// Handle the exception as needed, e.g., skip the current test case
+			}
+		}
+		return testCases;
 	}
 
 	private ObjectNode createSuccessResult(String message) {
-	    try {
-	        ObjectNode result = objectMapper.createObjectNode();
-	        result.put("status", "success");
-	        result.put("message", message != null ? message : "Success");
-	        return result;
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return null;
-	    }
+		try {
+			ObjectNode result = objectMapper.createObjectNode();
+			result.put("status", "success");
+			result.put("message", message != null ? message : "Success");
+			return result;
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	private void saveQuestion(String questionId, List<TestCaseEntity> testCases) {
-	    try {
-	        Optional<QuestionEntity> optionalExistingQuestion = questionRepo.findByQuestionId(questionId);
+		try {
+			Optional<QuestionEntity> optionalExistingQuestion = questionRepo.findByQuestionId(questionId);
 
-	        if (optionalExistingQuestion.isPresent()) {
-	            QuestionEntity existingQuestion = optionalExistingQuestion.get();
-	            existingQuestion.setTestCases(testCases);
-	            questionRepo.save(existingQuestion);
-	        } else {
-	            QuestionEntity newQuestion = new QuestionEntity();
-	            newQuestion.setQuestionId(questionId);
-	            newQuestion.setTestCases(testCases);
-	            questionRepo.save(newQuestion);
-	        }
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	    }
+			if (optionalExistingQuestion.isPresent()) {
+				QuestionEntity existingQuestion = optionalExistingQuestion.get();
+				existingQuestion.setTestCases(testCases);
+				questionRepo.save(existingQuestion);
+			} else {
+				QuestionEntity newQuestion = new QuestionEntity();
+				newQuestion.setQuestionId(questionId);
+				newQuestion.setTestCases(testCases);
+				questionRepo.save(newQuestion);
+			}
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+		}
 	}
 
 	private String getCellStringValue(Cell cell) {
-	    try {
-	        if (cell == null) {
-	            return null;
-	        }
-	        switch (cell.getCellType()) {
-	            case STRING:
-	                return cell.getStringCellValue();
-	            case NUMERIC:
-	                return String.valueOf(cell.getNumericCellValue());
-	            default:
-	                return null;
-	        }
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return null;
-	    }
+		try {
+			if (cell == null) {
+				return null;
+			}
+			switch (cell.getCellType()) {
+			case STRING:
+				return cell.getStringCellValue();
+			case NUMERIC:
+				return String.valueOf(cell.getNumericCellValue());
+			default:
+				return null;
+			}
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
 	}
 
 	@Override
 	public Set<CompetitiveQuestion> getData() {
-	    try {
-	        return new HashSet<>(competitiveQuestionRepository.findAll());
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return Collections.emptySet();
-	    }
+		try {
+			return new HashSet<>(competitiveQuestionRepository.findAll());
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptySet();
+		}
 	}
 
 	@Override
 	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto) {
-	    try {
-	        Optional<CompetitiveQuestion> optionalQuestion = competitiveQuestionRepository.findByQuestionId(codingQuestionInputDto.getQid());
+		try {
+			Optional<CompetitiveQuestion> optionalQuestion = competitiveQuestionRepository
+					.findByQuestionId(codingQuestionInputDto.getQid());
 
-	        if (optionalQuestion.isPresent()) {
-	            CompetitiveQuestion existingQuestion = optionalQuestion.get();
+			if (optionalQuestion.isPresent()) {
+				CompetitiveQuestion existingQuestion = optionalQuestion.get();
 
-	            // Update active field
-	            existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
+				// Update active field
+				existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
 
 				// Update fields only if they are present in the dto
 				updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
@@ -514,75 +504,77 @@ public class QuestionServiceImple implements QuestionService {
 				updateField(existingQuestion::setDescription, codingQuestionInputDto.getDesc());
 				updateField(existingQuestion::setTime, codingQuestionInputDto.getTime());
 				if (codingQuestionInputDto.getFileContent() != null) {
-					// Process the file content here if needed
-					System.out.println("File content processing...");
 					processExcelData(codingQuestionInputDto.getFileContent());
-	
-				}
-	            // Save the updated question back to the database
-	            competitiveQuestionRepository.save(existingQuestion);
 
-	            return new ResponseEntity<>(existingQuestion, HttpStatus.OK);
-	        } else {
-	            return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
-	        }
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return new ResponseEntity<>("An error occurred while updating a coding question.", HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+				}
+				// Save the updated question back to the database
+				competitiveQuestionRepository.save(existingQuestion);
+
+				return new ResponseEntity<>(existingQuestion, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return new ResponseEntity<>("An error occurred while updating a coding question.",
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	private <T> void updateField(Consumer<T> setter, T value) {
-	    try {
-	        if (value != null) {
-	            setter.accept(value);
-	        }
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	    }
+		try {
+			if (value != null) {
+				setter.accept(value);
+			}
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+		}
 	}
-
 
 	@Override
 	public ResponseEntity<?> getcodeData(String id) {
-	    try {
-	        Optional<CompetitiveQuestion> data = competitiveQuestionRepository.findByQuestionId(id);
-	        return data.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while retrieving coding question data.");
-	    }
+		try {
+			Optional<CompetitiveQuestion> data = competitiveQuestionRepository.findByQuestionId(id);
+			return data.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("An error occurred while retrieving coding question data.");
+		}
 	}
 
 	@Override
 	public Set<CompetitiveQuestion> getActiveRandomQuestionsForUser(String userId) {
-	    try {
-	        // Check if the user already has associated questions
-	        int numberOfQuestionsToRetrieve = 2;
-	        UserQuestionAssociation userAssociation = userQuestionAssociationRepository.findByUserId(userId);
+		try {
+			// Check if the user already has associated questions
+			int numberOfQuestionsToRetrieve = 2;
+			UserQuestionAssociation userAssociation = userQuestionAssociationRepository.findByUserId(userId);
 
-	        if (userAssociation != null) {
-	            return userAssociation.getQuestions();
-	        }
+			if (userAssociation != null) {
+				return userAssociation.getQuestions();
+			}
 
-	        // If not, retrieve all active questions
-	        List<CompetitiveQuestion> activeQuestions = new ArrayList<>(competitiveQuestionRepository.findByActive(true));
+			// If not, retrieve all active questions
+			List<CompetitiveQuestion> activeQuestions = new ArrayList<>(
+					competitiveQuestionRepository.findByActive(true));
 
-	        // Shuffle the list to randomize the order
-	        Collections.shuffle(activeQuestions);
+			// Shuffle the list to randomize the order
+			Collections.shuffle(activeQuestions);
 
-	        // Take a subset of the list based on the specified number
-	        List<CompetitiveQuestion> randomQuestions = activeQuestions.subList(0, Math.min(numberOfQuestionsToRetrieve, activeQuestions.size()));
+			// Take a subset of the list based on the specified number
+			List<CompetitiveQuestion> randomQuestions = activeQuestions.subList(0,
+					Math.min(numberOfQuestionsToRetrieve, activeQuestions.size()));
 
-	        // Create a new association for the user and save it to the database
-	        UserQuestionAssociation newUserAssociation = new UserQuestionAssociation(userId, new HashSet<>(randomQuestions));
-	        userQuestionAssociationRepository.save(newUserAssociation);
+			// Create a new association for the user and save it to the database
+			UserQuestionAssociation newUserAssociation = new UserQuestionAssociation(userId,
+					new HashSet<>(randomQuestions));
+			userQuestionAssociationRepository.save(newUserAssociation);
 
-	        return newUserAssociation.getQuestions();
-	    } catch (Exception e) {
-	    	logger.error("Error:" + e.getMessage(), e);	      
-	    	return Collections.emptySet();
-	    }
+			return newUserAssociation.getQuestions();
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptySet();
+		}
 	}
 
 }

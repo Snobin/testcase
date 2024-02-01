@@ -18,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 
-
-
 @Configuration
 public class ApplicationConfig {
 
@@ -75,7 +73,6 @@ public class ApplicationConfig {
 	private UserDetails buildUserDetails(String username) {
 		Optional<UserEntity> opt = repo.findByEmail(username);
 		UserEntity details = opt.get();
-		System.out.println((UserDetails) details);
 		return (UserDetails) details;
 	}
 

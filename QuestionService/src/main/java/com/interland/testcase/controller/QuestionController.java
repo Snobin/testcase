@@ -52,7 +52,6 @@ public class QuestionController {
 //		Set<Question> questionsofQuiz = this.questionService.getQuestionsOfQuiz(quiz);
 //		return ResponseEntity.ok(questionsofQuiz);
 		Quiz quiz = this.quizService.getQuiz(qid);
-		System.out.println(quiz.toString());
 		Set<Question> questions = quiz.getQuestions();
 		List list = new ArrayList(questions);
 		if (list.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
@@ -81,7 +80,6 @@ public class QuestionController {
 		this.questionService.deleteQuestion(quesId);
 	}
 
-
 	@PostMapping("/addCodingQuestion")
 	public ResponseEntity<?> addCodingQuestion(@ModelAttribute CodingQuestionInputDto codingQuestionInputDto) {
 		return questionService.addCodingQuestion(codingQuestionInputDto);
@@ -96,10 +94,10 @@ public class QuestionController {
 	public ResponseEntity<?> getQnData(@PathVariable("quesId") String quesId) {
 		return questionService.getQnData(quesId);
 	}
-	
+
 	@PostMapping("/getcode")
-	public ResponseEntity<?> getcodingdata(@RequestBody String codingQuestionInputDto ){
+	public ResponseEntity<?> getcodingdata(@RequestBody String codingQuestionInputDto) {
 		return questionService.getcodeData(codingQuestionInputDto);
-		
+
 	}
 }
