@@ -4,11 +4,11 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class ResultPk {
-	
+
 	private String qId;
-	
+
 	private String user;
-	
+
 	private Long questionId;
 
 	public String getqId() {
@@ -45,7 +45,5 @@ public class ResultPk {
 	public ResultPk() {
 		super();
 	}
-	
-	
 
 }

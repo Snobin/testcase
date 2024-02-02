@@ -59,9 +59,7 @@ export class StartComponent implements OnInit {
         } else if (localStorage.getItem(`questions${this.qId}`)) {
           this.questions = JSON.parse(localStorage.getItem(`questions${this.qId}`));
           this.status();
-          console.log(this.questions);
         }
-        console.log(this.questions);
         this.setPage(1);
         this.timer = this.questions.length * 2 * 60;
       },
@@ -110,7 +108,6 @@ export class StartComponent implements OnInit {
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
-      console.log(this.categories);
       this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
       (error) => {
@@ -245,7 +242,6 @@ export class StartComponent implements OnInit {
     var no = this.currentPage;
     no = no + 1
     const id = '#button' + no;
-    console.log(id)
     const targetElement = this.el.nativeElement.querySelector(id);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });

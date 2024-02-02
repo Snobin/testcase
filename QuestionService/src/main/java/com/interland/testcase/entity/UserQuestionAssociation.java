@@ -12,14 +12,14 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class UserQuestionAssociation {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String userId;
+	private String userId;
 
-    @ManyToMany
-    private Set<CompetitiveQuestion> questions = new HashSet<>();
+	@ManyToMany
+	private Set<CompetitiveQuestion> questions = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -45,18 +45,20 @@ public class UserQuestionAssociation {
 		this.questions = questions;
 	}
 
-	public UserQuestionAssociation( String userId, Set<CompetitiveQuestion> questions) {
+	public UserQuestionAssociation(String userId, Set<CompetitiveQuestion> questions) {
 		super();
-		
+
 		this.userId = userId;
 		this.questions = questions;
 	}
 
 	public UserQuestionAssociation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-    
-	
-    
+
+	@Override
+	public String toString() {
+		return "UserQuestionAssociation [id=" + id + ", userId=" + userId + ", questions=" + questions + "]";
+	}
+
 }

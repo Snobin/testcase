@@ -15,37 +15,37 @@ import com.interland.testcase.entity.Question;
 import com.interland.testcase.entity.Quiz;
 
 public interface QuestionService {
-	
+
 	public Question addQuestion(QuestionDto questionDto);
-	
+
 	public Question updateQuestion(QuestionDto questionDto);
-	
+
 	public Set<Question> getQuestions();
-	
+
 	public Question getQuestion(Long questionId);
-	
+
 	public Set<Question> getQuestionsOfQuiz(Quiz quiz);
-	
+
 	public void deleteQuestion(Long quesId);
-	
+
 	public Question get(Long questionId);
-	
-	public Set<CompetitiveQuestion>  getData();
-	
-	public Set<CompetitiveQuestion>  getActiveRandomQuestionsForUser(String userId);
-	
+
+	public Set<CompetitiveQuestion> getData();
+
+	public Set<CompetitiveQuestion> getActiveRandomQuestionsForUser(String userId);
+
 	public ResponseEntity<?> updateCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
-	
+
 	public ResponseEntity<?> getcodeData(String id);
 
 	public List<McqQuestion> createMcqQuestions(MultipartFile questionFile);
-	
+
 	public ResponseEntity<?> getQnData(String qnId);
-	
+
 	public ObjectNode processExcelData(MultipartFile excelFile);
 
 	public List<CompetitiveQuestion> createCompetitiveQuestions(MultipartFile questionFile);
 
-    public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
-	
+	public ResponseEntity<?> addCodingQuestion(CodingQuestionInputDto codingQuestionInputDto);
+
 }

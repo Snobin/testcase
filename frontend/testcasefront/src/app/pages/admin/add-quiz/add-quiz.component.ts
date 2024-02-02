@@ -19,11 +19,17 @@ export class AddQuizComponent implements OnInit {
     maxMarks: '',
     numberOfQuestions: '',
     active: true,
-    time:'',
+    time: '',
     category: {
       cid: ''
     },
   }
+  validationMessage={
+    title:'',
+    description:'',
+    numberOfQuestions:'',
+    time:''
+  } ;
 
   constructor(private cat: CategoryService, private quiz: QuizService, private snack: MatSnackBar) { }
 
@@ -31,7 +37,6 @@ export class AddQuizComponent implements OnInit {
     this.cat.categories().subscribe(
       (data: any) => {
         this.categories = data;
-        console.log(this.categories);
       },
       (error) => {
         console.log(error);
@@ -49,23 +54,31 @@ export class AddQuizComponent implements OnInit {
 
     this.quiz.addQuiz(this.Data).subscribe(
       (data: any) => {
-        Swal.fire('Success', 'quiz is added', 'success');
+        if(!data.details){ 
+           Swal.fire('Success', 'quiz is added', 'success');
         this.Data = {
           title: '',
           description: '',
           maxMarks: '',
           numberOfQuestions: '',
           active: true,
-          time:'',
+          time: '',
           category: {
             cid: ''
           },
+        }}else{
+          if(data.details){
+            data.details.forEach(element => {
+              var key = Object.keys(element)[0];
+              this.validationMessage[key] = element[key];
+            });
+          }
         }
+      
       },
       (error) => {
         Swal.fire('Error !!', 'error while adding quiz', 'error');
-
       }
     )
-  } 
+  }
 }

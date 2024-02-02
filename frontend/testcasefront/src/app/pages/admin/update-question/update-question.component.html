@@ -10,7 +10,7 @@
                 </mat-card-header>
                 <mat-card-content>
                     <form class="mt20" (submit)="formSubmit()">
-                        <!-- content field -->
+                        <span class="error-msg-span">{{validationMessage.content}}</span>
                         <mat-form-field class="w100">
                             <mat-label>Write question content</mat-label>
                             <textarea rows="8" matInput required [(ngModel)]="question.content" name="content" placeholder="Enter here"></textarea>
@@ -19,14 +19,14 @@
                         <!-- options -->
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- option1 -->
+                                <span class="error-msg-span">{{validationMessage.option1}}</span>
                                 <mat-form-field class="w100">
                                     <mat-label>Enter Option 1</mat-label>
                                     <input type="text" matInput required [(ngModel)]="question.option1" name="option1"/>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
-                                <!-- option2 -->
+                                <span class="error-msg-span">{{validationMessage.option2}}</span>
                                 <mat-form-field class="w100">
                                     <mat-label>Enter Option 2</mat-label>
                                     <input type="text" matInput required [(ngModel)]="question.option2" name="option2"/>
@@ -35,21 +35,21 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- option1 -->
+                                <span class="error-msg-span">{{validationMessage.option3}}</span>
                                 <mat-form-field class="w100">
                                     <mat-label>Enter Option 3</mat-label>
                                     <input type="text" matInput [(ngModel)]="question.option3" name="option3"/>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-6">
-                                <!-- option2 -->
+                                <span class="error-msg-span">{{validationMessage.option4}}</span>
                                 <mat-form-field class="w100">
                                     <mat-label>Enter Option 4</mat-label>
                                     <input type="text" matInput [(ngModel)]="question.option4" name="option4"/>
                                 </mat-form-field>
                             </div>
                         </div>
-                        <!-- answer -->
+                        <span class="error-msg-span">{{validationMessage.answer}}</span>
                         <mat-form-field class="w100">
                             <mat-label>Select answer</mat-label>
                             <mat-select required [(ngModel)]="question.answer" name="answer">

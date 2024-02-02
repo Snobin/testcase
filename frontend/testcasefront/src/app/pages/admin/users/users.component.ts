@@ -55,9 +55,10 @@ export class UsersComponent implements OnInit {
       (data: any) => {
         if (data.body == 'Successfully Inserted') {
           Swal.fire("Success", 'User is Registered', 'success')
+          this.clear();
+          this.router.navigate([`./admin/userlist`])
         } else {
           if (data.details) {
-            this.clear();
             data.details.forEach((element) => {
               var key = Object.keys(element)[0];
               this.validationMessage[key] = element[key];
@@ -88,10 +89,7 @@ export class UsersComponent implements OnInit {
       const file: File = fileList[0];
       this.fileContent = file;
       this.fileName = file.name;
-      // Set the file name for display if needed
-      console.log(file);
-      console.log(file);
-      // Log the file to see if it's properly captured
+     
     }
   }
 

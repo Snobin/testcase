@@ -32,7 +32,6 @@ constructor(
     if (hidden) {
       this.variable++;
       Swal.fire('Switching Tab is not allowed' );
-      console.log(this.variable);
       
       if(this.variable%3==0){
         Swal.fire('you are disqualified' );

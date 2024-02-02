@@ -1,8 +1,6 @@
 package com.interland.testcase.services;
 
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +12,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,10 +27,8 @@ import com.interland.testcase.repository.codQuestionRepository;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-	
-   private static final Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
 
-
+    private static final Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -62,7 +60,7 @@ public class QuestionServiceImpl implements QuestionService {
             response.set("results", results);
             response.put("status", "success");
         } catch (IOException e) {
-        	logger.error("Error:" + e.getMessage(), e);
+            logger.error("Error processing Excel data: {}", e.getMessage(), e);
             response.put("status", "error");
             response.put("message", "Error processing Excel data");
         }
@@ -78,25 +76,22 @@ public class QuestionServiceImpl implements QuestionService {
                 String inputs = getCellStringValue(currentRow.getCell(i));
                 String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
 
-                // Handle trailing ".0" in inputs
-                if (inputs != null && inputs.endsWith(".0")) {
-                    inputs = inputs.substring(0, inputs.length() - 2);
-                }
-
-                // Handle trailing ".0" in expectedOutputs
-                if (expectedOutputs != null && expectedOutputs.endsWith(".0")) {
-                    expectedOutputs = expectedOutputs.substring(0, expectedOutputs.length() - 2);
-                }
+                handleTrailingDotZero(inputs);
+                handleTrailingDotZero(expectedOutputs);
 
                 testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
             }
         } catch (Exception e) {
-            // Handle any exception that might occur during test case extraction
-        	logger.error("Error:" + e.getMessage(), e); // You can replace this with logging if you have a logger
-            // Optionally, you may throw a custom exception or take appropriate action based on your use case.
+            logger.error("Error during test case extraction: {}", e.getMessage(), e);
         }
 
         return testCases;
+    }
+
+    private void handleTrailingDotZero(String value) {
+        if (value != null && value.endsWith(".0")) {
+            value = value.substring(0, value.length() - 2);
+        }
     }
 
     private ObjectNode createSuccessResult(String message) {
@@ -107,23 +102,23 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     private void saveQuestion(String questionId, List<TestCaseEntity> testCases) {
-    	try {
-        Optional<QuestionEntity> optionalExistingQuestion = questionRepository.findByQuestionId(questionId);
+        try {
+            Optional<QuestionEntity> optionalExistingQuestion = questionRepository.findByQuestionId(questionId);
 
-        if (optionalExistingQuestion.isPresent()) {
-            QuestionEntity existingQuestion = optionalExistingQuestion.get();
-            existingQuestion.setTestCases(testCases);
-            questionRepository.save(existingQuestion);
-        } else {
-            QuestionEntity newQuestion = new QuestionEntity();
-            newQuestion.setQuestionId(questionId);
-            newQuestion.setTestCases(testCases);
-            questionRepository.save(newQuestion);
+            if (optionalExistingQuestion.isPresent()) {
+                QuestionEntity existingQuestion = optionalExistingQuestion.get();
+                existingQuestion.setTestCases(testCases);
+                questionRepository.save(existingQuestion);
+            } else {
+                QuestionEntity newQuestion = new QuestionEntity();
+                newQuestion.setQuestionId(questionId);
+                newQuestion.setTestCases(testCases);
+                questionRepository.save(newQuestion);
+            }
+        } catch (Exception e) {
+            logger.error("Error during question save: {}", e.getMessage(), e);
         }
-    } catch (Exception e) {
-    	logger.error("Error:" + e.getMessage(), e);
-     }
-    } 	
+    }
 
     private String getCellStringValue(Cell cell) {
         try {
@@ -139,11 +134,8 @@ public class QuestionServiceImpl implements QuestionService {
                     return null;
             }
         } catch (Exception e) {
-            // Handle any exception that might occur during cell value retrieval
-        	logger.error("Error:" + e.getMessage(), e);// You can replace this with logging if you have a logger
-            // Optionally, you may throw a custom exception or take appropriate action based on your use case.
+            logger.error("Error during cell value retrieval: {}", e.getMessage(), e);
             return null;
         }
     }
-
 }

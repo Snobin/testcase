@@ -4,9 +4,9 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class SingleResultPk {
-	
+
 	private String user;
-	
+
 	private String qId;
 
 	public String getUser() {
@@ -34,9 +34,5 @@ public class SingleResultPk {
 	public SingleResultPk() {
 		super();
 	}
-	
-	
-	
-	
-	
+
 }

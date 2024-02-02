@@ -52,7 +52,6 @@ export class CodeService {
     formData.append('active', (question.active || false).toString());
     formData.append('time', question.time);
 
-    console.log(50, file);
 
     if (file) {
       formData.append('fileContent', file, file.name);

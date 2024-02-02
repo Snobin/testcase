@@ -1,0 +1,4070 @@
+commit 2c8362da0a7c7a0502829ca7246edd08e238e23d
+Merge: f0b94e5d 2c16c71d
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 31 19:44:03 2024 +0530
+
+    logout
+
+commit f0b94e5d598de692a8b34d16e78e4d67ee3c0c58
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 31 19:42:38 2024 +0530
+
+    logout
+
+commit 2c16c71d96da48455104caea780578738bf522e9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 19:00:30 2024 +0530
+
+    updated
+
+commit 24947a3953158e9a59d38ab16c4b4652d501af38
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 17:58:29 2024 +0530
+
+    updated
+
+commit d362c5d1d8f96bd0f000d5aaa513f53d05d060b5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 17:37:35 2024 +0530
+
+    updated errors
+
+commit 573798394c6aa5c071dc3e14257531cd9dbc6d7f
+Merge: 7b8a8416 438d8bc9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 31 17:14:25 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 7b8a8416ceb2896413276513b85df772e6dd066c
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 31 17:14:20 2024 +0530
+
+    updates
+
+commit 438d8bc9334da7fc9d94ab3b54e20baab448f9ce
+Merge: 83a93ce6 b516858d
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Jan 31 15:38:29 2024 +0530
+
+    Merge pull request #106 from Snobin/Antony
+    
+    Antony
+
+commit b516858dd3baf969e32e9cb2d0674d03122b075f
+Merge: dfeda593 83a93ce6
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Jan 31 15:37:14 2024 +0530
+
+    Merge pull request #105 from Snobin/sno
+    
+    Sno
+
+commit dfeda593d31bc7a1ed1418c7599e98f54ec53bbc
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 31 15:35:48 2024 +0530
+
+    sd
+
+commit 83a93ce6a219d36e6c2db16146e69b46bb743daa
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 15:12:25 2024 +0530
+
+    resolved errors
+
+commit 92c6cc4db3d1c5a701e6237a20c7c33345c6ea21
+Merge: 5524e937 9f2e947f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 31 14:51:34 2024 +0530
+
+    category
+
+commit 5524e9374fc715587ee360479335c10825f2da38
+Merge: afb9fe02 1ed9052e
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 31 14:42:24 2024 +0530
+
+    category
+
+commit 9f2e947f2c6ec9b16c64708fb55f80af59ce6af2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 12:06:56 2024 +0530
+
+    updated instructions
+
+commit 082aa29f1191cb2814afe46f6312c307c77a1c99
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 11:49:13 2024 +0530
+
+    updated coding review and start button
+
+commit 0878606f9b826ffbdd0359c29ace4fecbe92d60d
+Merge: f6439f7b b9e1d0ec
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 10:33:50 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit f6439f7b12c840fecf4f665d8dcbc0c65441cea1
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 31 10:33:46 2024 +0530
+
+    updated question saving
+
+commit b9e1d0ec2c15d06bd6ac63e244222f30622e6c79
+Merge: dd78b442 5ef6489f
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 18:37:15 2024 +0530
+
+    Merge pull request #103 from Snobin/Antony
+    
+    Antony
+
+commit 5ef6489f95e4efee5344bd0cb92cfb4565667774
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 30 18:36:32 2024 +0530
+
+    validation
+
+commit 284ce2e2e6f98ed9321ae454ebd12ae243fb51ff
+Merge: 54c92231 dd78b442
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 17:13:34 2024 +0530
+
+    Merge pull request #102 from Snobin/sno
+    
+    Sno
+
+commit dd78b44292276c97f3d4cce8b4518cc0f0c27bca
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 17:09:45 2024 +0530
+
+    updated start and review
+
+commit 7273c04eabab13bab722413a4699dda849cf0264
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 15:32:57 2024 +0530
+
+    updated single quotes to double quotes for hello world programs in console. ts
+
+commit 65fe03ee9615c87f18294636a990f2c9cbcd12c3
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 15:29:07 2024 +0530
+
+    updated
+
+commit 54c92231b2948cf1f688c13541817b6773bb065d
+Merge: 8c045210 fe11541c
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 15:23:33 2024 +0530
+
+    Merge pull request #100 from Snobin/sno
+    
+    Sno
+
+commit fe11541c39b0d7bc301ed9380d6cee567d8cdfd0
+Merge: 2acccca2 6b0b6a8d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 15:22:10 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 2acccca2cdcf7ecfb478e0e8d496c7e24cdff52a
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 15:21:14 2024 +0530
+
+    updated
+
+commit 8c0452107b338ee5a7db1fc2b2f05d3330f27d3b
+Merge: 361e3806 6b0b6a8d
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 15:15:36 2024 +0530
+
+    Merge pull request #99 from Snobin/sno
+    
+    Merge pull request #97 from Snobin/Antony
+
+commit 6b0b6a8d77a67de1cd2936de19fa11a472315f5e
+Merge: ce904349 361e3806
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 15:09:08 2024 +0530
+
+    Merge pull request #97 from Snobin/Antony
+    
+    Merge pull request #96 from Snobin/sno
+
+commit 361e3806a32569c3403ac15954e91e5de1812622
+Merge: 8f050cc9 ce904349
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 15:04:40 2024 +0530
+
+    Merge pull request #96 from Snobin/sno
+    
+    Sno
+
+commit ce904349f4680ad9532921facd9cf92348c6d521
+Merge: ee4759d3 8f050cc9
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 15:04:32 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit 8f050cc9109a94e1a5ae062403ffabfc5f41e3a4
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 30 15:02:32 2024 +0530
+
+    dff
+
+commit ee4759d36edb6362a9b1916def8c65ef71047909
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 14:59:15 2024 +0530
+
+    Updated add question
+
+commit 6eb69224a2482cd1106fc9070f7eb2756a567951
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 14:31:37 2024 +0530
+
+    updated user uploading,preventbackbutton to loginpage after login,routing after upload successfull
+
+commit d96c102262725ea120babbb5421f64da7fb9ed0d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 13:57:05 2024 +0530
+
+    updated routing after profile update
+
+commit 4b9e3b6c58a748f468db987ec8ac7c81f0364416
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 13:50:13 2024 +0530
+
+    updated clear button in register
+
+commit 62ebe3c76ead0310b354641e65627c0b639d3080
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 13:30:47 2024 +0530
+
+    updated admin profile update
+
+commit 3d6d1ccd3f032a76191a84786b32e84c093394fe
+Merge: a557d4c5 3cdf4916
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 12:57:14 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit a557d4c5a4b645f605624dab3e49a24e83048e01
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 12:57:10 2024 +0530
+
+    updated admin update
+
+commit b3a4a18431ef54530c7e5b97fce0845d1f12c59e
+Merge: 04780a76 3cdf4916
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 12:11:17 2024 +0530
+
+    Merge pull request #95 from Snobin/sno
+    
+    Sno
+
+commit 3cdf491680e7e53fd222f2897e4df0504600ebc7
+Merge: 1ed9052e 04780a76
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 12:11:07 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit 04780a761b79fdd3f113846012a920621e9fe74d
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 30 12:05:13 2024 +0530
+
+    try and catch added
+
+commit afb9fe0295b2c71476366f161a4985725a67fff2
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 30 11:58:37 2024 +0530
+
+    category
+
+commit 1ed9052e93131bf3ba2fcc5bbb49ebc2756ac87c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 11:58:00 2024 +0530
+
+    updated quizdto
+
+commit 9b5cef1d55c931379acfd8e23344f6f64d13b5dd
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 11:56:36 2024 +0530
+
+    updated and resolved quiz adding and updating
+
+commit d8be6c24c7800ec8591fbd4070499408bf72312f
+Merge: f1ca1041 4f668f0e
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 30 11:25:26 2024 +0530
+
+    category
+
+commit f1ca1041bf1c88bbf8a39c5d0067a5033507d22b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 30 11:23:30 2024 +0530
+
+    category
+
+commit 4f668f0ef6dac88c60673dbe8ef6740276dc4fef
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 11:03:13 2024 +0530
+
+    updated and added add quiz
+
+commit 61e72ed803ea7217a3dcf85f68142b7356cbca30
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 10:57:22 2024 +0530
+
+    updated .gitignore
+
+commit 3b6d214c6e40f237a71fe370406c2f5c22b9ae07
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 10:56:53 2024 +0530
+
+    added messages.properties
+
+commit f49e54e8066711dd719681ef5d71516a62c44f69
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 10:54:39 2024 +0530
+
+    updated messages.properties and dto validations
+
+commit 969827f4476fcfb23ba3f4a4030e5124f1a7149d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 30 09:53:35 2024 +0530
+
+    updated testcase upload label
+
+commit 90fe367d6824d54e16969470b02e933e6187abbb
+Merge: 8f71ba4d 6f813185
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 30 09:50:59 2024 +0530
+
+    Merge pull request #93 from Snobin/sno
+    
+    Sno
+
+commit 6f813185dd0d718d2ef3fe586217e436b73f7edd
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 30 09:12:16 2024 +0530
+
+    abcd
+
+commit 30c6e0c5b2d1eb2360db053e0d45d60441cf082f
+Merge: c7e987c0 bc9d210a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 30 08:37:18 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit c7e987c08f5822bbe2926b4824dd27d33ec970f4
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 30 08:37:08 2024 +0530
+
+    abc
+
+commit bc9d210a6d5d4b4d2d74a3f9a7df72c3c1bbd296
+Merge: a20e5d6a f2b9e827
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 19:43:47 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit a20e5d6a55fbc9034a0e56a7f4894d39377714ad
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 19:43:44 2024 +0530
+
+    updated sidebar focusing on buttons
+
+commit f2b9e8274a22f3ccf1d4c9877700e40353b9136b
+Merge: 54fa3117 5b32973b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 19:03:20 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 54fa3117b6ff575cb7cc577e9b8992940768b269
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 19:03:15 2024 +0530
+
+    abc
+
+commit 5b32973bfc0e82a58f768b1b6d47c4c6dd426704
+Merge: fd5f3c68 8f71ba4d
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 18:58:06 2024 +0530
+
+    Merge pull request #92 from Snobin/Antony
+    
+    Merge pull request #91 from Snobin/sno
+
+commit fd5f3c683c8a9c673e011ec8ab8b323ea4abb223
+Merge: 9dd3876f 48fd8c1c
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 18:57:32 2024 +0530
+
+    abc
+
+commit 8f71ba4d347c4c10348216cc184bcfe8a078ebbd
+Merge: f381ddf7 48fd8c1c
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 18:56:55 2024 +0530
+
+    Merge pull request #91 from Snobin/sno
+    
+    Sno
+
+commit 9dd3876f6ead16a9ed7e28a48a65706d0e418d21
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 18:56:47 2024 +0530
+
+    abc
+
+commit 48fd8c1cb410b5a5d172cb8b28ee3dd80f30ce36
+Merge: 4284e115 f381ddf7
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 18:56:46 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit f381ddf78a574f348f5682cf76fc55d12f8db6c2
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 29 18:50:44 2024 +0530
+
+    update question
+
+commit 4284e1150b3f64b5cb77245220c4e901f8cd0421
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:48:04 2024 +0530
+
+    updated resize preventDeveloper
+
+commit b30d4575d4000864c26e3806ab5a2935e23f8e30
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:46:48 2024 +0530
+
+    updated submit button on start
+
+commit 4ef180d65c84642b4092ca40fea47c4ffc289ea8
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 18:39:10 2024 +0530
+
+    abc
+
+commit 09b6ec10f08a8e9bba4c5f2ff13aa23113b03709
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 18:28:09 2024 +0530
+
+    abc
+
+commit feb99a9bf6b40d07c66f1249e7067b33bd9cc2f4
+Merge: bbe8eb39 4a650e15
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 18:25:51 2024 +0530
+
+    abc
+
+commit bbe8eb39cc5e08d23b7ca523f48e2a33450b10bb
+Merge: a74f0837 ddec1fb5
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 18:22:58 2024 +0530
+
+    abc
+
+commit 4a650e153a08aae45a7816071953de906da0ae84
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:22:16 2024 +0530
+
+    Revert "Revert "updated start submit""
+    
+    This reverts commit 242b075f5bb09d733a01babb29910906e364c6cf.
+
+commit 5e91f375762c6f81e90890ea8d8f30daf61e0e37
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:21:47 2024 +0530
+
+    Revert "updated jwtServices"
+    
+    This reverts commit 3ec97ab582488fbbd93474c7a9e8addbb76d829b.
+
+commit d04b4571317a90f128937854b268a1776916a806
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:21:35 2024 +0530
+
+    Revert "updated file name"
+    
+    This reverts commit e6268297a5ea758b6a74c818fa6c3474174d4ff7.
+
+commit f6813706cc094286cb21f2d9f5f8733df8e8ea47
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:21:30 2024 +0530
+
+    Revert "Updated test name"
+    
+    This reverts commit 3639d7ab7abe763797b5fe5dff5f39ea5b77d8dc.
+
+commit 242b075f5bb09d733a01babb29910906e364c6cf
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:21:21 2024 +0530
+
+    Revert "updated start submit"
+    
+    This reverts commit 46bd0e80b136f33a7672e9cf8af7e666b5d7207c.
+
+commit 46bd0e80b136f33a7672e9cf8af7e666b5d7207c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 18:19:39 2024 +0530
+
+    updated start submit
+
+commit a74f083748bea99ff4692345a4e647eac5c05f64
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 17:56:51 2024 +0530
+
+    abc
+
+commit ddec1fb55058b1319f9d6e2be2451fcc9dd17271
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 17:51:51 2024 +0530
+
+    updated frontend
+
+commit 3639d7ab7abe763797b5fe5dff5f39ea5b77d8dc
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 17:05:00 2024 +0530
+
+    Updated test name
+
+commit e6268297a5ea758b6a74c818fa6c3474174d4ff7
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 17:02:51 2024 +0530
+
+    updated file name
+
+commit 3ec97ab582488fbbd93474c7a9e8addbb76d829b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 17:00:18 2024 +0530
+
+    updated jwtServices
+
+commit 731887809b10c87ba3eceb328e1ea301c3de4294
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 16:28:02 2024 +0530
+
+    updated beanUtils
+
+commit b384e89fbcc68a3a193fe51b5a632273c0a437f6
+Merge: b77fdd6e 3ed3818d
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 15:43:07 2024 +0530
+
+    Merge pull request #90 from Snobin/sno
+    
+    Sno
+
+commit 3ed3818daf7d92ed5ceea3f53264a3cadf1fa93f
+Merge: 3e040519 adb63ac7
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 15:40:31 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 3e0405197371e0add13052911a8eb4e5bce4d49e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 15:38:27 2024 +0530
+
+    Updated question Dto
+
+commit b77fdd6e7a120b5bea31517e58e0a4566b19f765
+Merge: 14e5045d adb63ac7
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 15:19:23 2024 +0530
+
+    Merge pull request #89 from Snobin/sno
+    
+    Sno
+
+commit adb63ac7a984c946f3b4727f300ad704757c5c08
+Merge: ff52a4a2 14e5045d
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 15:19:09 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit ff52a4a26a163bec30030572ad2c5184cef8c8c5
+Merge: 49009a4c 7d88a0e1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 15:16:07 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 49009a4c0e6b3a29d726e5a65860b6c0224d77f1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 15:15:59 2024 +0530
+
+    abc
+
+commit 7d88a0e1ea523dcbf3c7653d0193180c6f65f741
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 14:40:52 2024 +0530
+
+    updated user dashboard scroll and user sidebar
+
+commit 36d489fab020b7857ca23d423b066c6136b87ce6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 14:33:06 2024 +0530
+
+    updated sidebar and added preventDeveloper on instruction page
+
+commit 14e5045d079d61efd742f45475ac81a495525d35
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 29 14:23:29 2024 +0530
+
+    ss
+
+commit bde3d2f5de44310808192b3113ee0468c6d0cf7a
+Merge: 01b73b30 92d90e06
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 14:12:25 2024 +0530
+
+    Merge pull request #88 from Snobin/sno
+    
+    updated to scrolling dashboard ,resolved errors in console, adjusted …
+
+commit 01b73b30bcc44e667de45678e733e1d2300802d9
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 29 14:11:52 2024 +0530
+
+    a
+
+commit 92d90e069f881feed230a85d8896aebc94d7660c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 14:02:44 2024 +0530
+
+    updated to scrolling dashboard ,resolved errors in console, adjusted final pages line height
+
+commit 304d65bb57b9393010db156865e874646c517dd3
+Merge: 8a038a67 47a91703
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 12:02:36 2024 +0530
+
+    Merge pull request #87 from Snobin/sno
+    
+    added categorydto and updated category controller,service and impleme…
+
+commit 47a91703611ce046983c1cef56b540436bd8f9f3
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 12:00:29 2024 +0530
+
+    added categorydto and updated category controller,service and implementation
+
+commit 8a038a6741244b5e792d329e96684569b2b24147
+Merge: 354ede2d febbbf2d
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 11:56:22 2024 +0530
+
+    Merge pull request #86 from Snobin/sno
+    
+    Sno
+
+commit 354ede2d49b6358b33e03e2e91c7570bbe51cb72
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 29 11:55:51 2024 +0530
+
+    c
+
+commit febbbf2d1a9b753f9c2149ffcc3b833dc7c4e494
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 10:59:30 2024 +0530
+
+    updated load quiz view
+
+commit b22f29e5d94455a08ec35f94e133b412e708c322
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 10:36:53 2024 +0530
+
+    adminupdate
+
+commit 0d85ff241f53c96abf93aacf4e7745e1c7689bf0
+Merge: c9c2f108 783e05c7
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Mon Jan 29 10:10:04 2024 +0530
+
+    Merge branch 'parvathy' into sno
+
+commit c9c2f1081941a0e71c26a7fb993964f86e9cf267
+Merge: 56e48d67 0b0631c7
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 10:06:38 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 56e48d670b95355dbd4d988716c25713a1e6295e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 29 10:05:42 2024 +0530
+
+    Uopdated final page-thank you
+
+commit 783e05c741e4953385149b7b134cbb6db26a21dd
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Mon Jan 29 10:02:35 2024 +0530
+
+    sdfgh
+
+commit 0b0631c7f81bea2b7f4407be66951f230eb017de
+Merge: 9e93e4ad 785d16a6
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 29 10:01:48 2024 +0530
+
+    Merge pull request #83 from Snobin/Antony
+    
+    Antony
+
+commit 9e93e4ad8035c0163a3b3ca7eb7c04aa0d604491
+Merge: 64d18b91 d07669ab
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 09:42:05 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 64d18b9190c40ea67238a26cc3d74406f06b7baa
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 29 09:41:39 2024 +0530
+
+    data
+
+commit 785d16a612819587053b30fe2b7b44fafb3164b2
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Sun Jan 28 15:42:53 2024 +0530
+
+    userlist
+
+commit d7a465bc4ad75b0edf6d805dc95a4e9495a1af7d
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Sun Jan 28 14:10:27 2024 +0530
+
+    th
+
+commit 667c8a4832d5671c1f44850cd87554c1f6c9f014
+Merge: c3546b8f d07669ab
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 25 18:17:42 2024 +0530
+
+    Merge pull request #81 from Snobin/sno
+    
+    Sno
+
+commit d07669ab6f572b105663005a651ff9e4bd062771
+Merge: 0487b8d6 c3546b8f
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 25 16:52:48 2024 +0530
+
+    Merge pull request #80 from Snobin/Antony
+    
+    user creation
+
+commit c3546b8f92271543c99330b5fba08aea32297b23
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 25 16:51:29 2024 +0530
+
+    user creation
+
+commit 0487b8d68c2ed08da8b77a9f4586aa9e187a44b2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 25 16:14:16 2024 +0530
+
+    updated routing
+
+commit f84f079038479592de1009a27c85c46f297bd2c8
+Merge: 9df8f884 a6c201cd
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 25 15:31:06 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 9df8f884554001a5e9cd1eac9b7bb6d7e09b324b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 25 15:15:29 2024 +0530
+
+    updated something
+
+commit a6c201cdeac9eeb6df6c2dfbd1b53fc815e70623
+Merge: f4b0cb98 40980c01
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 25 11:13:54 2024 +0530
+
+    Merge pull request #79 from Snobin/Antony
+    
+    Antony
+
+commit 40980c0138659d21ad0467185d6b9f453f785078
+Merge: d8942af7 f4b0cb98
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 25 11:12:04 2024 +0530
+
+    Merge pull request #78 from Snobin/sno
+    
+    Sno
+
+commit f4b0cb981a39e6b93977c5234934280c9ac8948a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 25 11:11:16 2024 +0530
+
+    new
+
+commit 8a4ca6ba2d8a40bd6611e5e4d17039d56d9791f1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 25 10:58:13 2024 +0530
+
+    new
+
+commit d8942af7b8dcc67a1ede5c000339a8f34e348dc3
+Merge: 5268e217 1494a409
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 25 10:57:57 2024 +0530
+
+    Merge pull request #77 from Snobin/sno
+    
+    Sno
+
+commit 5268e21710626fd56e5d212ee98bf32e91f57d5f
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 25 10:48:57 2024 +0530
+
+    ughgiut
+
+commit 1494a409ee54c176702aaed7db83b232ac2475a6
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 25 10:04:35 2024 +0530
+
+    new
+
+commit 043db176d86e61751861d52c3adadeac8c661cba
+Merge: 907d09e4 4f7037d6
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 25 00:39:51 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 907d09e4383e85b6f2f644e0e5b0d5aa5a76f4b2
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 25 00:39:44 2024 +0530
+
+    new
+
+commit 4f7037d61382a25cedf6c990375a29965ff407f6
+Merge: 331fe9ac b37363a2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 18:40:14 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 331fe9ac21d6e8939a1998f4a5cb266a2b8e4503
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 18:40:06 2024 +0530
+
+    updated mcq
+
+commit 4b8c21d403991ca0d5c5d015fb5a298e6ff05060
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 24 18:36:54 2024 +0530
+
+    h
+
+commit b37363a2b1c4331fba0645b84d67b4039fab5a79
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 24 18:19:29 2024 +0530
+
+    updates
+
+commit 57c5f0fae4bb9a2e5719e269f454b22901ac1371
+Merge: ffe8c760 70146033
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Wed Jan 24 18:09:58 2024 +0530
+
+    data
+
+commit ffe8c760d798baa35b435e3ab5b370209ee7ee95
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Wed Jan 24 18:08:31 2024 +0530
+
+    data
+
+commit 70146033d0e4925bc01a61af4a7a59d3a7e24da9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 17:13:46 2024 +0530
+
+    updated
+
+commit 549a94d299d1c118867ce0f2b9f20475707da086
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 17:06:11 2024 +0530
+
+    updated
+
+commit 7387f98942338d5a0d1229a7f6c90a60739a7bd2
+Merge: ac0601c1 b391250b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 24 17:00:40 2024 +0530
+
+    updates
+
+commit ac0601c18badd5e77a317abf25ac0035df93b4ab
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 24 16:59:02 2024 +0530
+
+    updates
+
+commit b391250bd5d94682517e9b39deda06431f175bc1
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 16:57:02 2024 +0530
+
+    updated .gitignore
+
+commit dd1944f0bc8f3e1efd3b950c7b613324d45fff1f
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 16:53:34 2024 +0530
+
+    updated .gitignore
+
+commit 0c7e1348f73872c62a561a7427275e091ddaef71
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 16:52:07 2024 +0530
+
+    updated timer position and login and signup page
+
+commit 3dc2e31e7c174d1dbbb93795401d030adf718346
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 24 16:43:02 2024 +0530
+
+    we
+
+commit 878fa10899d547db5ccaf4f8a9c37e0144ba7a34
+Merge: 358365fa c587b33c
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Jan 24 16:33:17 2024 +0530
+
+    Merge pull request #75 from Snobin/sno
+    
+    Sno
+
+commit c587b33c152867de0bc53a9e97ba688a40d72d49
+Merge: 88322f28 358365fa
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Jan 24 16:33:07 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit 88322f2863fb39848ea3c5273225dd6782558171
+Merge: 1fdba7f0 8c5a5a4f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 24 16:07:12 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 1fdba7f086548a89082e50392daa61ad13494aeb
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 24 16:06:41 2024 +0530
+
+    updates
+
+commit 358365fa553a3fb778bdc05ecb09aea4bc272a53
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 24 16:00:05 2024 +0530
+
+    efwef
+
+commit 8c5a5a4f0dd3be75db483c51078c12a63a57bbd8
+Merge: d24de5f6 75ebb77c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 11:54:21 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit d24de5f6abed6774172bebe370de11605bced596
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 24 11:47:36 2024 +0530
+
+    updated console css and html
+
+commit 75ebb77cd6f61d480f6f5b72873a30d3141bd5ee
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 24 10:24:46 2024 +0530
+
+    updates
+
+commit 5fd6d3fbb63289366600b40e2062f89066cef2d6
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 22:25:25 2024 +0530
+
+    style
+
+commit 3b2bb5bcbc50471ce6a05fa975cc4864ec69273a
+Merge: 743709d7 739aa224
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 20:17:37 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 743709d70baa7edc26aead948685a654f8fd1f3f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 20:17:24 2024 +0530
+
+    style
+
+commit 739aa2245ab87df72119207aa7d610971e792f8e
+Merge: ba64cd1a 0c04aaba
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 23 18:59:55 2024 +0530
+
+    Merge pull request #74 from Snobin/Antony
+    
+    Antony
+
+commit 0c04aabaae7239a305a065a6124882fc0090afd5
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 23 18:59:17 2024 +0530
+
+    tyh
+
+commit 99b568f29362ee90e4c80e0aa24fa30aa7069f52
+Merge: c4d1666a ba64cd1a
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 23 18:15:28 2024 +0530
+
+    Merge pull request #73 from Snobin/sno
+    
+    Sno
+
+commit ba64cd1ac30f98ea6338d50a42be1b88ea44e54e
+Merge: df5f3b87 ad8e6161
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 17:20:53 2024 +0530
+
+    style
+
+commit 983d86bad182622a30848888d3d1e47e38501f46
+Merge: 1f24b216 b87c66eb
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Tue Jan 23 17:12:40 2024 +0530
+
+    rlngkjng
+
+commit 1f24b2163fc298ebad013113317778dc09729489
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Tue Jan 23 17:03:49 2024 +0530
+
+    updates
+
+commit b87c66eb63cdc431a18d7f4d35a0d82ca6bacd26
+Merge: 84b7fef4 ad8e6161
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Tue Jan 23 17:02:18 2024 +0530
+
+    Merge pull request #72 from Snobin/sno
+    
+    Sno
+
+commit ad8e616149c07c717446dac43b6f779f31ef69f1
+Merge: 27f509ff 84b7fef4
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Tue Jan 23 17:01:54 2024 +0530
+
+    Merge branch 'parvathy' into sno
+
+commit 84b7fef4c284e26b3864d0773e52641e18fdc6a5
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Tue Jan 23 16:53:12 2024 +0530
+
+    updated console.css
+
+commit 27f509ffc4884ce4b12471e524d4c44ba6df604e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 23 16:41:48 2024 +0530
+
+    updated start button
+
+commit df5f3b876db321958838a38552d72b4525039417
+Merge: 9c7c2ae9 4d6eccce
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 16:28:47 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 9c7c2ae920491f0ccda53558658ea5361976d1ec
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 16:28:36 2024 +0530
+
+    style
+
+commit 4d6eccce494973db9a0c86e9633ce5c720fc5c3f
+Merge: c0840a33 c4d1666a
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 23 15:10:00 2024 +0530
+
+    Merge pull request #71 from Snobin/Antony
+    
+    Antony
+
+commit c4d1666a55ac51798e9f844cf91ba530137956f7
+Merge: 175e1eb1 c0840a33
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 23 15:09:53 2024 +0530
+
+    Merge branch 'sno' into Antony
+
+commit 175e1eb1c74dce035434a8adcf172829383e3a20
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 23 15:08:35 2024 +0530
+
+    result
+
+commit c0840a33ea461d10af0cbd9bb901ad716358dc75
+Merge: f36a1979 35f88b74
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 12:28:00 2024 +0530
+
+    style
+
+commit f36a19798748877f7515eb874ec92f1df3b35f20
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 12:24:37 2024 +0530
+
+    style
+
+commit 35f88b746124886062a127c2a5f2b9043ec883ab
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 23 12:00:56 2024 +0530
+
+    updated time
+
+commit b4adde31ca1f55600904972f821b6024a58e667f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 23 11:25:41 2024 +0530
+
+    style
+
+commit 7a68e2666434e7798356b13bb8b400c73a1e4179
+Merge: 4cc48b68 4f7801d1
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 18:32:53 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 4cc48b683a7d0c0ec8e67d74ec2fc40106c9effe
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 18:32:50 2024 +0530
+
+    updated timer
+
+commit 4f7801d19d84b78a37ee8edd243cf62b3f831fa4
+Merge: c4f97aed e7c461a1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 22 17:33:08 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit c4f97aeda199c78e53f3c9a96fa6805137173c7a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 22 17:33:00 2024 +0530
+
+    RunAndSubmit
+
+commit e7c461a1d68ed179aca50ba8e10505b0d7353e12
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 17:30:03 2024 +0530
+
+    updated glow on stop
+
+commit f29c6e59cc8c6301a11f2f90629a4515312104b5
+Merge: e7e088d8 9fa9756e
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 22 15:19:48 2024 +0530
+
+    Merge branch 'Antony' of https://github.com/Snobin/testcase into Antony
+
+commit e7e088d837611356c27721a4b32aef910c19fc22
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 22 15:19:44 2024 +0530
+
+    thhth
+
+commit 9fa9756e8cc36c06bc6587caf17033801572d005
+Merge: b677b990 c5ac073e
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 22 15:17:02 2024 +0530
+
+    Merge pull request #70 from Snobin/sno
+    
+    Sno
+
+commit b677b990ad5611e42ffc9380939c32035652422b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 22 15:16:05 2024 +0530
+
+    hj
+
+commit c5ac073eba778a9bb775054bed58d72eebcf267f
+Merge: 3915cfa1 2f5c4f21
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 15:09:42 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 3915cfa129a9f64305ce59df060f0b2e96e0db11
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 15:09:38 2024 +0530
+
+    updated stop and run
+
+commit 785db883c01e69ceb597956e703a94da55740a97
+Merge: c46b707c 2f5c4f21
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 22 14:50:25 2024 +0530
+
+    Merge pull request #69 from Snobin/sno
+    
+    Sno
+
+commit c46b707c9970c219a19e8926be3794851ee41ef7
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 22 14:48:50 2024 +0530
+
+    anto
+
+commit 2f5c4f210d875443c84a7d9f739ba95955e4879e
+Merge: b35322d4 8f9af9b2
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 22 11:29:48 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit b35322d44822bf12538e1118c553cc19ed876ff6
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 22 11:29:36 2024 +0530
+
+    RunAndSubmit
+
+commit 8f9af9b204622c7d18cebf16540c184b5499d27e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 11:05:46 2024 +0530
+
+    updated background and previous mcq status
+
+commit 43379ffb4b18f2b28036f1f87eafde15c9a004c2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 10:47:21 2024 +0530
+
+    updated run and submit button
+
+commit 1d6d97700e777d3679fab337d1fc7e0e8de1473d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 22 10:29:55 2024 +0530
+
+    added processingTime using loop
+
+commit bf5304c3b137dcd839b9b152cd9d3e2104340805
+Merge: 7d8aee9b c11eb2a3
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 19 16:42:49 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 7d8aee9b2a0324017a9ca10b09d5fc51ed510438
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 19 16:42:45 2024 +0530
+
+    updated start component(mcq)
+
+commit c11eb2a3e33c41709acbfaf11d6d042f7562e451
+Merge: 86530a2c bbff192f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Jan 19 13:09:51 2024 +0530
+
+    RunAndSubmit
+
+commit 86530a2c45d3beb65d8c39bd5c2e1ef899713c71
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Jan 19 13:08:52 2024 +0530
+
+    RunAndSubmit
+
+commit bbff192f74e8e8d1222e0bd709fab4ccd7d5493a
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 19 11:06:06 2024 +0530
+
+    added processing time
+
+commit 09c42f91d8ed9c5597b3998e19ed3d74ee8771f0
+Merge: 07e556a0 93c46310
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 23:57:54 2024 +0530
+
+    RunAndSubmit
+
+commit 07e556a0c4988f66156de8c20023262d039384b5
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 23:56:27 2024 +0530
+
+    RunAndSubmit
+
+commit 93c46310484d4f5f00b6c688fec712d4679ebfff
+Merge: 049323a9 379c9411
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 18 18:35:46 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 049323a945f8d467edbdf3a0e5f0fc2bdafb68e0
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 18 18:34:40 2024 +0530
+
+    updated auto complete
+
+commit 66900906d6987cc6768700434cc0e8c26e1666ef
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 18:05:30 2024 +0530
+
+    view
+
+commit 348ef39d53f6d79523f2f56d02761c6c8cbc5809
+Merge: 93c739ff 379c9411
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 17:07:35 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into Antony
+
+commit 379c9411f7512cca95ba88a813925039e286e897
+Merge: 752a4f31 34b9e255
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 17:06:03 2024 +0530
+
+    updates
+
+commit 752a4f31448b0e6581cd1b47ce859a503cc40ca8
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 17:02:50 2024 +0530
+
+    updates
+
+commit 93c739ff24cbb1a766f3b35ea4305cbb7628cc3c
+Merge: 7131de77 26642574
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 17:00:17 2024 +0530
+
+    Merge branch 'Antony' of https://github.com/Snobin/testcase into Antony
+
+commit 7131de77509cdf34932b444fbda0f6e5402cb4c8
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 17:00:10 2024 +0530
+
+    new
+
+commit c0d9d6b93f3ee425f5d79a9423b3d2b68986263b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 16:59:24 2024 +0530
+
+    new
+
+commit f3658203c02e5c2c44a0a40364558cefef540b94
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 16:54:50 2024 +0530
+
+    ref
+
+commit c18722f88b843d025bd01e51e312898d418b738a
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 16:48:20 2024 +0530
+
+    fbg
+
+commit 26642574efc76e86de859301317e0a1de918f9b4
+Merge: dfabbdb1 34b9e255
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 18 16:46:36 2024 +0530
+
+    Merge pull request #67 from Snobin/sno
+    
+    Sno
+
+commit 34b9e2556fcfac2f55ac34ef2df50cf9aa8e0211
+Merge: cb9f6db0 dfabbdb1
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 18 16:46:20 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit dfabbdb11126d041db8deea7e2d989f79161e0a4
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 16:44:55 2024 +0530
+
+    huh
+
+commit 4e94c3f539bd5339b4a6c53916460c066b6b48b3
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 16:44:21 2024 +0530
+
+    gy
+
+commit beb2d0e215d3801a46ac8a345c1ad9ee06ce6fae
+Merge: 5315cc4c cb9f6db0
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 16:34:16 2024 +0530
+
+    updates
+
+commit 5315cc4c1351a1bfa097578b3eddf2592eb3532d
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 16:31:21 2024 +0530
+
+    updates
+
+commit 484f637c666b27e765f3dea030790abde45fe3c0
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 18 16:20:11 2024 +0530
+
+    ans
+
+commit cb9f6db02480d5856429be9feabbc498b130aa0b
+Merge: e451e234 d2f976f4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 18 15:26:19 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit e451e23434f06f4a61dd3e7b0d97cba3aaee48c9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 18 15:25:39 2024 +0530
+
+    removed view button
+
+commit d2f976f4b85485cc07493ecd052dd5a086c32b83
+Merge: 4974ad28 95579b60
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 18 14:18:32 2024 +0530
+
+    Merge pull request #66 from Snobin/Antony
+    
+    Antony
+
+commit 95579b6039d3e7c364fa6ff92ce72f0095eb2dc9
+Merge: ce429cf7 4974ad28
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 18 14:18:15 2024 +0530
+
+    Merge branch 'sno' into Antony
+
+commit ce429cf7dc9bd3a5fef9350cf6021ba6f82e0b16
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 13:19:20 2024 +0530
+
+    by
+
+commit 0c83b3a9530df83df7b5f7c7378c12813811ea1b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 18 13:17:59 2024 +0530
+
+    codingresult
+
+commit 4974ad2869abe891c39259cc68bb6ac4f389b939
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 18 12:26:16 2024 +0530
+
+    updated routing
+
+commit b53d0460fd3c8b98730597574c6b51e29a555f59
+Merge: 30ab9d24 2f4cb49c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 18:48:49 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 30ab9d24b4fcf7588f59374211ca9cc9c6d75c9b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 18:47:04 2024 +0530
+
+    updated instruction and routing
+
+commit 7def631ba3b3fc03ed874f4652dada681c50e7a0
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 17 18:29:32 2024 +0530
+
+    coderesult
+
+commit 2f4cb49cd834011bfa26dba46b0e05bd2f1301d2
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 17 18:07:56 2024 +0530
+
+    updates
+
+commit 1b3a564d9159edbc4359887809c8e88f06815adf
+Merge: 39db9b28 4211a199
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 17 17:17:54 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 39db9b288be99925eeaea60082f288509b8ce07a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 17 17:17:42 2024 +0530
+
+    updates
+
+commit 4211a199c6f302d1a1c0c206117066598c80d9c9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 15:56:55 2024 +0530
+
+    updated case scroll
+
+commit 8955e866a8a87065c5539d24453e4ed55036a1b6
+Merge: 982e35d9 8c1207a5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 13:07:25 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 982e35d970451a83b7296e44c0d266b4a635d82e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 13:06:18 2024 +0530
+
+    updated css console margin-bootom
+
+commit 8c1207a5e66b252c01ab46d8f121307b487612ee
+Merge: 1af9f2bc 959c0fd5
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 17 13:04:51 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 1af9f2bcd6cbba60bdae7507637b24daed62b424
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 17 13:04:39 2024 +0530
+
+    Your commit message
+
+commit 8c1125953811459bdaa58c07c8056d86fe9ea1d3
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 17 12:57:02 2024 +0530
+
+    new
+
+commit 959c0fd5c0d6ccab254707aa51c9996eb622485f
+Merge: 91f43b9d e5039ec6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 12:55:43 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 91f43b9d73eab278aff95d701a00f8aeba2b4db8
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 12:54:48 2024 +0530
+
+    updated saved successfully
+
+commit eb97ff218772d03f9593f77cc15c075c83fd2c62
+Merge: 58fea974 e5039ec6
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Jan 17 12:50:52 2024 +0530
+
+    Merge pull request #65 from Snobin/sno
+    
+    Sno
+
+commit e5039ec60a3c25afafbecdda8176aaa5158800d2
+Merge: 7f7286f5 58fea974
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Jan 17 12:46:06 2024 +0530
+
+    Merge pull request #64 from Snobin/Antony
+    
+    Antony
+
+commit 58fea974a3f5dfe4d67d4bf15cd22f6d646cf5c4
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 17 12:43:13 2024 +0530
+
+    single
+
+commit 7f7286f524c86ddbb0a15e293031ee2d78636dd1
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 10:33:55 2024 +0530
+
+    updated saving time
+
+commit 3442750e3e13a7d4391ce09d769437b3f72c1693
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 10:32:41 2024 +0530
+
+    updated console
+
+commit 5094a24bbf69648c78a13ee8c87071ad0b4ac051
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 17 10:18:55 2024 +0530
+
+    updated saving animation
+
+commit fec9f4535c960a23c6f38250887b26f14ceb7b64
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 16 18:39:53 2024 +0530
+
+    add
+
+commit cd9236d34de9ce65f71b3fa4980360e766c9ac9a
+Merge: db9c7ad4 ba94614b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 16 18:05:22 2024 +0530
+
+    new
+
+commit db9c7ad471d2bcb33b2e3eddce8757a5898dc9ae
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 16 18:02:58 2024 +0530
+
+    new
+
+commit 0556e80d4fa1cc51ae4d066fab6404a1eacd99ba
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 16 17:59:49 2024 +0530
+
+    new
+
+commit ba94614bf4bbc2e4eb6c94b87629e9ee33494b45
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 17:12:38 2024 +0530
+
+    updated href of description
+
+commit 2124b4692a41521553514a66f42e43a997e80cac
+Merge: a4ce4ab8 a1f808e5
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 16 17:11:47 2024 +0530
+
+    Merge pull request #62 from Snobin/sno
+    
+    Sno
+
+commit a1f808e552f93e316927a08e74caa03da387ab74
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 17:09:25 2024 +0530
+
+    updated code saving
+
+commit fbb6a3eecb21d0115bd131dd5e734175d09856cf
+Merge: d77879e0 83a60ae4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 16:53:34 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit d77879e08c2bf27b676f9b3600d523fe5fa0e403
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 16:53:12 2024 +0530
+
+    updated non-selectable
+
+commit a4ce4ab86520785dd67b1a669d6a77c0a6a8690b
+Merge: 255677f8 83a60ae4
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 16 15:54:17 2024 +0530
+
+    Merge pull request #61 from Snobin/sno
+    
+    Sno
+
+commit 83a60ae4fbeb8663a4afc416c89cfc51e603ef2c
+Merge: 38aea930 255677f8
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 16 15:53:42 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit 255677f8bd9388569e975fcbe73f0b5a10c618ef
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 16 15:52:30 2024 +0530
+
+    updated pom
+
+commit 49527c1152b8b4fe0ffe7cf0732b7ae264be8b2b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 16 15:35:30 2024 +0530
+
+    gyg
+
+commit 38aea930fd7ea8bb06e8f5cb4b26bc747e2dc45b
+Merge: b3530ea1 b436dedb
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Jan 16 15:22:19 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit b3530ea1e75015b18ff027d89ecfc5bfe49ca86a
+Merge: e9c4acea cf4e0281
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 16 15:17:37 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit b436dedb32f68917c043501d46f1db3197bb2081
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Jan 16 15:17:32 2024 +0530
+
+    update
+
+commit e9c4aceaca859bbd5c14ecce35914bcffd30a26e
+Merge: 1f8349cf c9f614eb
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 16 15:17:20 2024 +0530
+
+    new
+
+commit cf4e02818edcdd1c37875d1e6f72ffb2faf8d14d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 15:13:36 2024 +0530
+
+    updated console
+
+commit c6eac86d553f3e47391499dad0d8d52114a53d27
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 15:11:40 2024 +0530
+
+    updated
+
+commit 8c7b73e82f68d165d4981b54b7fbec0187b632a4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 15:07:28 2024 +0530
+
+    updated
+
+commit 4a9e4024fa37373c13b8a8665c0f94440a80981a
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 16 11:09:34 2024 +0530
+
+    added loading animation
+
+commit 1f8349cfcf6c0a9e9f1f0b5a7dd25e18ba2e2e91
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 15 18:40:21 2024 +0530
+
+    new
+
+commit c9f614ebc78c9adef87ed299bf39967adb9e346d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 15 18:36:48 2024 +0530
+
+    updated console
+
+commit 9a998200cfe1facc629cd362b0c9ee591cc9c134
+Merge: 6fa247f0 5d69a634
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Mon Jan 15 12:28:39 2024 +0530
+
+    Merge pull request #59 from Snobin/sno
+    
+    Sno
+
+commit 5d69a6348a3718d4e280f482d8c670516e28a05d
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 15 00:17:14 2024 +0530
+
+    new
+
+commit eb50da35d5a5a66fd4d38ca566a014aa17d56f25
+Merge: 272df46d 62179b06
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Sun Jan 14 18:25:53 2024 +0530
+
+    new
+
+commit 272df46de57c927e8d1779b25b9f76160834c7a6
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Jan 12 18:07:56 2024 +0530
+
+    new
+
+commit 62179b068b088a0170815f536ba82909a6f79889
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 12 16:50:18 2024 +0530
+
+    updated case buttons
+
+commit c3223945c4825cfa2523fe42126f699239c9b4b6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 12 15:12:14 2024 +0530
+
+    updated output
+
+commit 2d5da17a05c981b51b14d716d959e3d8d4265518
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 12 15:09:55 2024 +0530
+
+    added output
+
+commit 26b5d4fcdf8c376fcf6bb4fbaba21bb1ce015324
+Merge: c8950a2a 6fa247f0
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 17:53:50 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 6fa247f0c14fc099ad18ce239e720535ab4dffa2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 17:41:21 2024 +0530
+
+    updated console issue
+
+commit e4b1eff04d4ea010f040957465808d17a17e8046
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 17:36:54 2024 +0530
+
+    updated
+
+commit c8950a2a782d1183f659ceef8f2f783a961396e7
+Merge: dbf095a2 05daf6a8
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 17:05:09 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit dbf095a2bddb0f8fe5823d40ef77a4e2e45d1056
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 16:58:17 2024 +0530
+
+    new
+
+commit 05daf6a8e5c605e375f702b907fa56464f3d7e59
+Merge: 6b317270 ec112c24
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 16:58:08 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit fdd0dbff037e151554cebf7892418298fda6016e
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 16:55:39 2024 +0530
+
+    new
+
+commit 6b3172706780ee0514c40e9a8400c77b895685db
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 16:54:52 2024 +0530
+
+    commited
+
+commit ec112c24e111de4a6b2849494773c4a887c66bda
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Jan 11 16:52:24 2024 +0530
+
+    Revert "Merge branch 'Antony' into sno"
+    
+    This reverts commit 1258c6bd80c2787c44ac96ede67f9e2aae94ca31, reversing
+    changes made to 7a8d7243f16e32c3d9d5ce97c3d0a2b0b9d170b2.
+
+commit 1258c6bd80c2787c44ac96ede67f9e2aae94ca31
+Merge: 7a8d7243 15bf3dd4
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Jan 11 16:38:08 2024 +0530
+
+    Merge branch 'Antony' into sno
+
+commit 7a8d7243f16e32c3d9d5ce97c3d0a2b0b9d170b2
+Merge: 893c2e38 7431cff4
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 15:22:17 2024 +0530
+
+    new
+
+commit 893c2e38d0890649b81cc76da30580df0f988db6
+Merge: 0862adae f3c0f85b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 15:20:52 2024 +0530
+
+    new
+
+commit 7431cff4d814e9d017eae21647f3ed3b6f1acf8d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 15:18:51 2024 +0530
+
+    updated styles and removed dark theme from console
+
+commit 0862adae2aae56cb48e09d6beef0b16f789cb296
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 15:18:06 2024 +0530
+
+    new
+
+commit f3c0f85b2767506dc42eb9dd96f7784738839d43
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 13:59:55 2024 +0530
+
+    updated
+
+commit 2acea1aa9f22fc0b204cc22cf451e265ed5f5404
+Merge: 547d38ba 4b1bc3db
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 12:42:19 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 547d38ba3a987fcbff5da53b9ca426ddc4ebeb21
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 12:42:02 2024 +0530
+
+    updated icon in the splitter
+
+commit 4b1bc3dbe8a0bb31f17a7cd93704f3d203574bd9
+Merge: 964dc8c4 960479ac
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 12:38:01 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 964dc8c4193feff39976799325dd2a77431e33d0
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 11 12:37:47 2024 +0530
+
+    new
+
+commit 960479ac129defcf1d6cf408ca9f50ca31c18c0d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 11:41:33 2024 +0530
+
+    updated scroll bar in console
+
+commit 4ab3344b28881460a012e59b8574dbd511b2a849
+Merge: 53d0cfeb f32f24cb
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 11:10:19 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 53d0cfeb46248a1c797f345a9fa87675bc04e366
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 11 11:10:15 2024 +0530
+
+    updated console
+
+commit f32f24cb80437ec7cb78f169c6abb5b313688b28
+Merge: 5a235415 96a6d9c7
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 19:15:58 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 5a2354155571f5a560259adb76fcd4fdc6eb9f24
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 19:15:49 2024 +0530
+
+    updates
+
+commit 96a6d9c7b0301a5aed283ede4f20264490e07523
+Merge: 270646a4 539a6bca
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 18:36:10 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 270646a44df1e0e7c2d83bab430f0f34bd41d513
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 18:36:06 2024 +0530
+
+    updated console
+
+commit 539a6bca84f95dae4f3f6beacaba06041dd307ab
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 16:35:53 2024 +0530
+
+    updates
+
+commit 5468c81e84259e904cbe96f13b66e07c7453f235
+Merge: 2da799f5 860b047c
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 16:08:41 2024 +0530
+
+    updates
+
+commit 2da799f54c8ef03b37027860b69dfc3bb68a4861
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 15:33:26 2024 +0530
+
+    updates
+
+commit 860b047cc7e295ed727b7454b134d565ad7ac82b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 15:30:20 2024 +0530
+
+    updated buttons
+
+commit 31a709c431a763c771233af7c91680a4a6245792
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 14:48:48 2024 +0530
+
+    commited
+
+commit e8b21c890eaa5707f36ec94d439e79d547e80e03
+Merge: 3c103db0 69708029
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 14:42:37 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 3c103db077bcbd9e0bfd93a7b3ce8fd39710588c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 14:38:21 2024 +0530
+
+    updated coding page
+
+commit 69708029a0cc08ae575cfea252914c224328e9e8
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 14:37:36 2024 +0530
+
+    updates
+
+commit 15bf3dd48c5a9fcec707525da12b70b512b124b4
+Merge: cfe4cb05 48ccf849
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Jan 10 12:28:36 2024 +0530
+
+    Merge branch 'main' into Antony
+
+commit 9dff0322fbe03482a26231fc121cf753297fe184
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Jan 10 11:50:39 2024 +0530
+
+    updated console
+
+commit 57ad49708cabf7979f5957db20497da68aaa0c43
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 10 11:00:51 2024 +0530
+
+    updates
+
+commit 70bc9b7364470420f96a099c7dbedb0792206618
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 9 15:16:22 2024 +0530
+
+    updated console and app-coding component
+
+commit f4ed8e6e902e171801ab89ff212d18bee015d3a6
+Merge: 273d2b16 f49558a5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 9 14:56:53 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 273d2b16f8d36a1d23c93e819a2057e570ca9f74
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 9 14:52:01 2024 +0530
+
+    commit
+
+commit f49558a50cc35f717b69ef452b580ca76b1ae2a8
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 9 14:51:39 2024 +0530
+
+    updates
+
+commit 792a7ba2bd03a3aa2458539a06044cd75cbbe085
+Merge: c64d8b21 8fee7299
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 9 10:19:08 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit c64d8b21cbafa3217d0f1b49ebaad197b3327e05
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 9 10:18:58 2024 +0530
+
+    updates
+
+commit 8fee72992f2007b9d453256d84c223131efcc1d4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 8 18:31:07 2024 +0530
+
+    updated time
+
+commit a6bfd9b301eef439fa2cf3803cdb4d3c058f604e
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 8 17:21:51 2024 +0530
+
+    updates
+
+commit f5a60424eaaa2edddafcbabeff2ca2d77f8547df
+Merge: 569ad311 a2c5196a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 8 15:16:28 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 569ad31187ebaac9ab9821f516b7a24f042f4765
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 8 15:15:40 2024 +0530
+
+    updates
+
+commit a2c5196a2e0c4e24a941ffc1eede6d1f77e53468
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 8 11:58:52 2024 +0530
+
+    updated instructions
+
+commit 927c83e95f6e3a4dbbffd1e275d8062e0713a903
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 8 10:57:51 2024 +0530
+
+    updates
+
+commit 4d9464249ec5a4f7211603e4b0df25ec0b659460
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Jan 8 10:47:30 2024 +0530
+
+    updates
+
+commit 6f54e7ae1dd7c805c98b5763c97bbd1c42eafbf0
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 5 14:28:13 2024 +0530
+
+    updated
+
+commit fa92e2ba15a390651bdddaf34854cd7aae002861
+Merge: 3fd8c73c a34a8b06
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 5 13:14:37 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 3fd8c73c03eb719ce70f7046b019cfae1b392098
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 5 13:14:23 2024 +0530
+
+    updated
+
+commit a34a8b068135860f539ffde34f4bfc1bed339a88
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Jan 5 13:13:19 2024 +0530
+
+    updates
+
+commit 7ee8bbce0f5edd566742354f4e040edc77abed8c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Jan 5 12:09:13 2024 +0530
+
+    updated
+
+commit 45ddca3f174c655658832bebd4fcb9f37b43c93a
+Merge: 7a5af5a3 81f28da1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Jan 5 10:49:23 2024 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 7a5af5a3d78a0f0d3b7815c5fc8e121fd2ebf34d
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Jan 5 10:49:10 2024 +0530
+
+    updates
+
+commit 81f28da122926b1e1275d8f54efda21e86b9047c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 4 18:32:00 2024 +0530
+
+    updated
+
+commit d4f4ee4dd3d1cf4c0af86ebd65adc414282bec34
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Jan 4 17:56:08 2024 +0530
+
+    Updated
+
+commit 3246faed55815dbd41ece585a75f8e6999dfd5d1
+Merge: e214977b 0d514d24
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Jan 4 15:15:32 2024 +0530
+
+    updates
+
+commit e214977b61eb02abf7ca62617a24e86d967915e1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Jan 3 15:06:00 2024 +0530
+
+    data
+
+commit 0d514d2495ba77aa9d41241705978ceeada09082
+Merge: ad227720 9dcaf211
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Tue Jan 2 17:15:05 2024 +0530
+
+    Merge branch 'main' into sno
+
+commit ad2277207ae0a570fc70c840000ac35712d6c203
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Jan 2 16:09:22 2024 +0530
+
+    jwt
+
+commit 9dcaf21194bbf0a9a388d80476e06d4174824fb3
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Jan 2 16:08:31 2024 +0530
+
+    updated
+
+commit f810bd29f6ec5b37f7d8fe58974d95ad1b2e2f1d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 1 15:35:06 2024 +0530
+
+    updated mcqservice
+
+commit 462ea4a78f4429586e0779acae4208af1e96da39
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 1 15:34:30 2024 +0530
+
+    created student serve
+
+commit cfe4cb052b5d935ffdae495b2782320cf5580998
+Merge: 8dd2ec7c fc5f8948
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 1 12:03:58 2024 +0530
+
+    Merge branch 'Antony' of https://github.com/Snobin/testcase into Antony
+
+commit 8dd2ec7cb44cf24c4f48a72f3d7d75d10dd98e95
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Jan 1 12:03:53 2024 +0530
+
+    Create application.properties
+
+commit 374be23a3cbcfa927f2fac749152d7166ec8f08b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Jan 1 11:25:40 2024 +0530
+
+    updated
+
+commit f7a94afb24275321e8238d0d6f65596a13ac040e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 16:49:32 2023 +0530
+
+    updated
+
+commit fc5f8948a5b6ddaa546105f4b3e345bd59592235
+Merge: 1213be29 dcee0aef
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 29 15:34:41 2023 +0530
+
+    Merge pull request #49 from Snobin/main
+    
+    Merge pull request #48 from Snobin/Antony
+
+commit dcee0aef805a96b8480db7052cc35502e0469c46
+Merge: 083b04a2 1213be29
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 29 15:34:01 2023 +0530
+
+    Merge pull request #48 from Snobin/Antony
+    
+    Antony
+
+commit 1213be29927b0e7749be1e12da7cdf8c314c444c
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 29 15:33:39 2023 +0530
+
+    a
+
+commit 4106fc15859abff9e7787bb7207d81ce6c512fa5
+Merge: e802ad3e 083b04a2
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 29 15:23:03 2023 +0530
+
+    Merge pull request #47 from Snobin/main
+    
+    Merge pull request #46 from Snobin/Antony
+
+commit 083b04a28abfe2b0878ce57c5c8fce1424580982
+Merge: 7ced6f64 e802ad3e
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 29 15:22:01 2023 +0530
+
+    Merge pull request #46 from Snobin/Antony
+    
+    Antony
+
+commit e802ad3e0c3461e0e0e4760516120ba35f9c1680
+Merge: ac234534 7ced6f64
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 29 15:21:46 2023 +0530
+
+    Merge branch 'main' into Antony
+
+commit ac234534712cf6755f88477f58208f1df85420bf
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 29 15:18:43 2023 +0530
+
+    ss
+
+commit 7ced6f64185e9601a3bf6c6b926989f4c05ea6bf
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 14:55:40 2023 +0530
+
+    updated
+
+commit c99ff16e6b5abb8f04b6f1cc4169859b500b299a
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 14:39:18 2023 +0530
+
+    updated errors
+
+commit 3a017687eb875c1a6490c25f52a36753205e2447
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 14:30:39 2023 +0530
+
+    updated authcontroller
+
+commit fcd36c812386d55f3e6336b7d9465ca90d4ce6aa
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 14:27:39 2023 +0530
+
+    updated login
+
+commit 3270e914395612930a8609d9df64b19f324f85bd
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 13:13:31 2023 +0530
+
+    updated
+
+commit 52823323853ec91f218f01854d7321f60477b6cc
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 12:43:17 2023 +0530
+
+    updated
+
+commit b53bed67077825c7f71a9d1b292740cef2e7f7a7
+Merge: 8d9b5c41 d0ecbbad
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Fri Dec 29 12:12:36 2023 +0530
+
+    Merge branch 'Parvathy' into main
+
+commit d0ecbbad7c22f6317b41a5689c6b4e17f2dfb211
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Fri Dec 29 11:53:17 2023 +0530
+
+    qewt
+
+commit 8d9b5c41861beda6353b2fc800ce7d7541c9af26
+Merge: 750d1478 ac6f54d1
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Fri Dec 29 11:51:53 2023 +0530
+
+    Merge pull request #44 from Snobin/sno
+    
+    Sno
+
+commit ac6f54d1029eca115551bae410e5c83a991021b3
+Merge: 55e1398d 750d1478
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Fri Dec 29 11:51:40 2023 +0530
+
+    Merge branch 'main' into sno
+
+commit 55e1398d83bacf71d5f570b4b4aebc33342d6ac4
+Merge: 03c89a96 c2f9c1b9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 29 11:44:25 2023 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 03c89a96f9180799f03e6cef06f3131baf1303b4
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 29 11:44:13 2023 +0530
+
+    new
+
+commit 750d1478682a8a9ab1cc08aea8d6ab7d2b4282b4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 29 11:41:33 2023 +0530
+
+    jwt
+
+commit 1243ca6245bd91883e760dc988244f77a916f9d4
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 28 17:21:29 2023 +0530
+
+    ne
+
+commit e6bc2566f62c4fd254f79f803fa46b6bb59f7639
+Merge: ab8bdadc 08700663
+Author: Mijohn T J <57265000+H-a-c-k-e-r-s-m-a-n-i-a@users.noreply.github.com>
+Date:   Thu Dec 28 16:26:14 2023 +0530
+
+    Merge pull request #43 from Snobin/Mijohn
+    
+    Mijohn
+
+commit 08700663c10bafd3dae31bdae6d0968038458c43
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 16:24:31 2023 +0530
+
+    updated
+
+commit 7608b1744dd6cdf8fe433079cd110f125d720537
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 16:11:40 2023 +0530
+
+    updated
+
+commit 9b9fdc0ea91c129d6f0fb6d3b651bb469daaabe6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 15:04:10 2023 +0530
+
+    updated
+
+commit 0027711e17c1561f951f3392012959834e772f4d
+Merge: ffe0c3f4 5bbeeeec
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 28 15:00:44 2023 +0530
+
+    Merge pull request #42 from Snobin/Mijohn
+    
+    Mijohn
+
+commit 5bbeeeece894b28208d67e8604e6a9733cb6ddd0
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 14:38:40 2023 +0530
+
+    updated
+
+commit db86f17caa07f77d9dd986faa8845d87bc86af35
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 14:35:54 2023 +0530
+
+    updated
+
+commit a97515c0305d420503e82c6aa47370b8932afbdb
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 14:05:37 2023 +0530
+
+    updated
+
+commit e5f01be776347082a01619d936155df940704585
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 28 10:49:39 2023 +0530
+
+    updated editor
+
+commit c2f9c1b9cfe980a41fbe2e3a621b62766a13ecfc
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 16:22:11 2023 +0530
+
+    updated
+
+commit 477f4fd9f2c8f843acbb26928537e51738a40cd6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 15:42:42 2023 +0530
+
+    updated
+
+commit e178a8b35f3ddad2866980a3b70397220479c7d3
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 15:02:29 2023 +0530
+
+    updated login service
+
+commit c4ce0d2445e2b096f20077795e899dd57f9b085c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 14:45:09 2023 +0530
+
+    updated login
+
+commit cbd1fdba24c308b0128193927c6c185a22805ab9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 27 14:12:29 2023 +0530
+
+    frontenf
+
+commit 24f34a15d7f4ce32283150fede21ed465bdf5cc7
+Merge: 12a97247 a2210f34
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 27 13:55:42 2023 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 12a9724790969e4cc9507c52befa143baeb21466
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 27 13:55:24 2023 +0530
+
+    forms
+
+commit a2210f346ff60839a1b90f3d1cbfaa730938da18
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 13:11:08 2023 +0530
+
+    updated
+
+commit 69c71a98b66885967abf993aed4d627592029b7d
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 27 12:21:25 2023 +0530
+
+    frontenf
+
+commit ab8bdadc31e5aecab6f4a86f51bfd42a5a674b55
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 10:35:45 2023 +0530
+
+    updated
+
+commit abe69c103feae697a50399a2f7dbee243044cbfd
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 27 10:20:56 2023 +0530
+
+    updated
+
+commit a0a22108152052834da5f0835a69c04d95b78564
+Merge: 8cc4f4c9 d1898e34
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Dec 26 14:17:38 2023 +0530
+
+    Merge branch 'sno' of https://github.com/Snobin/testcase into sno
+
+commit 8cc4f4c909b0343f9bc21c59012150d58f64990b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Dec 26 14:17:22 2023 +0530
+
+    frontend
+
+commit a252b9c497c39d4ade1aa4dff64989ef5228429d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 26 12:22:14 2023 +0530
+
+    created auth.guard in frontend
+
+commit f0929eff0c708ae22d8177b3fa0c6aba3b2499d6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 26 11:53:55 2023 +0530
+
+    updated
+
+commit 164487e4d996f240ffa485da90515ce9ab78783a
+Merge: 709245b9 fd7e04a6
+Author: Mijohn T J <57265000+H-a-c-k-e-r-s-m-a-n-i-a@users.noreply.github.com>
+Date:   Tue Dec 26 10:55:51 2023 +0530
+
+    Merge pull request #41 from Snobin/Mijo
+    
+    Mijo
+
+commit fd7e04a6c4ad841f6ac90893a3179e52b4cf8fb8
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 26 10:53:21 2023 +0530
+
+    updated gitignore
+
+commit dcaa43af37a02b4be6b509e65f1af290ba93b8a4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 26 10:50:33 2023 +0530
+
+    commited
+
+commit ffe0c3f49b2decfd38dde39868f295e690848be2
+Merge: 96fcbfc4 709245b9
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 17:08:44 2023 +0530
+
+    Merge pull request #40 from Snobin/main
+    
+    g
+
+commit 709245b9be5b52ef9c54cd0cfaaf98a4921121f2
+Merge: 87d5c221 d1898e34
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Thu Dec 21 16:40:14 2023 +0530
+
+    Merge pull request #39 from Snobin/sno
+    
+    Sno
+
+commit 87d5c221a4c46b5461d45819790b632838709087
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 21 16:20:26 2023 +0530
+
+    updated
+
+commit 5c48dfc2c90944f0f026882b951c9be2b54d12b5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 21 15:41:27 2023 +0530
+
+    updated
+
+commit 48ccf84987cd557973400cfd506d023b03f3c8e4
+Merge: 65c62bde d1898e34
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Thu Dec 21 15:15:20 2023 +0530
+
+    Merge pull request #38 from Snobin/sno
+    
+    Sno
+
+commit d1898e3458d2d461f5e165417869ecee6b8ccc48
+Merge: f629ca5f 65c62bde
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Thu Dec 21 15:14:59 2023 +0530
+
+    Merge branch 'main' into sno
+
+commit f629ca5f9eda91da354678f107a10770e12af7e1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Dec 21 15:04:11 2023 +0530
+
+    code compilation
+
+commit 65c62bde4f07c5d2eccf49c7f4cbad60d1593bde
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 21 14:55:51 2023 +0530
+
+    updated
+
+commit 96fcbfc4340c398e7e743b8e8ba350960bac1a2a
+Merge: 7b0757c1 035af51a
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 14:22:41 2023 +0530
+
+    Merge pull request #37 from Snobin/main
+    
+    comitted
+
+commit 035af51ae82762dbc44d243f59ba9d76584b09bc
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 21 14:20:47 2023 +0530
+
+    comitted
+
+commit 7b0757c1039d4104c0d7e6603f3fa523d446d9ab
+Merge: 6a72e5e3 4b9444c9
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 13:18:43 2023 +0530
+
+    Merge pull request #36 from Snobin/main
+    
+    hh
+
+commit 4b9444c911d358a50fb2c985397ef96d10576d23
+Merge: c2420e41 6a72e5e3
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 13:18:35 2023 +0530
+
+    Merge branch 'Antony' into main
+
+commit 6a72e5e382761598c1a174401cb2dc8dcff15642
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 21 13:14:31 2023 +0530
+
+    z
+
+commit c2420e418652ef857344c7ae2c249022f2608ef6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 21 13:13:12 2023 +0530
+
+    updated
+
+commit e6f05cd8c6f1947d19784091aeac92c0a479610b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 21 13:11:19 2023 +0530
+
+    updated coding test page
+
+commit b8074c93c6d015b4741c9bdeca92a74807c20af5
+Merge: 25890914 38890e6b
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 10:51:41 2023 +0530
+
+    Merge pull request #35 from Snobin/main
+    
+    Merge pull request #34 from Snobin/Antony
+
+commit 38890e6b1d0d8aebe100d1fa38200dc520a4d003
+Merge: 50cdba43 25890914
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 10:50:46 2023 +0530
+
+    Merge pull request #34 from Snobin/Antony
+    
+    Antony
+
+commit 25890914acf1a3214f5f5959e06fa1bab0a83085
+Merge: d32a1208 50cdba43
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 21 10:50:33 2023 +0530
+
+    Merge branch 'main' into Antony
+
+commit d32a12082bd612765609aa315695601f23cee35f
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 21 10:37:29 2023 +0530
+
+    re4td4
+
+commit 10e89592bb6fa5130fe0d4f4d2b29b86bce27712
+Merge: 5e8bea3d 12c8a48a
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 21 10:33:13 2023 +0530
+
+    re4td4
+
+commit 5e8bea3d0d0adcebcdaa89a095e1ffc047bf9be8
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 21 10:29:22 2023 +0530
+
+    efw
+
+commit 50cdba4323a39e6bb40b97e95ffc6a5caf6581ec
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 20 17:25:51 2023 +0530
+
+    updated
+
+commit 259c71834c6e6a07c76f550cf79ab578f0e13b3d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 20 12:32:52 2023 +0530
+
+    updated
+
+commit 894a264c6b2c23d11c86a7af729dd5f8d6263aa2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 20 12:19:33 2023 +0530
+
+    updated admin redirect
+
+commit d9fb42bfa9cd6c7723c5e5766ea7afd8963570c3
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 20 11:38:12 2023 +0530
+
+    resolving
+
+commit 5d00497ca05873fb8b309c5e0795fc2b410e58ed
+Merge: 79c732bf 2428b776
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 20 11:31:05 2023 +0530
+
+    Merge branch 'main' of https://github.com/Snobin/testcase into sno
+
+commit 79c732bf8ee29e02ae81669687707f2c75ff3ef6
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 20 11:29:07 2023 +0530
+
+    resolving
+
+commit 2428b77672d60ab286fa27e7f951bc97cff376b5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 20 10:23:36 2023 +0530
+
+    updated
+
+commit 3535dd27cf25989079e5090e017751549ada09fc
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 19 18:05:14 2023 +0530
+
+    updated errors
+
+commit ce20723bb40df9039a6c65adf82a2294c8a3763d
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 19 18:01:33 2023 +0530
+
+    updated errors
+
+commit 0af107d3eb8570579e640dd2e27cfa358bf134f8
+Merge: 33b30d31 7b0da8cb
+Author: Mijohn T J <57265000+H-a-c-k-e-r-s-m-a-n-i-a@users.noreply.github.com>
+Date:   Tue Dec 19 17:57:21 2023 +0530
+
+    Merge pull request #33 from Snobin/Mij
+    
+    Mij
+
+commit 7b0da8cb8d166f962525a7dc0e49a8cb2028abbc
+Merge: be2b6ce3 33b30d31
+Author: Mijohn T J <57265000+H-a-c-k-e-r-s-m-a-n-i-a@users.noreply.github.com>
+Date:   Tue Dec 19 17:54:05 2023 +0530
+
+    Merge branch 'main' into Mij
+
+commit be2b6ce3fb068e3ee238af565db9c4acf33dcb7b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 19 17:48:46 2023 +0530
+
+    updated condition based button colors
+
+commit 89608c5b9b6e25fbe840490c951649a5f9f231e0
+Merge: 325ea163 12c8a48a
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Tue Dec 19 11:45:39 2023 +0530
+
+    Merge pull request #32 from Snobin/Antony
+    
+    Antony
+
+commit 12c8a48aa658007b1ad7fae5ce44b3d89194b6cb
+Merge: f217b5f6 325ea163
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Tue Dec 19 11:45:26 2023 +0530
+
+    Merge branch 'Parvathy' into Antony
+
+commit 426cdf1f25cf22b78eeafebd7fd7303653755fc7
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 19 11:04:04 2023 +0530
+
+    updated
+
+commit 6b72ac64a7d92722b72b4a18e3965fdf89d03a0b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 19 10:26:02 2023 +0530
+
+    updated
+
+commit ade46171c8b5dc3bb385c464cfedfc7d8692c557
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 19 10:24:51 2023 +0530
+
+    updated and added attempted and not
+
+commit 58f473ffb9a16511b6ed3753974ad6e23aeb2bd0
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 18 18:37:21 2023 +0530
+
+    updated
+
+commit f217b5f671dcc9f0ca56235407010a732079baff
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Dec 18 18:37:16 2023 +0530
+
+    gitignore
+
+commit 44408278178766151200762c4479ea6ebf31dee9
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Mon Dec 18 18:36:44 2023 +0530
+
+    file upload
+
+commit fd33b45fc7363bddbec487a8d44c185ba8ba13e2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 18 16:41:48 2023 +0530
+
+    updated
+
+commit 73b08be9ff9585f0598d73b710fda6dc1deeb356
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 18 11:31:58 2023 +0530
+
+    updated
+
+commit 325ea16377a106361391823271b7c5f20713f1e0
+Merge: 015dff7f 998dfbc4
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Mon Dec 18 10:56:43 2023 +0530
+
+    \
+
+commit 015dff7f8332e5d242e100160034b64f000f2ddb
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Mon Dec 18 10:53:55 2023 +0530
+
+    mm
+
+commit 998dfbc484dcd88f49c6956731aa8d41701c4274
+Merge: 26a6137d 33b30d31
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Mon Dec 18 10:50:45 2023 +0530
+
+    Merge pull request #31 from Snobin/main
+    
+    weeee
+
+commit 33b30d3141ddb1adcd151b00f2b9e3dcfe31d5f1
+Merge: 71b223ac 26a6137d
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Mon Dec 18 10:49:13 2023 +0530
+
+    Merge branch 'Parvathy' into main
+
+commit 26a6137d36854e91c62c4ba0ff7b7cd98a568d73
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Mon Dec 18 10:47:10 2023 +0530
+
+    sxcx
+
+commit 71b223ac3fa99507b91d1f55acbaf33f6c5657d9
+Merge: ee663a2d b576d6f8
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Sun Dec 17 13:42:14 2023 +0530
+
+    Merge pull request #30 from Snobin/sno
+    
+    Sno
+
+commit b576d6f8f74aae05955c935b9c9efa7fc408bf40
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Sun Dec 17 13:41:20 2023 +0530
+
+    compiler
+
+commit e16e36c24eefde30bc27300e6093687f379a433f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Sun Dec 17 09:20:53 2023 +0530
+
+    testcase
+
+commit 6682d69e6d3a787f148ffc75da8a065c83e9a349
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 21:45:54 2023 +0530
+
+    pull main
+
+commit 040a66904b6ac56b1313be34884a14eebab1d46c
+Merge: 06d74a51 ee663a2d
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Fri Dec 15 21:41:04 2023 +0530
+
+    Merge pull request #28 from Snobin/main
+    
+    w2
+
+commit 06d74a51dce71bd9f737097be37b95acf96b2d22
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 18:40:06 2023 +0530
+
+    sdd
+
+commit 80153da33b389c0c61da5c722218466ea574f4ea
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 17:39:14 2023 +0530
+
+    updated
+
+commit 072575295dcfafdc8209c33c9ff95ea6aedd1ce5
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 17:15:17 2023 +0530
+
+    resolving conflict
+
+commit 7f9bd5bf43da78165becf39e06ae9d6f6288b9b4
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 15:31:04 2023 +0530
+
+    updated
+
+commit 6d65024ea615c8812ade52810a63dd8e08fc93e5
+Merge: 12674cab 8ec56e57
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 14:59:22 2023 +0530
+
+    Merge branch 'Antony' of https://github.com/Snobin/testcase into Antony
+
+commit e61e1c5075ce6b97c5c68049f48c8ecca354097e
+Merge: c4754e88 3bebca2b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 14:58:52 2023 +0530
+
+    Merge branch 'Mij' of https://github.com/Snobin/testcase into Mij
+
+commit 12674cab70dd81646af37ae2effe2aa6eacbf8f5
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 14:54:22 2023 +0530
+
+    ugtg7u
+
+commit 7d15dc6fe12470241cd0f23fb767752079d486d3
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 14:53:26 2023 +0530
+
+    hh
+
+commit c4754e88a6731183ce4506c28a59512ca35e6a27
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 14:52:02 2023 +0530
+
+    updated gitignore
+
+commit 8ec56e57dd5444bffe5b455a711e6d5ba910873a
+Merge: e693de2b 3bebca2b
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 15 14:50:12 2023 +0530
+
+    Merge pull request #29 from Snobin/Mij
+    
+    Mij
+
+commit 3bebca2b0101b561b8d7b761f39ad8f58572c2f2
+Merge: 035e5d0a e693de2b
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Fri Dec 15 14:50:01 2023 +0530
+
+    Merge branch 'Antony' into Mij
+
+commit 035e5d0aee403b4011c32c6b8f7fea2d17e73f81
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 14:46:28 2023 +0530
+
+    updated sidebar in questions
+
+commit b7661f59d9ebefce238bd146a703f4063dd9d0bb
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 14:44:24 2023 +0530
+
+    updated
+
+commit 08cef0df34a34303afa346936166742b0392478a
+Merge: 46045475 ee663a2d
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 14:36:19 2023 +0530
+
+    resolving conflict
+
+commit 46045475ddaa1aec13697f3ccc4f40cd9fcb17a0
+Merge: 17de2477 4cd4af97
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 14:33:38 2023 +0530
+
+    resolving conflict
+
+commit 17de24777c192a2c724a4431fc94495d6ccb733b
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 14:31:03 2023 +0530
+
+    Committing local changes to logfile.log
+
+commit c4a1f0010f85e5b086c9bcc39cab5e395dbe2174
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 14:27:18 2023 +0530
+
+    Committing changes before pull
+
+commit ab6f25a07b281b99bc6b85de42f35aca1a8a415f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 14:21:04 2023 +0530
+
+    backend testcase
+
+commit 1db4ad02a80ab80fb301b122f108e8bb73669376
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 15 14:19:48 2023 +0530
+
+    backend testcase
+
+commit e693de2bdabddd22085d0f7dd8406c7d92015c12
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 12:58:31 2023 +0530
+
+    hi
+    
+    hi
+
+commit b2175da910112ef0ef8480b37b4becbe10b99a84
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 12:57:42 2023 +0530
+
+    hii
+
+commit ad314c45b3855b1bd3173766e845517356ff7bcd
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 15 12:55:32 2023 +0530
+
+    mcq- create
+
+commit ee663a2d6b9d3ab36e731a37c6bcf41af0b86cc3
+Merge: f1ddf22b f65f3785
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Fri Dec 15 12:45:37 2023 +0530
+
+    Merge pull request #27 from Snobin/Mij
+    
+    Mij
+
+commit f65f3785733ecf55e1a7ce525a89a476c217d356
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 12:43:51 2023 +0530
+
+    updated
+
+commit ec128031b1e8e9e56a6faaee40fbb71837b373cb
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 12:12:26 2023 +0530
+
+    updated testcases
+
+commit 325edadb45d599403e5e40cccd9ae3ec4f656a3b
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 10:52:26 2023 +0530
+
+    updated testcase
+
+commit fb766766f0c82350a2042ba8fa37f441045cf4a9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 15 10:49:41 2023 +0530
+
+    updated testcases
+
+commit 906f780e62fe516ebdf72b87e10dff47e9cd51d2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 14 18:52:12 2023 +0530
+
+    resolved errors
+
+commit f1ddf22b39d43fcf54f26167fd8dd7a89a73945e
+Merge: d2a9cfdb b6aa623b
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Thu Dec 14 18:36:51 2023 +0530
+
+    Merge pull request #26 from Snobin/Mijohn
+    
+    Updated
+
+commit b6aa623be2841c2ddb17d426537f24f0b2bcc9cd
+Merge: 9a8b30c7 d2a9cfdb
+Author: Mijohn T J <57265000+H-a-c-k-e-r-s-m-a-n-i-a@users.noreply.github.com>
+Date:   Thu Dec 14 18:34:58 2023 +0530
+
+    Merge branch 'main' into Mijohn
+
+commit 9a8b30c7897d192b20208341153cdb057236fa08
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 14 18:18:19 2023 +0530
+
+    Updated
+
+commit d2a9cfdb80fb1a4c2b595c31bf93e74dda448ffc
+Merge: 44352abf 4cd4af97
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Thu Dec 14 18:09:05 2023 +0530
+
+    Merge pull request #25 from Snobin/sno
+    
+    Sno
+
+commit 4cd4af97595f0a3a26633f3b71984e6453112179
+Merge: 7199984b 44352abf
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Thu Dec 14 18:08:45 2023 +0530
+
+    Merge branch 'main' into sno
+
+commit 7199984bc9dd0929d6c89737792b15b5b69193a9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Dec 14 18:06:24 2023 +0530
+
+    input
+
+commit d5a7b51831df60ef39a2a3bdd7ff52b17fb350f8
+Merge: 6514fee4 a6cd71cc
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 17:23:09 2023 +0530
+
+    Merge branch 'Antony' of https://github.com/Snobin/testcase into Antony
+
+commit 6514fee4d0dce928cefeaa85fe8a6fdd4e51bf3e
+Merge: 68c69570 44352abf
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 17:20:53 2023 +0530
+
+    resolving
+
+commit 68c69570ce4c9f193c32725e38b155f231ebcb5a
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 17:19:55 2023 +0530
+
+    Your commit message
+
+commit 037778a176e2ec21eb47f136804229470ce36fdb
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 17:14:41 2023 +0530
+
+    resolving
+
+commit 1d83cdd6f86f080aca6803dc276188c8195d6c24
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 17:11:31 2023 +0530
+
+    resolving
+
+commit dd04095e5571241b5fb1a8f13851ea930ac7e4f2
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 17:10:13 2023 +0530
+
+    resolving
+
+commit 63f5ff2199b3489db9058f8c1e764d40809a7022
+Merge: d20553ee 44352abf
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Thu Dec 14 17:07:31 2023 +0530
+
+    Merge pull request #24 from Snobin/main
+    
+    kk
+
+commit a6cd71cc8d21aebdc86713b9ba7bcc3f0340e471
+Merge: 4f57535b 44352abf
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 17:00:00 2023 +0530
+
+    Merge pull request #23 from Snobin/main
+    
+    Merge pull request #22 from Snobin/Antony
+
+commit 44352abfe68c0d01bf5113937fba78f8bb6c30aa
+Merge: 00c2a45c 4f57535b
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 16:58:56 2023 +0530
+
+    Merge pull request #22 from Snobin/Antony
+    
+    mcq admin console
+
+commit 4f57535b5a8ff9e4729fe87042f885acec75f823
+Merge: 21f4c608 00c2a45c
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 16:58:32 2023 +0530
+
+    Merge branch 'main' into Antony
+
+commit 21f4c6085246bd4c09384d586b210379cea1f59b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 16:54:50 2023 +0530
+
+    h
+
+commit c0be07226892003ee1d6c85b1b0e1fcc7ec12575
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 16:54:10 2023 +0530
+
+    Update mcq-questions.component.ts
+
+commit 0a336eb717ae1b148a1f50cda46ab27470fcfe99
+Merge: e04577c3 d20553ee
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 16:31:52 2023 +0530
+
+    Merge pull request #21 from Snobin/Parvathy
+    
+    updated
+
+commit d20553eecb7815df019794eda9fe5a2354f534f2
+Merge: a3346e91 e04577c3
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 16:31:40 2023 +0530
+
+    Merge branch 'Antony' into Parvathy
+
+commit e04577c34600da5036c4c346ce5991de94c25925
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 16:26:58 2023 +0530
+
+    h
+
+commit a3346e9131c732414faa9ef1176edb2f027b5eca
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Thu Dec 14 16:24:09 2023 +0530
+
+    updated
+
+commit da1882766fd06611d65731b51a35fd690da04585
+Merge: 7fc2d66f 640594bb
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 15:10:06 2023 +0530
+
+    Merge pull request #20 from Snobin/Parvathy
+    
+    h
+
+commit 640594bbe0e53a4e16ea7acf42c840f0d0b7f2b7
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Thu Dec 14 15:09:20 2023 +0530
+
+    h
+
+commit 7fc2d66f2d1807b19a770dcefaab775fdb258c32
+Merge: fd9aae0a ea305055
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 15:04:20 2023 +0530
+
+    Merge pull request #19 from Snobin/Parvathy
+    
+    spec
+
+commit fd9aae0a6ecac11d103774caac3d599957d48efd
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 15:03:38 2023 +0530
+
+    ggf
+
+commit f82c9647576e67c7330ad258181bd780d26e5d45
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 14:58:16 2023 +0530
+
+    ass
+
+commit ea3050550501a584597c1d295826f2dadea50dea
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Thu Dec 14 14:55:35 2023 +0530
+
+    spec
+
+commit 5322aa13c1d244bfc6fde9d4763a19a0d69a52cf
+Merge: 31ffa8e0 1842c5fc
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Dec 14 14:35:21 2023 +0530
+
+    resolved
+
+commit 31ffa8e031445ac526373da0b41e44f91ef6f1da
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Dec 14 14:23:25 2023 +0530
+
+    testcase
+
+commit 1842c5fc63050be2acd63346ed3bfb4c6f29db0f
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Thu Dec 14 14:21:36 2023 +0530
+
+    updated
+
+commit 6798cd7d683218b24d7f988999db8942cdeabdcf
+Merge: e0ecdde0 00c2a45c
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Thu Dec 14 12:55:59 2023 +0530
+
+    Merge branch 'main' of https://github.com/Snobin/testcase into sno
+
+commit 7f8475249b23768c012f9dbd7803e3aba2fd7e8d
+Merge: dfd17e45 321c3d95
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Thu Dec 14 10:39:14 2023 +0530
+
+    Merge pull request #18 from Snobin/Parvathy
+    
+    Parvathy
+
+commit dfd17e454e8ef97f2c0dc58c0e1036f6722df99b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Thu Dec 14 10:38:41 2023 +0530
+
+    dfdd
+
+commit 321c3d959c3772bb42add9989787f4c1351ee95c
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Thu Dec 14 10:38:00 2023 +0530
+
+    hbh
+
+commit b2c8dd3aca72da8f3adc8da6aa48725e13abf622
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 18:39:51 2023 +0530
+
+    updated toggleclass
+
+commit e0ecdde0c1e996f8e8ac8c50e59f8b203ab708b1
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 18:30:34 2023 +0530
+
+    Merge changes from remote
+
+commit f2b2c4fe09306c3b84239bc5dede7f1d65242311
+Merge: e94f3397 264db677
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 18:29:27 2023 +0530
+
+    Merge changes from remote
+
+commit e94f339757d9dc6fe25d5d2e3760ed2ad6064946
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 18:24:12 2023 +0530
+
+    Merge changes from remote
+
+commit 55a2248aa04288786ad5ed586223cd5b0cd268ac
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 18:20:37 2023 +0530
+
+    add
+
+commit 8f18f8c63c0b0a9e325328ea212fa5c7d4ec6f97
+Merge: c4b83112 fd4263c9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 18:19:46 2023 +0530
+
+    Merge branch 'Mijohn' of https://github.com/Snobin/testcase into sno
+
+commit fd4263c9936a47d3d78dae1ce83f234adb5a85d5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 18:16:49 2023 +0530
+
+    updated card button
+
+commit 00c2a45c702c8f5a649be2b7c6003189a05d711f
+Merge: 5e5889c0 264db677
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Wed Dec 13 18:16:48 2023 +0530
+
+    Merge pull request #17 from Snobin/sno
+    
+    Sno
+
+commit 264db6772f55ddf21d3657fcf8fa0d8de53a1550
+Merge: c4b83112 5e5889c0
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Wed Dec 13 18:15:50 2023 +0530
+
+    Merge branch 'main' into sno
+
+commit 221ed2b1f6bffe5e446a9adb411b50c8b7743d96
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 18:04:29 2023 +0530
+
+    updated card
+
+commit c4b83112301f3698a5d69fbae8a92cd290988ede
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 17:51:45 2023 +0530
+
+    gitignore
+
+commit a897b0207d8d3a3e746c4490adad8b5b4d77c6a3
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 17:50:49 2023 +0530
+
+    gitignore
+
+commit 265c1b9439d95c4c7298cab7b02fbfa03120c9fd
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 17:48:03 2023 +0530
+
+    gitignore
+
+commit dae73ccba2a9423eeef55703276a5cd0f6d7f7b2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 17:41:02 2023 +0530
+
+    updated pagination
+
+commit e0d53c5b005062660471cb779fc6237e869cd9e9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 17:39:24 2023 +0530
+
+    gitignore
+
+commit 39cc4815325716d3d0c87167189943240a182049
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Dec 13 17:31:08 2023 +0530
+
+    Update admin-question-section.component.html
+
+commit bd48ebb45ae3dd4fad47b089d4040fbe59c2cd11
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 17:29:03 2023 +0530
+
+    gitignore
+
+commit 162fc7981eedec7eb6641fdeafed1ba735775285
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 17:27:06 2023 +0530
+
+    gitignore
+
+commit 80b72f65c514a3c375fc1a8a74062404bf4a28f8
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 17:25:18 2023 +0530
+
+    added card and pagination in question
+
+commit 88970dfc17f1b9eabdf1d3570de29ea0b40f39ee
+Merge: b26f108c 5e5889c0
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Wed Dec 13 16:44:23 2023 +0530
+
+    Merge pull request #16 from Snobin/main
+    
+    kkk
+
+commit 8bb5ed8e0b7a704191f072381090fcb66d0f03df
+Merge: 048c0fe1 5e5889c0
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Dec 13 15:39:50 2023 +0530
+
+    Merge pull request #15 from Snobin/main
+    
+    Merge pull request #11 from Snobin/Antony
+
+commit 5e5889c028c68ec7b520b832278c83f54c1061e9
+Merge: e2d19664 048c0fe1
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Dec 13 15:38:28 2023 +0530
+
+    Merge pull request #11 from Snobin/Antony
+    
+    Antony
+
+commit 048c0fe1b86eb3649aff3f4b2c9a1a28f4e071ae
+Merge: 690b8e4e e2d19664
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Dec 13 15:38:19 2023 +0530
+
+    Merge branch 'main' into Antony
+
+commit e2d19664a791ebb55aea39018ebf9b7a303bee6e
+Merge: 538ad56c 460d4465
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Wed Dec 13 15:33:20 2023 +0530
+
+    Merge pull request #14 from Snobin/sno
+    
+    landing deleted
+
+commit 460d446502f00048480713bc7cda029ceb7785de
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 15:30:59 2023 +0530
+
+    landing deleted
+
+commit b26f108c6f76ce263c55b4fa65e2bd833a20e417
+Merge: 3e694ea8 538ad56c
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Wed Dec 13 15:25:14 2023 +0530
+
+    Merge pull request #13 from Snobin/main
+    
+    gghh
+
+commit 538ad56cdf6accb5f0a9b103789a446f1293d8ab
+Merge: 5968686b 119130cc
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Wed Dec 13 15:22:14 2023 +0530
+
+    Merge pull request #12 from Snobin/sno
+    
+    Sno
+
+commit 119130cc832a8fbd12baeff5b8eb8bc6e992dfe0
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 15:18:09 2023 +0530
+
+    frontend
+
+commit 690b8e4e278aeb6d68a61b47768cdcc1fa1dc1e5
+Merge: f8d0b3c0 5968686b
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Dec 13 15:15:43 2023 +0530
+
+    Merge branch 'main' into Antony
+
+commit 6445d356a87ae713f65e8aaa8a2ef1e760918a02
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 15:14:03 2023 +0530
+
+    updated
+
+commit f8d0b3c06b61f92f75b984b9440d6ad445103a22
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Dec 13 15:09:37 2023 +0530
+
+    admin component madw
+
+commit 799e76c9131c56de4cdeeb092c881d9b1d8b0e3c
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 14:55:38 2023 +0530
+
+    coderesponse
+
+commit 3aa684d0bfe25b32752b6eaf95abbf785ef3d55f
+Merge: c450c694 b5ab38cc
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 12:24:52 2023 +0530
+
+    Resolve merge conflicts
+
+commit c450c69434eb7bcd6bf963bf1eec48b505f24cf9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 11:55:07 2023 +0530
+
+    logger
+
+commit 27dd2513fdba3ba4216554eb7256d616fea751c5
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Dec 13 11:50:29 2023 +0530
+
+    aaa
+
+commit 3e694ea82c7e1d618ad74efe3752db5e63d3586c
+Merge: 6f97f7d0 b5ab38cc
+Author: Parvathy7278 <153259044+Parvathy7278@users.noreply.github.com>
+Date:   Wed Dec 13 11:44:31 2023 +0530
+
+    Merge pull request #9 from Snobin/Mijohn
+    
+    Mijohn
+
+commit 5968686b4860a8ba649e9080a0945acb9d24fee2
+Merge: 2a77d9bd d8936b56
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Wed Dec 13 11:43:03 2023 +0530
+
+    Merge pull request #8 from Snobin/sno
+    
+    Sno
+
+commit d8936b5612838f625ccb490e428c55ef66b9d633
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 11:40:46 2023 +0530
+
+    logger
+
+commit b5ab38cc3e9d9ec83e1a68ecff87a7714a850210
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 11:40:43 2023 +0530
+
+    updated backend
+
+commit aecd85b1b5b326f5ef46425c66008b5030e9e29a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 11:29:24 2023 +0530
+
+    logger
+
+commit 87b56fd04cfa77224010eed13e9fe63efe440779
+Merge: 7a297df5 ebd6bbf2
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 11:16:43 2023 +0530
+
+    Merge branch 'Mijohn' of https://github.com/Snobin/testcase into Mijohn
+
+commit 7a297df57b6e920102ba32a90a634cb64d0e01fd
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 11:16:39 2023 +0530
+
+    Updated theme to light and gray
+
+commit 6c1609b10d43672aa2cafce14e3bea588318282f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 11:06:33 2023 +0530
+
+    python
+
+commit 499d656eeaee62c9c248098aaac37a30a600bb8c
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Wed Dec 13 10:54:01 2023 +0530
+
+    java
+
+commit 4350b128ffbc71c9b79a8b9a1baf69234d0713ab
+Merge: 2bf13fbe ebd6bbf2
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Dec 13 10:43:56 2023 +0530
+
+    Merge pull request #7 from Snobin/Mijohn
+    
+    sdfsr
+
+commit ebd6bbf265370b0ff141b896781c5fb5f537db57
+Merge: 4285de48 2bf13fbe
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Wed Dec 13 10:40:45 2023 +0530
+
+    Merge pull request #6 from Snobin/Antony
+    
+    front
+
+commit 2bf13fbedfd7e4cd252a143ca2ad5e15f73a0073
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Wed Dec 13 10:39:13 2023 +0530
+
+    Update messages.properties
+
+commit 4285de48b34d4fa4c383fc931576f2ab753bcee8
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 10:36:15 2023 +0530
+
+    updated
+
+commit edf9b1c5021f75ed55889be7bc2b1be18a5f8928
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Wed Dec 13 09:18:10 2023 +0530
+
+    updated theme
+
+commit a957998052e0dcf361709fb4db0fdfbc437b96a3
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Tue Dec 12 17:13:08 2023 +0530
+
+    cpp
+
+commit b2b75ee2f9fee343f154a0977a584a9f8ceffb31
+Merge: 29104f3f 6f97f7d0
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Dec 12 17:06:06 2023 +0530
+
+    Merge pull request #5 from Snobin/Parvathy
+    
+    Parvathy
+
+commit 6f97f7d07b26c33c9fab2b837f4eccc4e2ddfd33
+Merge: 3c174e68 29104f3f
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Dec 12 17:05:58 2023 +0530
+
+    Merge branch 'Antony' into Parvathy
+
+commit 19fcd8d2808925f1fc6767ad5aa1bee22fda086a
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 12 17:02:02 2023 +0530
+
+    Updated questions
+
+commit 3c174e68356126cf5e81969ee84ca027b211a759
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Tue Dec 12 17:00:10 2023 +0530
+
+    mcqmicroservices
+
+commit 4c706084c01b13f400fc091112ccb080c213d6f5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 12 16:11:53 2023 +0530
+
+    updated coding page and created question page
+
+commit a2d54ed05f64166986e32ba01bcb53ef6b96b460
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 12 12:38:20 2023 +0530
+
+    Updated question section
+
+commit 3814c67cba25e8e181fb9fe322f76c9f03bc913e
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 12 11:21:45 2023 +0530
+
+    Created question section module
+
+commit 2c4b1fc1924b323541358cc06f7975cee08cf6b2
+Merge: 8aad6d25 5a4d2d26
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 12 11:10:32 2023 +0530
+
+    Merge branch 'Mijohn' of https://github.com/Snobin/testcase into Mijohn
+
+commit 8aad6d257883fc53d79de5d986bb20a07cb34626
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Tue Dec 12 11:10:26 2023 +0530
+
+    updated
+
+commit 29104f3f296ac9a1df4e2e2f9ab782ac6b6f9f62
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Tue Dec 12 10:32:50 2023 +0530
+
+    Update application.properties
+
+commit b651f9e828f0076ca4e79d1b382a11f1312b3641
+Merge: 7eae5a09 5a4d2d26
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Dec 12 10:22:16 2023 +0530
+
+    Merge pull request #4 from Snobin/Mijohn
+    
+    Mijohn
+
+commit 5a4d2d265d7ac8c95795b65a00baccdbf751a5e1
+Merge: 7d287c1d 7eae5a09
+Author: AntonyKShaji <153259248+AntonyKShaji@users.noreply.github.com>
+Date:   Tue Dec 12 10:22:05 2023 +0530
+
+    Merge branch 'Antony' into Mijohn
+
+commit 7d287c1d5ddbc187d67ff74a71f5bb0c5f657c88
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 19:03:50 2023 +0530
+
+    updated and added instructions page
+
+commit a841d794698e4c9e1033d6586ff1d001dcd56db5
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Dec 11 18:12:26 2023 +0530
+
+    Your commit message
+
+commit 6ec4c3776655fe7f46a178e0398cf8be658ff1e9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 17:53:03 2023 +0530
+
+    updated
+
+commit b27838d23e99905ab7f4cdcef1d027a776f64baa
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 17:51:33 2023 +0530
+
+    updated
+
+commit 9e21fea4e23b0617f75a4f67f1df01bc6572447c
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 15:02:15 2023 +0530
+
+    Updated
+
+commit 2acc50e027982f861ea4361899f7f00cdc57e687
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 14:49:43 2023 +0530
+
+    Python output area updated
+
+commit 2a77d9bde41ce226afabb182028e663124ae69df
+Merge: 94f6712c a2ece652
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Mon Dec 11 12:59:01 2023 +0530
+
+    Merge pull request #3 from Snobin/sno
+    
+    Your commit message
+
+commit a2ece652230c28cb8de5880fcc6418bffffe60ed
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Dec 11 12:46:46 2023 +0530
+
+    Your commit message
+
+commit 94f6712c9093171b2704743d725551e0b7950006
+Merge: e004d4f6 ec86cc82
+Author: Snobin Abraham <47213116+Snobin@users.noreply.github.com>
+Date:   Mon Dec 11 12:27:47 2023 +0530
+
+    Merge pull request #2 from Snobin/sno
+    
+    Your commit message
+
+commit ec86cc82019486fca9bb15b5f748c0498e130277
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Mon Dec 11 12:22:33 2023 +0530
+
+    Your commit message
+
+commit 8f0195fae647ad531a91927908eb6e6e60a7f1a5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 12:17:12 2023 +0530
+
+    Added Java Compiler in springboot
+
+commit 66cf489e27fbda319fcb413cd493108442cd46c6
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Mon Dec 11 10:54:02 2023 +0530
+
+    Updated
+
+commit 5d12d8d938b79b2a86a45ef8c7eeef5074858363
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 17:22:07 2023 +0530
+
+    login updated
+
+commit 27bef41b087f02d467907e99c2833f9ea6718d19
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 17:00:08 2023 +0530
+
+    inserted a logo
+
+commit 652b66493109b01811e2fc4566314fe4123dc581
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 16:54:07 2023 +0530
+
+    Updated navbar
+
+commit 3c0f7ddd24ff1b7ec13a9bcd02a2ba9185533bc0
+Merge: 5513392e c0f1da5a
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 16:08:30 2023 +0530
+
+    Merge branch 'Mijohn' of https://github.com/Snobin/testcase into Mijohn
+
+commit 5513392e0720cfe3100b94671f21636235a23ac5
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 16:08:04 2023 +0530
+
+    updated
+
+commit c0f1da5ab83dcf6b22fcd569ce17e2d1e21bbf31
+Merge: 051449bd cb1147a0
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 16:07:15 2023 +0530
+
+    Merge branch 'Mijohn' of https://github.com/Snobin/testcase into Mijohn
+
+commit 7eae5a09da0a99392612d49b0869b9f25cb64e49
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 15:32:11 2023 +0530
+
+    Update application.properties
+
+commit 1cf32fd6e091e1e4eb1724283a9702b349101360
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Fri Dec 8 14:43:50 2023 +0530
+
+    Update angular.json
+
+commit cb1147a0c42e255015da8985d520c9243ffe9ebc
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 14:39:11 2023 +0530
+
+    Updated application.properties
+
+commit e004d4f62d1bc059d3a9fd3f524fb268a4780046
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 14:37:15 2023 +0530
+
+    Updated pom.xml
+
+commit e2fbe362d7dd94374990437757e0e6ef536ac108
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 14:29:07 2023 +0530
+
+    Created User
+
+commit c3fb9fb047f86ff5d4ade5da4e0272d6a3f449e4
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 14:20:41 2023 +0530
+
+    Delete User.java
+
+commit b3aab9dd0bb9ef76e7847a07a2b632d04cba82b8
+Merge: 546681a0 0798a598
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 14:19:52 2023 +0530
+
+    Merge branch 'main' of https://github.com/Snobin/testcase
+
+commit 0798a598579f78249787f62c4c220da15ba68e19
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 13:54:29 2023 +0530
+
+    edited
+
+commit bb750de00faf24ff24e649db09c9c7dc8b3199e9
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 13:49:53 2023 +0530
+
+    updated
+
+commit bbc704ff4342598d47630c8fb3f2eb9b19aaa33c
+Merge: eab4f6e9 08ccb070
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 13:46:53 2023 +0530
+
+    Merge branch 'main' of https://github.com/Snobin/testcase
+
+commit eab4f6e9fb55664498ca9ae53a099997feb01649
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 13:44:35 2023 +0530
+
+    Update app.component.html
+
+commit 08ccb07012a4daa6273ebb4d631a2e0fdb9ebc2a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 13:33:49 2023 +0530
+
+    db
+
+commit 546681a0058ce0390d33fb595e70816d17ed40d5
+Merge: 7ea9f07e 1d057583
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Fri Dec 8 12:49:54 2023 +0530
+
+    Merge branch 'main' of https://github.com/Snobin/testcase
+
+commit 7ea9f07e026718e7223f4616ca744f6e9c0e88db
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Fri Dec 8 12:49:16 2023 +0530
+
+    Update User.java
+
+commit 1d057583b3115b8af9b3dcbd68cf5f5b09113e07
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 12:48:16 2023 +0530
+
+    Update User.java
+
+commit a37b875fba016c465cc373abb3e05f37f597253b
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 12:45:32 2023 +0530
+
+    Update User.java
+
+commit 051449bd641430c63859e8babd49e24c86750cb0
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 12:45:15 2023 +0530
+
+    Updated Pom.xml
+
+commit b83097fb19d07232e72ee1b03d6ba9254adf6224
+Author: Parvathy7278 <parvathybabubabut@gmail.com>
+Date:   Fri Dec 8 12:38:54 2023 +0530
+
+    dgdhf
+
+commit 22325d50e3d14d76d81c788c0534fac850671e94
+Author: AntonyKShaji <antonykshaji13@gmail.com>
+Date:   Fri Dec 8 12:35:53 2023 +0530
+
+    fvdbgrfhhh
+
+commit 73a083fca1c048a6350a7b1cdbf9765dc6ed26ac
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 12:02:57 2023 +0530
+
+    Revert "updated"
+    
+    This reverts commit acea112ecf0f25d2865c9c107f3cc025521cae31.
+
+commit 38d314dce65ec3ac12561d83d1640bbba1852f3f
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 12:02:48 2023 +0530
+
+    Revert "updated"
+    
+    This reverts commit 212c368eeec0865918b497d93551f1386d238928.
+
+commit 212c368eeec0865918b497d93551f1386d238928
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 12:01:38 2023 +0530
+
+    updated
+
+commit acea112ecf0f25d2865c9c107f3cc025521cae31
+Author: Mijohn T J <mijohn2000@gmail.com>
+Date:   Fri Dec 8 11:50:31 2023 +0530
+
+    updated
+
+commit 3512f8c583eac78ca5a84d43cd7d712c574a3a10
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 11:26:37 2023 +0530
+
+    db
+
+commit 34d2858b273881598b77ea31280fa0c6f87daf80
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 11:19:08 2023 +0530
+
+    ng g c
+
+commit ea9c665241286064947b4f33c7be13aa6373be5a
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 10:30:29 2023 +0530
+
+    frontend
+
+commit ef330b229de7d79eb8415692f86143f9fc9e06f9
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 10:28:18 2023 +0530
+
+    backend
+
+commit 4aba9b5d44b9bc77a0740cadb82872dd9d6b7b8f
+Author: Snobin <abrahamsnobin2001@gmail.com>
+Date:   Fri Dec 8 10:15:59 2023 +0530
+
+    first commit

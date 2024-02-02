@@ -10,7 +10,7 @@ import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.ResultEntity;
 import com.interland.testcase.entity.ResultPk;
 
-public interface ResultRepository extends JpaRepository<ResultEntity,ResultPk>{
+public interface ResultRepository extends JpaRepository<ResultEntity, ResultPk> {
 
-	public List<ResultEntity>  findAllByResultPkUser(String user);
+	public List<ResultEntity> findAllByResultPkUser(String user);
 }

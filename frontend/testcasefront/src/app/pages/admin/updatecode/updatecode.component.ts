@@ -32,7 +32,6 @@ export class UpdatecodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
-    // this.getData(this.qId);
     this.getData();
     this.qTitle = this.route.snapshot.params.title;
     this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
@@ -80,7 +79,6 @@ export class UpdatecodeComponent implements OnInit {
 
   formSubmit() {
     if (!this.codeInput.title || !this.codeInput.desc) {
-      console.log("Validation failed");
       return;
     }
 
@@ -121,7 +119,6 @@ export class UpdatecodeComponent implements OnInit {
         Swal.fire('Success', 'Question Added', 'success');
       },
       (error) => {
-        console.log(error);
         Swal.fire('Error', 'Error in adding question', 'error');
       }
     );
@@ -132,11 +129,7 @@ export class UpdatecodeComponent implements OnInit {
     if (fileList.length > 0) {
       const file: File = fileList[0];
       this.codeInput.fileContent = file;
-      this.fileName = file.name; // Set the file name for display if needed
-      console.log(file);
-      console.log(this.codeInput);
-
-      // Log the file to see if it's properly captured
+      this.fileName = file.name; 
     }
   }
 

@@ -17,10 +17,7 @@ public class McqQuestion {
 
     private String correctAnswer;
 
-    // Additional information about the question
     private String additionalInfo;
-
-    
 
     public Long getQuestionId() {
 		return questionId;

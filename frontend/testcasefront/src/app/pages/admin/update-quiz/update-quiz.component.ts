@@ -20,7 +20,12 @@ export class UpdateQuizComponent implements OnInit {
   qId=0;
   quizdata;
   categories: any;
-
+  validationMessage={
+    title:'',
+    description:'',
+    numberOfQuestions:'',
+    time:''
+  } ;
 
   ngOnInit(): void {
     this.qId=this.route.snapshot.params.qid;
@@ -41,14 +46,22 @@ export class UpdateQuizComponent implements OnInit {
     );
   }
   update(){
-    console.log(this.quizdata);
     
     this.quiz.updateQuiz(this.quizdata).subscribe(
-      (data)=>{
+      (data:any)=>{
+        if(!data.details){ 
         Swal.fire('Success','quiz updated','success').then((e)=>{
           this.router.navigate(['/admin/quizzes']);
         });
-      },
+      }else{
+       
+          data.details.forEach(element => {
+            var key = Object.keys(element)[0];
+            this.validationMessage[key] = element[key];
+          });
+        }
+      }
+      ,
       (error)=>{
         Swal.fire('Error','error in updating quiz','error');
 

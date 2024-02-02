@@ -63,6 +63,18 @@ export class LoginService {
     if (localStorage.getItem("codingQuestions")) {
       localStorage.removeItem("codingQuestions");
     }
+    if (localStorage.getItem("javaEditorCode")) {
+      localStorage.removeItem('javaEditorCode');
+    }
+    if (localStorage.getItem("cppEditorCode")) {
+      localStorage.removeItem('cppEditorCode');
+    }
+    if (localStorage.getItem("cEditorCode")) {
+      localStorage.removeItem('cEditorCode');
+    }
+    if (localStorage.getItem("pythonEditorCode")) {
+      localStorage.removeItem('pythonEditorCode');
+    }
   }
 
   //get token

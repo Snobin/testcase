@@ -4,11 +4,13 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <form *ngIf="quizdata" (ngSubmit)="update()">
+                    <span class="error-msg-span">{{validationMessage.title}}</span>
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Enter Title</mat-label>
                         <input [(ngModel)]="quizdata.title" type="text" name="title" placeholder="Enter here"
                             matInput />
                     </mat-form-field>
+                    <span class="error-msg-span">{{validationMessage.description}}</span>
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Enter Description</mat-label>
                         <textarea [(ngModel)]="quizdata.description" name="description" placeholder="Enter here"
@@ -23,6 +25,7 @@
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
+                            <span class="error-msg-span">{{validationMessage.numberOfQuestions}}</span>
                             <mat-form-field class="w100" appearance="fill">
                                 <mat-label>Number of Question</mat-label>
                                 <input [(ngModel)]="quizdata.numberOfQuestions" type="text" name="numberOfQuestions"
@@ -30,23 +33,31 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <mat-slide-toggle name="active" [(ngModel)]="quizdata.active" class="mt20" color="primary">
-                        Publish Status
-                    </mat-slide-toggle>
-                    <mat-form-field appearance="fill" style="margin-left: 35%; width: 20%;">
-                        <mat-label>Time:</mat-label>
-                        <input [(ngModel)]="quizdata.time"  name="time" placeholder="Enter Time in minutes"
-                            matInput />
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field appearance="fill" class="mt20 w100">
-                        <mat-label>Categories</mat-label>
-                        <mat-select name="category" [(ngModel)]="quizdata.category.cid">
-                            <mat-option *ngFor="let c of categories" [value]="c.cid">
-                                {{c.title}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-slide-toggle name="active" [(ngModel)]="quizdata.active" class="mt20" color="primary">
+                                Publish Status
+                            </mat-slide-toggle>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="error-msg-span">{{validationMessage.time}}</span>
+                            <mat-form-field class="w100" appearance="fill">
+                                <mat-label>Time:</mat-label>
+                                <input [(ngModel)]="quizdata.time"  name="time" placeholder="Enter Time in minutes"
+                                    matInput />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Categories</mat-label>
+                            <mat-select name="category" [(ngModel)]="quizdata.category.cid">
+                                <mat-option *ngFor="let c of categories" [value]="c.cid">
+                                    {{c.title}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                     <div class="container text-center">
                         <button mat-raised-button color="primary">Update</button>
                     </div>

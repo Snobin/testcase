@@ -1,10 +1,13 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+.logo-size{
+  width: 150px;
+}
 
 .custom-button {
   margin-left: 50px;
-  background-color: #3f51b5; /* Set your desired background color */
+  background-color: #041e51; /* Set your desired background color */
   color: #fff; /* Set your desired text color */
   padding: 1px 1px; /* Adjust padding as needed */
   border-radius: 5px; /* Add rounded corners */
@@ -43,4 +46,9 @@
   z-index: 1000;
   width: 150px;
   font-size: 20px;
+}
+.mat-toolbar.mat-primary {
+  background: #041e51;
+  color: #fff;
+  height: 8%;
 }

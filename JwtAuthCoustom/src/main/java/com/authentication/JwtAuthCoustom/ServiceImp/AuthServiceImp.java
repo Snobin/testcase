@@ -151,7 +151,6 @@ public class AuthServiceImp implements AuthService {
 			Sheet sheet = workbook.getSheetAt(0);
 			Iterator<Row> rowIterator = sheet.iterator();
 
-			// Skipping the header row
 			if (rowIterator.hasNext()) {
 				rowIterator.next();
 			}
@@ -183,6 +182,7 @@ public class AuthServiceImp implements AuthService {
 		return users;
 	}
 
+	@SuppressWarnings("deprecation")
 	private String getStringCellValue(Cell cell) {
 		try {
 			if (cell == null) {
@@ -201,23 +201,17 @@ public class AuthServiceImp implements AuthService {
 			if (cell == null || cell.getCellType() == CellType.BLANK) {
 				return null;
 			}
-
-			// Check if the cell contains a numeric value (Excel date representation)
 			if (DateUtil.isCellDateFormatted(cell)) {
 				Date date = cell.getDateCellValue();
-				// Format the date as a string (adjust the format as needed)
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				return dateFormat.format(date);
 			} else if (cell.getCellType() == CellType.STRING) {
-				// If the cell contains a string, assume it's already a formatted date
 				return cell.getStringCellValue();
 			} else {
-				// If not a date or string, use DataFormatter to get the formatted date string
 				DataFormatter dataFormatter = new DataFormatter();
 				return dataFormatter.formatCellValue(cell);
 			}
 		} catch (Exception e) {
-			// Log the error or handle it as per your application's requirements
 			logger.error("Error:" + e.getMessage(), e);
 			return null;
 		}
@@ -228,8 +222,7 @@ public class AuthServiceImp implements AuthService {
 			List<UserEntity> users = repo.findAll();
 			return users.stream().map(this::convertToDto).collect(Collectors.toList());
 		} catch (Exception e) {
-			// Log the error or handle it as per your application's requirements
-			logger.error("Error:" + e.getMessage(), e); // You can replace this with appropriate logging
+			logger.error("Error:" + e.getMessage(), e);
 			return Collections.emptyList();
 		}
 	}
@@ -245,8 +238,7 @@ public class AuthServiceImp implements AuthService {
 			userDto.setUsername(user.getUsername());
 			return userDto;
 		} catch (Exception e) {
-			// Log the error or handle it as per your application's requirements
-			logger.error("Error:" + e.getMessage(), e);// You can replace this with appropriate logging
+			logger.error("Error:" + e.getMessage(), e);
 			return null;
 		}
 	}

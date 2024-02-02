@@ -17,10 +17,18 @@ export class UpdateQuestionComponent implements OnInit {
     content: '',
     option1: '',
     option2: '',
-    option3: '',
-    option4: '',
+    option3: null,
+    option4: null,
     answer: '',
       qId: '',
+  };
+  validationMessage={
+    content:'',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    answer:''
   };
 
   constructor(private route:ActivatedRoute, private service:QuestionService, private router: Router) { }
@@ -30,7 +38,6 @@ export class UpdateQuestionComponent implements OnInit {
     this.qId = this.route.snapshot.params.qid;
     
     this.questId= this.route.snapshot.params.questId;
-    console.log(this.questId);
     this.question.qId = this.qId;
     this.getdata();
   }
@@ -48,17 +55,23 @@ export class UpdateQuestionComponent implements OnInit {
     if (this.question.answer.trim() == '' || this.question.answer ==null || this.question.answer ==undefined) {
       return;
     }
-    // form submit
     this.service.updateQuestion(this.question).subscribe(
       (data:any) => {
+        if(!data.details){
         this.question.content = '';
         this.question.option1 = '';
         this.question.option2 = '';
-        this.question.option3 = '';
-        this.question.option4 = '';
+        this.question.option3 = null;
+        this.question.option4 = null;
         this.question.answer = '';
-        Swal.fire('Success', 'Question Added','success');
+        Swal.fire('Success', 'Question Updated','success');
         this.router.navigate(['/admin/view-questions/'+this.qId+'/'+this.qTitle]);
+        }else{
+          data.details.forEach(element => {
+            var key = Object.keys(element)[0];
+            this.validationMessage[key] = element[key];
+        });
+        }
       },(error) => {
         Swal.fire('Error', 'Error in adding question','error');
       }

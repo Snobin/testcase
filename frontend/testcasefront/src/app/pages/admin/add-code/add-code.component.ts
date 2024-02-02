@@ -20,6 +20,14 @@ export class AddCodeComponent implements OnInit {
   qTitle;
   fileName = 'Select File';
   message = '';
+  validationMessage={
+    title:'',
+    desc:'',
+    ex1input:'',
+    ex1output:'',
+    qid:'',
+    time:'',
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -55,7 +63,6 @@ export class AddCodeComponent implements OnInit {
 
   formSubmit() {
     if (!this.codeInput.title || !this.codeInput.desc) {
-      console.log("Validation failed");
       return;
     }
 
@@ -77,6 +84,7 @@ export class AddCodeComponent implements OnInit {
 
     this.service.addCodingQuestion(questionData, this.codeInput.fileContent).subscribe(
       (data: any) => {
+       if (!data.details){
         this.codeInput = {
           title: '',
           desc: '',
@@ -94,6 +102,12 @@ export class AddCodeComponent implements OnInit {
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
+       }else{
+        data.details.forEach(element => {
+          var key = Object.keys(element)[0];
+          this.validationMessage[key] = element[key];
+       });
+       }
       },
       (error) => {
         console.log(error);
@@ -108,12 +122,6 @@ export class AddCodeComponent implements OnInit {
       const file: File = fileList[0];
       this.codeInput.fileContent = file;
       this.fileName = file.name; // Set the file name for display if needed
-      console.log(file);
-      console.log(this.codeInput);
-
-      // Log the file to see if it's properly captured
     }
   }
-
-
 }

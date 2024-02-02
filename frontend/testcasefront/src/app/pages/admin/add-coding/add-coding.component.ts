@@ -101,40 +101,11 @@ throw new Error('Method not implemented.');
     }
     if (this.question.file == null || this.question.file == undefined || this.fileName == 'Select File') {
       this.message = 'Please choose a file for testcases.';
-      console.log(this.message);
       return;
     }
     if (this.message != 'Please choose a file for testcases.') {
       this.message = '';
     }
-    console.log(this.message);
-    // form submit
-  //   this.service.addCodingQuestion(this.question).subscribe(
-  //     (data: any) => {
-  //       this.question.heading = '';
-  //       this.question.description = '';
-  //       this.question.example1 = '';
-  //       this.question.example2 = '';
-  //       this.question.constraints = '';
-  //       this.constraintsElement.value = '';
-  //       this.question.file = null;
-  //       this.fileName = 'Select File';
-  //       Swal.fire('Success', 'Question Added', 'success');
-  //     }, (error) => {
-  //       Swal.fire('Error', 'Error in adding question', 'error');
-  //     }
-  //   )
-  // }
-
-  // selectFile(event: any): void {
-  //   if (event.target.files && event.target.files[0]) {
-  //     const file: File = event.target.files[0];
-  //     this.question.file = file;
-  //     this.fileName = this.question.file.name;
-  //   } else {
-  //     this.fileName = 'Select File';
-  //   }
-  // }
 
 }}
 

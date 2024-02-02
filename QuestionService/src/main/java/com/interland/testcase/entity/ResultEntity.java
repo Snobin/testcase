@@ -14,36 +14,23 @@ public class ResultEntity {
 	private ResultPk resultPk;
 
 	private String question;
-	
+
 	private String answer;
 
 	private String status;
 
 	private String title;
- 
+
 	@Column(name = "response")
 	private String givenAnswer;
-
-
-
-
-	
 
 	public String getTitle() {
 		return title;
 	}
 
-
-
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
-
-
 
 	public ResultPk getResultPk() {
 		return resultPk;
@@ -84,9 +71,6 @@ public class ResultEntity {
 	public void setGivenAnswer(String givenAnswer) {
 		this.givenAnswer = givenAnswer;
 	}
-
-
-
 
 	public ResultEntity(ResultPk resultPk, String question, String answer, String status, String title,
 			String givenAnswer) {

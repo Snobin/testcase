@@ -1,10 +1,11 @@
 package com.interland.testcase.dto;
 
 public class CodeResponse {
-	 String output;
-	 String Success;
-	 String Message;
-	 String input;
+	String output;
+	String Success;
+	String Message;
+	String input;
+	String expectedOutput;
 
 	public String getInput() {
 		return input;
@@ -13,7 +14,15 @@ public class CodeResponse {
 	public void setInput(String input) {
 		this.input = input;
 	}
+	
 
+	public String getExpectedOutput() {
+		return expectedOutput;
+	}
+
+	public void setExpectedOutput(String expectedOutput) {
+		this.expectedOutput = expectedOutput;
+	}
 
 	public String getSuccess() {
 		return Success;
@@ -37,17 +46,16 @@ public class CodeResponse {
 
 	public void setOutput(String output) {
 		this.output = output;
-	} 
+	}
+
 	private long processingTime;
 
+	public void setProcessingTime(long processingTime) {
+		this.processingTime = processingTime;
+	}
 
-    public void setProcessingTime(long processingTime) {
-        this.processingTime = processingTime;
-    }
-
-    public long getProcessingTime() {
-        return processingTime;
-    }
-
+	public long getProcessingTime() {
+		return processingTime;
+	}
 
 }

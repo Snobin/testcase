@@ -62,7 +62,7 @@ public class ResultController {
 	}
 
 	@PostMapping("/delete")
-	public ResponseEntity<String> deleteUsers(@RequestBody List<String> usernames) {
+	public ResponseEntity<?> deleteUsers(@RequestBody List<String> usernames) {
 		String result = resultService.deleteUsers(usernames);
 		return ResponseEntity.ok(result);
 	}

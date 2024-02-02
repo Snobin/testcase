@@ -37,9 +37,7 @@ update(user: any): Observable<Response> {
 }
 
   // Set status
-  setStatus(status: boolean,time:any): void {
-    console.log(time);
-    
+  setStatus(status: boolean,time:any): void {    
     this.statusSubject.next(status);
     this.timeSubject.next(time);
   }

@@ -18,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.authentication.JwtAuthCoustom.Entity.UserEntity;
 import com.authentication.JwtAuthCoustom.Repository.AuthRepository;
 
-
-
 @Configuration
 public class ApplicationConfig {
 
@@ -33,10 +31,10 @@ public class ApplicationConfig {
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				if (usernameExistsInYourSystem(username)) {
-//
+
 					return buildUserDetails(username);
 				} else {
-//		            
+
 					throw new UsernameNotFoundException("Username not found: " + username);
 				}
 			}

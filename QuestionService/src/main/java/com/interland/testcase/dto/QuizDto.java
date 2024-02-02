@@ -6,13 +6,20 @@ import java.util.Set;
 import com.interland.testcase.entity.Category;
 import com.interland.testcase.entity.Question;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class QuizDto {
 
 	private Long qid;
+	@NotEmpty(message = "{NotEmpty.quizDto.title}")
 	private String title;
+	@NotEmpty(message = "{NotEmpty.quizDto.description}")
 	private String description;
+	
 	private String maxMarks;
+	@NotEmpty(message = "{NotEmpty.quizDto.numberOfQuestions}")
 	private String numberOfQuestions;
+	@NotEmpty(message = "{NotEmpty.quizDto.time}")
 	private String time;
 
 	public String getTime() {
@@ -24,7 +31,7 @@ public class QuizDto {
 	}
 
 	private boolean active;
-	private Category category; // Assuming you want to include the category ID in the DTO
+	private Category category;
 
 	private Set<Question> questions = new HashSet<>();
 
@@ -37,10 +44,7 @@ public class QuizDto {
 	}
 
 	public QuizDto() {
-		// Default constructor
 	}
-
-	// Getters and setters
 
 	public Long getQid() {
 		return qid;

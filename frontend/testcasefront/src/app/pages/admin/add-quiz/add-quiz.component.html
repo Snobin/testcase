@@ -4,55 +4,52 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <form (ngSubmit)="addQuiz()">
+                    <span class="error-msg-span">{{validationMessage.title}}</span>
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Enter Title</mat-label>
-                        <input [(ngModel)]="Data.title" type="text" name="title" placeholder="Enter here" matInput/>
+                        <input [(ngModel)]="Data.title" type="text" name="title" placeholder="Enter here" matInput />
                     </mat-form-field>
+                    <span class="error-msg-span">{{validationMessage.description}}</span>
                     <mat-form-field class="w100" appearance="fill">
                         <mat-label>Enter Description</mat-label>
-                        <textarea 
-                        [(ngModel)]="Data.description"
-                         name="description" 
-                         placeholder="Enter here" 
-                         matInput
-                         rows="5"
-                         ></textarea>
+                        <textarea [(ngModel)]="Data.description" name="description" placeholder="Enter here" matInput
+                            rows="5"></textarea>
                     </mat-form-field>
                     <div class="row">
                         <div class="col-md-6">
-                           <mat-form-field class="w100" appearance="fill">
-                            <mat-label>Maximum Marks</mat-label>
-                            <input 
-                            [(ngModel)]="Data.maxMarks"
-                            type="text"
-                             name="maxMarks"
-                              placeholder="Enter here"
-                               matInput/>
-                        </mat-form-field>
+                            <mat-form-field class="w100" appearance="fill">
+                                <mat-label>Maximum Marks</mat-label>
+                                <input [(ngModel)]="Data.maxMarks" type="text" name="maxMarks" placeholder="Enter here"
+                                    matInput />
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6">
+                            <span class="error-msg-span">{{validationMessage.numberOfQuestions}}</span>
                             <mat-form-field class="w100" appearance="fill">
                                 <mat-label>Number of Question</mat-label>
-                                <input 
-                                [(ngModel)]="Data.numberOfQuestions"
-                                type="text"
-                                 name="numberOfQuestions"
-                                  placeholder="Enter here"
-                                   matInput/>
+                                <input [(ngModel)]="Data.numberOfQuestions" type="text" name="numberOfQuestions"
+                                    placeholder="Enter here" matInput />
                             </mat-form-field>
                         </div>
                     </div>
-                    <mat-slide-toggle
-                    name="active"
-                    [(ngModel)]="Data.active"
-                    class="mt20"
-                    color="primary">
-                    Publish Status
-                    </mat-slide-toggle>
-                    <mat-form-field appearance="fill" style="margin-left: 35%; width: 20%;">
-                        <mat-label>Time:</mat-label>
-                        <input  [(ngModel)]="Data.time" type="text" name="time" placeholder="Enter Time in minutes" matInput/>
-                      </mat-form-field>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-slide-toggle name="active" [(ngModel)]="Data.active" class="mt20" color="primary">
+                                Publish Status
+                            </mat-slide-toggle>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="error-msg-span">{{validationMessage.time}}</span>
+                            <mat-form-field appearance="fill" style="margin-left: 0%; width: 100%;">
+                                <mat-label>Time:</mat-label>
+                                <input [(ngModel)]="Data.time" type="text" name="time"
+                                    placeholder="Enter Time in minutes" matInput />
+                            </mat-form-field>
+                        </div>
+
+
+                    </div>
+
                     <br>
                     <mat-form-field appearance="fill" class="mt20 w100">
                         <mat-label>Categories</mat-label>
@@ -62,7 +59,6 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-
                     <div class="container text-center">
                         <button mat-raised-button color="primary">Add</button>
                     </div>
@@ -70,5 +66,5 @@
             </div>
         </div>
     </div>
-   
+
 </mat-card>

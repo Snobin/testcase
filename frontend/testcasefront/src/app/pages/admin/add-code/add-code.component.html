@@ -6,10 +6,12 @@
           <mat-card-title>Enter the Details of the New Coding Question</mat-card-title>
         </mat-card-header>
         <form (ngSubmit)="formSubmit()">
+          <span class="error-msg-span">{{validationMessage.title}}</span>
           <mat-form-field appearance="fill">
             <mat-label class="form-label">Write Question Title</mat-label>
             <input type="text" matInput [(ngModel)]="codeInput.title" required name="title" />
           </mat-form-field>
+          <span class="error-msg-span">{{validationMessage.desc}}</span>
           <mat-form-field class="w100" appearance="fill">
             <mat-label>Enter Description</mat-label>
             <textarea [(ngModel)]="codeInput.desc" name="description" placeholder="Enter here" matInput required=""
@@ -18,18 +20,21 @@
           <div class="row">
             <div class="col-md-6">
               <mat-card-header>
-                <mat-card-subtitle>Example 1 </mat-card-subtitle>
               </mat-card-header>
+              <mat-card-subtitle>Example 1 </mat-card-subtitle>
+              <span class="error-msg-span">{{validationMessage.ex1input}}</span>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 1 Input</mat-label>
                 <textarea [(ngModel)]="codeInput.ex1input" type="text" name="ex1in" placeholder="Enter here" matInput
                   rows="1"></textarea>
               </mat-form-field>
+              <span class="error-msg-span">{{validationMessage.ex1output}}</span>
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 1 Output</mat-label>
                 <textarea [(ngModel)]="codeInput.ex1output" type="text" name="ex1op" placeholder="Enter here" rows="1"
                   matInput></textarea>
               </mat-form-field>
+
               <mat-form-field class="w100" appearance="fill">
                 <mat-label>Example 1 Explanation</mat-label>
                 <textarea [(ngModel)]="codeInput.ex1explanation" type="text" name="ex1exp" placeholder="Enter here"
@@ -57,61 +62,41 @@
               </mat-form-field>
             </div>
           </div>
-          <div style="display: flex; align-items: center;">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill">
+                <span class="error-msg-span">{{validationMessage.qid}}</span>
+                <mat-label>Question ID</mat-label>
+                <input required style="width: 40%;" [(ngModel)]="codeInput.qid" type="text" name="QID" placeholder="Enter here"
+                  matInput />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <span class="error-msg-span">{{validationMessage.time}}</span>
+              <mat-form-field appearance="fill">
+                <mat-label>Time:</mat-label>
+                <input required [(ngModel)]="codeInput.time" type="text" name="time" placeholder="Enter Time in minutes"
+                  matInput />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
             <mat-slide-toggle name="active" [(ngModel)]="codeInput.active" class="mt20" color="primary">
               Publish Status
             </mat-slide-toggle>
-          
-            <mat-form-field appearance="fill" style="margin-left: 20%; width: 40%;">
-              <mat-label>Question ID</mat-label>
-              <input style="width: 40%;" [(ngModel)]="codeInput.qid" type="text" name="QID" placeholder="Enter here" matInput/>
+          </div>
+          <div class="row">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label class="form-label">Enter Constraints</mat-label>
+              <textarea id="constraints" matInput rows="3" placeholder="Enter constraints"
+                [(ngModel)]="codeInput.constraints" name="constraints"></textarea>
             </mat-form-field>
-         
+          </div>
+ 
+          <mat-label class="form-label">Add Testcases</mat-label><br><br>
+          <input type="file" (change)="onFileChange($event)" #fileInput />
 
-          <mat-form-field appearance="fill" style="margin-left: 10%; width: 40%;">
-            <mat-label>Time:</mat-label>
-<<<<<<< HEAD
-            <input style="" [(ngModel)]="codeInput.time" type="text" name="time" placeholder="Enter Time in minutes" matInput/>
-=======
-            <input [(ngModel)]="codeInput.time" type="text" name="time" placeholder="Enter Time in minutes" matInput/>
->>>>>>> 2c16c71d96da48455104caea780578738bf522e9
-          </mat-form-field>
-        </div>
-  
-          <br>
-          <mat-form-field class="w-100" appearance="fill">
-            <mat-label class="form-label">Enter Constraints</mat-label>
-            <textarea id="constraints" matInput rows="3" placeholder="Enter constraints"
-              [(ngModel)]="codeInput.constraints" name="constraints"></textarea>
-          </mat-form-field>
-          <!-- <mat-form-field class="w-100" appearance="outline">
-            <div>
-              <mat-toolbar>
-                <input matInput [value]="fileName" disabled class="form-control" />
-                <button mat-flat-button color="primary" style="z-index: 5;" (click)="browseFiles()">Browse</button>
-              </mat-toolbar>
-              <input #fileInput required type="file" class="w-100 form-control" id="fileInput"
-                (change)="selectFile($event)" style="z-index: 1;" name="fileInput" />
-            </div>
-          </mat-form-field> -->
-          <!-- <div class="custom-container mt-4 text-center">
-            <form class="my-4"  action="/excel" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="excelFile" class="form-label">
-                        <h4 class="text-primary">Upload Excel Sheet Instead</h4>
-                    </label>
-                    <div class="input-group">
-                        <input type="file" (change)="onFileChange($event)" #excelFile class="form-control visually-hidden" id="excelFile" name="excelFile" accept=".xlsx, .xls" required>
-                    </div>
-                </div>
-                        
-             
-            </form>
-        </div> -->
-        <mat-label class="form-label">Add Testcases</mat-label><br><br>
-        <input type="file" (change)="onFileChange($event)" #fileInput  />
-        
-        
+
 
           <div class="container text-center">
             <button mat-raised-button color="primary">Add</button>

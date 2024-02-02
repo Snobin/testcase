@@ -7,15 +7,9 @@ import jakarta.persistence.*;
 @Entity
 public class CompetitiveQuestion {
 
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
 	@Id
 	@Column(name = "question_id", nullable = false, unique = true)
 	private String questionId;
-
-    
 
 	@Column(name = "question_text")
 	private String questionText;
@@ -67,7 +61,7 @@ public class CompetitiveQuestion {
 	private String constraints;
 
 	private boolean active = false;
-	
+
 	private String time;
 
 	public String getTime() {
@@ -101,8 +95,6 @@ public class CompetitiveQuestion {
 	public void setAdditionalInfo(String additionalInfo) {
 		this.additionalInfo = additionalInfo;
 	}
-
-
 
 	public String getQuestionId() {
 		return questionId;

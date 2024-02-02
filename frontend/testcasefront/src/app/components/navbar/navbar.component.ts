@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -95,16 +96,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.isTimerVisible(this.router.url)) {
       this.subscribeToStatus(); // Subscribe again since ngOnDestroy might have unsubscribed
 
-      // Check if the timer should be visible based on the current route
       this.showTimer = true; // Set to true when the route is eligible for the timer
 
-      // Call the initializeTimer method when needed
-      console.log("data at", localStorage.getItem(this.storageKey));
       if (localStorage.getItem(this.storageKey)) {
-        // Data is not empty
-        console.log("Data is not empty:", localStorage.getItem(this.storageKey));
       } else if (!localStorage.getItem(this.storageKey)) {
-        console.log("why");
         this.initializeTimer();
       }
 
@@ -246,5 +241,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
       status: this.status,
     };
     localStorage.setItem(this.storageKey, JSON.stringify(timerState));
+  }
+
+  submitQuiz() {
+    Swal.fire({
+      title: 'Do you want to submit the Session?',
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      denyButtonText: 'Dont Save',
+      icon: 'info'
+    }).then((e) => {
+      if (e.isConfirmed) {
+        this.submit();
+      }
+    });
   }
 }

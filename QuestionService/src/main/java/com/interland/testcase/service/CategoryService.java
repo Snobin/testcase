@@ -8,11 +8,11 @@ import com.interland.testcase.entity.Category;
 public interface CategoryService {
 
 	public Category addCategory(CategoryDto categoryDto);
-	
+
 	public Category updateCategory(CategoryDto categoryDto);
-	
+
 	public Set<Category> getCategories();
-	
+
 	public Category getCategory(Long categoryId);
 
 	public void deleteCategory(Long categoryId);

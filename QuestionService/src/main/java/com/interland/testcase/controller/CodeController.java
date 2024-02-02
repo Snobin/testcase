@@ -1,7 +1,5 @@
- package com.interland.testcase.controller;
+package com.interland.testcase.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,29 +15,38 @@ import com.interland.testcase.service.QuestionService;
 
 @RequestMapping("/code")
 @RestController
-
 public class CodeController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CodeController.class);
+    @Autowired
+    private QuestionService questionService;
 
-	@Autowired
-	private QuestionService questionService;
+    @GetMapping
+    public ResponseEntity<?> getCodeData() {
+        try {
+            return ResponseEntity.ok(questionService.getData());
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	@GetMapping
-	public ResponseEntity<?> getCodeData() {
-		return ResponseEntity.ok(questionService.getData());
-	}
-	@PostMapping("/active")
-	public ResponseEntity<?> getActiveCodeData(@RequestBody String userId) {
-		System.out.println(userId);
-		return ResponseEntity.ok(questionService.getActiveRandomQuestionsForUser(userId));
-	}
+    @PostMapping("/active")
+    public ResponseEntity<?> getActiveCodeData(@RequestBody String userId) {
+        try {
+            return ResponseEntity.ok(questionService.getActiveRandomQuestionsForUser(userId));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	@PostMapping("/excel")
-	public ResponseEntity<?> createExcel(@RequestParam("excelFile") MultipartFile excelFile) {
-		if (excelFile == null) {
-			return ResponseEntity.badRequest().body("Excel file is null");
-		}
-		return new ResponseEntity<>(questionService.processExcelData(excelFile), HttpStatus.ACCEPTED);
-	}
+    @PostMapping("/excel")
+    public ResponseEntity<?> createExcel(@RequestParam("excelFile") MultipartFile excelFile) {
+        try {
+            if (excelFile == null) {
+                return ResponseEntity.badRequest().body("Excel file is null");
+            }
+            return new ResponseEntity<>(questionService.processExcelData(excelFile), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
