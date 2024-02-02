@@ -32,8 +32,18 @@
     margin-top: 75px;
 }
 
-.bg-image{
+.bg-image {
     background-image: url('../../../assets/landscape.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 200% 100%;
+    animation: moveBackground 10s linear infinite alternate;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
 }
