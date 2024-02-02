@@ -14,16 +14,27 @@
                 <p>{{ q.description}}</p>
             </mat-card-content>
             <mat-card-actions>
+<<<<<<< HEAD
                 <button mat-stroked-button color="primary" class="ml20">Time: {{q.time}}</button>
                 <button [routerLink]="'/admin/code/'+ q.questionId" mat-flat-button color="primary"
                     class="ml20">Update</button>
                 <!-- view-coding.component.html -->
 
+=======
+                <button mat-stroked-button color="primary" class="ml20">Marks: {{q.maxMarks}}</button>
+                <button [routerLink]="'/admin/code/'+ q.questionId" mat-flat-button color="primary" class="ml20">Update</button>
+                <!-- view-coding.component.html -->
+        
+>>>>>>> 409204901a419f988dccec7ad0216266f75488eb
                 <mat-slide-toggle name="active" [(ngModel)]="q.active" class="mt20 ml20" color="primary"
                     (change)="onToggleChange(q.questionId,q.active,q)">
                     Publish Status
                 </mat-slide-toggle>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 409204901a419f988dccec7ad0216266f75488eb
                 <!-- <button mat-flat-button color="primary" class="ml20">Attempts</button> -->
                 <!-- <button mat-flat-button color="warn" class="ml20" (click)="deleteQuiz(q.qid)">Delete</button> -->
             </mat-card-actions>

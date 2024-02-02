@@ -155,6 +155,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
     );
   }
 
+  submitExam() {
+    Swal.fire({
+      title: 'Do you want to submit the exam?',
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      denyButtonText: 'Cancel',
+      icon: 'info'
+    }).then((e) => {
+      if (e.isConfirmed) {
+        this.submit()
+      }
+    });
+  }
+
   isLogged() {
     this.isLoggedIn = this.login.isloggedin();
     this.user = this.login.getUser();

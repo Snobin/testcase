@@ -141,7 +141,6 @@ public class ResultServiceImp implements ResultService {
 			for (ResultEntity resultEntity : resultList) {
 				mcqArray.add(objectMapper.valueToTree(resultEntity));
 			}
-			mainObject.putArray("mcqQuestions").addAll(mcqArray);
 
 			ArrayNode codingArray = objectMapper.createArrayNode();
 			for (CodeResult codeResult : codeResultList) {
@@ -153,6 +152,7 @@ public class ResultServiceImp implements ResultService {
 						.findFirst();
 
 				matchingQuestion.ifPresent(competitiveQuestion -> {
+
 					codeObject.put("title", competitiveQuestion.getTitle());
 				});
 
@@ -162,6 +162,7 @@ public class ResultServiceImp implements ResultService {
 
 			if (mainObject.isEmpty()) {
 				logger.error("No Entities found for this user");
+
 			}
 
 			return mainObject;
@@ -185,6 +186,7 @@ public class ResultServiceImp implements ResultService {
 				if (existingResult.isPresent()) {
 					combinedResult = existingResult.get();
 				} else {
+
 					combinedResult = new CombinedResult();
 					combinedResult.setUser(user);
 				}

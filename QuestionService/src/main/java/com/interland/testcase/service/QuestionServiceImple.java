@@ -11,16 +11,14 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.python.antlr.PythonParser.return_stmt_return;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -88,6 +86,7 @@ public class QuestionServiceImple implements QuestionService {
 			Iterator<Row> rowIterator = sheet.iterator();
 			if (rowIterator.hasNext()) {
 				rowIterator.next();
+
 			}
 
 			while (rowIterator.hasNext()) {
@@ -104,6 +103,7 @@ public class QuestionServiceImple implements QuestionService {
 
 				McqQuestion mcqQuestion = new McqQuestion();
 				mcqQuestion.setQuestionId(questionId);
+
 				mcqQuestion.setAdditionalInfo(additionalInfo);
 				mcqQuestion.setCorrectAnswer(correctAnswer);
 				mcqQuestion.setQuestionText(questionText);
@@ -112,6 +112,7 @@ public class QuestionServiceImple implements QuestionService {
 				mcqQuestion.setOptionC(optionC);
 				mcqQuestion.setOptionD(optionD);
 
+
 				mcqQuestion = mcqQuestionRepository.save(mcqQuestion);
 
 				mcqQuestions.add(mcqQuestion);
@@ -119,6 +120,7 @@ public class QuestionServiceImple implements QuestionService {
 
 		} catch (IOException e) {
 			logger.error("Error:" + e.getMessage(), e);
+
 		}
 
 		return mcqQuestions;
@@ -181,6 +183,7 @@ public class QuestionServiceImple implements QuestionService {
 				if (DateUtil.isCellDateFormatted(cell)) {
 					return cell.getDateCellValue().toString();
 				} else {
+
 					return String.format("%.0f", cell.getNumericCellValue());
 				}
 			default:
@@ -213,11 +216,13 @@ public class QuestionServiceImple implements QuestionService {
 			competitiveQuestionRepository.save(codingQuestion);
 			return new ResponseEntity<>(codingQuestion, HttpStatus.OK);
 		} catch (Exception e) {
+
 			logger.error("Error:" + e.getMessage(), e);
 			return new ResponseEntity<>("An error occurred while adding coding question.",
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 
 	@Override
 	public Question addQuestion(QuestionDto questionDto) {
@@ -237,6 +242,7 @@ public class QuestionServiceImple implements QuestionService {
 			}
 			return questionRepository.save(question);
 		} catch (Exception e) {
+
 			logger.error("Error:" + e.getMessage(), e);
 			return null;
 		}
@@ -366,6 +372,7 @@ public class QuestionServiceImple implements QuestionService {
 				    inputs = inputs.endsWith(".0") ? inputs.substring(0, inputs.length() - 2) : inputs;
 				}
 
+
 				if (expectedOutputs != null) {
 					expectedOutputs = expectedOutputs.endsWith(".0")
 							? expectedOutputs.substring(0, expectedOutputs.length() - 2)
@@ -378,6 +385,7 @@ public class QuestionServiceImple implements QuestionService {
 				testCases.add(new TestCaseEntity(inputs, expectedOutputs, questionId));
 			} catch (Exception e) {
 				logger.error("Error:" + e.getMessage());
+
 			}
 		}
 		return testCases;
@@ -452,6 +460,7 @@ public class QuestionServiceImple implements QuestionService {
 			if (optionalQuestion.isPresent()) {
 				CompetitiveQuestion existingQuestion = optionalQuestion.get();
 
+
 				existingQuestion.setActive(Boolean.TRUE.equals(codingQuestionInputDto.isActive()));
 
 				updateField(existingQuestion::setExample1Input, codingQuestionInputDto.getEx1input());
@@ -468,6 +477,7 @@ public class QuestionServiceImple implements QuestionService {
 					processExcelData(codingQuestionInputDto.getFileContent());
 
 				}
+
 				competitiveQuestionRepository.save(existingQuestion);
 
 				return new ResponseEntity<>(existingQuestion, HttpStatus.OK);
@@ -506,6 +516,7 @@ public class QuestionServiceImple implements QuestionService {
 	@Override
 	public synchronized Set<CompetitiveQuestion> getActiveRandomQuestionsForUser(String userId) {
 		try {
+
 			int numberOfQuestionsToRetrieve = 2;
 			UserQuestionAssociation userAssociation = userQuestionAssociationRepository.findByUserId(userId);
 

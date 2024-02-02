@@ -31,11 +31,13 @@ public class QuizController {
 
 	@PutMapping("/")
 	public ResponseEntity<?> update(@Valid @RequestBody QuizDto quizDto) {
+
 		return ResponseEntity.ok(this.quizService.updateQuiz(quizDto));
 	}
 
 	@PostMapping("/")
 	public ResponseEntity<?> add(@Valid @RequestBody QuizDto quizDto) {
+
 		return ResponseEntity.ok(this.quizService.addQuiz(quizDto));
 	}
 
@@ -68,6 +70,7 @@ public class QuizController {
 
 	@GetMapping("/category/active/{cid}")
 	public List<?> getActiveQuiz(@PathVariable("cid") Long cid) {
+
 		Category category = new Category();
 		category.setCid(cid);
 		return this.quizService.getAtiveQuizzesCategory(category);

@@ -31,31 +31,31 @@ public class QuestionServiceImpl implements QuestionService {
     private static final Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Autowired
-    private codQuestionRepository questionRepository;
 
-    public ObjectNode processExcelData(MultipartFile excelFile) {
-        ObjectNode response = objectMapper.createObjectNode();
-        ArrayNode results = objectMapper.createArrayNode();
+	@Autowired
+	private codQuestionRepository questionRepository;
 
-        try (InputStream inputStream = excelFile.getInputStream();
-             Workbook workbook = new XSSFWorkbook(inputStream)) {
+	public ObjectNode processExcelData(MultipartFile excelFile) {
+		ObjectNode response = objectMapper.createObjectNode();
+		ArrayNode results = objectMapper.createArrayNode();
 
-            Sheet sheet = workbook.getSheetAt(0);
+		try (InputStream inputStream = excelFile.getInputStream(); Workbook workbook = new XSSFWorkbook(inputStream)) {
 
-            Iterator<Row> rowIterator = sheet.iterator();
+			Sheet sheet = workbook.getSheetAt(0);
 
-            if (rowIterator.hasNext()) {
-                rowIterator.next();
-            }
+			Iterator<Row> rowIterator = sheet.iterator();
 
-            while (rowIterator.hasNext()) {
-                Row currentRow = rowIterator.next();
-                String questionId = getCellStringValue(currentRow.getCell(0));
-                List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
-                saveQuestion(questionId, testCases);
-                results.add(createSuccessResult(questionId));
-            }
+			if (rowIterator.hasNext()) {
+				rowIterator.next();
+			}
+
+			while (rowIterator.hasNext()) {
+				Row currentRow = rowIterator.next();
+				String questionId = getCellStringValue(currentRow.getCell(0));
+				List<TestCaseEntity> testCases = extractTestCasesFromRow(currentRow, questionId);
+				saveQuestion(questionId, testCases);
+				results.add(createSuccessResult(questionId));
+			}
 
             response.set("results", results);
             response.put("status", "success");
@@ -65,16 +65,17 @@ public class QuestionServiceImpl implements QuestionService {
             response.put("message", "Error processing Excel data");
         }
 
-        return response;
-    }
 
-    private List<TestCaseEntity> extractTestCasesFromRow(Row currentRow, String questionId) {
-        List<TestCaseEntity> testCases = new ArrayList<>();
+		return response;
+	}
 
-        try {
-            for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
-                String inputs = getCellStringValue(currentRow.getCell(i));
-                String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
+	private List<TestCaseEntity> extractTestCasesFromRow(Row currentRow, String questionId) {
+		List<TestCaseEntity> testCases = new ArrayList<>();
+
+		try {
+			for (int i = 1; i < currentRow.getLastCellNum(); i += 2) {
+				String inputs = getCellStringValue(currentRow.getCell(i));
+				String expectedOutputs = getCellStringValue(currentRow.getCell(i + 1));
 
                 handleTrailingDotZero(inputs);
                 handleTrailingDotZero(expectedOutputs);
@@ -85,8 +86,9 @@ public class QuestionServiceImpl implements QuestionService {
             logger.error("Error during test case extraction: {}", e.getMessage(), e);
         }
 
-        return testCases;
-    }
+
+		return testCases;
+	}
 
     private void handleTrailingDotZero(String value) {
         if (value != null && value.endsWith(".0")) {
@@ -139,3 +141,4 @@ public class QuestionServiceImpl implements QuestionService {
         }
     }
 }
+

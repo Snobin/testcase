@@ -83,4 +83,5 @@ public class CategoryServiceImpl implements CategoryService {
             logger.error("Error while deleting category: {}", e.getMessage(), e);
         }
     }
+
 }

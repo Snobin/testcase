@@ -39,6 +39,7 @@ import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.codQuestionRepository;
 import com.interland.testcase.util.Constants;
 
+
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
 
@@ -134,6 +135,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			}
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
+
 			return Collections.emptyList();
 		}
 	}
@@ -169,6 +171,8 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
 					codeResponse.setSuccess("true");
+					codeResponse.setInput(input);
+					codeResponse.setExpectedOutput(expectedOutput);
 					passedtestcases++;
 					codeResponse.setMessage("Test case passed!");
 					codeResponse.setInput(input);
@@ -228,7 +232,6 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
 					codeResponse.setSuccess("true");
 					passedtestcases++;
-					System.out.println(passedtestcases);
 					codeResponse.setMessage("Test case passed!");
 				} else {
 					codeResponse.setSuccess("false");
@@ -384,6 +387,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			codeResponse.setOutput(output.toString());
 		} catch (IOException e) {
 			logger.error("Error:" + e.getMessage(), e);
+
 		}
 	}
 
@@ -460,6 +464,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
 			return null;
+
 		}
 	}
 

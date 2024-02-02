@@ -1,5 +1,11 @@
 package com.interland.testcase.services;
 
+
+import java.util.List;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,11 +13,6 @@ import com.interland.testcase.entity.CombinedResult;
 import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.Combinedresult;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CombinedResultImplementation implements CombinedResultService {
@@ -52,6 +53,7 @@ public class CombinedResultImplementation implements CombinedResultService {
 					double maxScore = Double.parseDouble(maxScoreStr);
 					double obtainedScore = combinedResult.getObtainedScore();
 					percentage = (obtainedScore / maxScore) * 100;
+
 				} else {
 					String maxScoreStr = combinedResult.getMaxScore();
 					double maxScore = Double.parseDouble(maxScoreStr);
@@ -73,5 +75,6 @@ public class CombinedResultImplementation implements CombinedResultService {
 		} catch (Exception e) {
 			logger.error("Error occurred while processing results", e);
 		}
+
 	}
 }

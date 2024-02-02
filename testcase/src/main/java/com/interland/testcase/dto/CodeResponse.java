@@ -7,6 +7,7 @@ public class CodeResponse {
 	String input;
 	String expectedOutput;
 
+
 	public String getInput() {
 		return input;
 	}

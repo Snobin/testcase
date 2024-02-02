@@ -59,6 +59,8 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
     this.ans.getData().subscribe(
       (data: any) => {
         this.dataSource.data = data;
+        console.log(this.dataSource.data);
+        
       },
       (error) => {
         // Handle error

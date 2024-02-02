@@ -118,6 +118,7 @@ public class AuthController {
 			logger.error("Error extracting all claims: {}", e.getMessage(), e);
 			return new ResponseEntity<>("Error extracting all claims", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 	}
 
 	@PostMapping("/extractclaims")
@@ -129,6 +130,7 @@ public class AuthController {
 			logger.error("Error extracting claims: {}", e.getMessage(), e);
 			return new ResponseEntity<>("Error extracting claims", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 	}
 
 	@PostMapping("/extractusername")
@@ -140,6 +142,7 @@ public class AuthController {
 			logger.error("Error extracting username: {}", e.getMessage(), e);
 			return new ResponseEntity<>("Error extracting username", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 	}
 
 	@GetMapping("/current-user")
@@ -161,6 +164,7 @@ public class AuthController {
 
 	@PostMapping("/upload")
 	public ResponseEntity<?> uploadUsers(@RequestParam("excelFile") MultipartFile file) {
+
 		try {
 			List<UserEntity> users = authService.processExcelFile(file);
 			return new ResponseEntity<>(users, HttpStatus.OK);

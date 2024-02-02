@@ -73,7 +73,6 @@ public class ApplicationConfig {
 	private UserDetails buildUserDetails(String username) {
 		Optional<UserEntity> opt = repo.findByEmail(username);
 		UserEntity details = opt.get();
-		System.out.println((UserDetails) details);
 		return (UserDetails) details;
 	}
 

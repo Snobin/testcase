@@ -20,11 +20,11 @@ import com.interland.testcase.services.QuestionService;
 public class CodeController {
 
 
-    @Autowired
-    private CodeExecutionServiceImple codeExecutionService;
+	@Autowired
+	private CodeExecutionServiceImple codeExecutionService;
 
-    @Autowired
-    private QuestionService questionService;
+	@Autowired
+	private QuestionService questionService;
 
     @PostMapping("/execute")
     public ResponseEntity<List<CodeResponse>> executeCode(@RequestBody CodeRequest codeRequest) {
@@ -47,4 +47,5 @@ public class CodeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
