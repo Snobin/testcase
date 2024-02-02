@@ -65,7 +65,9 @@ public class CombinedResultImplementation implements CombinedResultService{
 	            if (combinedResult.getCodingPercentage() != null) {
 			        if (percentage >= 30.0 && combinedResult.getCodingPercentage() >= 30.0) {
 			           combinedResult.setStatus("PASSED");
-			        } 
+			        }  else {
+		           	 	combinedResult.setStatus("FAILED");
+			        }
 	            } else {
 	           	 	combinedResult.setCodingPercentage(0.0);
 	           	 	combinedResult.setStatus("FAILED");
