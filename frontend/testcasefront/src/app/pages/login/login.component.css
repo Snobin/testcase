@@ -36,7 +36,7 @@
     background-image: url('../../../assets/landscape.jpg');
     background-repeat: no-repeat;
     background-size: 200% 100%;
-    animation: moveBackground 10s linear infinite alternate;
+    animation: moveBackground 10s ease-in-out infinite alternate;
 }
 
 @keyframes moveBackground {
