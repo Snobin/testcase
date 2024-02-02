@@ -1,4 +1,28 @@
 .example-header-image {
-    background-image: url("../../../../assets/exam.jpg");
-    background-size: cover;
-  }
+  background-image: url("../../../../assets/exam.jpg");
+  background-size: cover;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.pb-20{
+  padding-bottom: 20px;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
+.scroll-div {
+  overflow-y: scroll;
+}
+
+.h-92{
+  height: 92%;
+}

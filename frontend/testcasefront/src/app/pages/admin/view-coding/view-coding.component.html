@@ -1,30 +1,34 @@
-<mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"> </div>
-        <mat-card-title>
-            {{q.questionId}} - {{q.title}}
-        </mat-card-title>
-        <mat-card-subtitle>
-            {{q.title}}
-        </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <p>{{ q.description}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-stroked-button color="primary" class="ml20">Marks: {{q.maxMarks}}</button>
-        <button [routerLink]="'/admin/code/'+ q.questionId" mat-flat-button color="primary" class="ml20">Update</button>
-        <!-- view-coding.component.html -->
-
-        <mat-slide-toggle name="active" [(ngModel)]="q.active" class="mt20 ml20" color="primary"
-            (change)="onToggleChange(q.questionId,q.active,q)">
-            Publish Status
-        </mat-slide-toggle>
-
-        <!-- <button mat-flat-button color="primary" class="ml20">Attempts</button> -->
-        <!-- <button mat-flat-button color="warn" class="ml20" (click)="deleteQuiz(q.qid)">Delete</button> -->
-    </mat-card-actions>
-</mat-card>
-<div class="container text-center mt20">
-    <button routerLink="/admin/add-code" mat-raised-button color="primary">Add Coding Question</button>
+<div class="p-10 pl-0 pb-20 h-full">
+    <div class="h-92 scroll-div">
+        <mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"> </div>
+                <mat-card-title>
+                    {{q.questionId}} - {{q.title}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{q.title}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ q.description}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="primary" class="ml20">Marks: {{q.maxMarks}}</button>
+                <button [routerLink]="'/admin/code/'+ q.questionId" mat-flat-button color="primary" class="ml20">Update</button>
+                <!-- view-coding.component.html -->
+        
+                <mat-slide-toggle name="active" [(ngModel)]="q.active" class="mt20 ml20" color="primary"
+                    (change)="onToggleChange(q.questionId,q.active,q)">
+                    Publish Status
+                </mat-slide-toggle>
+        
+                <!-- <button mat-flat-button color="primary" class="ml20">Attempts</button> -->
+                <!-- <button mat-flat-button color="warn" class="ml20" (click)="deleteQuiz(q.qid)">Delete</button> -->
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="container text-center mt20 mb-10">
+        <button routerLink="/admin/add-code" mat-raised-button color="primary">Add Coding Question</button>
+    </div>
 </div>
