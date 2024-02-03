@@ -32,7 +32,6 @@ export class UpdatecodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
-    // this.getData(this.qId);
     this.getData();
     this.qTitle = this.route.snapshot.params.title;
     this.constraintsElement = document.getElementById('constraints') as HTMLTextAreaElement;
@@ -67,6 +66,7 @@ export class UpdatecodeComponent implements OnInit {
         this.codeInput.ex1output = data.example1Output;
         this.codeInput.ex2output = data.example2Output;
         this.codeInput.qid=data.questionId;
+        this.codeInput.time=data.time;
       },
       (error) => {
         console.log(error);
@@ -79,7 +79,6 @@ export class UpdatecodeComponent implements OnInit {
 
   formSubmit() {
     if (!this.codeInput.title || !this.codeInput.desc) {
-      console.log("Validation failed");
       return;
     }
 
@@ -96,7 +95,7 @@ export class UpdatecodeComponent implements OnInit {
       fileContent: this.codeInput.fileContent,
       active: this.codeInput.active,
       qid: this.codeInput.qid,
-      Time:this.codeInput.Time
+      time:this.codeInput.time
     };
 
     this.CODE.updateCode(questionData, this.codeInput.fileContent).subscribe(
@@ -114,13 +113,12 @@ export class UpdatecodeComponent implements OnInit {
           fileContent: null,
           active: null,
           qid: '',
-          Time:''
+          time:''
         };
         this.fileName = 'Select File';
         Swal.fire('Success', 'Question Added', 'success');
       },
       (error) => {
-        console.log(error);
         Swal.fire('Error', 'Error in adding question', 'error');
       }
     );
@@ -131,11 +129,7 @@ export class UpdatecodeComponent implements OnInit {
     if (fileList.length > 0) {
       const file: File = fileList[0];
       this.codeInput.fileContent = file;
-      this.fileName = file.name; // Set the file name for display if needed
-      console.log(file);
-      console.log(this.codeInput);
-
-      // Log the file to see if it's properly captured
+      this.fileName = file.name; 
     }
   }
 

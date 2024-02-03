@@ -19,25 +19,16 @@ import com.interland.testcase.repository.QuizRepository;
 
 @Service
 public class QuizServiceImpl implements QuizService {
-  
-  private static final Logger logger = LoggerFactory.getLogger(QuizServiceImpl.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(QuizServiceImpl.class);
 
 	@Autowired
 	private QuizRepository quizRepository;
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
+
 	@Override
-//<<<<<<< HEAD
-//	public Quiz addQuiz(Quiz quiz) {
-//		return this.quizRepository.save(quiz);
-//	}
-//
-//	@Override
-//	public Quiz updateQuiz(Quiz quiz) {
-//		return this.quizRepository.save(quiz);
-//=======
 	public Quiz addQuiz(QuizDto quizdto) {
 		Quiz quiz = new Quiz();
 		Category category = new Category();
@@ -84,74 +75,67 @@ public class QuizServiceImpl implements QuizService {
 			}
 			return quizRepository.save(quiz);
 		} catch (Exception e) {
-				logger.error("Error:" + e.getMessage(), e);
+			logger.error("Error:" + e.getMessage(), e);
 			return null;
 		}
 	}
 
-//<<<<<<< HEAD
-//
-//	@Override
-//	public Set<Quiz> getQuizzes() {
-//		return new HashSet<>(this.quizRepository.findAll());
-//	}
-//=======
-    @Override
-    public Set<Quiz> getQuizzes() {
-        try {
-            return new HashSet<>(this.quizRepository.findAll());
-        } catch (Exception e) {
-        	logger.error("Error:" + e.getMessage(), e);
-            return Collections.emptySet();
-        }
-    }
+	@Override
+	public Set<Quiz> getQuizzes() {
+		try {
+			return new HashSet<>(this.quizRepository.findAll());
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptySet();
+		}
+	}
 
-    @Override
-    public Quiz getQuiz(Long quizId) {
-        try {
-            return this.quizRepository.findById(quizId).orElse(null);
-        } catch (Exception e) {
-        	logger.error("Error:" + e.getMessage(), e);
-            return null;
-        }
-    }
+	@Override
+	public Quiz getQuiz(Long quizId) {
+		try {
+			return this.quizRepository.findById(quizId).orElse(null);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return null;
+		}
+	}
 
-    @Override
-    public void deleteQuiz(Long quizId) {
-        try {
-            this.quizRepository.deleteById(quizId);
-        } catch (Exception e) {
-        	logger.error("Error:" + e.getMessage(), e);
-        }
-    }
+	@Override
+	public void deleteQuiz(Long quizId) {
+		try {
+			this.quizRepository.deleteById(quizId);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+		}
+	}
 
-    @Override
-    public List<Quiz> getQuizzesCategory(Category category) {
-        try {
-            return this.quizRepository.findByCategory(category);
-        } catch (Exception e) {
-        	logger.error("Error:" + e.getMessage(), e);
-            return Collections.emptyList();
-        }
-    }
+	@Override
+	public List<Quiz> getQuizzesCategory(Category category) {
+		try {
+			return this.quizRepository.findByCategory(category);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptyList();
+		}
+	}
 
-    @Override
-    public List<Quiz> getActiveQuizes() {
-        try {
-            return this.quizRepository.findByActive(true);
-        } catch (Exception e) {
-        	logger.error("Error:" + e.getMessage(), e);
-            return Collections.emptyList();
-        }
-    }
+	@Override
+	public List<Quiz> getActiveQuizes() {
+		try {
+			return this.quizRepository.findByActive(true);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptyList();
+		}
+	}
 
-    @Override
-    public List<Quiz> getAtiveQuizzesCategory(Category category) {
-        try {
-            return this.quizRepository.findByCategoryAndActive(category, true);
-        } catch (Exception e) {
-        	logger.error("Error:" + e.getMessage(), e);
-            return Collections.emptyList();
-        }
-    }
+	@Override
+	public List<Quiz> getAtiveQuizzesCategory(Category category) {
+		try {
+			return this.quizRepository.findByCategoryAndActive(category, true);
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			return Collections.emptyList();
+		}
+	}
 }

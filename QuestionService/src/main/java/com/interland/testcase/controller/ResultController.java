@@ -29,7 +29,6 @@ public class ResultController {
 
 	@PostMapping("/eval")
 	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {
-		System.out.println("working " + questions);
 		int marksGot = 0;
 		Integer correctAnswers = 0;
 		Integer attempted = 0;
@@ -62,7 +61,7 @@ public class ResultController {
 	}
 
 	@PostMapping("/delete")
-	public ResponseEntity<String> deleteUsers(@RequestBody List<String> usernames) {
+	public ResponseEntity<?> deleteUsers(@RequestBody List<String> usernames) {
 		String result = resultService.deleteUsers(usernames);
 		return ResponseEntity.ok(result);
 	}

@@ -2,13 +2,12 @@ package com.interland.testcase.dto;
 
 import java.util.List;
 
-import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
-
 public class CodeRequest {
-	
+
 	private String studentId;
-	
+
 	private String status;
+
 	public String getStatus() {
 		return status;
 	}
@@ -18,14 +17,12 @@ public class CodeRequest {
 	}
 
 	private String code;
-    private String langId;
-    private String input;
-    private String qnId;
-    private String user;
-    
-    
-    
-    public String getUser() {
+	private String langId;
+	private String input;
+	private String qnId;
+	private String user;
+
+	public String getUser() {
 		return user;
 	}
 
@@ -34,12 +31,13 @@ public class CodeRequest {
 	}
 
 	public String getStudentId() {
-    	return studentId;
-    }
+		return studentId;
+	}
 
 	public void setStudentId(String studentId) {
-    	this.studentId = studentId;
-    }
+		this.studentId = studentId;
+	}
+
 	public String getQnId() {
 		return qnId;
 	}
@@ -49,9 +47,8 @@ public class CodeRequest {
 	}
 
 	private List<String> elements;
-    // getters and setters
 
-    public List<String> getElements() {
+	public List<String> getElements() {
 		return elements;
 	}
 
@@ -68,20 +65,20 @@ public class CodeRequest {
 	}
 
 	public String getCode() {
-        return code;
-    }
+		return code;
+	}
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public String getLangId() {
-        return langId;
-    }
+	public String getLangId() {
+		return langId;
+	}
 
-    public void setLangId(String langId) {
-        this.langId = langId;
-    }
+	public void setLangId(String langId) {
+		this.langId = langId;
+	}
 
 	@Override
 	public String toString() {
@@ -89,7 +86,4 @@ public class CodeRequest {
 				+ ", input=" + input + ", qnId=" + qnId + ", user=" + user + ", elements=" + elements + "]";
 	}
 
-	
-    
-    
 }

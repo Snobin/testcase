@@ -6,29 +6,30 @@
             <div class="row">
                 <div class="col-md-8 offset-d-2">
                     <form (ngSubmit)="formSubmit()">
+                        <span class="error-msg-span">{{validationMessage.title}}</span>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Title</mat-label>
                             <input
-                            autofocus
-                            required
-                             type="text"
-                             name="title" 
-                             matInput 
-                             placeholder="Enter here"
-                             [(ngModel)]="category.title"
-                             >
+                                autofocus
+                                required
+                                type="text"
+                                name="title" 
+                                matInput 
+                                placeholder="Enter here"
+                                [(ngModel)]="category.title"
+                            >
                         </mat-form-field>
 
+                        <span class="error-msg-span">{{validationMessage.description}}</span>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Description</mat-label>
                             <textarea 
-                            name="description"
-                             matInput 
-                             placeholder="Enter Category Description" 
-                             rows="10"
-                             [(ngModel)]="category.description"
-                             >
-                            </textarea>
+                                name="description"
+                                matInput 
+                                placeholder="Enter Category Description" 
+                                rows="10"
+                                [(ngModel)]="category.description"
+                            ></textarea>
                         </mat-form-field>
                         <div class="container text-center mt15">
                             <button mat-raised-button color="primary">Add</button>

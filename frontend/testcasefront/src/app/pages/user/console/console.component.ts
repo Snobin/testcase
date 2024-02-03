@@ -62,16 +62,13 @@ export class ConsoleComponent implements OnInit {
   runText: string = "Run<i class='bi bi-play-fill'></i>";
   toast: boolean = false;
 
-  constructor(private fullScreenService: FullScreenService,private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
+  constructor(private fullScreenService: FullScreenService, private service: CodeService, private route: ActivatedRoute, private locationst: LocationStrategy, private el: ElementRef) { }
 
   ngOnInit(): void {
-    // if (localStorage.getItem('hasReloaded') == 'true') {
-    //   localStorage.setItem('hasReloaded','false')
-    //   window.location.reload();
-    // }
+
     this.fullScreenService.requestFullScreen();
     this.clearAll();
-    this.preventBackButton();
+    // this.preventBackButton();
 
     this.qId = this.route.snapshot.params.qid;
     this.qnData(this.qId);
@@ -103,7 +100,6 @@ export class ConsoleComponent implements OnInit {
       (data: any) => {
         if (data) {
           this.questiondata = data;
-          console.log(data);
         } else {
           console.error('No data received from the service.');
         }
@@ -241,7 +237,6 @@ export class ConsoleComponent implements OnInit {
 
   save() {
     this.saveText = "<div class='spinner-border spinner-border-sm text-dark' role='status'></div>";
-    // Save the current code to local storage before changing the language
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.setItem(localStorageKey, this.editor.getValue());
     setTimeout(() => {
@@ -343,18 +338,11 @@ export class ConsoleComponent implements OnInit {
     }
   }
 
-  // activateCase(index) {
-  //   this.cases.forEach((caseItem, i) => {
-  //     caseItem.active = i === index;
-  //   });
-  // }
 
   clear() {
-    // Remove the stored code in local storage
     const localStorageKey = `${this.selectedLanguage}EditorCode`;
     localStorage.removeItem(localStorageKey);
     this.code = '';
-    // Clear the code in the CodeMirror editor
     this.editor.setValue('');
     this.result.output = '';
   }
@@ -365,13 +353,15 @@ export class ConsoleComponent implements OnInit {
     localStorage.removeItem('cEditorCode');
     localStorage.removeItem('pythonEditorCode');
   }
+
   @HostListener('document:visibilitychange', ['$event'])
   private handleVisibilityChange(event: Event): void {
-  this.fullScreenService.onVisibilityChange(document.hidden);
-}
- @HostListener('document:keydown', ['$event'])
- private handleKeyboard(event: KeyboardEvent): void {
-  this.fullScreenService.onKeyDown(event);
-}
+    this.fullScreenService.onVisibilityChange(document.hidden);
+  }
+  
+  @HostListener('document:keydown', ['$event'])
+  private handleKeyboard(event: KeyboardEvent): void {
+    this.fullScreenService.onKeyDown(event);
+  }
 
 }

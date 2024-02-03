@@ -21,10 +21,8 @@ export class ViewQuizQuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.qId=this.route.snapshot.params.qid;
     this.qTitle=this.route.snapshot.params.title;
-    console.log("hi",this.qId);
 
     this.quest.getQuestions(this.qId).subscribe((data:any)=>{
-      console.log("hi",this.qId);
       this.questions=data;
     },
       (error)=>{

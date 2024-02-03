@@ -53,7 +53,6 @@ export class InstructionsComponent implements OnInit {
   getCategories() {
     this.cat.categories().subscribe((data: any) => {
       this.categories = data;
-      console.log(this.categories);
 
       this.router.navigate([`./user-dashboard/${this.categories[0].title}/${this.categories[0].cid}`]);
     },
@@ -92,13 +91,5 @@ export class InstructionsComponent implements OnInit {
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault(); // Prevent right-click context menu
     });
-    
-    // // You can also check for other developer tools events and attempt to prevent them
-    // window.addEventListener("resize", function () {
-    //   if (window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100) {
-    //     // Developer tools might be open
-    //     alert("Please close the developer tools.");
-    //   }
-    // });
   }
 }

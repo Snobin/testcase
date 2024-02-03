@@ -14,6 +14,11 @@ export class AddCategoriesComponent implements OnInit {
     title: '',
     description: ''
   }
+  validationMessage = {
+    title: '',
+    description: ''
+};
+
   constructor(private _category: CategoryService,
     private _snack: MatSnackBar
   ) { }
@@ -28,9 +33,18 @@ export class AddCategoriesComponent implements OnInit {
       })
     }
     this._category.addCategory(this.category).subscribe((data: any) => {
-      this.category.description = '';
-      this.category.title = '';
-      Swal.fire('Success !!', 'Category is added successfully', 'success');
+      if(!data.details){
+        this.category.description = '';
+        this.category.title = '';
+        Swal.fire('Success !!', 'Category is added successfully', 'success');
+      }else{
+        if(data.details){
+          data.details.forEach(element => {
+            var key = Object.keys(element)[0];
+            this.validationMessage[key] = element[key];
+          });
+        }
+      }
     },
       (error) => {
         console.log(error);

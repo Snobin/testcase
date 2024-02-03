@@ -14,10 +14,11 @@ public class TestcaseApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TestcaseApplication.class, args);
 	}
-	
+
 	@Bean
 	public OpenAPI openApi() {
-		Info info=new Info().description("Online Exam Application with Springboot and Angular").title("Testcase").version("V1");
+		Info info = new Info().description("Online Exam Application with Springboot and Angular").title("Testcase")
+				.version("V1");
 		return new OpenAPI().info(info);
 	}
 

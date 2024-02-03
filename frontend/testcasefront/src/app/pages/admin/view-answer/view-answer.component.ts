@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { PdfGeneratorService } from 'src/app/services/pdf-generator-service.service';
 import { ResultService } from 'src/app/services/result.service';
 
 export interface UserData {
@@ -35,7 +36,8 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
   constructor(
     private ans: ResultService, 
     private router: Router,
-    private renderer: Renderer2 
+    private renderer: Renderer2 ,
+    private excel:PdfGeneratorService
     ) {
     this.dataSource = new MatTableDataSource<UserData>([]);
   }
@@ -57,6 +59,8 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
     this.ans.getData().subscribe(
       (data: any) => {
         this.dataSource.data = data;
+        console.log(this.dataSource.data);
+        
       },
       (error) => {
         // Handle error
@@ -64,26 +68,7 @@ export class ViewAnswerComponent implements AfterViewInit, OnInit {
     );
   }
 
-printTable() {
-  const printContents = this.table.nativeElement.cloneNode(true);
-  const popupWin = window.open('', '_blank', 'width=600,height=600');
 
-  popupWin.document.open();
-  popupWin.document.write(`
-    <html>
-      <head>
-        <style>
-          /* Optional styling for print */
-          // ... add any additional styling ...
-        </style>
-      </head>
-      <body onload="window.print();window.onafterprint = function(){window.close();}">
-        ${printContents.outerHTML}
-      </body>
-    </html>`
-  );
-  popupWin.document.close();
-}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -99,14 +84,6 @@ printTable() {
     this.router.navigate(['admin/details', row.user]);
   }
 
-  // handleDoubleClick(row: any): void {
-  //   this.selectedRow = row; // Set the selected row
-  //   console.log("haii")
-  // }
-
-  // handleSingleClick(row: any): void {
-  //   this.selectedRow = row; // Set the row as selected on single click
-  // }
   isSelected(row: any): boolean {
     return this.selectedRows.includes(row);
   }
@@ -144,6 +121,10 @@ printTable() {
         }
       );
     }
+  }
+
+  async generateExcel(){
+    this.excel.exportToExcel(this.dataSource.data,"Exam_data");
   }
 
 } 

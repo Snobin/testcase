@@ -16,15 +16,18 @@ export class LoginComponent implements OnInit {
     password: ''
   }
   hidePassword = true;
+  validationMessage={
+    email:'',
+    password:''
+  };
 
-  constructor(private snack: MatSnackBar, private login: LoginService,private router:Router) { }
+  constructor(private snack: MatSnackBar, private login: LoginService, private router: Router) { }
 
 
   ngOnInit(): void {
   }
 
   formSubmit() {
-    // Add the logic to validate and submit the data here
     if (this.loginData.email.trim() == '' || this.loginData.email.trim() == null) {
       this.snack.open("Username is required !", '', {
         duration: 3000,
@@ -40,39 +43,41 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    //request to server to generate token
     this.login.generateToken(this.loginData).subscribe(
       (data: any) => {
-        console.log('success');
-        console.log(data);
-        this.login.loginUser(data.token);
-        this.login.getCurrentUser().subscribe(
-          (user: any) => {
-            this.login.setUser(user);
-            console.log(user);
-            if (this.login.getUserRole() == "ADMIN") {
-              // window.location.href = "/admin";
-              this.router.navigate(['admin/profile']);
-              this.login.loginStatusSubject.next(true);
-
-            } else if (this.login.getUserRole() == "USER") {
-              // window.location.href = "/user-dashboard";
-              this.router.navigate(['instructions']);
-              this.login.loginStatusSubject.next(true);
+        if(!data.details)
+        {
+          this.login.loginUser(data.token);
+          this.login.getCurrentUser().subscribe(
+            (user: any) => {
+              this.login.setUser(user);
+              if (this.login.getUserRole() == "ADMIN") {
+                // window.location.href = "/admin";
+                this.router.navigate(['admin/profile']);
+                this.login.loginStatusSubject.next(true);
+  
+              } else if (this.login.getUserRole() == "USER") {
+                // window.location.href = "/user-dashboard";
+                this.router.navigate(['instructions']);
+                this.login.loginStatusSubject.next(true);
+              }
+              else {
+                this.login.logout();
+              }
             }
-            else {
-              this.login.logout();
-            }
-          }
-        );
-
+          );
+        }else{
+          data.details.forEach((element) => {
+            var key = Object.keys(element)[0];
+            this.validationMessage[key] = element[key];
+        }
+          );
+      }
       },
       (error) => {
-        console.log('Error !');
         console.log(error);
-        this.clear();
-        this.snack.open("Invalid Details....Try again","",{
-          duration:2000,
+        this.snack.open("Invalid Details....Try again", "", {
+          duration: 2000,
         });
       }
     )
@@ -82,10 +87,8 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
-  clear(){
+  clear() {
     this.loginData.email = '';
     this.loginData.password = '';
   }
-
-
 }

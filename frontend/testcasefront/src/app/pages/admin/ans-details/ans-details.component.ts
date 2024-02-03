@@ -32,9 +32,7 @@ export class AnsDetailsComponent implements OnInit {
           this.dataa.codingQuestions.forEach((codingQuestion) => {
             this.codingQuestions.push(codingQuestion);
           });
-         
-          console.log(this.mcqQuestions);
-          console.log(this.codingQuestions);
+   
         },
         (error) => {
           console.error(error);

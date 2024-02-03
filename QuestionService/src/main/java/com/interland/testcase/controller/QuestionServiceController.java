@@ -15,26 +15,29 @@ import com.interland.testcase.service.QuestionService;
 @RequestMapping("/api/questions")
 public class QuestionServiceController {
 
-    @Autowired
-    private QuestionService questionService;
+	@Autowired
+	private QuestionService questionService;
 
-    @PostMapping("/create/mcq")
-    public ResponseEntity<String> createMCQQuestion(@RequestParam("file") MultipartFile questionFile) {
-        try {
-            questionService.createMcqQuestions(questionFile);
-            return ResponseEntity.ok("Question created successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating question: " + e.getMessage());
-        }
-    }
-    @PostMapping("/create/cc")
-    public ResponseEntity<?> createCCQuestion(@RequestParam("file") MultipartFile questionFile){
-    	try {
-    		questionService.createCompetitiveQuestions(questionFile);
-    		return ResponseEntity.ok("Question Created Successfully");
-    	}catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating question: " + e.getMessage());
+	@PostMapping("/create/mcq")
+	public ResponseEntity<String> createMCQQuestion(@RequestParam("file") MultipartFile questionFile) {
+		try {
+			questionService.createMcqQuestions(questionFile);
+			return ResponseEntity.ok("Question created successfully");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error creating question: " + e.getMessage());
+		}
+	}
 
-    	}
-    }
+	@PostMapping("/create/cc")
+	public ResponseEntity<?> createCCQuestion(@RequestParam("file") MultipartFile questionFile) {
+		try {
+			questionService.createCompetitiveQuestions(questionFile);
+			return ResponseEntity.ok("Question Created Successfully");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error creating question: " + e.getMessage());
+
+		}
+	}
 }

@@ -24,17 +24,15 @@ export class AdminupdateComponent implements OnInit {
   ngOnInit(): void {
     this.login.getCurrentUser().subscribe(
       (user:any) => {
-        console.log(user);
         this.userdata=user;
       },
       (error) => {
-        alert("error")
+        console.log(error);
       }
     )
   }
 
   formSubmit() {
-    console.log(this.userdata);
     if(this.userdata.username==null||this.userdata.username==""){
       this.snack.open("username is required ...",'',{
         duration:3000,
@@ -53,7 +51,6 @@ export class AdminupdateComponent implements OnInit {
       },
       (error)=>{
         console.log(error);
-        alert("error");
       }
     )
    
@@ -71,7 +68,6 @@ export class AdminupdateComponent implements OnInit {
       },
       (error)=>{
         console.log(error);
-        alert("error");
       })
 
 

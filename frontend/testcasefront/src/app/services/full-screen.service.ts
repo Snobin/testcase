@@ -1,13 +1,14 @@
 import { Injectable, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FullScreenService {
 constructor(
-  private router:Router
+  private router:Router, private login: LoginService
 ){
 
 }
@@ -31,11 +32,12 @@ constructor(
     if (hidden) {
       this.variable++;
       Swal.fire('Switching Tab is not allowed' );
-      console.log(this.variable);
       
       if(this.variable%3==0){
         Swal.fire('you are disqualified' );
-        // this.router.navigate(['./final']);
+
+        this.login.removeStorage();
+        this.router.navigate(['./final']);
        }
     } else {
       // Tab is visible again

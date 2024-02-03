@@ -25,5 +25,4 @@ public interface QuizService {
 
 	public List<Quiz> getAtiveQuizzesCategory(Category category);
 
-
 }

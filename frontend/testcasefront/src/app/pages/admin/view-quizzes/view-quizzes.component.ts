@@ -15,13 +15,10 @@ export class ViewQuizzesComponent implements OnInit {
   ngOnInit(): void {
     this.quiz.quizzes().subscribe(
       (data: any) => {
-        console.log(data);
         
         this.quizzes = data;
-        console.log(this.quizzes);
       },
       (error) => {
-        console.log(error);
         Swal.fire('Error !', 'Error in loading data !', 'error');
       }
     )
@@ -37,7 +34,7 @@ export class ViewQuizzesComponent implements OnInit {
     if(result.isConfirmed){
       this.quiz.deleteQuiz(qId).subscribe(
         (data: any) => {
-          this.quizzes = this.quizzes.filter((ans) => ans.qid !== qId); // Corrected property name
+          this.quizzes = this.quizzes.filter((ans) => ans.qid !== qId);
           Swal.fire('Success', 'Quiz deleted', 'success');
         },
         (error) => {

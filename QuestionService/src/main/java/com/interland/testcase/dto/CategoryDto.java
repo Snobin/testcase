@@ -13,8 +13,6 @@ public class CategoryDto {
 	private String description;
 	private Set<Long> quizIds;
 
-	// Getters and Setters
-
 	public Long getCid() {
 		return cid;
 	}

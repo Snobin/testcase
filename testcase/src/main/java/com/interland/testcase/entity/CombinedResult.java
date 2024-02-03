@@ -5,106 +5,103 @@ import jakarta.persistence.Id;
 
 @Entity
 public class CombinedResult {
-	
+
 	@Id
-	 private String user;
-	 
-	   private Long attempted;
-		
-	   private Long obtainedScore;
-	   
-	   private Long correctAnswers;
-	   
-	   private String maxScore;
-		
-		private Long totalQuestion;
-		
-		private Double codingPercentage;
-		
-		private String Status;
+	private String user;
 
-		public String getUser() {
-			return user;
-		}
+	private Long attempted;
 
-		public void setUser(String user) {
-			this.user = user;
-		}
+	private Long obtainedScore;
 
-		public Long getAttempted() {
-			return attempted;
-		}
+	private Long correctAnswers;
 
-		public void setAttempted(Long attempted) {
-			this.attempted = attempted;
-		}
+	private String maxScore;
 
-		public Long getObtainedScore() {
-			return obtainedScore;
-		}
+	private Long totalQuestion;
 
-		public void setObtainedScore(Long obtainedScore) {
-			this.obtainedScore = obtainedScore;
-		}
+	private Double codingPercentage;
 
-		public Long getCorrectAnswers() {
-			return correctAnswers;
-		}
+	private String Status;
 
-		public void setCorrectAnswers(Long correctAnswers) {
-			this.correctAnswers = correctAnswers;
-		}
+	public String getUser() {
+		return user;
+	}
 
-		public String getMaxScore() {
-			return maxScore;
-		}
+	public void setUser(String user) {
+		this.user = user;
+	}
 
-		public void setMaxScore(String maxScore) {
-			this.maxScore = maxScore;
-		}
+	public Long getAttempted() {
+		return attempted;
+	}
 
-		public Long getTotalQuestion() {
-			return totalQuestion;
-		}
+	public void setAttempted(Long attempted) {
+		this.attempted = attempted;
+	}
 
-		public void setTotalQuestion(Long totalQuestion) {
-			this.totalQuestion = totalQuestion;
-		}
+	public Long getObtainedScore() {
+		return obtainedScore;
+	}
 
-		public Double getCodingPercentage() {
-			return codingPercentage;
-		}
+	public void setObtainedScore(Long obtainedScore) {
+		this.obtainedScore = obtainedScore;
+	}
 
-		public void setCodingPercentage(Double codingPercentage) {
-			this.codingPercentage = codingPercentage;
-		}
+	public Long getCorrectAnswers() {
+		return correctAnswers;
+	}
 
-		public String getStatus() {
-			return Status;
-		}
+	public void setCorrectAnswers(Long correctAnswers) {
+		this.correctAnswers = correctAnswers;
+	}
 
-		public void setStatus(String status) {
-			Status = status;
-		}
+	public String getMaxScore() {
+		return maxScore;
+	}
 
-		public CombinedResult(String user, Long attempted, Long obtainedScore, Long correctAnswers, String maxScore,
-				Long totalQuestion, Double codingPercentage, String status) {
-			super();
-			this.user = user;
-			this.attempted = attempted;
-			this.obtainedScore = obtainedScore;
-			this.correctAnswers = correctAnswers;
-			this.maxScore = maxScore;
-			this.totalQuestion = totalQuestion;
-			this.codingPercentage = codingPercentage;
-			Status = status;
-		}
+	public void setMaxScore(String maxScore) {
+		this.maxScore = maxScore;
+	}
 
-		public CombinedResult() {
-			super();
-		}
-		
-	   
-		
+	public Long getTotalQuestion() {
+		return totalQuestion;
+	}
+
+	public void setTotalQuestion(Long totalQuestion) {
+		this.totalQuestion = totalQuestion;
+	}
+
+	public Double getCodingPercentage() {
+		return codingPercentage;
+	}
+
+	public void setCodingPercentage(Double codingPercentage) {
+		this.codingPercentage = codingPercentage;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	public CombinedResult(String user, Long attempted, Long obtainedScore, Long correctAnswers, String maxScore,
+			Long totalQuestion, Double codingPercentage, String status) {
+		super();
+		this.user = user;
+		this.attempted = attempted;
+		this.obtainedScore = obtainedScore;
+		this.correctAnswers = correctAnswers;
+		this.maxScore = maxScore;
+		this.totalQuestion = totalQuestion;
+		this.codingPercentage = codingPercentage;
+		Status = status;
+	}
+
+	public CombinedResult() {
+		super();
+	}
 
 }

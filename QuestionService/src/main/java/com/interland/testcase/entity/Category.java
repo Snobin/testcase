@@ -15,18 +15,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cid;
-	
+
 	private String title;
-	
+
 	private String description;
-	
-	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Quiz> quizzes = new LinkedHashSet<>();
 
@@ -45,8 +45,6 @@ public class Category {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	
 
 	public String getDescription() {
 		return description;
@@ -74,8 +72,4 @@ public class Category {
 		this.description = description;
 	}
 
-
-	
-	
-	
 }

@@ -13,7 +13,7 @@
     fileContent:File;
     active:boolean;
     qid:string;
-    Time:string;
+    time:string;
 
   }
   

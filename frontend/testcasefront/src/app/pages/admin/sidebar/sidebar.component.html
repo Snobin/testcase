@@ -10,7 +10,7 @@
         <button mat-list-item routerLink="/admin/userlist"
         [class.focus]="sidebar[1]==true"
         (click)="setFocus(1)">
-            <mat-icon mat-list-icon>add_shopping_cart</mat-icon>
+            <mat-icon mat-list-icon>people</mat-icon>
             Users
         </button>
         <button mat-list-item routerLink="/admin/categories"
@@ -19,12 +19,12 @@
             <mat-icon mat-list-icon>list</mat-icon>
             Categories
         </button>
-        <button mat-list-item routerLink="/admin/add-categories"
+        <!-- <button mat-list-item routerLink="/admin/add-categories"
         [class.focus]="sidebar[3]==true"
         (click)="setFocus(3)">
             <mat-icon mat-list-icon>add_circle_outline</mat-icon>
             Add Categories
-        </button>
+        </button> -->
         <button mat-list-item routerLink="/admin/quizzes"
         [class.focus]="sidebar[4]==true"
         (click)="setFocus(4)">

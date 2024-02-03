@@ -17,8 +17,6 @@ public class QuestionServiceDto {
 		this.answer = answer;
 	}
 
-	// Add getters and setters for each field
-
 	public MultipartFile getQuestionFile() {
 		return questionFile;
 	}

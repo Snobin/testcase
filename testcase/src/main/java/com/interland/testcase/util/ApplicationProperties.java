@@ -6,22 +6,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public enum ApplicationProperties {
-	 INSTANCE;
+	INSTANCE;
 
-    private final Properties properties;
+	private final Properties properties;
 
-    ApplicationProperties() {
-        properties = new Properties();
-        try {
-        	properties.load(getClass().getResourceAsStream("/messages.properties"));
-        } catch (IOException e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
-        }
-    }
+	ApplicationProperties() {
+		properties = new Properties();
+		try {
+			properties.load(getClass().getResourceAsStream("/messages.properties"));
+		} catch (IOException e) {
+			Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage(), e);
+		}
+	}
 
-    public String getValue(String key) {
-        return properties.getProperty(key);
-    }
-	
+	public String getValue(String key) {
+		return properties.getProperty(key);
+	}
 
 }

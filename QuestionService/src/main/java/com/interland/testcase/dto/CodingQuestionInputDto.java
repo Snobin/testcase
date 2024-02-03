@@ -11,13 +11,11 @@ public class CodingQuestionInputDto {
 
 	@NotEmpty(message = "{NotEmpty.codingQuestionInputDto.title}")
 	private String title;
-
+	
 	@NotEmpty(message = "{NotEmpty.codingQuestionInputDto.description}")
 	private String desc;
-
 	private String ex1input;
 
-	@NotNull(message = "{NotNull.codingQuestionInputDto.active}")
 	private boolean active = false;
 
 	private String ex2input;
@@ -32,11 +30,11 @@ public class CodingQuestionInputDto {
 
 	private String constraints;
 
+	@NotEmpty(message = "{NotEmpty.codingQuestionInputDto.qid}")
 	private String qid;
-	
+	@NotNull(message = "{NotEmpty.codingQuestionInputDto.time}")
+	@NotEmpty(message = "{NotEmpty.codingQuestionInputDto.time}")
 	private String time;
-	
-	
 
 	public String getTime() {
 		return time;

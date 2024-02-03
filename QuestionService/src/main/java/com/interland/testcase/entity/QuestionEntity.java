@@ -4,48 +4,48 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Codingquest")
+@Table(name = "Codingquest")
 public class QuestionEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String questionId;
+	private String questionId;
 
-    @ElementCollection
-    @CollectionTable(name = "test_cases", joinColumns = @JoinColumn(name = "id"))
-    private List<TestCaseEntity> testCases;
+	@ElementCollection
+	@CollectionTable(name = "test_cases", joinColumns = @JoinColumn(name = "id"))
+	private List<TestCaseEntity> testCases;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getQuestionId() {
-        return questionId;
-    }
+	public String getQuestionId() {
+		return questionId;
+	}
 
-    public void setQuestionId(String questionId) {
-        this.questionId = questionId;
-    }
+	public void setQuestionId(String questionId) {
+		this.questionId = questionId;
+	}
 
-    public List<TestCaseEntity> getTestCases() {
-        return testCases;
-    }
+	public List<TestCaseEntity> getTestCases() {
+		return testCases;
+	}
 
-    public void setTestCases(List<TestCaseEntity> testCases) {
-        this.testCases = testCases;
-    }
+	public void setTestCases(List<TestCaseEntity> testCases) {
+		this.testCases = testCases;
+	}
 
-    public QuestionEntity() {
-    }
+	public QuestionEntity() {
+	}
 
-    public QuestionEntity(String questionId, List<TestCaseEntity> testCases) {
-        this.questionId = questionId;
-        this.testCases = testCases;
-    }
+	public QuestionEntity(String questionId, List<TestCaseEntity> testCases) {
+		this.questionId = questionId;
+		this.testCases = testCases;
+	}
 }

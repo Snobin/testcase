@@ -5,19 +5,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="CodingResult")
+@Table(name = "CodingResult")
 public class CodeResult {
 
 	@EmbeddedId
 	private CodeResultPk codeResultpk;
-	
+
 	private String code;
-	
-	
+
 	private String language;
-	
+
 	private Integer totalTescase;
-	
+
 	private Integer passedTestcase;
 
 	public CodeResultPk getCodeResultpk() {
@@ -73,6 +72,5 @@ public class CodeResult {
 	public CodeResult() {
 		super();
 	}
-	
-	
+
 }

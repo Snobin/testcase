@@ -5,21 +5,19 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class SingleResult {
-	
+
 	@EmbeddedId
 	private SingleResultPk singleResult;
-	
-	private Integer attempted;
-	
-	private String maxScore;
-	
-	private Integer obtainedScore;
-	
-	private int totalQuestion;
-	
-	private Integer correctAnswers;
-		
 
+	private Integer attempted;
+
+	private String maxScore;
+
+	private Integer obtainedScore;
+
+	private int totalQuestion;
+
+	private Integer correctAnswers;
 
 	public SingleResultPk getSingleResult() {
 		return singleResult;
@@ -69,8 +67,6 @@ public class SingleResult {
 		this.correctAnswers = correctAnswers;
 	}
 
-
-	
 	public SingleResult(SingleResultPk singleResult, Integer attempted, String maxScore, Integer obtainedScore,
 			int totalQuestion, Integer correctAnswers) {
 		super();
@@ -85,8 +81,5 @@ public class SingleResult {
 	public SingleResult() {
 		super();
 	}
-	
-	
 
-	
 }

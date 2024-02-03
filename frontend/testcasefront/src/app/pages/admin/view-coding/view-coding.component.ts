@@ -22,20 +22,16 @@ export class ViewCodingComponent implements OnInit {
       (data: any) => {
         this.quizzes = data;
         this.codeInput.qid=this.quizzes.questionId;
-        console.log(data);
-        console.log(this.quizzes);
+      
       },
       (error) => {
-        console.log(error);
         Swal.fire('Error !', 'Error in loading data !', 'error');
       }
     )
   }
 
   onToggleChange(questionId: string,act:any,q:any) {
-    console.log("Question ID: ", questionId);
     this.codeInput = q;
-    console.log(this.codeInput);
     this.codeInput.desc=q.description;
     this.codeInput.qid = questionId;
     this.codeInput.ex1explanation=q.example1Exp;
@@ -45,13 +41,10 @@ export class ViewCodingComponent implements OnInit {
     this.codeInput.ex2input=q.example2Input;
     this.codeInput.ex2output=q.example2Output;
     this.codeInput.active =act;
-    // Assuming you have a function in your code service to update the question's active status
     this.code.updateCode(this.codeInput,this.file).subscribe(
       (data: any) => {
-        console.log(data);
       },
       (error) => {
-        console.log(error);
       }
     );
   }

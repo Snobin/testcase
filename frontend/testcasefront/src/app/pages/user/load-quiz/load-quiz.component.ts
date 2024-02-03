@@ -47,19 +47,16 @@ export class LoadQuizComponent implements OnInit {
 
         if (!localStorage.getItem("minutes")) {
             setTimeout(() => {
-                console.log(this.time);
                 this.updateStatus(this.time);
             }, 500);
         } else if (localStorage.getItem("minutes")) {
             setTimeout(() => {
-                console.log(this.time);
                 this.updateStatus(this.time);
             }, 0);
         }
     }
 
     updateStatus(time: any): void {
-        console.log(time);
         if (!localStorage.getItem("minutes")) {
             localStorage.setItem("minutes", time);
         }
@@ -83,16 +80,24 @@ export class LoadQuizComponent implements OnInit {
                 this.quiz.getActiveQuizCategory(5).subscribe(
                     (data: any) => {
                         this.quizzes = data;
+                        
                         data.forEach((quiz: any) => {
-                            const quizTime = quiz.time ? parseInt(quiz.time) : 0;
-                            this.time += quizTime;
+                            const quizTime = quiz.time ? parseInt(quiz.time, 10) : 0;
+                            
+                            // Check if the parsed value is a valid integer
+                            if (!isNaN(quizTime)) {
+                                this.time += quizTime;
+                            } else {
+                                console.error(`Invalid quiz time: ${quiz.time}`);
+                            }
+           
                         });
-                        console.log(this.time);
                     },
                     (error) => {
                         console.log(error);
                     }
                 );
+                
 
                 let userObject = localStorage.getItem("user");
                 const user = JSON.parse(userObject);
@@ -105,8 +110,7 @@ export class LoadQuizComponent implements OnInit {
                             const quizTime = quiz.time ? parseInt(quiz.time) : 0;
                             this.time += quizTime;
                         });
-                        console.log(this.time);
-                        console.log(this.codingQuestions);
+               
                     },
                     (error) => {
                         console.log(error);
@@ -150,8 +154,7 @@ export class LoadQuizComponent implements OnInit {
         this.code.activeCodingQuestions(username).subscribe(
             (data: any) => {
                 this.codingQuestions = data;
-                console.log(data);
-                console.log(this.codingQuestions);
+           
                 for (let index = 0; index < data.length; index++) {
                     if (data[index].status != 'Review') {
                         data[index].status = 'Start';

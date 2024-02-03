@@ -12,46 +12,46 @@
         </div>
         <div class="row-wise form p-10 h-93">
             <div id="login" class="h-full" [class.open]="loginPage==true">
-                <div class="form h-full px-10 bg-white">
+                <div class="form h-full px-10 bg-white scroll">
                     <form (ngSubmit)="formSubmit()" class="mat-form">
+                        <span class="error">{{validationMessage.username}}</span>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>User Name</mat-label>
                             <input matInput placeholder="Enter here" [(ngModel)]="userdata.username" name="user"
                                required >
                             <mat-hint>Username must be unique</mat-hint>
-                            <mat-error>{{validationMessage.username}}</mat-error>
                         </mat-form-field>
+                        <span class="error">{{validationMessage.password}}</span>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>User Password</mat-label>
                             <input type="password" [(ngModel)]="userdata.password" name="password" matInput
                                 placeholder="Enter here" required>
-                            <mat-error>{{validationMessage.password}}</mat-error>
                         </mat-form-field>
+                        <span class="error">{{validationMessage.firstName}}</span>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>First Name</mat-label>
                             <input [(ngModel)]="userdata.firstName" name="first" matInput placeholder="Enter here"
                                 required>
-                                <mat-error>{{validationMessage.firstName}}</mat-error>
                         </mat-form-field>
+                        <span class="error">{{validationMessage.lastName}}</span>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Last Name</mat-label>
                             <input matInput placeholder="Enter here" [(ngModel)]="userdata.lastName" name="last"
                                 required>
-                                <mat-error>{{validationMessage.lastName}}</mat-error>
                         </mat-form-field>
+                        <span class="error">{{validationMessage.email}}</span>
                         <mat-form-field class="full-width" appearance="outline">
 
                             <mat-label>Email Address</mat-label>
                             <input type="email" matInput placeholder="Enter here" [(ngModel)]="userdata.email"
                                 name="email" required>
-                                <mat-error>{{validationMessage.phoneNumber}}</mat-error>
                         </mat-form-field>
+                        <span class="error">{{validationMessage.phoneNumber}}</span>
                         <mat-form-field class="full-width" appearance="outline">
 
                             <mat-label>Phone Number</mat-label>
                             <input type="number" matInput placeholder="Enter here" [(ngModel)]="userdata.phoneNumber"
                                 name="phone" required>
-                                <mat-error>{{validationMessage.phoneNumber}}</mat-error>
                         </mat-form-field>
                         <mat-slide-toggle style="margin-left: 10px;" name="active" [(ngModel)]="userdata.role"
                             class="mt20" color="primary">

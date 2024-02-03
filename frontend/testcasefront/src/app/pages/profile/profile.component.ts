@@ -11,33 +11,28 @@ import { LoginService } from 'src/app/services/login.service';
 export class ProfileComponent implements OnInit {
   user = null;
 
-  constructor(private login: LoginService,private router:Router, private locationst: LocationStrategy) { }
+  constructor(private login: LoginService, private router: Router, private locationst: LocationStrategy) { }
 
   ngOnInit(): void {
     this.preventBackButton();
-    // this.user = this.login.getUser();
     this.login.getCurrentUser().subscribe(
-      (user:any) => {
-        this.user=user;
+      (user: any) => {
+        this.user = user;
       },
       (error) => {
-        alert("error")
+        console.log(error);
       }
     )
 
   }
-  update()
-  {
+  update() {
     this.router.navigate(['/admin/update']);
   }
 
-  
   preventBackButton() {
     history.pushState(null, null, location.href);
     this.locationst.onPopState(() => {
       history.pushState(null, null, location.href)
     });
   }
-
-
 }
