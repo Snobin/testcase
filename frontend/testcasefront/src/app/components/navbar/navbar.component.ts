@@ -193,6 +193,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.isLoggedIn = this.login.isloggedin();
     this.user = this.login.getUser();
     this.router.navigate([`login`]);
+    localStorage.clear();
   }
 
   startCountdown(): void {
