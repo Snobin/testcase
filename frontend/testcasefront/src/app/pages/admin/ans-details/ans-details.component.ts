@@ -23,15 +23,18 @@ export class AnsDetailsComponent implements OnInit {
       this.ans.getDataByUser(this.user).subscribe(
         (data: any) => {
           this.dataa = data;
+          if(this.dataa.mcqQuestions){
+            // Categorize questions based on their category
+            this.dataa.mcqQuestions.forEach((mcqQuestion) => {
+              this.mcqQuestions.push(mcqQuestion);
+            });
+          }
+          if(this.dataa.codingQuestions){
 
-          // Categorize questions based on their category
-          this.dataa.mcqQuestions.forEach((mcqQuestion) => {
-            this.mcqQuestions.push(mcqQuestion);
-          });
-
-          this.dataa.codingQuestions.forEach((codingQuestion) => {
-            this.codingQuestions.push(codingQuestion);
-          });
+            this.dataa.codingQuestions.forEach((codingQuestion) => {
+              this.codingQuestions.push(codingQuestion);
+            });
+          }
    
         },
         (error) => {

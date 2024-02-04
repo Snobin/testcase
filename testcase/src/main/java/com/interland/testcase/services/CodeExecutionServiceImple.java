@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -29,7 +31,6 @@ import org.springframework.stereotype.Service;
 
 import com.interland.testcase.dto.CodeRequest;
 import com.interland.testcase.dto.CodeResponse;
-import com.interland.testcase.dto.ServiceResponse;
 import com.interland.testcase.entity.CodeExecutionResult;
 import com.interland.testcase.entity.CodeResult;
 import com.interland.testcase.entity.CodeResultPk;
@@ -37,8 +38,6 @@ import com.interland.testcase.entity.QuestionEntity;
 import com.interland.testcase.entity.TestCaseEntity;
 import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.codQuestionRepository;
-import com.interland.testcase.util.Constants;
-
 
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
@@ -53,6 +52,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 	private CombinedResultImplementation combinedResultImplementation;
 
 	Integer passedtestcases = 0;
+	ExecutorService executorService = Executors.newFixedThreadPool(5);
 
 	@Override
 	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
@@ -87,7 +87,9 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				switch (language) {
 				case "java":
-					codeResponses = executeJavaCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
+					codeResponses = executeJavaCodeParallel(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
+
+//					codeResponses = executeJavaCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
 					saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
 							numberOfTestCasesToExecute);
 					codeResult.setPassedTestcase(passedtestcases);
@@ -140,13 +142,118 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		}
 	}
 
-	private List<CodeResponse> executeJavaCode(String code, List<String> inputElements, List<String> expectedOutputs,
-			int numberOfTestCasesToExecute) {
+	private List<CodeResponse> executeJavaCodeParallel(String code, List<String> inputElements,
+			List<String> expectedOutputs, int numberOfTestCasesToExecute) {
 		List<CodeResponse> codeResponses = new ArrayList<>();
+		List<Future<CodeResponse>> futures = new ArrayList<>();
 
 		for (int i = 0; i < numberOfTestCasesToExecute; i++) {
 			String input = inputElements.get(i);
 			String expectedOutput = expectedOutputs.get(i);
+
+			Callable<CodeResponse> codeExecutionTask = () -> {
+				return executeJavaCode(code, input, expectedOutput);
+			};
+
+			Future<CodeResponse> future = executorService.submit(codeExecutionTask);
+			futures.add(future);
+		}
+
+		for (Future<CodeResponse> future : futures) {
+			try {
+				CodeResponse codeResponse = future.get();
+				codeResponses.add(codeResponse);
+
+// Handle the results as needed
+				handleResult(codeResponse);
+
+			} catch (InterruptedException | ExecutionException e) {
+				logger.error("Error:" + e.getMessage(), e);
+			}
+		}
+
+		return codeResponses;
+	}
+//	private void handleResult(CodeResponse codeResponse) {
+//	    // You can add logic here to save the code response to the database or perform other actions
+//	    // For example, you can call saveResultToDatabase(codeResponse) method
+//		saveResultToDatabase(codeResponse);
+//	}
+//	private void saveResultToDatabase(CodeResponse codeResponse) {
+//	    try {
+//	        // Assuming you have a repository or service for managing code execution results in the database
+//
+//	        // Create an entity to store the code execution result
+////	        CodeExecutionResult resultEntity = createCodeExecutionResultEntity(codeResponse);
+////
+////	        // Save the entity to the database
+////	        codeExecutionResultRepository.save(resultEntity);
+//
+//	        // You can add additional logic or logging if needed
+//	        logger.info("Code execution result saved to the database successfully.");
+//
+//	    } catch (Exception e) {
+//	        logger.error("Error saving code execution result to the database: " + e.getMessage(), e);
+//	        // Handle the exception or log the error as needed
+//	    }
+//	}
+//	
+//	   private CodeResponse executeJavaCodeForSingleTestCase(String code, String input, String expectedOutput) {
+//	        CodeResponse codeResponse = new CodeResponse();
+//
+//	        try {
+//	            String className = getClassName(code);
+//	            File tempFile = createTempFile(className, ".java", code);
+//	            String dockerVolumePath = "/tmp";
+//
+//	            ProcessBuilder processBuilder;
+//
+//	            if (input != null && !input.isEmpty()) {
+//	                processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+//	                        tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+//	                        "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+//	                                + " && echo '" + input + "' | timeout 20s java " + className);
+//	            } else {
+//	                processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+//	                        tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+//	                        "javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+//	                                + " && timeout 20s java " + className);
+//	            }
+//
+//	            codeResponse = executeProcess(processBuilder, tempFile);
+//
+//	            if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+//	                codeResponse.setSuccess("true");
+//	                codeResponse.setInput(input);
+//	                codeResponse.setExpectedOutput(expectedOutput);
+//	                passedtestcases++;
+//	                codeResponse.setMessage("Test case passed!");
+//	                codeResponse.setInput(input);
+//	                codeResponse.setExpectedOutput(expectedOutput);
+//	            } else {
+//	                codeResponse.setSuccess("false");
+//	                codeResponse.setInput(input);
+//	                codeResponse.setExpectedOutput(expectedOutput);
+//	                codeResponse.setMessage(
+//	                        "Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+//	            }
+//
+//	            if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+//	                handleTimeoutError(codeResponse);
+//	            }
+//	        } catch (Exception e) {
+//	            logger.error("Error:" + e.getMessage(), e);
+//	            codeResponse.setOutput("Error: " + e.getMessage());
+//	            codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+//	        }
+//
+//	        return codeResponse;
+//	    }
+	   
+
+	private List<CodeResponse> executeJavaCode(String code, String input,String expectedOutput) {
+		List<CodeResponse> codeResponses = new ArrayList<>();
+
 
 			try {
 				String className = getClassName(code);
@@ -187,7 +294,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 				codeResponses.add(codeResponse);
 				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-					break;
+					handleTimeoutError(codeResponse);
 				}
 			} catch (Exception e) {
 				logger.error("Error:" + e.getMessage(), e);
@@ -196,7 +303,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
 				codeResponses.add(codeResponse);
 			}
-		}
+		
 
 		return codeResponses;
 	}
