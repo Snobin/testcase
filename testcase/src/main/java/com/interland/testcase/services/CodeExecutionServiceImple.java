@@ -5,22 +5,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.python.core.CompileMode;
-import org.python.core.CompilerFlags;
-import org.python.core.Py;
-import org.python.core.PyCode;
-import org.python.util.PythonInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +32,6 @@ import com.interland.testcase.entity.TestCaseEntity;
 import com.interland.testcase.repository.CodingResultRepository;
 import com.interland.testcase.repository.codQuestionRepository;
 
-
 @Service
 public class CodeExecutionServiceImple implements CodeExecutionService {
 
@@ -52,7 +46,6 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 	Integer passedtestcases = 0;
 	ExecutorService executorService = Executors.newFixedThreadPool(5);
-
 
 	@Override
 	public List<CodeResponse> executeCode(CodeRequest codeRequest) throws IOException {
@@ -88,48 +81,31 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				switch (language) {
 				case "java":
 					codeResponses = executeJavaCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-					saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-							numberOfTestCasesToExecute);
-					codeResult.setPassedTestcase(passedtestcases);
-					passedtestcases = 0;
-					codingResultRepository.save(codeResult);
-					combinedResultImplementation.getResult();
-					return codeResponses;
+					break;
 
 				case "c":
 					codeResponses = executeCCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-					saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-							numberOfTestCasesToExecute);
-					codeResult.setPassedTestcase(passedtestcases);
-					passedtestcases = 0;
-					codingResultRepository.save(codeResult);
-					combinedResultImplementation.getResult();
-					return codeResponses;
+					break;
 
 				case "cpp":
 					codeResponses = executeCppCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-					saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-							numberOfTestCasesToExecute);
-					codeResult.setPassedTestcase(passedtestcases);
-					passedtestcases = 0;
-					codingResultRepository.save(codeResult);
-					combinedResultImplementation.getResult();
-					return codeResponses;
-
-				case "python":
-					codeResponses = executePythonCode(code, inputs);
-					saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-							numberOfTestCasesToExecute);
-					return codeResponses;
+					break;
 
 				default:
 					CodeResponse codeResponse = new CodeResponse();
 					codeResponse.setOutput("Unsupported language: " + language);
-					codeResponses = executeCppCode(code, inputs, expectedOutputs, numberOfTestCasesToExecute);
-					saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
-							numberOfTestCasesToExecute);
-					return codeResponses;
+					codeResponses = Collections.singletonList(codeResponse);
+					break;
 				}
+
+				saveResultsInDatabase(codeResponses, codeRequest, testCases, expectedOutputs,
+						numberOfTestCasesToExecute);
+				codeResult.setPassedTestcase(passedtestcases);
+				passedtestcases = 0;
+				codingResultRepository.save(codeResult);
+				combinedResultImplementation.getResult();
+				return codeResponses;
+
 			} else {
 				return Collections.emptyList();
 			}
@@ -142,202 +118,219 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 
 	private List<CodeResponse> executeJavaCode(String code, List<String> inputElements, List<String> expectedOutputs,
 			int numberOfTestCasesToExecute) {
-		List<CodeResponse> codeResponses = new ArrayList<>();
+		List<CompletableFuture<CodeResponse>> futures = new ArrayList<>();
 
 		for (int i = 0; i < numberOfTestCasesToExecute; i++) {
 			String input = inputElements.get(i);
 			String expectedOutput = expectedOutputs.get(i);
 
-			try {
-				String className = getClassName(code);
-				File tempFile = createTempFile(className, ".java", code);
-				String dockerVolumePath = "/tmp";
-
-				ProcessBuilder processBuilder;
-
-				if (input != null && !input.isEmpty()) {
-					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-							tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
-							"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
-									+ " && echo '" + input + "' | timeout 20s java " + className);
-				} else {
-					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-							tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
-							"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
-									+ " && timeout 20s java " + className);
+			CompletableFuture<CodeResponse> future = CompletableFuture.supplyAsync(() -> {
+				try {
+					return executeSingleJavaTestCase(code, input, expectedOutput);
+				} catch (Exception e) {
+					logger.error("Error:" + e.getMessage(), e);
+					CodeResponse codeResponse = new CodeResponse();
+					codeResponse.setOutput("Error: " + e.getMessage());
+					codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+					return codeResponse;
 				}
+			}, executorService);
 
-				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
-
-				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
-					codeResponse.setSuccess("true");
-					codeResponse.setInput(input);
-					codeResponse.setExpectedOutput(expectedOutput);
-					passedtestcases++;
-					codeResponse.setMessage("Test case passed!");
-					codeResponse.setInput(input);
-					codeResponse.setExpectedOutput(expectedOutput);
-				} else {
-					codeResponse.setSuccess("false");
-					codeResponse.setInput(input);
-					codeResponse.setExpectedOutput(expectedOutput);
-					codeResponse.setMessage(
-							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
-				}
-
-				codeResponses.add(codeResponse);
-				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-					break;
-				}
-			} catch (Exception e) {
-				logger.error("Error:" + e.getMessage(), e);
-				CodeResponse codeResponse = new CodeResponse();
-				codeResponse.setOutput("Error: " + e.getMessage());
-				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
-				codeResponses.add(codeResponse);
-			}
+			futures.add(future);
 		}
 
-		return codeResponses;
+		return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+				.thenApply(v -> futures.stream().map(CompletableFuture::join).collect(Collectors.toList())).join();
+	}
+
+	private CodeResponse executeSingleJavaTestCase(String code, String input, String expectedOutput) {
+		try {
+			String className = getClassName(code);
+			File tempFile = createTempFile(className, ".java", code);
+			String dockerVolumePath = "/tmp";
+
+			ProcessBuilder processBuilder;
+
+			if (input != null && !input.isEmpty()) {
+				processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+						tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+						"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+								+ " && echo '" + input + "' | timeout 20s java " + className);
+			} else {
+				processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+						tempFile.getParent() + ":" + dockerVolumePath, "openjdk:latest", "bash", "-c",
+						"javac " + dockerVolumePath + "/" + tempFile.getName() + " && cd " + dockerVolumePath
+								+ " && timeout 20s java " + className);
+			}
+
+			CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+
+			if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+				codeResponse.setSuccess("true");
+				codeResponse.setInput(input);
+				codeResponse.setExpectedOutput(expectedOutput);
+				passedtestcases++;
+				codeResponse.setMessage("Test case passed!");
+				codeResponse.setInput(input);
+				codeResponse.setExpectedOutput(expectedOutput);
+			} else {
+				codeResponse.setSuccess("false");
+				codeResponse.setInput(input);
+				codeResponse.setExpectedOutput(expectedOutput);
+				codeResponse.setMessage(
+						"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+			}
+
+			if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+				tempFile.delete();
+				return codeResponse;
+			}
+
+			tempFile.delete();
+			return codeResponse;
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			CodeResponse codeResponse = new CodeResponse();
+			codeResponse.setOutput("Error: " + e.getMessage());
+			codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+			return codeResponse;
+		}
 	}
 
 	private List<CodeResponse> executeCCode(String code, List<String> inputElements, List<String> expectedOutputs,
 			int numberOfTestCasesToExecute) {
-		List<CodeResponse> codeResponses = new ArrayList<>();
+		List<CompletableFuture<CodeResponse>> futures = new ArrayList<>();
 
 		for (int i = 0; i < numberOfTestCasesToExecute; i++) {
 			String input = inputElements.get(i);
 			String expectedOutput = expectedOutputs.get(i);
 
-			try {
-				File tempFile = createTempFile("code", ".c", code);
-				String dockerVolumePath = "/tmp";
-
-				ProcessBuilder processBuilder;
-				if (input != null && !input.isEmpty()) {
-					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-							tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
-							"bash", "-c",
-							"gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
-									+ "/a.out && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
-				} else {
-					processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-							tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
-							"bash", "-c", "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o "
-									+ dockerVolumePath + "/a.out && cd " + dockerVolumePath + " && ./a.out");
+			CompletableFuture<CodeResponse> future = CompletableFuture.supplyAsync(() -> {
+				try {
+					return executeSingleCTestCase(code, input, expectedOutput);
+				} catch (Exception e) {
+					logger.error("Error:" + e.getMessage(), e);
+					CodeResponse codeResponse = new CodeResponse();
+					codeResponse.setOutput("Error: " + e.getMessage());
+					codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+					return codeResponse;
 				}
+			}, executorService);
 
-				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
-
-				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
-					codeResponse.setSuccess("true");
-					passedtestcases++;
-					codeResponse.setMessage("Test case passed!");
-				} else {
-					codeResponse.setSuccess("false");
-					codeResponse.setMessage(
-							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
-				}
-
-				codeResponses.add(codeResponse);
-				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-					break;
-				}
-			} catch (Exception e) {
-				logger.error("Error:" + e.getMessage(), e);
-				CodeResponse codeResponse = new CodeResponse();
-				codeResponse.setOutput("Error: " + e.getMessage());
-				codeResponse.setSuccess("false");
-				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
-				codeResponses.add(codeResponse);
-			}
+			futures.add(future);
 		}
 
-		return codeResponses;
+		return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+				.thenApply(v -> futures.stream().map(CompletableFuture::join).collect(Collectors.toList())).join();
+	}
+
+	private CodeResponse executeSingleCTestCase(String code, String input, String expectedOutput) {
+		try {
+			File tempFile = createTempFile("code", ".c", code);
+			String dockerVolumePath = "/tmp";
+
+			ProcessBuilder processBuilder;
+			if (input != null && !input.isEmpty()) {
+				processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
+						"bash", "-c", "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
+								+ "/a.out && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
+			} else {
+				processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
+						"bash", "-c", "gcc " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
+								+ "/a.out && cd " + dockerVolumePath + " && ./a.out");
+			}
+
+			CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
+
+			if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+				codeResponse.setSuccess("true");
+				codeResponse.setMessage("Test case passed!");
+			} else {
+				codeResponse.setSuccess("false");
+				codeResponse.setMessage(
+						"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+			}
+
+			if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+				tempFile.delete();
+				return codeResponse;
+			}
+
+			tempFile.delete();
+			return codeResponse;
+		} catch (Exception e) {
+			logger.error("Error:" + e.getMessage(), e);
+			CodeResponse codeResponse = new CodeResponse();
+			codeResponse.setOutput("Error: " + e.getMessage());
+			codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+			return codeResponse;
+		}
 	}
 
 	private List<CodeResponse> executeCppCode(String code, List<String> inputElements, List<String> expectedOutputs,
 			int numberOfTestCasesToExecute) {
-		List<CodeResponse> codeResponses = new ArrayList<>();
+		List<CompletableFuture<CodeResponse>> futures = new ArrayList<>();
 
 		for (int i = 0; i < numberOfTestCasesToExecute; i++) {
 			String input = inputElements.get(i);
 			String expectedOutput = expectedOutputs.get(i);
 
-			try {
-				File tempFile = createTempFile("code", ".cpp", code);
-				String dockerVolumePath = "/tmp";
-
-				ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
-						tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s",
-						"bash", "-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath
-								+ "/a.out" + " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
-
-				CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
-
-				if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
-					codeResponse.setSuccess("true");
-					passedtestcases++;
-					codeResponse.setMessage("Test case passed!");
-				} else {
-					codeResponse.setSuccess("false");
-					codeResponse.setMessage(
-							"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
+			CompletableFuture<CodeResponse> future = CompletableFuture.supplyAsync(() -> {
+				try {
+					return executeSingleCppTestCase(code, input, expectedOutput);
+				} catch (Exception e) {
+					logger.error("Error:" + e.getMessage(), e);
+					CodeResponse codeResponse = new CodeResponse();
+					codeResponse.setOutput("Error: " + e.getMessage());
+					codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+					return codeResponse;
 				}
+			}, executorService);
 
-				codeResponses.add(codeResponse);
-				if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
-					break;
-				}
-			} catch (Exception e) {
-				logger.error("Error:" + e.getMessage(), e);
-				CodeResponse codeResponse = new CodeResponse();
-				codeResponse.setOutput("Error: " + e.getMessage());
-				codeResponse.setSuccess("false");
-				codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
-				codeResponses.add(codeResponse);
-			}
+			futures.add(future);
 		}
 
-		return codeResponses;
+		return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+				.thenApply(v -> futures.stream().map(CompletableFuture::join).collect(Collectors.toList())).join();
 	}
 
-	public static List<CodeResponse> executePythonCode(String code, List<String> inputElements) {
-		List<CodeResponse> codeResponses = new ArrayList<>();
+	private CodeResponse executeSingleCppTestCase(String code, String input, String expectedOutput) {
+		try {
+			File tempFile = createTempFile("code", ".cpp", code);
+			String dockerVolumePath = "/tmp";
 
-		try (PythonInterpreter interpreter = new PythonInterpreter()) {
-			for (String inputElement : inputElements) {
-				CodeResponse codeResponse = new CodeResponse();
-				long startTime = System.currentTimeMillis();
+			ProcessBuilder processBuilder = new ProcessBuilder("docker", "run", "--rm", "-i", "-v",
+					tempFile.getParent() + ":" + dockerVolumePath, "eclipse/cpp_gcc:latest", "timeout", "20s", "bash",
+					"-c", "g++ " + dockerVolumePath + "/" + tempFile.getName() + " -o " + dockerVolumePath + "/a.out"
+							+ " && cd " + dockerVolumePath + " && echo '" + input + "' | ./a.out");
 
-				try {
-					StringWriter outputWriter = new StringWriter();
-					interpreter.setOut(outputWriter);
-					interpreter.set("element", inputElement);
+			CodeResponse codeResponse = executeProcess(processBuilder, tempFile);
 
-					PyCode compiledCode = Py.compile_flags(code, "<string>", CompileMode.exec, new CompilerFlags());
-					interpreter.exec(compiledCode);
-
-					codeResponse.setOutput(outputWriter.toString());
-				} catch (Exception e) {
-					codeResponse.setOutput("Error: " + e.getMessage());
-				}
-
-				long endTime = System.currentTimeMillis();
-				long elapsedTime = endTime - startTime;
-
-				codeResponse.setProcessingTime(elapsedTime);
-
-				codeResponses.add(codeResponse);
+			if (codeResponse.getOutput().trim().equals(expectedOutput.trim())) {
+				codeResponse.setSuccess("true");
+				codeResponse.setMessage("Test case passed!");
+			} else {
+				codeResponse.setSuccess("false");
+				codeResponse.setMessage(
+						"Test case failed. Expected: " + expectedOutput + ", Actual: " + codeResponse.getOutput());
 			}
+
+			if ("Error: Execution timed out after 10 seconds".equals(codeResponse.getOutput())) {
+				tempFile.delete();
+				return codeResponse;
+			}
+
+			tempFile.delete();
+			return codeResponse;
 		} catch (Exception e) {
 			logger.error("Error:" + e.getMessage(), e);
-			CodeResponse errorResponse = new CodeResponse();
-			errorResponse.setOutput("Error: " + e.getMessage());
-			codeResponses.add(errorResponse);
+			CodeResponse codeResponse = new CodeResponse();
+			codeResponse.setOutput("Error: " + e.getMessage());
+			codeResponse.setMessage("Test case failed. Error: " + e.getMessage());
+			return codeResponse;
 		}
-
-		return codeResponses;
 	}
 
 	private CodeResponse executeProcess(ProcessBuilder processBuilder, File tempFile) {
@@ -347,13 +340,13 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 		long startTime = System.currentTimeMillis();
 
 		try {
-			Future<Void> future = executorService.submit(() -> {
+			Future<Void> future = CompletableFuture.runAsync(() -> {
 				try {
 					executeAndCaptureOutput(processBuilder, codeResponse, tempFile);
 				} catch (Exception e) {
 					handleTimeoutError(codeResponse);
 				}
-			}, null);
+			}, executorService);
 
 			future.get(10, TimeUnit.SECONDS);
 		} catch (Exception e) {
@@ -382,12 +375,9 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 				output.append(line);
 			}
 
-			tempFile.delete();
-
 			codeResponse.setOutput(output.toString());
 		} catch (IOException e) {
 			logger.error("Error:" + e.getMessage(), e);
-
 		}
 	}
 
@@ -436,7 +426,7 @@ public class CodeExecutionServiceImple implements CodeExecutionService {
 			String input = inputs.get(i);
 			String expectedOutput = expectedOutputs.get(i);
 
-			 createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
+			createCodeExecutionResult(codeRequest, codeResponse, input, expectedOutput);
 
 			try {
 			} catch (DataIntegrityViolationException e) {

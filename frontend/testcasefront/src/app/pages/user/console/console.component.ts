@@ -204,8 +204,8 @@ export class ConsoleComponent implements OnInit {
         return CodeMirror.hint.java;
       case 'cpp':
         return CodeMirror.hint.cpp;
-      case 'python':
-        return CodeMirror.hint.python;
+      // case 'python':
+      //   return CodeMirror.hint.python;
       case 'c':
         return CodeMirror.hint.c;
       // Add cases for other languages as needed
